@@ -1,0 +1,257 @@
+{
+ "guias/criancas": [
+  {
+   "src": "/img/guias/criancas-600.webp",
+   "w": 600,
+   "h": 600
+  }
+ ],
+ "guias/essencial": [
+  {
+   "src": "/img/guias/essencial-600.webp",
+   "w": 600,
+   "h": 600
+  }
+ ],
+ "home/familia": [
+  {
+   "src": "/img/home/familia-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/home/familia-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ],
+ "home/hero": [
+  {
+   "src": "/img/home/hero-900.webp",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "/img/home/hero-1600.webp",
+   "w": 1497,
+   "h": 998
+  }
+ ],
+ "home/mel": [
+  {
+   "src": "/img/home/mel-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/home/mel-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
+ ],
+ "paginas/consultoria": [
+  {
+   "src": "/img/paginas/consultoria-800.webp",
+   "w": 800,
+   "h": 600
+  },
+  {
+   "src": "/img/paginas/consultoria-1200.webp",
+   "w": 1200,
+   "h": 900
+  }
+ ],
+ "paginas/cta": [
+  {
+   "src": "/img/paginas/cta-900.webp",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "/img/paginas/cta-1600.webp",
+   "w": 1600,
+   "h": 1067
+  }
+ ],
+ "paginas/roteiro": [
+  {
+   "src": "/img/paginas/roteiro-800.webp",
+   "w": 665,
+   "h": 499
+  }
+ ],
+ "paginas/tours": [
+  {
+   "src": "/img/paginas/tours-900.webp",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "/img/paginas/tours-1600.webp",
+   "w": 1497,
+   "h": 998
+  }
+ ],
+ "servicos/consultoria": [
+  {
+   "src": "/img/servicos/consultoria-800.webp",
+   "w": 665,
+   "h": 443
+  }
+ ],
+ "servicos/guias": [
+  {
+   "src": "/img/servicos/guias-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/servicos/guias-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
+ ],
+ "servicos/roteiro": [
+  {
+   "src": "/img/servicos/roteiro-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/servicos/roteiro-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
+ ],
+ "servicos/tours": [
+  {
+   "src": "/img/servicos/tours-800.webp",
+   "w": 537,
+   "h": 358
+  }
+ ],
+ "sobre/g1": [
+  {
+   "src": "/img/sobre/g1-600.webp",
+   "w": 537,
+   "h": 671
+  }
+ ],
+ "sobre/g2": [
+  {
+   "src": "/img/sobre/g2-600.webp",
+   "w": 537,
+   "h": 671
+  }
+ ],
+ "sobre/g3": [
+  {
+   "src": "/img/sobre/g3-600.webp",
+   "w": 537,
+   "h": 671
+  }
+ ],
+ "sobre/retrato": [
+  {
+   "src": "/img/sobre/retrato-800.webp",
+   "w": 665,
+   "h": 831
+  }
+ ],
+ "tours/ambientacao": [
+  {
+   "src": "/img/tours/ambientacao-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tours/ambientacao-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ],
+ "tours/bucolico-e-artistico": [
+  {
+   "src": "/img/tours/bucolico-e-artistico-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tours/bucolico-e-artistico-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ],
+ "tours/cenarios-de-filmes-e-series": [
+  {
+   "src": "/img/tours/cenarios-de-filmes-e-series-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tours/cenarios-de-filmes-e-series-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ],
+ "tours/dia-inteiro-grandes-monumentos": [
+  {
+   "src": "/img/tours/dia-inteiro-grandes-monumentos-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tours/dia-inteiro-grandes-monumentos-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ],
+ "tours/historia-e-memoria": [
+  {
+   "src": "/img/tours/historia-e-memoria-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tours/historia-e-memoria-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ],
+ "tours/monumental-classico": [
+  {
+   "src": "/img/tours/monumental-classico-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tours/monumental-classico-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ],
+ "tours/rive-gauche-e-berco-de-paris": [
+  {
+   "src": "/img/tours/rive-gauche-e-berco-de-paris-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tours/rive-gauche-e-berco-de-paris-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ],
+ "tours/tour-personalizado": [
+  {
+   "src": "/img/tours/tour-personalizado-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tours/tour-personalizado-1536.webp",
+   "w": 1536,
+   "h": 1024
+  }
+ ]
+}

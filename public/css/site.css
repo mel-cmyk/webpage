@@ -71,7 +71,8 @@ p { margin: 0 0 1em; }
 .header-inner { display: flex; align-items: center; gap: 20px; min-height: 72px; }
 .brand { display: flex; align-items: center; text-decoration: none; }
 .brand img { height: 50px; width: auto; }
-.photo { border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 24px; }
+.photo-top { margin-top: 28px; }
+.photo { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 24px; }
 .nav-desktop { display: none; gap: 22px; margin-left: auto; }
 .nav-desktop a { text-decoration: none; font-size: 0.93rem; }
 .nav-desktop a[aria-current="page"] { color: var(--gold-dark); font-weight: 600; }
@@ -98,6 +99,35 @@ p { margin: 0 0 1em; }
 .crumbs { padding-top: 18px; }
 .crumbs a { color: var(--muted); }
 
+/* Topo com foto (home) */
+.hero-photo { position: relative; padding: 0; background: var(--navy); color: var(--white); overflow: hidden; }
+.hero-photo .hero-media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 66% 50%; }
+.hero-photo .hero-content { padding-top: 32px; padding-bottom: 44px; }
+.hero-photo h1 { color: var(--white); }
+.hero-photo .eyebrow { color: var(--gold); }
+.hero-photo .lead { color: rgba(255, 255, 255, 0.9); }
+.hero-photo .small { color: rgba(255, 255, 255, 0.75); }
+.hero-photo .btn { background: var(--gold); border-color: var(--gold); }
+.hero-photo .btn:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+.hero-photo .btn-ghost { background: transparent; color: var(--white); border-color: var(--white); }
+@media (min-width: 900px) {
+  .hero-photo { min-height: min(84vh, 700px); display: flex; align-items: center; }
+  .hero-photo .hero-media { position: absolute; inset: 0; }
+  .hero-photo .hero-media img { height: 100%; aspect-ratio: auto; object-position: 50% 45%; }
+  .hero-photo .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(34, 39, 79, 0.94) 0%, rgba(34, 39, 79, 0.8) 36%, rgba(34, 39, 79, 0.2) 66%, rgba(34, 39, 79, 0) 100%); }
+  .hero-photo .hero-content { position: relative; z-index: 1; padding-top: 72px; padding-bottom: 72px; }
+  .hero-photo .hero-content > * { max-width: 540px; }
+  .hero-photo .hero-content > .actions { max-width: 680px; }
+}
+
+/* Topo das páginas internas com foto */
+.hero-split-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: center; }
+.hero-split-media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+@media (min-width: 900px) {
+  .hero-split-grid { grid-template-columns: 1.05fr 1fr; gap: 48px; }
+  .hero-split-media img { aspect-ratio: 4 / 3; }
+}
+
 /* Prova */
 .proof { background: var(--navy); color: var(--white); padding: 28px 0; }
 .proof-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
@@ -110,11 +140,22 @@ p { margin: 0 0 1em; }
 .grid-2, .grid-3, .grid-4 { display: grid; gap: 20px; grid-template-columns: 1fr; }
 @media (min-width: 700px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1000px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
-.cards { margin: 28px 0; }
+.cards { margin-top: 28px; margin-bottom: 28px; }
 .card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; box-shadow: var(--shadow); }
 .alt .card { background: var(--cream); }
 .card .btn { margin-top: auto; align-self: flex-start; }
 .card-for { font-size: 0.95rem; color: var(--muted); }
+.card-photo { padding: 0; overflow: hidden; }
+.card-photo > img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.card-body { padding: 20px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+.card-body .btn { margin-top: auto; align-self: flex-start; }
+.card-h { padding: 0; overflow: hidden; }
+.card-h .cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+@media (min-width: 600px) {
+  .card-h { flex-direction: row; align-items: flex-start; }
+  .card-h .cover { width: 200px; flex: 0 0 200px; margin: 24px 0 24px 24px; border-radius: 10px; box-shadow: var(--shadow); }
+}
+.card-txt { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 .card-meta { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); margin-bottom: 0.5em; }
 .price { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 0.6em 0 1em; }
 .price span { display: block; font-family: var(--sans); font-size: 0.82rem; font-weight: 400; color: var(--muted); }
@@ -141,6 +182,12 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .route { padding-left: 1.2em; }
 .route li { margin-bottom: 6px; }
 
+/* Sobre */
+.sobre-grid { align-items: start; }
+.sobre-grid .photo { aspect-ratio: 4 / 5; object-fit: cover; max-width: 460px; }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
+.gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
+
 /* Depoimentos */
 .quotes figure { margin: 0; background: var(--white); border-radius: var(--radius); padding: 24px; border: 1px solid var(--line); display: flex; flex-direction: column; }
 .quotes blockquote { margin: 0 0 16px; font-family: var(--serif); font-style: italic; font-size: 1.02rem; }
@@ -155,7 +202,11 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .faq details[open] summary::after { content: '–'; }
 .faq details p { padding-bottom: 16px; margin: 0; color: var(--muted); }
 
-.cta-final { background: var(--navy); color: var(--white); }
+.cta-final { background: var(--navy); color: var(--white); position: relative; overflow: hidden; }
+.cta-final .wrap { position: relative; z-index: 1; }
+.cta-bg { position: absolute; inset: 0; }
+.cta-bg img { width: 100%; height: 100%; object-fit: cover; }
+.cta-bg::after { content: ''; position: absolute; inset: 0; background: rgba(34, 39, 79, 0.74); }
 .cta-final h2 { color: var(--white); }
 .cta-final .small { color: rgba(255, 255, 255, 0.75); }
 .cta-final .btn { background: var(--gold); border-color: var(--gold); }

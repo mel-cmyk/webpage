@@ -12,9 +12,16 @@ Tudo o que muda com frequência fica em um único arquivo: **`data/ofertas.json`
 
 Todas as páginas, cards, tabelas e dados estruturados leem desse arquivo. Não é preciso mexer em nenhum outro lugar.
 
+## Como trocar uma foto
+
+As fotos ficam em `public/img/`, em versões otimizadas (.webp) de tamanhos diferentes, e são listadas em `data/imagens.json`. A foto de cada serviço, tour e guia é indicada no campo `imagem` de `data/ofertas.json`, junto com a descrição (`imagem_alt`), que é o texto lido pelo Google e por leitores de tela.
+
+Para trocar uma foto, mande a nova imagem em alta resolução: ela é recortada, otimizada e salva com o mesmo nome, sem mexer no resto do site.
+
 ## Estrutura
 
 - `data/ofertas.json`: fonte única de preços, tours e dados da marca
+- `data/imagens.json`: lista das fotos e dos tamanhos disponíveis
 - `src/pages.mjs`: textos de cada página
 - `src/layout.mjs`: cabeçalho, rodapé e estrutura comum
 - `public/`: estilos, scripts e imagens

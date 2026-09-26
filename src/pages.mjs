@@ -1,10 +1,21 @@
 // Conteúdo de todas as páginas. Preços, números e contatos vêm de data/ofertas.json.
-import { url, esc, eur, brl, money, wa, menorPreco, SITE_URL } from './helpers.mjs';
+import { url, esc, eur, brl, money, wa, menorPreco, img, SITE_URL } from './helpers.mjs';
 
 const servico = (data, id) => data.servicos.find((s) => s.id === id);
 
 const precoServico = (s) =>
   s.preco != null ? money(s.moeda, s.preco) : `A partir de ${money(s.moeda, s.preco_a_partir_de)}`;
+
+const CARD_SIZES = '(min-width: 1000px) 340px, (min-width: 700px) 50vw, 100vw';
+
+// Topo das páginas internas: texto à esquerda, foto à direita (no celular, foto abaixo do texto).
+const heroSplit = (inner, key, alt) => `
+<section class="hero hero-sm hero-split">
+  <div class="wrap hero-split-grid">
+    <div>${inner}</div>
+    <div class="hero-split-media">${img(key, alt, { sizes: '(min-width: 900px) 540px, 100vw', eager: true })}</div>
+  </div>
+</section>`;
 
 const faqHtml = (items) =>
   `<div class="faq">${items
@@ -23,6 +34,7 @@ const faqLd = (items) => ({
 
 const ctaFinal = (data, titulo, texto) => `
 <section class="section cta-final">
+  <div class="cta-bg" aria-hidden="true">${img('paginas/cta', '', { sizes: '100vw' })}</div>
   <div class="wrap narrow center">
     <h2>${titulo}</h2>
     <p>${texto}</p>
@@ -134,8 +146,9 @@ function home(data) {
   ];
 
   const body = `
-<section class="hero">
-  <div class="wrap narrow">
+<section class="hero hero-photo">
+  <div class="hero-media">${img('home/hero', 'Mel Rolan caminhando sobre uma ponte do Sena, em Paris', { sizes: '100vw', eager: true })}</div>
+  <div class="wrap hero-content">
     <p class="eyebrow">Mel Rolan Travel Designer · Paris</p>
     <h1>Paris no ritmo da sua família, com quem vive aqui.</h1>
     <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que mora em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos.</p>
@@ -155,12 +168,15 @@ ${provaRapida(m)}
       ${cards
         .map((s) => {
           const t = textos[s.id];
-          return `<article class="card">
+          return `<article class="card card-photo">
+        ${img(s.imagem, s.imagem_alt, { sizes: '(min-width: 1000px) 270px, (min-width: 700px) 50vw, 100vw' })}
+        <div class="card-body">
         <h3>${esc(s.nome)}</h3>
         <p class="card-for"><strong>Para quem quer</strong> ${t.para}</p>
         <p>${t.txt}</p>
         <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>
         <a class="btn btn-small" href="${url(s.pagina + '/')}">${t.cta}</a>
+        </div>
       </article>`;
         })
         .join('')}
@@ -178,6 +194,8 @@ ${provaRapida(m)}
           <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-familia">Planejar a viagem da minha família</a>
         </div>
         <p class="small">ou conheça o <a href="${esc(data.guias[0].landing)}">guia Paris com Crianças</a></p>
+
+        ${img('home/familia', 'Família de costas observando os barquinhos no lago do Jardin du Luxembourg', { cls: 'photo photo-top', sizes: '(min-width: 900px) 540px, 100vw' })}
       </div>
       <div>
         <p class="table-title">O mesmo dia, de dois jeitos</p>
@@ -208,7 +226,7 @@ ${provaRapida(m)}
 ${depoimentos(m)}
 <section class="section alt">
   <div class="wrap split">
-    <img class="photo" src="${url('/img/mel-rolan.webp')}" alt="Mel Rolan em Paris" width="800" height="533" loading="lazy">
+    ${img('home/mel', 'Mel Rolan sorrindo às margens do Sena, em Paris', { cls: 'photo', sizes: '(min-width: 900px) 540px, 100vw' })}
     <div>
     <h2>Quem desenha a sua viagem</h2>
     <p>Sou a Mel, brasileira, e moro em Paris há mais de 5 anos. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios.</p>
@@ -252,26 +270,26 @@ ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte em dois minutos como é a
 function toursHub(data) {
   const s = servico(data, 'tours');
   const body = `
-<section class="hero hero-sm">
-  <div class="wrap narrow">
+${heroSplit(`
     <p class="eyebrow">Tours privativos em Paris</p>
     <h1>Paris além dos cartões-postais, a pé e em português.</h1>
     <p class="lead">Passeios privativos, leves e sem correria, com uma guia brasileira que vive em Paris há mais de 5 anos. Só o seu grupo, no seu ritmo, pelas ruas, praças e jardins que contam a história da cidade.</p>
-    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>
-  </div>
-</section>
+    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>`, 'paginas/tours', 'Mel Rolan descendo uma escadaria de pedra em Paris')}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
     <div class="grid-3 cards">
       ${data.tours
         .map(
-          (t) => `<article class="card">
+          (t) => `<article class="card card-photo">
+        ${img(t.imagem, t.imagem_alt, { sizes: CARD_SIZES })}
+        <div class="card-body">
         <p class="card-meta">${esc(t.duracao)} · ${esc(t.encontro)}</p>
         <h3>${esc(t.nome)}</h3>
-        <p>${esc(t.ideal_para || t.descricao || t.roteiro.join(' · '))}</p>
+        <p class="card-txt">${esc(t.ideal_para || t.descricao || t.roteiro.join(' · '))}</p>
         <p class="price">A partir de ${eur(menorPreco(t))}<span>${esc(t.precos[0].grupo)}</span></p>
         <a class="btn btn-small" href="${url('/tours-em-paris/' + t.id + '/')}">Ver o tour</a>
+        </div>
       </article>`
         )
         .join('')}
@@ -307,17 +325,15 @@ function tourPage(data, t) {
   const msg = `Olá! Vim pelo site da Mel Rolan e gostaria de consultar datas para o tour ${t.nome}.`;
   const body = `
 <nav class="wrap crumbs small" aria-label="Você está em"><a href="${url('/')}">Início</a> › <a href="${url('/tours-em-paris/')}">Tours em Paris</a> › ${esc(t.nome)}</nav>
-<section class="hero hero-sm">
-  <div class="wrap narrow">
+${heroSplit(`
     <p class="eyebrow">Tour privativo em Paris · ${esc(t.duracao)}</p>
     <h1>${esc(t.nome)}</h1>
     ${t.ideal_para ? `<p class="lead"><strong>Ideal se:</strong> ${esc(t.ideal_para)}</p>` : ''}
     ${t.descricao ? `<p>${esc(t.descricao)}</p>` : ''}
+    <p class="price">A partir de ${eur(menorPreco(t))}<span>${esc(t.precos[0].grupo)}</span></p>
     <div class="actions">
       <a class="btn" href="${wa(data, msg)}" data-wa="tour-${t.id}">Consultar datas no WhatsApp</a>
-    </div>
-  </div>
-</section>
+    </div>`, t.imagem, t.imagem_alt)}
 <section class="section">
   <div class="wrap split">
     <div>
@@ -356,7 +372,7 @@ function tourPage(data, t) {
     <h2 class="center">Outros tours</h2>
     <div class="grid-3 cards">${outros
       .map(
-        (o) => `<article class="card"><p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3><p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}">Ver o tour</a></article>`
+        (o) => `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body"><p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3><p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}">Ver o tour</a></div></article>`
       )
       .join('')}</div>
   </div>
@@ -385,8 +401,7 @@ function roteiro(data) {
   const s = servico(data, 'roteiro');
   const msg = 'Olá! Vim pelo site da Mel Rolan e tenho interesse em um roteiro sob medida para Paris.';
   const body = `
-<section class="hero hero-sm">
-  <div class="wrap narrow">
+${heroSplit(`
     <p class="eyebrow">Roteiro sob medida</p>
     <h1>A sua viagem inteira, desenhada dia a dia para quem vai viajar.</h1>
     <p class="lead">Um roteiro personalizado que leva em conta os seus desejos, o orçamento, o ritmo de cada um e o que faz sentido para a sua família, com acesso a experiências autênticas que só quem vive aqui conhece.</p>
@@ -394,9 +409,7 @@ function roteiro(data) {
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-roteiro">Começar pelo diagnóstico</a>
       <a class="btn btn-ghost" href="${wa(data, msg)}" data-wa="roteiro">Falar no WhatsApp</a>
-    </div>
-  </div>
-</section>
+    </div>`, 'paginas/roteiro', 'Mel Rolan num café de Paris, consultando o celular')}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Sua viagem em 3 etapas</h2>
@@ -421,9 +434,14 @@ function roteiro(data) {
   </div>
 </section>
 <section class="section">
-  <div class="wrap narrow">
+  <div class="wrap split">
+    ${img('servicos/roteiro', 'Café, croissant e o celular com o roteiro da viagem, numa mesa em Paris', { cls: 'photo', sizes: '(min-width: 900px) 540px, 100vw' })}
+    <div>
     <h2>Seu roteiro na palma da mão</h2>
     <p>Você acessa o roteiro completo numa plataforma digital, pelo aplicativo no celular ou pela versão web, para consultar a qualquer momento da viagem. Nela ficam também as reservas antecipadas, os ingressos e os serviços contratados, organizados de forma simples.</p>
+    </div>
+  </div>
+  <div class="wrap narrow">
     <h2>Por que contratar uma especialista no destino</h2>
     <ul class="checklist">
       <li>Você se inspira e sonha, sem gastar horas em pesquisas na internet.</li>
@@ -449,8 +467,7 @@ function consultoria(data) {
   const s = servico(data, 'consultoria');
   const msg = 'Olá! Vim pelo site da Mel Rolan e tenho interesse na consultoria de viagem.';
   const body = `
-<section class="hero hero-sm">
-  <div class="wrap narrow">
+${heroSplit(`
     <p class="eyebrow">Consultoria personalizada</p>
     <h1>Planeje a sua viagem à França com mais segurança.</h1>
     <p class="lead">Para quem já começou a planejar e quer tomar as melhores decisões com a ajuda de uma especialista que vive no destino.</p>
@@ -458,9 +475,7 @@ function consultoria(data) {
     <div class="actions">
       <a class="btn" href="${wa(data, msg)}" data-wa="consultoria">Agendar pelo WhatsApp</a>
       <a class="btn btn-ghost" href="${url('/diagnostico/')}" data-cta="diagnostico-consultoria">Não sei se é para mim</a>
-    </div>
-  </div>
-</section>
+    </div>`, 'paginas/consultoria', 'Mel Rolan sorrindo junto a um muro de pedra em Paris')}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Consultoria em 2 etapas</h2>
@@ -508,13 +523,16 @@ function guias(data) {
   <div class="wrap grid-2 cards">
     ${data.guias
       .map(
-        (g) => `<article class="card">
+        (g) => `<article class="card card-h">
+      ${img(g.imagem, g.imagem_alt, { cls: 'cover', sizes: '(min-width: 600px) 200px, 100vw' })}
+      <div class="card-body">
       <h2 class="h3">${esc(g.nome)}</h2>
       ${g.paginas ? `<p>${g.paginas} páginas de curadoria real${g.bonus ? `, com bônus: ${esc(g.bonus)}` : ''}.</p>` : ''}
       <p class="price">${g.preco_de ? `<s>${brl(g.preco_de)}</s> ` : ''}${brl(g.preco)}${g.parcelamento ? `<span>ou ${esc(g.parcelamento)}</span>` : ''}</p>
       <div class="actions">
         <a class="btn btn-small" href="${esc(g.link_compra)}" data-cta="compra-${g.id}">Comprar agora</a>
         <a class="btn btn-small btn-ghost" href="${esc(g.landing)}">Conhecer o guia</a>
+      </div>
       </div>
     </article>`
       )
@@ -544,11 +562,18 @@ function sobre(data) {
   </div>
 </section>
 <section class="section">
-  <div class="wrap narrow">
-    <img class="photo" src="${url('/img/mel-rolan.webp')}" alt="Mel Rolan em Paris" width="800" height="533">
+  <div class="wrap split sobre-grid">
+    ${img('sobre/retrato', 'Retrato de Mel Rolan diante da Basílica de Sacré-Cœur, em Montmartre', { cls: 'photo', sizes: '(min-width: 900px) 460px, 100vw', eager: true })}
+    <div>
     <p>Sou a Mel, brasileira, e moro em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens.</p>
     <p>Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos. Muitas já planejam voltar.</p>
     <p>O meu trabalho vai além de apontar monumentos. Eu traduzo os códigos culturais de Paris para quem chega do Brasil, crio conexões e garanto que a viagem seja fluida, com escolhas que fazem sentido para cada pessoa.</p>
+    </div>
+  </div>
+  <div class="wrap gallery">
+    ${img('sobre/g1', 'Mel Rolan numa rua de Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
+    ${img('sobre/g2', 'Mel Rolan com a sacola de compras num café de Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
+    ${img('sobre/g3', 'Mel Rolan numa ruela de Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
   </div>
 </section>
 ${provaRapida(m)}

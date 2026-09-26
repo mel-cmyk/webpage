@@ -21,6 +21,8 @@
   "servicos": [
     {
       "id": "tours",
+      "imagem": "servicos/tours",
+      "imagem_alt": "Mel Rolan caminhando por uma rua de Paris",
       "nome": "Tours privativos em Paris",
       "ordem": 1,
       "moeda": "EUR",
@@ -30,6 +32,8 @@
     },
     {
       "id": "roteiro",
+      "imagem": "servicos/roteiro",
+      "imagem_alt": "Café, croissant e o celular com o roteiro da viagem, numa mesa em Paris",
       "nome": "Roteiro sob medida",
       "ordem": 2,
       "moeda": "BRL",
@@ -39,6 +43,8 @@
     },
     {
       "id": "consultoria",
+      "imagem": "servicos/consultoria",
+      "imagem_alt": "Mel Rolan num café parisiense",
       "nome": "Consultoria personalizada",
       "ordem": 3,
       "moeda": "BRL",
@@ -48,6 +54,8 @@
     },
     {
       "id": "guias",
+      "imagem": "servicos/guias",
+      "imagem_alt": "Capas dos guias Paris com Crianças e Paris Essencial",
       "nome": "Guias digitais de Paris",
       "ordem": 4,
       "moeda": "BRL",
@@ -60,6 +68,8 @@
   "tours": [
     {
       "id": "monumental-classico",
+      "imagem": "tours/monumental-classico",
+      "imagem_alt": "Pont Alexandre III ao entardecer, com a cúpula dos Invalides ao fundo",
       "nome": "Monumental Clássico",
       "duracao": "3h30",
       "precos": [
@@ -72,6 +82,8 @@
     },
     {
       "id": "historia-e-memoria",
+      "imagem": "tours/historia-e-memoria",
+      "imagem_alt": "Arcadas da Rue de Rivoli pela manhã",
       "nome": "História e Memória",
       "duracao": "3h30",
       "precos": [
@@ -84,6 +96,8 @@
     },
     {
       "id": "bucolico-e-artistico",
+      "imagem": "tours/bucolico-e-artistico",
+      "imagem_alt": "Rua de Montmartre com escadaria e a cúpula do Sacré-Cœur ao fundo",
       "nome": "Bucólico e Artístico",
       "duracao": "3h30",
       "precos": [
@@ -96,6 +110,8 @@
     },
     {
       "id": "cenarios-de-filmes-e-series",
+      "imagem": "tours/cenarios-de-filmes-e-series",
+      "imagem_alt": "Rua do Quartier Latin à noite, com calçamento molhado e terraço de café",
       "nome": "Cenários de Filmes e Séries",
       "duracao": "3h30",
       "precos": [
@@ -107,6 +123,8 @@
     },
     {
       "id": "rive-gauche-e-berco-de-paris",
+      "imagem": "tours/rive-gauche-e-berco-de-paris",
+      "imagem_alt": "Bouquinistes no cais do Sena, com a Pont Neuf e a Notre-Dame ao fundo",
       "nome": "Rive Gauche e Berço de Paris",
       "duracao": "3h30",
       "precos": [
@@ -119,6 +137,8 @@
     },
     {
       "id": "dia-inteiro-grandes-monumentos",
+      "imagem": "tours/dia-inteiro-grandes-monumentos",
+      "imagem_alt": "Jardin des Tuileries com as cadeiras verdes e a Torre Eiffel ao fundo",
       "nome": "Dia Inteiro dos Grandes Monumentos",
       "duracao": "7h",
       "precos": [
@@ -130,6 +150,8 @@
     },
     {
       "id": "tour-personalizado",
+      "imagem": "tours/tour-personalizado",
+      "imagem_alt": "Mapa de Paris, caderno e café numa mesa de bistrô",
       "nome": "Tour Personalizado",
       "duracao": "4h ou 8h",
       "precos": [
@@ -144,6 +166,8 @@
     },
     {
       "id": "ambientacao",
+      "imagem": "tours/ambientacao",
+      "imagem_alt": "Esquina de um bairro residencial de Paris, com boulangerie e entrada de metrô",
       "nome": "Ambientação",
       "duracao": "4h",
       "precos": [
@@ -158,6 +182,8 @@
   "guias": [
     {
       "id": "guia-paris-com-criancas",
+      "imagem": "guias/criancas",
+      "imagem_alt": "Capa do guia Paris com Crianças",
       "nome": "Paris com Crianças: o guia completo para famílias brasileiras",
       "preco": 297,
       "preco_de": 397,
@@ -169,6 +195,8 @@
     },
     {
       "id": "guia-paris-essencial",
+      "imagem": "guias/essencial",
+      "imagem_alt": "Capa do guia Paris Essencial",
       "nome": "Guia Paris Essencial: roteiro estratégico de 4 dias + 6 bate-voltas",
       "preco": 152,
       "preco_de": 297,
