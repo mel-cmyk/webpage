@@ -1,5 +1,6 @@
 // Conteúdo de todas as páginas. Preços, números e contatos vêm de data/ofertas.json.
 import { url, esc, eur, brl, money, wa, menorPreco, img, SITE_URL } from './helpers.mjs';
+import { privacidade, avisoLegal } from './legal.mjs';
 
 const servico = (data, id) => data.servicos.find((s) => s.id === id);
 
@@ -16,6 +17,33 @@ const heroSplit = (inner, key, alt) => `
     <div class="hero-split-media">${img(key, alt, { sizes: '(min-width: 900px) 540px, 100vw', eager: true })}</div>
   </div>
 </section>`;
+
+// Itens no formato do GA4 (comércio eletrônico), usados nos eventos de visualização e clique.
+const tourItem = (t) => ({ item_id: t.id, item_name: t.nome, item_category: 'tour', price: menorPreco(t), currency: 'EUR' });
+const guiaItem = (g) => ({ item_id: g.id, item_name: g.nome, item_category: 'guia digital', price: g.preco, currency: 'BRL' });
+const attr = (o) => esc(JSON.stringify(o));
+
+const breadcrumbLd = (itens) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: itens.map(([nome, caminho], i) => ({ '@type': 'ListItem', position: i + 1, name: nome, item: `${SITE_URL}${caminho}` })),
+});
+
+const servicoLd = (s, descricao) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: s.nome,
+  serviceType: s.nome,
+  description: descricao,
+  areaServed: [{ '@type': 'Country', name: 'França' }, { '@type': 'City', name: 'Paris' }],
+  availableLanguage: 'pt-BR',
+  provider: { '@type': 'TravelAgency', name: 'Mel Rolan Travel Designer', url: SITE_URL },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: s.moeda,
+    ...(s.preco != null ? { price: s.preco } : { priceSpecification: { '@type': 'PriceSpecification', minPrice: s.preco_a_partir_de, priceCurrency: s.moeda } }),
+  },
+});
 
 const faqHtml = (items) =>
   `<div class="faq">${items
@@ -254,6 +282,9 @@ ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte em dois minutos como é a
     telephone: m.whatsapp_site.replace(/\s/g, ''),
     areaServed: { '@type': 'City', name: 'Paris' },
     founder: { '@type': 'Person', name: 'Mel Rolan' },
+    logo: `${SITE_URL}/apple-touch-icon.png`,
+    image: `${SITE_URL}/img/og/home.jpg`,
+    knowsLanguage: ['pt-BR', 'fr'],
     sameAs: [m.instagram],
   };
   return {
@@ -262,7 +293,12 @@ ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte em dois minutos como é a
     description:
       'Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros em Paris. Curadoria de quem mora na cidade há mais de 5 anos.',
     body,
-    jsonld: [org, faqLd(faq)],
+    og: 'og/home.jpg',
+    jsonld: [
+      org,
+      { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Mel Rolan Travel Designer', url: SITE_URL, inLanguage: 'pt-BR' },
+      faqLd(faq),
+    ],
   };
 }
 
@@ -288,7 +324,7 @@ ${heroSplit(`
         <h3>${esc(t.nome)}</h3>
         <p class="card-txt">${esc(t.ideal_para || t.descricao || t.roteiro.join(' · '))}</p>
         <p class="price">A partir de ${eur(menorPreco(t))}<span>${esc(t.precos[0].grupo)}</span></p>
-        <a class="btn btn-small" href="${url('/tours-em-paris/' + t.id + '/')}">Ver o tour</a>
+        <a class="btn btn-small" href="${url('/tours-em-paris/' + t.id + '/')}" data-item="${attr(tourItem(t))}">Ver o tour</a>
         </div>
       </article>`
         )
@@ -316,7 +352,10 @@ ${ctaFinal(data, 'Quer ajuda para escolher o tour?', 'Conte quem viaja e quando,
     description:
       'Tours privativos a pé em Paris, em português, com guia brasileira. Oito roteiros ao ar livre, a partir de € 280 por grupo.',
     body,
-    jsonld: [faqLd(faqTours)],
+    og: 'og/tours.jpg',
+    servico: 'tours',
+    analytics: [{ name: 'view_item_list', params: { item_list_name: 'tours', items: data.tours.map(tourItem) } }],
+    jsonld: [faqLd(faqTours), breadcrumbLd([['Início', '/'], ['Tours em Paris', '/tours-em-paris/']])],
   };
 }
 
@@ -332,7 +371,7 @@ ${heroSplit(`
     ${t.descricao ? `<p>${esc(t.descricao)}</p>` : ''}
     <p class="price">A partir de ${eur(menorPreco(t))}<span>${esc(t.precos[0].grupo)}</span></p>
     <div class="actions">
-      <a class="btn" href="${wa(data, msg)}" data-wa="tour-${t.id}">Consultar datas no WhatsApp</a>
+      <a class="btn" href="${wa(data, msg)}" data-wa="tour-${t.id}" data-lead="${attr({ tour_id: t.id })}">Consultar datas no WhatsApp</a>
     </div>`, t.imagem, t.imagem_alt)}
 <section class="section">
   <div class="wrap split">
@@ -364,7 +403,7 @@ ${heroSplit(`
       <li><strong>Confirme a data</strong> com um sinal, reembolsável em cancelamentos feitos com pelo menos 30 dias de antecedência.</li>
       <li><strong>Pague o restante</strong> perto do passeio. Pix, cartão ou Wise.</li>
     </ol>
-    <div class="actions center"><a class="btn" href="${wa(data, msg)}" data-wa="tour-${t.id}-rodape">Consultar datas no WhatsApp</a></div>
+    <div class="actions center"><a class="btn" href="${wa(data, msg)}" data-wa="tour-${t.id}-rodape" data-lead="${attr({ tour_id: t.id })}">Consultar datas no WhatsApp</a></div>
   </div>
 </section>
 <section class="section alt">
@@ -372,7 +411,7 @@ ${heroSplit(`
     <h2 class="center">Outros tours</h2>
     <div class="grid-3 cards">${outros
       .map(
-        (o) => `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body"><p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3><p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}">Ver o tour</a></div></article>`
+        (o) => `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body"><p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3><p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}" data-item="${attr(tourItem(o))}">Ver o tour</a></div></article>`
       )
       .join('')}</div>
   </div>
@@ -392,7 +431,10 @@ ${heroSplit(`
     title: `${t.nome}: tour privativo em Paris em português | Mel Rolan`,
     description: `${t.nome}: tour privativo de ${t.duracao} em Paris, em português, com guia brasileira. A partir de ${eur(menorPreco(t))} por grupo.`,
     body,
-    jsonld: [trip],
+    og: `og/tour-${t.id}.jpg`,
+    servico: 'tours',
+    analytics: [{ name: 'view_item', params: { currency: 'EUR', value: menorPreco(t), items: [tourItem(t)] } }],
+    jsonld: [trip, breadcrumbLd([['Início', '/'], ['Tours em Paris', '/tours-em-paris/'], [t.nome, `/tours-em-paris/${t.id}/`]])],
   };
 }
 
@@ -459,6 +501,12 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', `Roteiros a partir de ${brl(s.p
     title: 'Roteiro personalizado para Paris e França | Mel Rolan',
     description: `Roteiro sob medida para Paris e a França, dia a dia, feito por quem vive em Paris. A partir de ${brl(s.preco_a_partir_de)}.`,
     body,
+    og: 'og/roteiro.jpg',
+    servico: 'roteiro',
+    jsonld: [
+      servicoLd(s, 'Roteiro de viagem personalizado para Paris e a França, planejado dia a dia por uma travel designer brasileira que vive em Paris.'),
+      breadcrumbLd([['Início', '/'], ['Roteiro sob medida', '/roteiro-sob-medida/']]),
+    ],
   };
 }
 
@@ -506,6 +554,12 @@ ${ctaFinal(data, 'Vamos conversar sobre a sua viagem?', `Consultoria por ${brl(s
     title: 'Consultoria de viagem para Paris e França | Mel Rolan',
     description: `Consultoria por vídeo para planejar a sua viagem à França, com mapa digital exclusivo. ${brl(s.preco)}.`,
     body,
+    og: 'og/consultoria.jpg',
+    servico: 'consultoria',
+    jsonld: [
+      servicoLd(s, 'Consultoria de viagem por vídeo para validar cidades, época, hospedagem e prioridades de uma viagem à França, com mapa digital exclusivo.'),
+      breadcrumbLd([['Início', '/'], ['Consultoria', '/consultoria/']]),
+    ],
   };
 }
 
@@ -530,7 +584,7 @@ function guias(data) {
       ${g.paginas ? `<p>${g.paginas} páginas de curadoria real${g.bonus ? `, com bônus: ${esc(g.bonus)}` : ''}.</p>` : ''}
       <p class="price">${g.preco_de ? `<s>${brl(g.preco_de)}</s> ` : ''}${brl(g.preco)}${g.parcelamento ? `<span>ou ${esc(g.parcelamento)}</span>` : ''}</p>
       <div class="actions">
-        <a class="btn btn-small" href="${esc(g.link_compra)}" data-cta="compra-${g.id}">Comprar agora</a>
+        <a class="btn btn-small" href="${esc(g.link_compra)}" data-checkout="${attr(guiaItem(g))}">Comprar agora</a>
         <a class="btn btn-small btn-ghost" href="${esc(g.landing)}">Conhecer o guia</a>
       </div>
       </div>
@@ -548,6 +602,21 @@ ${ctaFinal(data, 'Prefere ajuda personalizada?', 'Se quiser alguém desenhando a
     description:
       'Guias digitais de Paris em PDF: Paris com Crianças e Paris Essencial. Curadoria de quem vive em Paris, com acesso imediato.',
     body,
+    og: 'og/guias.jpg',
+    servico: 'guias',
+    analytics: [{ name: 'view_item_list', params: { item_list_name: 'guias', items: data.guias.map(guiaItem) } }],
+    jsonld: [
+      ...data.guias.map((g) => ({
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: g.nome,
+        image: `${SITE_URL}/img/${g.imagem}-600.webp`,
+        description: g.paginas ? `Guia digital em PDF com ${g.paginas} páginas.` : 'Guia digital em PDF.',
+        brand: { '@type': 'Brand', name: 'Mel Rolan Travel Designer' },
+        offers: { '@type': 'Offer', price: g.preco, priceCurrency: 'BRL', availability: 'https://schema.org/InStock', url: g.link_compra },
+      })),
+      breadcrumbLd([['Início', '/'], ['Guias de Paris', '/guias-de-paris/']]),
+    ],
   };
 }
 
@@ -591,6 +660,8 @@ ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte como é a sua viagem e re
     title: 'Sobre a Mel Rolan | Travel designer brasileira em Paris',
     description: `Conheça a Mel Rolan, brasileira que vive em Paris há mais de 5 anos e já acompanhou mais de 650 famílias em roteiros, consultorias e tours.`,
     body,
+    og: 'og/sobre.jpg',
+    jsonld: [breadcrumbLd([['Início', '/'], ['Sobre a Mel', '/sobre/']])],
   };
 }
 
@@ -680,6 +751,7 @@ function diagnostico(data) {
     body,
     scripts: ['/js/diagnostico.js'],
     noFloat: true,
+    og: 'og/diagnostico.jpg',
   };
 }
 
@@ -693,5 +765,7 @@ export function pages(data) {
     guias(data),
     sobre(data),
     diagnostico(data),
+    privacidade(data),
+    avisoLegal(data),
   ];
 }

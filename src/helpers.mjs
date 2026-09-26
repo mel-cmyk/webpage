@@ -4,6 +4,8 @@ import fs from 'node:fs';
 export const BASE = (process.env.SITE_BASE || '').replace(/\/$/, '');
 export const STAGING = process.env.SITE_STAGING === '1';
 export const SITE_URL = 'https://www.melrolan.com.br';
+// Endereço onde o site está publicado agora (para imagens de compartilhamento, que precisam de link absoluto).
+export const PUBLIC_URL = STAGING ? `https://mel-cmyk.github.io${BASE}` : SITE_URL;
 
 // Monta um link interno respeitando o endereço de teste (ex.: /webpage).
 export const url = (p = '/') => `${BASE}${p}`;

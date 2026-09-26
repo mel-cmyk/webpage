@@ -1,8 +1,15 @@
 /* Mel Rolan Travel Designer — estilos do site */
+
+/* Fontes hospedadas no próprio site (sem chamada ao Google Fonts: mais rápido e sem enviar dados a terceiros) */
+@font-face { font-family: 'Lora'; font-style: normal; font-weight: 500 600; font-display: swap; src: url('../fonts/lora-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: italic; font-weight: 500; font-display: swap; src: url('../fonts/lora-italic-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/poppins-400.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/poppins-500.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/poppins-600.woff2') format('woff2'); }
 :root {
   --navy: #22274f;
   --gold: #c19450;
-  --gold-dark: #9c7536;
+  --gold-dark: #86632b; /* dourado escurecido para texto: contraste AA sobre creme e branco */
   --cream: #f7f4ea;
   --blue: #a2cbed;
   --white: #ffffff;
@@ -107,7 +114,7 @@ p { margin: 0 0 1em; }
 .hero-photo .eyebrow { color: var(--gold); }
 .hero-photo .lead { color: rgba(255, 255, 255, 0.9); }
 .hero-photo .small { color: rgba(255, 255, 255, 0.75); }
-.hero-photo .btn { background: var(--gold); border-color: var(--gold); }
+.hero-photo .btn { background: var(--gold); border-color: var(--gold); color: var(--navy); }
 .hero-photo .btn:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
 .hero-photo .btn-ghost { background: transparent; color: var(--white); border-color: var(--white); }
 @media (min-width: 900px) {
@@ -178,7 +185,7 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 @media (min-width: 800px) { .steps { grid-template-columns: repeat(3, 1fr); } }
 .steps li { counter-increment: s; background: var(--white); border-radius: var(--radius); padding: 22px; border: 1px solid var(--line); }
 .alt .steps li { background: var(--cream); }
-.steps li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--gold); color: var(--white); font-weight: 600; margin-bottom: 10px; }
+.steps li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--gold); color: var(--navy); font-weight: 600; margin-bottom: 10px; }
 .route { padding-left: 1.2em; }
 .route li { margin-bottom: 6px; }
 
@@ -209,7 +216,7 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .cta-bg::after { content: ''; position: absolute; inset: 0; background: rgba(34, 39, 79, 0.74); }
 .cta-final h2 { color: var(--white); }
 .cta-final .small { color: rgba(255, 255, 255, 0.75); }
-.cta-final .btn { background: var(--gold); border-color: var(--gold); }
+.cta-final .btn { background: var(--gold); border-color: var(--gold); color: var(--navy); }
 .cta-final .btn:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
 .cta-final .btn-ghost { background: transparent; color: var(--white); border-color: var(--white); }
 
@@ -244,3 +251,22 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 
 .wa-float { position: fixed; right: 18px; bottom: 18px; background: #1f8f4e; color: var(--white); border-radius: 999px; padding: 0.7em 1.2em; font-weight: 500; text-decoration: none; box-shadow: var(--shadow); z-index: 60; font-size: 0.92rem; }
 .wa-float:hover { background: #17733e; color: var(--white); }
+
+/* Páginas legais */
+.section-top-0 { padding-top: 0; }
+.legal h2 { font-size: 1.25rem; margin-top: 1.8em; }
+.legal ul { padding-left: 1.2em; }
+.legal li { margin-bottom: 6px; }
+
+/* Rodapé: links legais */
+.footer-legal { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+.link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--white); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; cursor: pointer; }
+
+/* Aviso de cookies */
+.cookie-banner { position: fixed; z-index: 70; left: 12px; right: 12px; bottom: 12px; background: var(--cream); color: var(--navy); border: 1px solid var(--gold); border-radius: var(--radius); box-shadow: 0 10px 40px rgba(34, 39, 79, 0.25); padding: 16px 18px; font-size: 0.9rem; max-height: 60vh; overflow: auto; }
+.cookie-banner p { margin: 0 0 10px; }
+.cookie-title { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; }
+.cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.cookie-actions .btn { flex: 1 1 140px; }
+.cookie-aberto .wa-float { display: none; }
+@media (min-width: 700px) { .cookie-banner { left: 24px; right: auto; bottom: 24px; max-width: 460px; } }

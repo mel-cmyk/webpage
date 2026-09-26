@@ -1,0 +1,17 @@
+{
+  "_sobre_este_arquivo": "Endereços do site antigo (Wix) e para onde cada um deve levar no site novo. O build gera uma página de redirecionamento para cada um e o arquivo _redirects (usado se a hospedagem for Netlify). A loja dos guias passa para loja.melrolan.com.br na troca de domínio.",
+  "redirecionamentos": {
+    "/tours-guiados": "/tours-em-paris/",
+    "/consultoria-personalizada": "/consultoria/",
+    "/cópia-consultoria-personalizada": "/consultoria/",
+    "/contact-4": "/diagnostico/",
+    "/política-de-privacidade": "/privacidade/",
+    "/acessibilidade": "/aviso-legal/",
+    "/lp-paris-essencial": "https://essencial.melrolan.com.br/",
+    "/category/all-products": "/guias-de-paris/",
+    "/política": "https://loja.melrolan.com.br/política",
+    "/payment-request-page": "https://loja.melrolan.com.br/payment-request-page",
+    "/product-page/guia-paris-com-criancas": "https://loja.melrolan.com.br/product-page/guia-paris-com-criancas",
+    "/product-page/guia-paris-essencial-roteiro-estratégico-de-4-dias-6-dias-bate-e-voltas": "https://loja.melrolan.com.br/product-page/guia-paris-essencial-roteiro-estratégico-de-4-dias-6-dias-bate-e-voltas"
+  }
+}

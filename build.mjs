@@ -31,6 +31,27 @@ fs.writeFileSync(
   })
 );
 
+// Redirecionamentos dos endereços antigos (Wix).
+// GitHub Pages não faz redirecionamento 301 no servidor: geramos uma página com meta refresh imediato,
+// que o Google trata como redirecionamento permanente. Na Netlify, o arquivo _redirects faz o 301 de verdade.
+const { redirecionamentos } = JSON.parse(fs.readFileSync('data/redirects.json', 'utf8'));
+const destino = (to) => (/^https?:/.test(to) ? to : url(to));
+const netlify = [];
+for (const [from, to] of Object.entries(redirecionamentos)) {
+  const alvo = destino(to);
+  const canon = /^https?:/.test(to) ? to : `${SITE_URL}${to}`;
+  const file = path.join(OUT, from, 'index.html');
+  if (!fs.existsSync(file)) {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(
+      file,
+      `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Página transferida</title><link rel="canonical" href="${encodeURI(canon)}"><meta http-equiv="refresh" content="0; url=${encodeURI(alvo)}"></head><body><p>Esta página mudou de endereço: <a href="${encodeURI(alvo)}">continuar</a>.</p><script>location.replace(${JSON.stringify(encodeURI(alvo))} + location.search);</script></body></html>`
+    );
+  }
+  netlify.push(`${encodeURI(from)}  ${encodeURI(to)}  301`);
+}
+fs.writeFileSync(path.join(OUT, '_redirects'), netlify.join('\n') + '\n');
+
 // sitemap.xml
 const today = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(

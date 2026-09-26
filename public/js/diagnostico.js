@@ -9,7 +9,7 @@
   const error = form.querySelector('.quiz-error');
   const progress = form.querySelector('.quiz-progress');
   const result = document.getElementById('resultado');
-  const track = (name, params) => { if (window.gtag) window.gtag('event', name, params || {}); };
+  const track = (name, params) => { if (window.mrTrack) window.mrTrack(name, params || {}); };
   let i = 0;
   let started = false;
 
@@ -37,6 +37,14 @@
     return [...radios].some((r) => r.checked);
   }
 
+  // Critério de qualificação: orçamento para os serviços.
+  function qualificado() {
+    const inv = val('investimento');
+    if (inv === 'até R$ 500') return 'nao';
+    if (inv === 'ainda não sei') return 'indefinido';
+    return 'sim';
+  }
+
   function recomendar() {
     const procura = val('procura');
     const inv = val('investimento');
@@ -60,6 +68,8 @@
       `Indicação do site: ${s.nome}`,
     ];
     if (val('obs')) linhas.push(`Observação: ${val('obs')}`);
+    const origem = window.mrOrigem ? window.mrOrigem() : '';
+    if (origem) linhas.push(`Ref.: site · ${origem}`);
     const waLink = `${cfg.whatsapp}?text=${encodeURIComponent(linhas.join('\n'))}`;
 
     const guiaExtra =
@@ -77,10 +87,26 @@
       <p class="price">${s.preco}</p>
       ${guiaExtra}
       <p class="small">Atendimento em português, direto de Paris.</p>`;
+    const lead = JSON.stringify({
+      metodo: 'diagnostico',
+      indicacao: rec,
+      faixa_investimento: val('investimento'),
+      qualificado: qualificado(),
+      prazo_viagem: val('quando'),
+      perfil_viagem: val('quem'),
+    });
+    result.querySelectorAll('a[data-wa]').forEach((a) => { a.dataset.lead = lead; a.dataset.servico = rec; });
     form.hidden = true;
     result.hidden = false;
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    track('diagnostico_conclusao', { indicacao: rec, investimento: val('investimento'), procura: val('procura') });
+    track('diagnostico_conclusao', {
+      indicacao: rec,
+      faixa_investimento: val('investimento'),
+      procura: val('procura'),
+      qualificado: qualificado(),
+      prazo_viagem: val('quando'),
+      perfil_viagem: val('quem'),
+    });
   }
 
   form.addEventListener('change', () => {
@@ -89,7 +115,7 @@
   });
   next.addEventListener('click', () => {
     if (!valid(i)) { error.hidden = false; return; }
-    if (i < steps.length - 1) { i += 1; show(i); } else { finish(); }
+    if (i < steps.length - 1) { i += 1; show(i); track('diagnostico_etapa', { etapa: i + 1 }); } else { finish(); }
   });
   back.addEventListener('click', () => { if (i > 0) { i -= 1; show(i); } });
   show(0);

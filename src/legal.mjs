@@ -1,0 +1,115 @@
+// Páginas legais: política de privacidade e aviso legal.
+import { url, esc } from './helpers.mjs';
+
+const ATUALIZACAO = '27 de setembro de 2026';
+
+// Dados do controlador, iguais aos da política de privacidade já publicada no site atual.
+const RAZAO_SOCIAL = '44.907.716 Melissa Rolan Pinto';
+const ENDERECO = 'Rua Helio Manzoni, 338, Gopouva, Guarulhos (SP), Brasil';
+
+const pagina = (titulo, conteudo) => `
+<section class="hero hero-sm">
+  <div class="wrap narrow">
+    <h1>${titulo}</h1>
+    <p class="small">Última atualização: ${ATUALIZACAO}</p>
+  </div>
+</section>
+<section class="section section-top-0">
+  <div class="wrap narrow legal">${conteudo}</div>
+</section>`;
+
+export function privacidade(data) {
+  const m = data.marca;
+  const body = pagina(
+    'Política de privacidade',
+    `
+<p>Esta política explica como a Mel Rolan Travel Designer ("Mel Rolan", "nós") trata os dados pessoais de quem visita o site melrolan.com.br, entra em contato conosco, compra um guia digital ou contrata um dos nossos serviços. Ela segue a Lei Geral de Proteção de Dados (Lei nº 13.709/2018, LGPD) e, quando aplicável, o Regulamento Geral de Proteção de Dados da União Europeia (RGPD).</p>
+
+<h2>1. Quem é o responsável pelos dados</h2>
+<p>Controladora: ${RAZAO_SOCIAL}, nome comercial Mel Rolan Travel Designer, CNPJ ${esc(m.cnpj_brasil)}, ${ENDERECO}. Na França, a atividade é registrada sob o SIRET ${esc(m.siret_franca)}. Contato para assuntos de privacidade: <a href="mailto:${esc(m.email)}">${esc(m.email)}</a>.</p>
+
+<h2>2. Quais dados tratamos</h2>
+<p><strong>Dados que você nos envia.</strong> Quando você fala conosco pelo WhatsApp ou por e-mail: nome, telefone, e-mail e informações sobre a viagem, como datas, quem vai viajar, idade das crianças e preferências. Quando você compra um guia: nome, e-mail e os dados necessários para o pagamento, que são tratados diretamente pela loja e pelo processador de pagamentos; nós não armazenamos números de cartão.</p>
+<p><strong>Diagnóstico da viagem.</strong> As respostas do diagnóstico não são gravadas pelo site. Elas servem apenas para montar a indicação e a mensagem de WhatsApp, que você decide se envia ou não.</p>
+<p><strong>Dados de navegação, com o seu consentimento.</strong> Se você aceitar os cookies de medição, o Google Analytics registra informações como páginas visitadas, origem da visita (por exemplo, uma busca no Google ou o Instagram), tipo de dispositivo e navegador, região aproximada e cliques em botões, como os de WhatsApp. Esses dados são usados de forma agregada, para entender como o site é usado.</p>
+
+<h2>3. Para que usamos os dados</h2>
+<ul>
+  <li>Responder aos seus contatos e preparar propostas de tour, roteiro ou consultoria.</li>
+  <li>Prestar o serviço contratado e entregar os guias digitais comprados.</li>
+  <li>Cumprir obrigações legais, fiscais e contábeis.</li>
+  <li>Medir o desempenho do site e melhorar o conteúdo, quando você aceita os cookies de medição.</li>
+  <li>Enviar comunicações sobre nossos produtos e serviços, quando você consentiu ou quando a lei permitir, sempre com a opção de cancelar.</li>
+</ul>
+
+<h2>4. Bases legais</h2>
+<p>Tratamos dados para executar um contrato ou atender a um pedido seu antes da contratação, para cumprir obrigações legais, com base no nosso legítimo interesse (por exemplo, a segurança do site) e com o seu consentimento (cookies de medição e comunicações de marketing). O consentimento pode ser retirado a qualquer momento.</p>
+
+<h2>5. Cookies</h2>
+<p>O site só usa cookies de medição (Google Analytics, cookies _ga e _ga_*, com duração de até 13 meses) se você clicar em "Aceitar" no aviso de cookies. Se você clicar em "Recusar", eles não são gravados e o site continua funcionando normalmente. A sua escolha fica guardada no seu navegador por 6 meses; depois disso, perguntamos de novo. Você pode mudar a escolha a qualquer momento pelo link "Preferências de cookies", no rodapé.</p>
+<p>As páginas de venda dos guias e a loja têm seus próprios avisos de cookies, com escolha independente.</p>
+
+<h2>6. Com quem compartilhamos os dados</h2>
+<p>Apenas com quem precisa deles para o serviço funcionar: GitHub (hospedagem do site), Google (medição, se você aceitar), Meta, pelo WhatsApp (as conversas que você inicia conosco), Wix (loja e pagamentos dos guias), provedores de e-mail e de agenda e profissionais de contabilidade. Não vendemos dados pessoais.</p>
+
+<h2>7. Transferência internacional</h2>
+<p>Alguns desses provedores operam fora do Brasil e da União Europeia, como nos Estados Unidos. Nesses casos, a transferência se apoia nas salvaguardas previstas na LGPD e no RGPD, como as cláusulas contratuais padrão adotadas pelos próprios provedores.</p>
+
+<h2>8. Por quanto tempo guardamos os dados</h2>
+<p>Pelo tempo necessário para as finalidades acima e para cumprir obrigações legais e fiscais, em regra até cinco anos após a compra ou o fim do serviço. Dados de marketing ficam guardados até você retirar o consentimento ou pedir a exclusão.</p>
+
+<h2>9. Seus direitos</h2>
+<p>Você pode pedir, a qualquer momento, a confirmação de que tratamos seus dados, o acesso, a correção, a portabilidade, a limitação ou a exclusão, informações sobre com quem compartilhamos, e pode se opor a um tratamento ou retirar o consentimento. Escreva para <a href="mailto:${esc(m.email)}">${esc(m.email)}</a>. Respondemos em até 15 dias.</p>
+<p>Se considerar que seus direitos não foram respeitados, você pode recorrer à Autoridade Nacional de Proteção de Dados (ANPD), no Brasil, ou à CNIL, na França.</p>
+
+<h2>10. Segurança</h2>
+<p>Adotamos medidas técnicas e organizacionais razoáveis, como conexão segura (HTTPS), acesso restrito e uso de plataformas reconhecidas. Nenhum sistema é totalmente imune a falhas; em caso de incidente relevante, avisaremos você e a autoridade competente, conforme a lei.</p>
+
+<h2>11. Crianças</h2>
+<p>Nossos serviços são contratados por adultos. Podemos receber dos responsáveis a idade das crianças para adequar o roteiro, e usamos essa informação somente para esse fim.</p>
+
+<h2>12. Alterações</h2>
+<p>Podemos atualizar esta política. A data no topo indica a versão em vigor.</p>
+`
+  );
+  return {
+    path: '/privacidade/',
+    title: 'Política de privacidade | Mel Rolan Travel Designer',
+    description: 'Como a Mel Rolan Travel Designer trata os dados pessoais de quem visita o site, entra em contato ou contrata os serviços.',
+    body,
+  };
+}
+
+export function avisoLegal(data) {
+  const m = data.marca;
+  const body = pagina(
+    'Aviso legal',
+    `
+<h2>Responsável pelo site</h2>
+<p>Mel Rolan Travel Designer<br>${RAZAO_SOCIAL}<br>CNPJ ${esc(m.cnpj_brasil)}<br>${ENDERECO}<br>Registro na França: SIRET ${esc(m.siret_franca)}</p>
+<p>E-mail: <a href="mailto:${esc(m.email)}">${esc(m.email)}</a><br>WhatsApp: ${esc(m.whatsapp_site)}</p>
+<p>Responsável pela publicação: Melissa Rolan Pinto.</p>
+
+<h2>Hospedagem</h2>
+<p>GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Estados Unidos (github.com).</p>
+
+<h2>Propriedade intelectual</h2>
+<p>Os textos, fotografias, marcas e demais conteúdos deste site pertencem à Mel Rolan Travel Designer ou são usados com autorização. A reprodução, total ou parcial, depende de autorização prévia por escrito.</p>
+
+<h2>Imagens</h2>
+<p>As fotos da Mel Rolan fazem parte de um ensaio fotográfico profissional em Paris. Algumas imagens de ambientação de Paris foram criadas com uma ferramenta de inteligência artificial e têm caráter ilustrativo.</p>
+
+<h2>Preços e informações</h2>
+<p>Os preços e as condições publicados no site são informativos e são confirmados no momento da contratação. Horários e condições de atrações de terceiros podem mudar sem aviso.</p>
+
+<h2>Dados pessoais e cookies</h2>
+<p>Veja a <a href="${url('/privacidade/')}">política de privacidade</a>.</p>
+`
+  );
+  return {
+    path: '/aviso-legal/',
+    title: 'Aviso legal | Mel Rolan Travel Designer',
+    description: 'Informações legais sobre o site da Mel Rolan Travel Designer: responsável, hospedagem e propriedade intelectual.',
+    body,
+  };
+}
