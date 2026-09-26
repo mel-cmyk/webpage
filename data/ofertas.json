@@ -1,0 +1,179 @@
+{
+  "_sobre_este_arquivo": "Fonte única de preços e ofertas do site melrolan.com.br. Todas as páginas leem daqui: mudou um valor aqui, muda no site inteiro. Tours seguem o catálogo aprovado em tours.melrolan.com.br.",
+  "_atualizado_em": "2026-09-27",
+
+  "marca": {
+    "anos_na_franca": "5+",
+    "familias_atendidas": "650+",
+    "familias_atendidas_escopo": "total de todos os serviços desde 2021; nunca atribuir só aos tours",
+    "nota_satisfacao": "9,97",
+    "pesquisas_satisfacao": "110+",
+    "periodo_pesquisas": "2022 a 2026",
+    "seguidores_instagram": "16k+",
+    "whatsapp_site": "+33 7 83 48 37 56",
+    "whatsapp_site_link": "https://wa.me/33783483756",
+    "email": "contato@melrolan.com.br",
+    "instagram": "https://www.instagram.com/mel.rolan/",
+    "siret_franca": "10113179500011",
+    "cnpj_brasil": "44.907.716/0001-42"
+  },
+
+  "servicos": [
+    {
+      "id": "tours",
+      "nome": "Tours privativos em Paris",
+      "ordem": 1,
+      "moeda": "EUR",
+      "preco_a_partir_de": 280,
+      "unidade_preco": "por grupo de até 4 pessoas",
+      "pagina": "/tours-em-paris"
+    },
+    {
+      "id": "roteiro",
+      "nome": "Roteiro sob medida",
+      "ordem": 2,
+      "moeda": "BRL",
+      "preco_a_partir_de": 1480,
+      "unidade_preco": "por roteiro",
+      "pagina": "/roteiro-sob-medida"
+    },
+    {
+      "id": "consultoria",
+      "nome": "Consultoria personalizada",
+      "ordem": 3,
+      "moeda": "BRL",
+      "preco": 890,
+      "unidade_preco": "valor único",
+      "pagina": "/consultoria"
+    },
+    {
+      "id": "guias",
+      "nome": "Guias digitais de Paris",
+      "ordem": 4,
+      "moeda": "BRL",
+      "preco_a_partir_de": 152,
+      "unidade_preco": "PDF com acesso imediato",
+      "pagina": "/guias-de-paris"
+    }
+  ],
+
+  "tours": [
+    {
+      "id": "monumental-classico",
+      "nome": "Monumental Clássico",
+      "duracao": "3h30",
+      "precos": [
+        { "grupo": "até 4 pessoas", "valor": 280 },
+        { "grupo": "5 a 8 pessoas", "valor": 380 }
+      ],
+      "encontro": "Pirâmide do Louvre",
+      "roteiro": ["Pirâmide do Louvre", "Jardin des Tuileries", "Place de la Concorde", "Pont Alexandre III", "Champs-Élysées", "Arco do Triunfo"],
+      "ideal_para": "É a sua primeira vez em Paris e você quer viver, de uma só vez, os cartões-postais que sempre sonhou ver de perto."
+    },
+    {
+      "id": "historia-e-memoria",
+      "nome": "História e Memória",
+      "duracao": "3h30",
+      "precos": [
+        { "grupo": "até 4 pessoas", "valor": 280 },
+        { "grupo": "5 a 8 pessoas", "valor": 380 }
+      ],
+      "encontro": "Pirâmide do Louvre",
+      "roteiro": ["Pirâmide do Louvre", "Jardin des Tuileries", "Place Vendôme", "Rue de Rivoli", "Place de la Concorde", "Champs-Élysées", "Arco do Triunfo"],
+      "descricao": "Percorremos o eixo histórico de Paris para acompanhar a construção e as transformações da cidade ao longo dos séculos, entre palácios, praças e grandes símbolos de poder. Ao longo do caminho, um desvio pela Place Vendôme, Rue de Rivoli e hotéis-palácio revela como esses espaços foram apropriados pelas autoridades alemãs durante a ocupação de Paris, entre 1940 e 1944."
+    },
+    {
+      "id": "bucolico-e-artistico",
+      "nome": "Bucólico e Artístico",
+      "duracao": "3h30",
+      "precos": [
+        { "grupo": "até 4 pessoas", "valor": 280 },
+        { "grupo": "5 a 8 pessoas", "valor": 380 }
+      ],
+      "encontro": "Bairro de Montmartre",
+      "roteiro": ["Moulin Rouge", "Sacré-Cœur", "Place du Tertre", "Ruelas e cantinhos secretos"],
+      "ideal_para": "Você imagina Paris como cenário de filme: ruelas de paralelepípedo, ateliês de artista."
+    },
+    {
+      "id": "cenarios-de-filmes-e-series",
+      "nome": "Cenários de Filmes e Séries",
+      "duracao": "3h30",
+      "precos": [
+        { "grupo": "até 4 pessoas", "valor": 280 },
+        { "grupo": "5 a 8 pessoas", "valor": 380 }
+      ],
+      "encontro": "Do Quartier Latin à região do Louvre",
+      "roteiro": ["Meia-noite em Paris", "Emily in Paris", "Ratatouille", "O Corcunda de Notre-Dame", "O Diabo Veste Prada"]
+    },
+    {
+      "id": "rive-gauche-e-berco-de-paris",
+      "nome": "Rive Gauche e Berço de Paris",
+      "duracao": "3h30",
+      "precos": [
+        { "grupo": "até 4 pessoas", "valor": 280 },
+        { "grupo": "5 a 8 pessoas", "valor": 380 }
+      ],
+      "encontro": "Das Arenas à Île de la Cité",
+      "roteiro": ["Arenas de Lutécia", "Panthéon", "Notre-Dame", "Palais de la Cité", "Pont Neuf", "Île de la Cité"],
+      "ideal_para": "Você se encanta com livrarias, cafés literários e ruas que respiram séculos de história."
+    },
+    {
+      "id": "dia-inteiro-grandes-monumentos",
+      "nome": "Dia Inteiro dos Grandes Monumentos",
+      "duracao": "7h",
+      "precos": [
+        { "grupo": "até 4 pessoas", "valor": 550 },
+        { "grupo": "5 a 8 pessoas", "valor": 700 }
+      ],
+      "encontro": "Da Île de la Cité à Torre Eiffel",
+      "roteiro": ["Notre-Dame", "Pont Neuf", "Louvre (exterior)", "Jardin des Tuileries", "Place de la Concorde", "Champs-Élysées", "Arco do Triunfo", "Torre Eiffel"]
+    },
+    {
+      "id": "tour-personalizado",
+      "nome": "Tour Personalizado",
+      "duracao": "4h ou 8h",
+      "precos": [
+        { "grupo": "4h, até 4 pessoas", "valor": 420 },
+        { "grupo": "4h, 5 a 8 pessoas", "valor": 500 },
+        { "grupo": "8h, até 4 pessoas", "valor": 800 },
+        { "grupo": "8h, 5 a 8 pessoas", "valor": 880 }
+      ],
+      "encontro": "Definido em conversa prévia",
+      "roteiro": ["Roteiro 100% desenhado para os interesses do seu grupo"],
+      "ideal_para": "Viajantes com interesses específicos que querem flexibilidade na programação."
+    },
+    {
+      "id": "ambientacao",
+      "nome": "Ambientação",
+      "duracao": "4h",
+      "precos": [
+        { "grupo": "até 8 pessoas", "valor": 330 }
+      ],
+      "encontro": "Arredores da sua hospedagem",
+      "roteiro": ["Recepção presencial", "Orientação no bairro", "Como usar metrô e transporte", "Dicas práticas de segurança", "Comércio local"],
+      "ideal_para": "Você está chegando em Paris e quer começar com segurança e tranquilidade."
+    }
+  ],
+
+  "guias": [
+    {
+      "id": "guia-paris-com-criancas",
+      "nome": "Paris com Crianças: o guia completo para famílias brasileiras",
+      "preco": 297,
+      "preco_de": 397,
+      "parcelamento": "4x de R$ 74,25 sem juros",
+      "paginas": 158,
+      "bonus": "Checklist de Viagem com Crianças para Paris (valor R$ 98)",
+      "link_compra": "https://www.melrolan.com.br/product-page/guia-paris-com-criancas",
+      "landing": "https://criancas.melrolan.com.br"
+    },
+    {
+      "id": "guia-paris-essencial",
+      "nome": "Guia Paris Essencial: roteiro estratégico de 4 dias + 6 bate-voltas",
+      "preco": 152,
+      "preco_de": 297,
+      "link_compra": "https://www.melrolan.com.br/product-page/guia-paris-essencial-roteiro-estrat%C3%A9gico-de-4-dias-6-dias-bate-e-voltas",
+      "landing": "https://essencial.melrolan.com.br"
+    }
+  ]
+}
