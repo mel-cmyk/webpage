@@ -238,7 +238,7 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .result h2 { margin-top: 0; }
 
 /* Rodapé */
-.site-footer { background: var(--navy); color: rgba(255, 255, 255, 0.85); padding: 48px 0 24px; font-size: 0.92rem; }
+.site-footer { background: var(--navy); color: rgba(255, 255, 255, 0.85); padding: 48px 0 88px; font-size: 0.92rem; } /* espaço embaixo para o botão flutuante do WhatsApp não cobrir os links */
 .site-footer a { color: var(--white); }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin-bottom: 6px; }
