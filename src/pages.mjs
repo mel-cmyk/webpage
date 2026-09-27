@@ -113,6 +113,7 @@ const incluidoTours = [
   'Indicações gastronômicas para o dia do tour',
   'Dicas práticas de segurança',
   'Alinhamento prévio pelo WhatsApp',
+  'Para quem viaja com crianças: o livro de atividades do Monsieur Pombo, em PDF',
 ];
 
 const faqTours = [
@@ -130,7 +131,7 @@ const faqTours = [
   },
   {
     q: 'É adequado para crianças?',
-    a: 'Totalmente. Temos um livro de atividades exclusivo, protagonizado pelo Monsieur Pombo, e fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles.',
+    a: 'Totalmente. As famílias recebem em PDF o livro de atividades exclusivo do Monsieur Pombo, com brincadeiras para antes, durante e depois da viagem, e no tour fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles.',
   },
 ];
 
@@ -512,6 +513,11 @@ ${heroSplit(`
       <li>Dois encontros online para conversar sobre dúvidas e preocupações</li>
       <li>Suporte por WhatsApp durante o planejamento</li>
     </ul>
+    <aside class="card destaque">
+      <p class="eyebrow">Para quem viaja com crianças</p>
+      <h3>O livro de atividades do Monsieur Pombo</h3>
+      <p>Para as famílias com crianças, a Mel envia em PDF o livro de atividades exclusivo do Monsieur Pombo, com brincadeiras e desafios para antes, durante e depois da viagem.</p>
+    </aside>
   </div>
 </section>
 <section class="section">
