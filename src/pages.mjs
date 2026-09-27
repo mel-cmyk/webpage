@@ -141,12 +141,12 @@ function home(data) {
   const textos = {
     tours: {
       para: 'conhecer Paris a pé, no próprio ritmo, com uma guia brasileira ao lado.',
-      txt: `Oito roteiros ao ar livre pelas ruas, praças e jardins que contam a história da cidade. Só o seu grupo, em português, com tempo para o café e para as pausas das crianças.`,
+      txt: `Oito roteiros ao ar livre pelas ruas, praças e jardins que contam a história da cidade. Só o seu grupo, em português, com tempo para o café, as fotos e as pausas que o seu grupo pedir.`,
       cta: 'Ver os tours',
     },
     roteiro: {
       para: 'receber a viagem inteira desenhada, dia a dia.',
-      txt: 'A Mel conhece a sua família, entende o ritmo de cada um e monta a programação completa: atrações, restaurantes, deslocamentos e o que precisa ser reservado com antecedência, tudo numa plataforma que você leva no celular.',
+      txt: 'A Mel conhece quem vai viajar, entende o ritmo de cada um e monta a programação completa: atrações, restaurantes, deslocamentos e o que precisa ser reservado com antecedência, tudo numa plataforma que você leva no celular.',
       cta: 'Quero um roteiro',
     },
     consultoria: {
@@ -164,6 +164,10 @@ function home(data) {
     {
       q: 'Qual a diferença entre tour, roteiro, consultoria e guia?',
       a: 'O tour é um passeio a pé com a Mel, em Paris. O roteiro é a viagem inteira planejada para você, dia a dia. A consultoria é uma conversa para validar as decisões que você já está tomando. O guia digital é a curadoria pronta, para quem prefere planejar sozinho. Se ainda estiver em dúvida, o diagnóstico indica o caminho em dois minutos.',
+    },
+    {
+      q: 'Os serviços são só para famílias com crianças?',
+      a: 'Não. A Mel atende famílias com crianças, casais, grupos de amigos, viagens com várias gerações e quem viaja sozinha, com o mesmo cuidado. O que muda é o desenho de cada dia: o ritmo, os bairros, as pausas e os programas escolhidos para quem vai estar lá.',
     },
     faqTours[3],
     faqTours[2],
@@ -278,7 +282,7 @@ ${depoimentos(m)}
     ${img('home/mel', 'Mel Rolan sorrindo às margens do Sena, em Paris', { cls: 'photo', sizes: '(min-width: 900px) 540px, 100vw' })}
     <div>
     <h2>Quem desenha a sua viagem</h2>
-    <p>Sou a Mel, brasileira, e moro em Paris há mais de 5 anos. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios.</p>
+    <p>Sou a Mel, brasileira, e moro em Paris há mais de 5 anos. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos.</p>
     <p>O que eu entrego é o que só se aprende vivendo aqui. Curadoria não se baixa. Ela se vive.</p>
     <a class="btn btn-ghost" href="${url('/sobre/')}">Conhecer a história da Mel</a>
     </div>
@@ -469,7 +473,7 @@ function roteiro(data) {
 ${heroSplit(`
     <p class="eyebrow">Roteiro sob medida</p>
     <h1>A sua viagem inteira, desenhada dia a dia para quem vai viajar.</h1>
-    <p class="lead">Um roteiro personalizado que leva em conta os seus desejos, o orçamento, o ritmo de cada um e o que faz sentido para a sua família, com acesso a experiências autênticas que só quem vive aqui conhece.</p>
+    <p class="lead">Um roteiro personalizado que leva em conta os seus desejos, o orçamento e o ritmo de quem vai viajar, com acesso a experiências autênticas que só quem vive aqui conhece.</p>
     <p class="price">${precoServico(s)}</p>
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-roteiro">Começar pelo diagnóstico</a>
@@ -483,6 +487,18 @@ ${heroSplit(`
       <li><strong>Travel design.</strong> A viagem ganha forma: itinerário, experiências, restaurantes e deslocamentos definidos um a um.</li>
       <li><strong>Entrega.</strong> Você recebe o roteiro de forma visual e detalhada e, se preciso, ajustamos juntos para que fique ainda mais do seu jeito.</li>
     </ol>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <h2 class="center">Um roteiro para cada tipo de viagem</h2>
+    <p class="center lead-sm">O mesmo cuidado, com um desenho diferente para cada perfil.</p>
+    <div class="grid-4 perfis">
+      <article class="card perfil"><h3>Famílias com crianças</h3><p>Programação no ritmo de cada idade, com pausas, parquinhos e restaurantes onde as crianças comem bem.</p></article>
+      <article class="card perfil"><h3>Casais</h3><p>Bairros para caminhar sem pressa, mesas escolhidas com cuidado e tempo livre de verdade entre um programa e outro.</p></article>
+      <article class="card perfil"><h3>Várias gerações e amigos</h3><p>Um roteiro que agrada a todas as idades, com deslocamentos pensados para o fôlego de cada um.</p></article>
+      <article class="card perfil"><h3>Viajando sozinha</h3><p>Hospedagem em bairros tranquilos, programas que funcionam bem para quem está sozinha e liberdade para montar cada dia do seu jeito.</p></article>
+    </div>
   </div>
 </section>
 <section class="section alt">

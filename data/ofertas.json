@@ -141,6 +141,19 @@
       "ideal_para": "É a sua primeira vez em Paris e você quer viver, de uma só vez, os cartões-postais que sempre sonhou ver de perto."
     },
     {
+      "id": "dia-inteiro-grandes-monumentos",
+      "imagem": "tours/dia-inteiro-grandes-monumentos",
+      "imagem_alt": "Jardin des Tuileries com as cadeiras verdes e a Torre Eiffel ao fundo",
+      "nome": "Dia Inteiro dos Grandes Monumentos",
+      "duracao": "7h",
+      "precos": [
+        { "grupo": "até 4 pessoas", "valor": 550 },
+        { "grupo": "5 a 8 pessoas", "valor": 700 }
+      ],
+      "encontro": "Da Île de la Cité à Torre Eiffel",
+      "roteiro": ["Notre-Dame", "Pont Neuf", "Louvre (exterior)", "Jardin des Tuileries", "Place de la Concorde", "Champs-Élysées", "Arco do Triunfo", "Torre Eiffel"]
+    },
+    {
       "id": "tour-personalizado",
       "imagem": "tours/tour-personalizado",
       "imagem_alt": "Mel Rolan rindo no cais do Sena, com uma ponte ao fundo",
@@ -156,19 +169,6 @@
       "encontro": "Definido em conversa prévia",
       "roteiro": ["Roteiro 100% desenhado para os interesses do seu grupo"],
       "ideal_para": "Viajantes com interesses específicos que querem flexibilidade na programação."
-    },
-    {
-      "id": "dia-inteiro-grandes-monumentos",
-      "imagem": "tours/dia-inteiro-grandes-monumentos",
-      "imagem_alt": "Jardin des Tuileries com as cadeiras verdes e a Torre Eiffel ao fundo",
-      "nome": "Dia Inteiro dos Grandes Monumentos",
-      "duracao": "7h",
-      "precos": [
-        { "grupo": "até 4 pessoas", "valor": 550 },
-        { "grupo": "5 a 8 pessoas", "valor": 700 }
-      ],
-      "encontro": "Da Île de la Cité à Torre Eiffel",
-      "roteiro": ["Notre-Dame", "Pont Neuf", "Louvre (exterior)", "Jardin des Tuileries", "Place de la Concorde", "Champs-Élysées", "Arco do Triunfo", "Torre Eiffel"]
     },
     {
       "id": "ambientacao",
