@@ -212,30 +212,42 @@ ${provaRapida(m)}
     <p class="center">Ainda em dúvida? <a href="${url('/diagnostico/')}">Responda cinco perguntas rápidas</a> e veja qual opção combina com a sua viagem.</p>
   </div>
 </section>
-<section class="section alt">
+<section class="section alt" id="para-quem">
   <div class="wrap">
-    <div class="split">
-      <div>
-        <h2>Paris com crianças pede outro roteiro.</h2>
-        <p>Cada idade tem um ritmo, uma hora de soneca e um limite de caminhada. A Mel já planejou viagens para bebês de colo, crianças pequenas, adolescentes e avós, e desenha cada dia a partir de quem vai viajar.</p>
-        <div class="actions">
-          <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-familia">Planejar a viagem da minha família</a>
-        </div>
-        <p class="small">ou conheça o <a href="${esc(data.guias[0].landing)}">guia Paris com Crianças</a></p>
-
-        ${img('home/familia', 'Família de costas observando os barquinhos no lago do Jardin du Luxembourg', { cls: 'photo photo-top', sizes: '(min-width: 900px) 540px, 100vw' })}
-      </div>
-      <div>
-        <p class="table-title">O mesmo dia, de dois jeitos</p>
-        <table class="compare">
-          <thead><tr><th>Sem ajuste</th><th>Com curadoria</th></tr></thead>
-          <tbody>
-            <tr><td>Atrações espalhadas pelos dois lados da cidade</td><td>Um bairro por período, com tudo a poucos passos</td></tr>
-            <tr><td>Metrô com carrinho na hora do rush</td><td>Deslocamentos fora do horário de pico, com a linha certa</td></tr>
-            <tr><td>Almoço apressado onde deu</td><td>Um restaurante onde as crianças comem bem</td></tr>
-            <tr><td>Criança exausta no meio da tarde</td><td>Pausa num parquinho escolhido para a idade dela</td></tr>
-          </tbody>
-        </table>
+    <h2 class="center">Cada viagem começa por quem vai viajar.</h2>
+    <p class="center lead-sm">Famílias com crianças, casais, amigos, várias gerações e quem viaja sozinha. A Mel já atendeu de bebês de colo a viajantes de 89 anos, em grupos de até 16 pessoas, e desenha cada dia a partir de quem vai estar lá.</p>
+    <div class="grid-4 perfis">
+      <article class="card perfil">
+        <h3>Famílias com crianças</h3>
+        <p>Cada idade tem um ritmo, uma hora de soneca e um limite de caminhada. Parquinhos, pausas e restaurantes onde as crianças comem bem já entram no plano.</p>
+        <p class="small">Para planejar por conta própria, conheça o <a href="${esc(data.guias[0].landing)}">guia Paris com Crianças</a>.</p>
+      </article>
+      <article class="card perfil">
+        <h3>Casais</h3>
+        <p>Bairros para caminhar sem pressa, mesas escolhidas com cuidado e tempo livre de verdade, sem transformar a viagem numa maratona de pontos turísticos.</p>
+      </article>
+      <article class="card perfil">
+        <h3>Várias gerações e amigos</h3>
+        <p>Avós, pais, filhos ou amigos no mesmo roteiro, com deslocamentos que respeitam o fôlego de cada um e programas que agradam a todas as idades.</p>
+      </article>
+      <article class="card perfil">
+        <h3>Viajando sozinha</h3>
+        <p>Bairros tranquilos para se hospedar, programas que funcionam bem para quem está sozinha e a liberdade de montar cada dia do seu jeito, com o olhar de uma mulher que escolheu viver em Paris.</p>
+      </article>
+    </div>
+    <div class="compare-block">
+      <p class="table-title">O mesmo dia, de dois jeitos</p>
+      <table class="compare">
+        <thead><tr><th>Sem ajuste</th><th>Com curadoria</th></tr></thead>
+        <tbody>
+          <tr><td>Atrações espalhadas pelos dois lados da cidade</td><td>Um bairro por período, com tudo a poucos passos</td></tr>
+          <tr><td>Metrô lotado na hora do rush</td><td>Deslocamentos fora do horário de pico, com a linha certa</td></tr>
+          <tr><td>Almoço apressado onde deu</td><td>Um restaurante escolhido para quem está viajando</td></tr>
+          <tr><td>Cansaço acumulado no meio da tarde</td><td>Uma pausa prevista num jardim, num café ou num parquinho, conforme o grupo</td></tr>
+        </tbody>
+      </table>
+      <div class="actions center">
+        <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-perfis">Planejar a minha viagem</a>
       </div>
     </div>
   </div>

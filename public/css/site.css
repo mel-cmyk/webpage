@@ -178,6 +178,9 @@ table { width: 100%; border-collapse: collapse; background: var(--white); border
 th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 0.95rem; }
 th { font-family: var(--serif); background: var(--navy); color: var(--white); font-weight: 600; }
 .compare td:last-child { font-weight: 500; }
+.perfil h3 { font-size: 1.15rem; }
+.perfil p:last-child { margin-bottom: 0; }
+.compare-block { max-width: 760px; margin: 48px auto 0; }
 .prices td:last-child { text-align: right; font-weight: 600; white-space: nowrap; }
 .checklist { list-style: none; padding: 0; margin: 24px 0; }
 .checklist li { position: relative; padding-left: 30px; margin-bottom: 12px; }
