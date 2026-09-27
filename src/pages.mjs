@@ -113,7 +113,7 @@ const incluidoTours = [
   'Indicações gastronômicas para o dia do tour',
   'Dicas práticas de segurança',
   'Alinhamento prévio pelo WhatsApp',
-  'Para quem viaja com crianças: o livro de atividades do Monsieur Pombo, em PDF',
+  'Para os mini clientes: o livro de atividades impresso do Monsieur Pombo, criado pela Mel',
 ];
 
 const faqTours = [
@@ -131,7 +131,7 @@ const faqTours = [
   },
   {
     q: 'É adequado para crianças?',
-    a: 'Totalmente. As famílias recebem em PDF o livro de atividades exclusivo do Monsieur Pombo, com brincadeiras para antes, durante e depois da viagem, e no tour fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles.',
+    a: 'Totalmente. Cada criança ganha o livro de atividades impresso do Monsieur Pombo, criado pela Mel, e no tour fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles.',
   },
 ];
 
@@ -363,6 +363,14 @@ ${heroSplit(`
   <div class="wrap">
     <h2 class="center">O que está incluído em todos os tours</h2>
     <ul class="checklist grid-2">${incluidoTours.map((i) => `<li>${i}</li>`).join('')}</ul>
+    <aside class="card destaque destaque-img">
+      ${img('pombo/tours-livro', 'Livro de atividades impresso do Monsieur Pombo, fechado e aberto numa mesa', { sizes: '(min-width: 760px) 340px, 100vw' })}
+      <div>
+        <p class="eyebrow">Para os mini clientes</p>
+        <h3>O livro do Monsieur Pombo, impresso</h3>
+        <p>Nos tours com crianças, cada mini cliente ganha o livro de atividades impresso criado pela Mel, com curiosidades, jogos e desafios sobre a história de Paris para acompanhar o passeio.</p>
+      </div>
+    </aside>
   </div>
 </section>
 <section class="section">
@@ -513,10 +521,13 @@ ${heroSplit(`
       <li>Dois encontros online para conversar sobre dúvidas e preocupações</li>
       <li>Suporte por WhatsApp durante o planejamento</li>
     </ul>
-    <aside class="card destaque">
-      <p class="eyebrow">Para quem viaja com crianças</p>
-      <h3>O livro de atividades do Monsieur Pombo</h3>
-      <p>Para as famílias com crianças, a Mel envia em PDF o livro de atividades exclusivo do Monsieur Pombo, com brincadeiras e desafios para antes, durante e depois da viagem.</p>
+    <aside class="card destaque destaque-img">
+      ${img('pombo/roteiro-pdf', 'Livro de atividades do Monsieur Pombo aberto num tablet e num celular', { sizes: '(min-width: 760px) 340px, 100vw' })}
+      <div>
+        <p class="eyebrow">Para os mini clientes</p>
+        <h3>O livro de atividades do Monsieur Pombo</h3>
+        <p>Criado pela Mel para as crianças que viajam com a família, o livro chega em PDF junto com o roteiro, com histórias, jogos e desafios para antes, durante e depois da viagem.</p>
+      </div>
     </aside>
   </div>
 </section>

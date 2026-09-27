@@ -157,6 +157,30 @@
    "h": 800
   }
  ],
+ "pombo/roteiro-pdf": [
+  {
+   "src": "/img/pombo/roteiro-pdf-600.webp",
+   "w": 600,
+   "h": 400
+  },
+  {
+   "src": "/img/pombo/roteiro-pdf-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
+ ],
+ "pombo/tours-livro": [
+  {
+   "src": "/img/pombo/tours-livro-600.webp",
+   "w": 600,
+   "h": 400
+  },
+  {
+   "src": "/img/pombo/tours-livro-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
+ ],
  "sobre/g1": [
   {
    "src": "/img/sobre/g1-600.webp",
