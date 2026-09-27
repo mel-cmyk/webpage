@@ -1,0 +1,18 @@
+{
+  "_sobre_este_arquivo": "Integrações do site. O client_id do Wix é público (só gera tokens anônimos de visitante) e pode ficar no código. Os campos ligam cada resposta do diagnóstico ao campo do formulário 'Diagnóstico do site' no Wix Forms.",
+  "wix_forms": {
+    "client_id": "402d9c44-89a4-4bcd-8445-b76dc7ddc91d",
+    "form_id": "2d6de46e-dbfd-44ec-a95a-11dc556cbbc6",
+    "campos": {
+      "nome": "nome_k3p9q2",
+      "whatsapp": "whatsapp_x7m2c4",
+      "procura": "procura_a8d1f3",
+      "quando": "quando_b2e7k9",
+      "quem_viaja": "quem_viaja_c5n1r8",
+      "investimento": "investimento_d4q6t2",
+      "indicacao": "indicacao_e9w3m5",
+      "observacao": "observacao_f1z8h6",
+      "origem": "origem_g6y2p4"
+    }
+  }
+}

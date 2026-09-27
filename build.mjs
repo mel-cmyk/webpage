@@ -7,6 +7,7 @@ import { SITE_URL, STAGING, url } from './src/helpers.mjs';
 
 const OUT = 'dist';
 const data = JSON.parse(fs.readFileSync('data/ofertas.json', 'utf8'));
+data.integracoes = JSON.parse(fs.readFileSync('data/integracoes.json', 'utf8'));
 
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.cpSync('public', OUT, { recursive: true });

@@ -672,13 +672,18 @@ function diagnostico(data) {
     base: url(''),
     servicos: Object.fromEntries(data.servicos.map((s) => [s.id, { nome: s.nome, preco: precoServico(s), pagina: url(s.pagina + '/') }])),
     guia: { nome: data.guias[0].nome, link: data.guias[0].landing },
+    wix: data.integracoes && {
+      clientId: data.integracoes.wix_forms.client_id,
+      formId: data.integracoes.wix_forms.form_id,
+      campos: data.integracoes.wix_forms.campos,
+    },
   };
   const body = `
 <section class="hero hero-sm">
   <div class="wrap narrow">
     <p class="eyebrow">Diagnóstico da viagem</p>
     <h1>Qual opção combina com a sua viagem?</h1>
-    <p class="lead">Cinco perguntas rápidas. No final, você vê a indicação da Mel e, se quiser, continua a conversa no WhatsApp com tudo já explicado.</p>
+    <p class="lead">Cinco perguntas rápidas. No final, você vê a indicação da Mel, e as suas respostas chegam para a nossa equipe, que fala com você pelo WhatsApp.</p>
   </div>
 </section>
 <section class="section">
@@ -726,9 +731,12 @@ function diagnostico(data) {
       </fieldset>
 
       <fieldset class="step" data-step="5" hidden>
-        <legend>Como podemos te chamar?</legend>
-        <label class="text-label">Seu primeiro nome<input type="text" name="nome" autocomplete="given-name"></label>
-        <label class="text-label">Algo mais que a Mel deveria saber? (opcional)<textarea name="obs" rows="3" placeholder="Ex.: é a nossa primeira vez em Paris"></textarea></label>
+        <legend>Para quem enviamos a indicação?</legend>
+        <label class="text-label">Seu primeiro nome<input type="text" name="nome" autocomplete="given-name" required maxlength="60"></label>
+        <label class="text-label">Seu WhatsApp, com DDD<input type="tel" name="whatsapp" autocomplete="tel" inputmode="tel" required placeholder="Ex.: 11 91234-5678" maxlength="25"></label>
+        <p class="hint">Mora fora do Brasil? Use o código do país, por exemplo +33 6 12 34 56 78.</p>
+        <label class="text-label">Algo mais que a Mel deveria saber? (opcional)<textarea name="obs" rows="3" maxlength="500" placeholder="Ex.: é a nossa primeira vez em Paris"></textarea></label>
+        <p class="hint">Ao ver a indicação, suas respostas, seu nome e seu WhatsApp são enviados à equipe da Mel Rolan, apenas para falarmos com você sobre a sua viagem. Veja a <a href="${url('/privacidade/')}">política de privacidade</a>.</p>
       </fieldset>
 
       <div class="quiz-nav">

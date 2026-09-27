@@ -109,11 +109,10 @@
 
     if (a.dataset.wa) {
       // whatsapp_click: todo clique no WhatsApp (evento-chave já usado na propriedade).
-      // generate_lead: só quando o clique vem do resultado do diagnóstico (lead com as respostas).
+      // generate_lead é disparado pelo diagnóstico, quando o lead é salvo no Wix (diagnostico.js).
       var p = { origem: a.dataset.wa, servico: a.dataset.servico || servico };
       for (var k in extra) p[k] = extra[k];
       track('whatsapp_click', p);
-      if (extra.metodo === 'diagnostico') track('generate_lead', p);
     } else if (a.dataset.checkout) {
       var g = JSON.parse(a.dataset.checkout);
       track('begin_checkout', { currency: 'BRL', value: g.price, items: [g] });

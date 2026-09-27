@@ -30,7 +30,7 @@ export function privacidade(data) {
 
 <h2>2. Quais dados tratamos</h2>
 <p><strong>Dados que você nos envia.</strong> Quando você fala conosco pelo WhatsApp ou por e-mail: nome, telefone, e-mail e informações sobre a viagem, como datas, quem vai viajar, idade das crianças e preferências. Quando você compra um guia: nome, e-mail e os dados necessários para o pagamento, que são tratados diretamente pela loja e pelo processador de pagamentos; nós não armazenamos números de cartão.</p>
-<p><strong>Diagnóstico da viagem.</strong> As respostas do diagnóstico não são gravadas pelo site. Elas servem apenas para montar a indicação e a mensagem de WhatsApp, que você decide se envia ou não.</p>
+<p><strong>Diagnóstico da viagem.</strong> Quando você conclui o diagnóstico, suas respostas, seu primeiro nome e seu WhatsApp são enviados à nossa equipe e ficam registrados na nossa ferramenta de atendimento (Wix), para que possamos falar com você sobre a viagem. A mensagem de WhatsApp com as respostas só é enviada se você decidir enviá-la.</p>
 <p><strong>Dados de navegação, com o seu consentimento.</strong> Se você aceitar os cookies de medição, o Google Analytics registra informações como páginas visitadas, origem da visita (por exemplo, uma busca no Google ou o Instagram), tipo de dispositivo e navegador, região aproximada e cliques em botões, como os de WhatsApp. Esses dados são usados de forma agregada, para entender como o site é usado.</p>
 
 <h2>3. Para que usamos os dados</h2>
@@ -50,7 +50,7 @@ export function privacidade(data) {
 <p>As páginas de venda dos guias e a loja têm seus próprios avisos de cookies, com escolha independente.</p>
 
 <h2>6. Com quem compartilhamos os dados</h2>
-<p>Apenas com quem precisa deles para o serviço funcionar: GitHub (hospedagem do site), Google (medição, se você aceitar), Meta, pelo WhatsApp (as conversas que você inicia conosco), Wix (loja e pagamentos dos guias), provedores de e-mail e de agenda e profissionais de contabilidade. Não vendemos dados pessoais.</p>
+<p>Apenas com quem precisa deles para o serviço funcionar: GitHub (hospedagem do site), Google (medição, se você aceitar), Meta, pelo WhatsApp (as conversas que você inicia conosco), Wix (loja, pagamentos dos guias e registro dos contatos feitos pelo diagnóstico), provedores de e-mail e de agenda e profissionais de contabilidade. Não vendemos dados pessoais.</p>
 
 <h2>7. Transferência internacional</h2>
 <p>Alguns desses provedores operam fora do Brasil e da União Europeia, como nos Estados Unidos. Nesses casos, a transferência se apoia nas salvaguardas previstas na LGPD e no RGPD, como as cláusulas contratuais padrão adotadas pelos próprios provedores.</p>
