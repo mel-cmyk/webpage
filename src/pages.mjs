@@ -247,7 +247,7 @@ ${provaRapida(m)}
     <div class="compare-block">
       <h3 class="center compare-title">O mesmo dia, de dois jeitos</h3>
       <table class="compare">
-        <thead><tr><th>Sem ajuste</th><th>Com curadoria</th></tr></thead>
+        <thead><tr><th>Como costuma ser</th><th>Como a Mel planeja</th></tr></thead>
         <tbody>
           <tr><td>Atrações espalhadas pelos dois lados da cidade</td><td>Um bairro por período, com tudo a poucos passos</td></tr>
           <tr><td>Metrô lotado na hora do rush</td><td>Deslocamentos fora do horário de pico, com a linha certa</td></tr>
@@ -343,6 +343,7 @@ ${heroSplit(`
         <div class="card-body">
         <p class="card-meta">${esc(t.duracao)} · ${esc(t.encontro)}</p>
         <h3>${esc(t.nome)}</h3>
+        ${t.subtitulo ? `<p class="card-sub">${esc(t.subtitulo)}</p>` : ''}
         <p class="card-txt">${esc(t.ideal_para || t.descricao || t.roteiro.join(' · '))}</p>
         <p class="price">A partir de ${eur(menorPreco(t))}<span>${esc(t.precos[0].grupo)}</span></p>
         <a class="btn btn-small" href="${url('/tours-em-paris/' + t.id + '/')}" data-item="${attr(tourItem(t))}">Ver o tour</a>
@@ -388,6 +389,7 @@ function tourPage(data, t) {
 ${heroSplit(`
     <p class="eyebrow">Tour privativo em Paris · ${esc(t.duracao)}</p>
     <h1>${esc(t.nome)}</h1>
+    ${t.subtitulo ? `<p class="subtitulo">${esc(t.subtitulo)}</p>` : ''}
     ${t.ideal_para ? `<p class="lead"><strong>Ideal se:</strong> ${esc(t.ideal_para)}</p>` : ''}
     ${t.descricao ? `<p>${esc(t.descricao)}</p>` : ''}
     <p class="price">A partir de ${eur(menorPreco(t))}<span>${esc(t.precos[0].grupo)}</span></p>
@@ -432,7 +434,7 @@ ${heroSplit(`
     <h2 class="center">Outros tours</h2>
     <div class="grid-3 cards">${outros
       .map(
-        (o) => `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body"><p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3><p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}" data-item="${attr(tourItem(o))}">Ver o tour</a></div></article>`
+        (o) => `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body"><p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3>${o.subtitulo ? `<p class="card-sub">${esc(o.subtitulo)}</p>` : ''}<p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}" data-item="${attr(tourItem(o))}">Ver o tour</a></div></article>`
       )
       .join('')}</div>
   </div>
@@ -449,7 +451,7 @@ ${heroSplit(`
   };
   return {
     path: `/tours-em-paris/${t.id}/`,
-    title: `${t.nome}: tour privativo em Paris em português | Mel Rolan`,
+    title: t.subtitulo ? `${t.nome}: ${t.subtitulo} | Tour privativo em Paris` : `${t.nome}: tour privativo em Paris em português | Mel Rolan`,
     description: `${t.nome}: tour privativo de ${t.duracao} em Paris, em português, com guia brasileira. A partir de ${eur(menorPreco(t))} por grupo.`,
     body,
     og: `og/tour-${t.id}.jpg`,

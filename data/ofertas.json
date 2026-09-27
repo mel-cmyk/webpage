@@ -67,24 +67,11 @@
 
   "tours": [
     {
-      "id": "monumental-classico",
-      "imagem": "tours/monumental-classico",
-      "imagem_alt": "Pont Alexandre III ao entardecer, com a cúpula dos Invalides ao fundo",
-      "nome": "Monumental Clássico",
-      "duracao": "3h30",
-      "precos": [
-        { "grupo": "até 4 pessoas", "valor": 280 },
-        { "grupo": "5 a 8 pessoas", "valor": 380 }
-      ],
-      "encontro": "Pirâmide do Louvre",
-      "roteiro": ["Pirâmide do Louvre", "Jardin des Tuileries", "Place de la Concorde", "Pont Alexandre III", "Champs-Élysées", "Arco do Triunfo"],
-      "ideal_para": "É a sua primeira vez em Paris e você quer viver, de uma só vez, os cartões-postais que sempre sonhou ver de perto."
-    },
-    {
-      "id": "historia-e-memoria",
+      "id": "eixo-historico",
       "imagem": "tours/historia-e-memoria",
       "imagem_alt": "Arcadas da Rue de Rivoli pela manhã",
-      "nome": "História e Memória",
+      "nome": "Eixo Histórico",
+      "subtitulo": "Monumentos icônicos",
       "duracao": "3h30",
       "precos": [
         { "grupo": "até 4 pessoas", "valor": 280 },
@@ -95,10 +82,26 @@
       "descricao": "Percorremos o eixo histórico de Paris para acompanhar a construção e as transformações da cidade ao longo dos séculos, entre palácios, praças e grandes símbolos de poder. Ao longo do caminho, um desvio pela Place Vendôme, Rue de Rivoli e hotéis-palácio revela como esses espaços foram apropriados pelas autoridades alemãs durante a ocupação de Paris, entre 1940 e 1944."
     },
     {
-      "id": "bucolico-e-artistico",
+      "id": "quartier-latin-e-ile-de-la-cite",
+      "imagem": "tours/rive-gauche-e-berco-de-paris",
+      "imagem_alt": "Mel Rolan na Rue des Ursins, na Île de la Cité, com a placa da cheia de 1910",
+      "nome": "Quartier Latin + Île de la Cité",
+      "subtitulo": "Onde Paris começou",
+      "duracao": "3h30",
+      "precos": [
+        { "grupo": "até 4 pessoas", "valor": 280 },
+        { "grupo": "5 a 8 pessoas", "valor": 380 }
+      ],
+      "encontro": "Das Arenas à Île de la Cité",
+      "roteiro": ["Arenas de Lutécia", "Panthéon", "Notre-Dame", "Palais de la Cité", "Pont Neuf", "Île de la Cité"],
+      "ideal_para": "Você se encanta com livrarias, cafés literários e ruas que respiram séculos de história."
+    },
+    {
+      "id": "montmartre",
       "imagem": "tours/bucolico-e-artistico",
       "imagem_alt": "Mel Rolan diante da Maison Rose, em Montmartre",
-      "nome": "Bucólico e Artístico",
+      "nome": "Montmartre",
+      "subtitulo": "Paris boêmia e artística",
       "duracao": "3h30",
       "precos": [
         { "grupo": "até 4 pessoas", "valor": 280 },
@@ -109,10 +112,11 @@
       "ideal_para": "Você imagina Paris como cenário de filme: ruelas de paralelepípedo, ateliês de artista."
     },
     {
-      "id": "cenarios-de-filmes-e-series",
+      "id": "paris-de-cinema",
       "imagem": "tours/cenarios-de-filmes-e-series",
       "imagem_alt": "Cartão-postal com uma cena de filme, segurado na mesma alameda do Jardin des Tuileries onde ela foi gravada",
-      "nome": "Cenários de Filmes e Séries",
+      "nome": "Paris de Cinema",
+      "subtitulo": "Pelos bastidores da cidade mais filmada do mundo",
       "duracao": "3h30",
       "precos": [
         { "grupo": "até 4 pessoas", "valor": 280 },
@@ -122,18 +126,36 @@
       "roteiro": ["Meia-noite em Paris", "Emily in Paris", "Ratatouille", "O Corcunda de Notre-Dame", "O Diabo Veste Prada"]
     },
     {
-      "id": "rive-gauche-e-berco-de-paris",
-      "imagem": "tours/rive-gauche-e-berco-de-paris",
-      "imagem_alt": "Mel Rolan na Rue des Ursins, na Île de la Cité, com a placa da cheia de 1910",
-      "nome": "Rive Gauche e Berço de Paris",
+      "id": "paris-classica",
+      "imagem": "tours/monumental-classico",
+      "imagem_alt": "Pont Alexandre III ao entardecer, com a cúpula dos Invalides ao fundo",
+      "nome": "Paris Clássica",
+      "subtitulo": "O essencial com olhar de local",
       "duracao": "3h30",
       "precos": [
         { "grupo": "até 4 pessoas", "valor": 280 },
         { "grupo": "5 a 8 pessoas", "valor": 380 }
       ],
-      "encontro": "Das Arenas à Île de la Cité",
-      "roteiro": ["Arenas de Lutécia", "Panthéon", "Notre-Dame", "Palais de la Cité", "Pont Neuf", "Île de la Cité"],
-      "ideal_para": "Você se encanta com livrarias, cafés literários e ruas que respiram séculos de história."
+      "encontro": "Pirâmide do Louvre",
+      "roteiro": ["Pirâmide do Louvre", "Jardin des Tuileries", "Place de la Concorde", "Pont Alexandre III", "Champs-Élysées", "Arco do Triunfo"],
+      "ideal_para": "É a sua primeira vez em Paris e você quer viver, de uma só vez, os cartões-postais que sempre sonhou ver de perto."
+    },
+    {
+      "id": "tour-personalizado",
+      "imagem": "tours/tour-personalizado",
+      "imagem_alt": "Mel Rolan rindo no cais do Sena, com uma ponte ao fundo",
+      "nome": "Tour Personalizado",
+      "subtitulo": "Sua Paris, sob medida",
+      "duracao": "4h ou 8h",
+      "precos": [
+        { "grupo": "4h, até 4 pessoas", "valor": 420 },
+        { "grupo": "4h, 5 a 8 pessoas", "valor": 500 },
+        { "grupo": "8h, até 4 pessoas", "valor": 800 },
+        { "grupo": "8h, 5 a 8 pessoas", "valor": 880 }
+      ],
+      "encontro": "Definido em conversa prévia",
+      "roteiro": ["Roteiro 100% desenhado para os interesses do seu grupo"],
+      "ideal_para": "Viajantes com interesses específicos que querem flexibilidade na programação."
     },
     {
       "id": "dia-inteiro-grandes-monumentos",
@@ -147,22 +169,6 @@
       ],
       "encontro": "Da Île de la Cité à Torre Eiffel",
       "roteiro": ["Notre-Dame", "Pont Neuf", "Louvre (exterior)", "Jardin des Tuileries", "Place de la Concorde", "Champs-Élysées", "Arco do Triunfo", "Torre Eiffel"]
-    },
-    {
-      "id": "tour-personalizado",
-      "imagem": "tours/tour-personalizado",
-      "imagem_alt": "Mel Rolan rindo no cais do Sena, com uma ponte ao fundo",
-      "nome": "Tour Personalizado",
-      "duracao": "4h ou 8h",
-      "precos": [
-        { "grupo": "4h, até 4 pessoas", "valor": 420 },
-        { "grupo": "4h, 5 a 8 pessoas", "valor": 500 },
-        { "grupo": "8h, até 4 pessoas", "valor": 800 },
-        { "grupo": "8h, 5 a 8 pessoas", "valor": 880 }
-      ],
-      "encontro": "Definido em conversa prévia",
-      "roteiro": ["Roteiro 100% desenhado para os interesses do seu grupo"],
-      "ideal_para": "Viajantes com interesses específicos que querem flexibilidade na programação."
     },
     {
       "id": "ambientacao",

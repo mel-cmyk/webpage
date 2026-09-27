@@ -196,6 +196,9 @@ table { width: 100%; border-collapse: collapse; background: var(--white); border
 th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 0.95rem; }
 th { font-family: var(--serif); background: var(--navy); color: var(--white); font-weight: 600; }
 .compare td:last-child { font-weight: 500; }
+.compare td { vertical-align: middle; }
+.card-sub { font-family: var(--serif); font-style: italic; color: var(--gold-dark); margin: -0.35em 0 0.7em; }
+.subtitulo { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--gold-dark); margin: -0.3em 0 1em; }
 .perfil h3 { font-size: 1.15rem; }
 .perfil p:last-child { margin-bottom: 0; }
 .compare-block { max-width: 760px; margin: 72px auto 0; }
