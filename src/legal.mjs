@@ -97,7 +97,7 @@ export function avisoLegal(data) {
 <p>Os textos, fotografias, marcas e demais conteúdos deste site pertencem à Mel Rolan Travel Designer ou são usados com autorização. A reprodução, total ou parcial, depende de autorização prévia por escrito.</p>
 
 <h2>Imagens</h2>
-<p>As fotos da Mel Rolan fazem parte de um ensaio fotográfico profissional em Paris. Algumas imagens de ambientação de Paris foram criadas com uma ferramenta de inteligência artificial e têm caráter ilustrativo.</p>
+<p>Fotos: Meiry Peruch (Flânerie Photo), ensaio da Mel Rolan em Paris, e Diogo Pires de Oliveira, cenários do tour de cinema. Algumas imagens de ambientação de Paris foram criadas com uma ferramenta de inteligência artificial e têm caráter ilustrativo.</p>
 
 <h2>Preços e informações</h2>
 <p>Os preços e as condições publicados no site são informativos e são confirmados no momento da contratação. Horários e condições de atrações de terceiros podem mudar sem aviso.</p>

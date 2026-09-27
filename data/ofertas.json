@@ -21,8 +21,8 @@
   "servicos": [
     {
       "id": "tours",
-      "imagem": "servicos/tours",
-      "imagem_alt": "Mel Rolan caminhando por uma rua de Paris",
+      "imagem": "cards/tours",
+      "imagem_alt": "Mel Rolan descendo uma escadaria de pedra, ao lado de uma antiga porta de madeira, em Paris",
       "nome": "Tours privativos em Paris",
       "ordem": 1,
       "moeda": "EUR",
@@ -32,8 +32,8 @@
     },
     {
       "id": "roteiro",
-      "imagem": "servicos/roteiro",
-      "imagem_alt": "Café, croissant e o celular com o roteiro da viagem, numa mesa em Paris",
+      "imagem": "cards/roteiro",
+      "imagem_alt": "Mel Rolan à mesa de um café parisiense",
       "nome": "Roteiro sob medida",
       "ordem": 2,
       "moeda": "BRL",
@@ -43,8 +43,8 @@
     },
     {
       "id": "consultoria",
-      "imagem": "servicos/consultoria",
-      "imagem_alt": "Mel Rolan num café parisiense",
+      "imagem": "cards/consultoria",
+      "imagem_alt": "Mel Rolan sorrindo numa rua de paralelepípedos de Paris",
       "nome": "Consultoria personalizada",
       "ordem": 3,
       "moeda": "BRL",
@@ -54,8 +54,8 @@
     },
     {
       "id": "guias",
-      "imagem": "servicos/guias",
-      "imagem_alt": "Capas dos guias Paris com Crianças e Paris Essencial",
+      "imagem": "cards/guias",
+      "imagem_alt": "Guias digitais Paris com Crianças e Paris Essencial abertos num tablet e num leitor digital",
       "nome": "Guias digitais de Paris",
       "ordem": 4,
       "moeda": "BRL",
@@ -97,7 +97,7 @@
     {
       "id": "bucolico-e-artistico",
       "imagem": "tours/bucolico-e-artistico",
-      "imagem_alt": "Rua de Montmartre com escadaria e a cúpula do Sacré-Cœur ao fundo",
+      "imagem_alt": "Mel Rolan diante da Maison Rose, em Montmartre",
       "nome": "Bucólico e Artístico",
       "duracao": "3h30",
       "precos": [
@@ -111,7 +111,7 @@
     {
       "id": "cenarios-de-filmes-e-series",
       "imagem": "tours/cenarios-de-filmes-e-series",
-      "imagem_alt": "Rua do Quartier Latin à noite, com calçamento molhado e terraço de café",
+      "imagem_alt": "Cartão-postal com uma cena de filme, segurado na mesma alameda do Jardin des Tuileries onde ela foi gravada",
       "nome": "Cenários de Filmes e Séries",
       "duracao": "3h30",
       "precos": [
@@ -124,7 +124,7 @@
     {
       "id": "rive-gauche-e-berco-de-paris",
       "imagem": "tours/rive-gauche-e-berco-de-paris",
-      "imagem_alt": "Bouquinistes no cais do Sena, com a Pont Neuf e a Notre-Dame ao fundo",
+      "imagem_alt": "Mel Rolan na Rue des Ursins, na Île de la Cité, com a placa da cheia de 1910",
       "nome": "Rive Gauche e Berço de Paris",
       "duracao": "3h30",
       "precos": [
@@ -151,7 +151,7 @@
     {
       "id": "tour-personalizado",
       "imagem": "tours/tour-personalizado",
-      "imagem_alt": "Mapa de Paris, caderno e café numa mesa de bistrô",
+      "imagem_alt": "Mel Rolan rindo no cais do Sena, com uma ponte ao fundo",
       "nome": "Tour Personalizado",
       "duracao": "4h ou 8h",
       "precos": [
@@ -167,7 +167,7 @@
     {
       "id": "ambientacao",
       "imagem": "tours/ambientacao",
-      "imagem_alt": "Esquina de um bairro residencial de Paris, com boulangerie e entrada de metrô",
+      "imagem_alt": "Mel Rolan com uma sacola de compras numa rua tranquila de Paris",
       "nome": "Ambientação",
       "duracao": "4h",
       "precos": [

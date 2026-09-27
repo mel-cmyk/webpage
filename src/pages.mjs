@@ -310,7 +310,7 @@ ${heroSplit(`
     <p class="eyebrow">Tours privativos em Paris</p>
     <h1>Paris além dos cartões-postais, a pé e em português.</h1>
     <p class="lead">Passeios privativos, leves e sem correria, com uma guia brasileira que vive em Paris há mais de 5 anos. Só o seu grupo, no seu ritmo, pelas ruas, praças e jardins que contam a história da cidade.</p>
-    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>`, 'paginas/tours', 'Mel Rolan descendo uma escadaria de pedra em Paris')}
+    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris')}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
@@ -451,7 +451,7 @@ ${heroSplit(`
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-roteiro">Começar pelo diagnóstico</a>
       <a class="btn btn-ghost" href="${wa(data, msg)}" data-wa="roteiro">Falar no WhatsApp</a>
-    </div>`, 'paginas/roteiro', 'Mel Rolan num café de Paris, consultando o celular')}
+    </div>`, 'paginas/roteiro', 'Mel Rolan num café de Paris, com um chocolate quente')}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Sua viagem em 3 etapas</h2>
@@ -640,9 +640,9 @@ function sobre(data) {
     </div>
   </div>
   <div class="wrap gallery">
-    ${img('sobre/g1', 'Mel Rolan numa rua de Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
-    ${img('sobre/g2', 'Mel Rolan com a sacola de compras num café de Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
-    ${img('sobre/g3', 'Mel Rolan numa ruela de Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
+    ${img('sobre/g1', 'Retrato de Mel Rolan numa ruela de Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
+    ${img('sobre/g2', 'Mel Rolan sorrindo diante de uma porta azul em Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
+    ${img('sobre/g3', 'Mel Rolan rindo enquanto caminha por uma rua de Paris', { sizes: '(min-width: 1000px) 360px, 33vw' })}
   </div>
 </section>
 ${provaRapida(m)}

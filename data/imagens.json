@@ -1,4 +1,52 @@
 {
+ "cards/consultoria": [
+  {
+   "src": "/img/cards/consultoria-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/cards/consultoria-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
+ ],
+ "cards/guias": [
+  {
+   "src": "/img/cards/guias-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/cards/guias-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
+ ],
+ "cards/roteiro": [
+  {
+   "src": "/img/cards/roteiro-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/cards/roteiro-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
+ ],
+ "cards/tours": [
+  {
+   "src": "/img/cards/tours-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/cards/tours-1200.webp",
+   "w": 1200,
+   "h": 799
+  }
+ ],
  "guias/criancas": [
   {
    "src": "/img/guias/criancas-600.webp",
@@ -76,8 +124,13 @@
  "paginas/roteiro": [
   {
    "src": "/img/paginas/roteiro-800.webp",
-   "w": 665,
-   "h": 499
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/paginas/roteiro-1200.webp",
+   "w": 1200,
+   "h": 800
   }
  ],
  "paginas/tours": [
@@ -88,27 +141,8 @@
   },
   {
    "src": "/img/paginas/tours-1600.webp",
-   "w": 1497,
-   "h": 998
-  }
- ],
- "servicos/consultoria": [
-  {
-   "src": "/img/servicos/consultoria-800.webp",
-   "w": 665,
-   "h": 443
-  }
- ],
- "servicos/guias": [
-  {
-   "src": "/img/servicos/guias-800.webp",
-   "w": 800,
-   "h": 533
-  },
-  {
-   "src": "/img/servicos/guias-1200.webp",
-   "w": 1200,
-   "h": 800
+   "w": 1600,
+   "h": 1066
   }
  ],
  "servicos/roteiro": [
@@ -123,39 +157,52 @@
    "h": 800
   }
  ],
- "servicos/tours": [
-  {
-   "src": "/img/servicos/tours-800.webp",
-   "w": 537,
-   "h": 358
-  }
- ],
  "sobre/g1": [
   {
    "src": "/img/sobre/g1-600.webp",
-   "w": 537,
-   "h": 671
+   "w": 600,
+   "h": 750
+  },
+  {
+   "src": "/img/sobre/g1-900.webp",
+   "w": 900,
+   "h": 1125
   }
  ],
  "sobre/g2": [
   {
    "src": "/img/sobre/g2-600.webp",
-   "w": 537,
-   "h": 671
+   "w": 600,
+   "h": 750
+  },
+  {
+   "src": "/img/sobre/g2-900.webp",
+   "w": 900,
+   "h": 1125
   }
  ],
  "sobre/g3": [
   {
    "src": "/img/sobre/g3-600.webp",
-   "w": 537,
-   "h": 671
+   "w": 600,
+   "h": 750
+  },
+  {
+   "src": "/img/sobre/g3-900.webp",
+   "w": 900,
+   "h": 1125
   }
  ],
  "sobre/retrato": [
   {
    "src": "/img/sobre/retrato-800.webp",
-   "w": 665,
-   "h": 831
+   "w": 800,
+   "h": 1000
+  },
+  {
+   "src": "/img/sobre/retrato-1200.webp",
+   "w": 1200,
+   "h": 1500
   }
  ],
  "tours/ambientacao": [
@@ -189,9 +236,9 @@
    "h": 533
   },
   {
-   "src": "/img/tours/cenarios-de-filmes-e-series-1536.webp",
-   "w": 1536,
-   "h": 1024
+   "src": "/img/tours/cenarios-de-filmes-e-series-960.webp",
+   "w": 960,
+   "h": 640
   }
  ],
  "tours/dia-inteiro-grandes-monumentos": [
