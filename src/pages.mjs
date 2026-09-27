@@ -604,8 +604,8 @@ function guias(data) {
       <h2 class="h3">${esc(g.nome)}</h2>
       ${g.paginas ? `<p>${g.paginas} páginas de curadoria real${g.bonus ? `, com bônus: ${esc(g.bonus)}` : ''}.</p>` : ''}
       ${g.descricao ? `<p>${esc(g.descricao)}</p>` : ''}
-      <p class="price">${g.preco_de ? `<s>${brl(g.preco_de)}</s> ` : ''}${brl(g.preco)}${g.parcelamento ? `<span>ou ${esc(g.parcelamento)}</span>` : ''}</p>
-      <div class="actions guia-actions">
+      <p class="price">${g.preco_de ? `<s>${brl(g.preco_de)}</s> ` : ''}${brl(g.preco)}${g.parcelamento ? `<span>ou ${esc(g.parcelamento)}</span>` : '<span aria-hidden="true">&nbsp;</span>'}</p>
+      <div class="actions stack guia-actions">
         <a class="btn btn-small" href="${esc(g.link_compra)}" data-checkout="${attr(guiaItem(g))}">Comprar agora</a>
         <a class="btn btn-small btn-ghost" href="${esc(g.landing)}">Conhecer o guia</a>
       </div>

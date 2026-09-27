@@ -71,6 +71,20 @@ p { margin: 0 0 1em; }
 .btn-small { padding: 0.55em 1.1em; font-size: 0.92rem; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 1.4em 0 0.8em; }
 .actions.center { justify-content: center; }
+/* Regra de design: botões lado a lado no mesmo grupo têm a mesma largura (a do maior texto).
+   No celular, ficam empilhados e ocupam a largura toda. */
+.actions:has(> .btn + .btn) { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 600px) {
+  .actions:has(> .btn + .btn) { width: fit-content; max-width: 100%; }
+  .actions:has(> .btn + .btn) > .btn { white-space: nowrap; }
+  .actions:not(.stack):has(> .btn + .btn) { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 1fr; }
+  .actions.center:has(> .btn + .btn) { margin-left: auto; margin-right: auto; }
+  /* Colunas estreitas (topo da home e topo das páginas internas): empilhados, com a mesma largura. */
+  .hero-photo .actions:has(> .btn + .btn) { grid-template-columns: 1fr; grid-auto-flow: row; }
+}
+@media (min-width: 600px) and (max-width: 1099px) {
+  .hero-split .actions:has(> .btn + .btn) { grid-template-columns: 1fr; grid-auto-flow: row; }
+}
 :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
 /* Cabeçalho */
@@ -156,7 +170,11 @@ html { scroll-padding-top: 96px; }
 .card-photo { padding: 0; overflow: hidden; }
 .card-photo > img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
 .card-body { padding: 20px 24px 24px; display: flex; flex-direction: column; flex: 1; }
-.card-body .btn { margin-top: auto; align-self: flex-start; }
+/* Regra de design: nos cartões, preço e botão ficam presos ao pé do cartão, na mesma altura em
+   todos os cartões da fileira, e o botão ocupa a largura toda (mesmo tamanho em todos). */
+.card-body .btn { margin-top: auto; align-self: stretch; }
+.card-body > .price { margin-top: auto; }
+.card-body > .price + .btn { margin-top: 0; }
 .card-h { padding: 0; overflow: hidden; }
 .card-h .cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 @media (min-width: 600px) {
@@ -193,7 +211,11 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .selo-de { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 6px; }
 @media (min-width: 760px) { .selo-wrap { flex-direction: row; text-align: left; gap: 36px; } }
 .card-h .card-body { align-self: stretch; }
-.guia-actions { margin-top: auto; padding-top: 8px; }
+.guia-actions { margin-top: 0; }
+.card-h .card-body > .price { margin-top: auto; }
+.card-h .card-body { min-width: 0; }
+.guia-actions.actions { width: 100%; margin-bottom: 0; }
+.guia-actions .btn { white-space: normal; }
 .pagamento { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin: 32px auto 0; padding: 0; color: var(--navy); font-size: 0.95rem; font-weight: 500; }
 .pagamento li { display: flex; align-items: center; gap: 8px; }
 .pagamento svg { width: 22px; height: 22px; fill: none; stroke: var(--gold-dark); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
