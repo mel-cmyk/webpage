@@ -86,13 +86,22 @@ const provaRapida = (m) => `
 const depoimentos = (m) => `
 <section class="section">
   <div class="wrap">
-    <h2 class="center">O que dizem as famílias que viajaram com a Mel</h2>
+    <div class="selo-wrap">
+      <div class="selo" role="img" aria-label="Nota ${m.nota_satisfacao} de 10 na pesquisa de satisfação">
+        <span class="selo-nota">${m.nota_satisfacao}</span>
+        <span class="selo-de">de 10</span>
+      </div>
+      <div>
+        <p class="eyebrow">Satisfação dos clientes</p>
+        <h2>Quem viajou com a Mel recomenda.</h2>
+        <p class="selo-txt">Nota média ${m.nota_satisfacao} de 10 em ${m.pesquisas_satisfacao} pesquisas de satisfação respondidas por clientes de roteiros, consultorias e tours, de ${m.periodo_pesquisas}.</p>
+      </div>
+    </div>
     <div class="grid-3 quotes">
       <figure><blockquote>“Mel tem uma sensibilidade impressionante! Desde a primeira conversa dá pra sentir o quanto ela é competente, organizada e ama o que faz. Que sorte a nossa encontrar a Mel nessa viagem mãe e filha, que será inesquecível para nós. Ela cuidou de tudo, nos colocou com as melhores pessoas e nos melhores lugares.”</blockquote><figcaption><strong>Roberta</strong>, São Paulo (SP) · viagem mãe e filha</figcaption></figure>
       <figure><blockquote>“Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível.”</blockquote><figcaption><strong>Fernanda</strong>, Natal (RN) · viagem em grupo</figcaption></figure>
       <figure><blockquote>“Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!”</blockquote><figcaption><strong>Renata</strong>, Pereiras (SP)</figcaption></figure>
     </div>
-    <p class="center small">Nota ${m.nota_satisfacao} de 10 em ${m.pesquisas_satisfacao} pesquisas de satisfação, de ${m.periodo_pesquisas}.</p>
   </div>
 </section>`;
 
@@ -143,7 +152,7 @@ function home(data) {
     consultoria: {
       para: 'validar com segurança o que já começou a planejar.',
       txt: 'Uma conversa por vídeo para validar cidades, época, hospedagem e prioridades, com um mapa digital exclusivo para você consultar depois.',
-      cta: 'Conhecer a consultoria',
+      cta: 'Ver a consultoria',
     },
     guias: {
       para: 'planejar com autonomia, com a curadoria pronta.',
@@ -178,7 +187,7 @@ function home(data) {
   <div class="hero-media">${img('home/hero', 'Mel Rolan caminhando sobre uma ponte do Sena, em Paris', { sizes: '100vw', eager: true })}</div>
   <div class="wrap hero-content">
     <p class="eyebrow">Mel Rolan Travel Designer · Paris</p>
-    <h1>Paris no ritmo da sua família, com quem vive aqui.</h1>
+    <h1>Paris no seu ritmo, com quem vive aqui.</h1>
     <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que mora em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos.</p>
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-hero">Descobrir o que combina com a minha viagem</a>
@@ -236,7 +245,7 @@ ${provaRapida(m)}
       </article>
     </div>
     <div class="compare-block">
-      <p class="table-title">O mesmo dia, de dois jeitos</p>
+      <h3 class="center compare-title">O mesmo dia, de dois jeitos</h3>
       <table class="compare">
         <thead><tr><th>Sem ajuste</th><th>Com curadoria</th></tr></thead>
         <tbody>
@@ -539,7 +548,7 @@ ${heroSplit(`
 <section class="section">
   <div class="wrap">
     <h2 class="center">Consultoria em 2 etapas</h2>
-    <ol class="steps">
+    <ol class="steps steps-2">
       <li><strong>Conexão.</strong> Um questionário para a Mel conhecer você e entender as suas dúvidas e necessidades.</li>
       <li><strong>Reunião de consultoria.</strong> Uma conversa por vídeo para esclarecer as dúvidas e ajudar você a tomar as melhores decisões.</li>
     </ol>
@@ -594,8 +603,9 @@ function guias(data) {
       <div class="card-body">
       <h2 class="h3">${esc(g.nome)}</h2>
       ${g.paginas ? `<p>${g.paginas} páginas de curadoria real${g.bonus ? `, com bônus: ${esc(g.bonus)}` : ''}.</p>` : ''}
+      ${g.descricao ? `<p>${esc(g.descricao)}</p>` : ''}
       <p class="price">${g.preco_de ? `<s>${brl(g.preco_de)}</s> ` : ''}${brl(g.preco)}${g.parcelamento ? `<span>ou ${esc(g.parcelamento)}</span>` : ''}</p>
-      <div class="actions">
+      <div class="actions guia-actions">
         <a class="btn btn-small" href="${esc(g.link_compra)}" data-checkout="${attr(guiaItem(g))}">Comprar agora</a>
         <a class="btn btn-small btn-ghost" href="${esc(g.landing)}">Conhecer o guia</a>
       </div>
@@ -604,7 +614,12 @@ function guias(data) {
       )
       .join('')}
   </div>
-  <p class="wrap center small">Pagamento seguro. Cartão ou Pix. Acesso imediato por e-mail após a compra.</p>
+  <ul class="wrap pagamento" aria-label="Pagamento e entrega">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pagamento seguro</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6.5 15h4"/></svg>Cartão de crédito</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l9 9-9 9-9-9z"/><path d="M8.5 12h7"/></svg>Pix</li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>Acesso imediato por e-mail</li>
+  </ul>
 </section>
 ${ctaFinal(data, 'Prefere ajuda personalizada?', 'Se quiser alguém desenhando a viagem com você, conheça o roteiro sob medida e a consultoria.')}
 `;
@@ -659,12 +674,6 @@ function sobre(data) {
 </section>
 ${provaRapida(m)}
 ${depoimentos(m)}
-<section class="section">
-  <div class="wrap narrow small">
-    <h2 class="h3">Dados da empresa</h2>
-    <p>Mel Rolan Travel Designer · Paris, França<br>SIRET ${esc(m.siret_franca)} · CNPJ ${esc(m.cnpj_brasil)}<br>${esc(m.email)} · WhatsApp ${esc(m.whatsapp_site)}</p>
-  </div>
-</section>
 ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte como é a sua viagem e receba a indicação do caminho certo.')}
 `;
   return {

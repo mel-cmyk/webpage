@@ -1,4 +1,13 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
 import { url, esc, wa, STAGING, SITE_URL, PUBLIC_URL } from './helpers.mjs';
+
+// Endereço com versão (?v=) para CSS e JS: quando o arquivo muda, o navegador baixa a versão nova.
+const versoes = {};
+const asset = (p) => {
+  if (!versoes[p]) versoes[p] = crypto.createHash('sha1').update(fs.readFileSync('public' + p)).digest('hex').slice(0, 8);
+  return `${url(p)}?v=${versoes[p]}`;
+};
 
 const nav = [
   ['/tours-em-paris/', 'Tours em Paris'],
@@ -84,7 +93,7 @@ export function layout({ data, path, title, description, body, jsonld = [], scri
   const ld = jsonld
     .map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`)
     .join('\n');
-  const js = scripts.map((s) => `<script src="${url(s)}" defer></script>`).join('\n');
+  const js = scripts.map((s) => `<script src="${asset(s)}" defer></script>`).join('\n');
   return `<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -110,7 +119,7 @@ ${STAGING ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <link rel="apple-touch-icon" href="${url('/apple-touch-icon.png')}">
 <link rel="preload" href="${url('/fonts/lora-latin.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${url('/fonts/poppins-400.woff2')}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${url('/css/site.css')}">
+<link rel="stylesheet" href="${asset('/css/site.css')}">
 ${ld}
 </head>
 <body data-servico="${esc(servico)}">
@@ -123,7 +132,7 @@ ${footer(data)}
 ${noFloat ? '' : `<a class="wa-float" href="${wa(data, 'Olá! Vim pelo site da Mel Rolan e gostaria de tirar uma dúvida.')}" data-wa="flutuante" aria-label="Falar no WhatsApp">WhatsApp</a>`}
 ${cookieBanner()}
 ${analytics.length ? `<script id="ga-page" type="application/json">${JSON.stringify(analytics)}</script>` : ''}
-<script src="${url('/js/analytics.js')}" defer></script>
+<script src="${asset('/js/analytics.js')}" defer></script>
 ${js}
 </body>
 </html>`;
