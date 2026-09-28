@@ -1,7 +1,6 @@
 {
   "_sobre_este_arquivo": "Fonte única de preços e ofertas do site melrolan.com.br. Todas as páginas leem daqui: mudou um valor aqui, muda no site inteiro. Tours seguem o catálogo aprovado em tours.melrolan.com.br.",
   "_atualizado_em": "2026-09-27",
-
   "marca": {
     "anos_na_franca": "5+",
     "familias_atendidas": "650+",
@@ -17,7 +16,6 @@
     "siret_franca": "10113179500011",
     "cnpj_brasil": "44.907.716/0001-42"
   },
-
   "servicos": [
     {
       "id": "tours",
@@ -64,21 +62,34 @@
       "pagina": "/guias-de-paris"
     }
   ],
-
   "tours": [
     {
-      "id": "eixo-historico",
+      "id": "eixo-historico-ocupacao-nazista",
       "imagem": "tours/historia-e-memoria",
       "imagem_alt": "Arcadas da Rue de Rivoli pela manhã",
-      "nome": "Eixo Histórico",
-      "subtitulo": "Monumentos icônicos",
+      "nome": "Eixo Histórico + Ocupação Nazista",
+      "subtitulo": "História e memória",
       "duracao": "3h30",
       "precos": [
-        { "grupo": "até 4 pessoas", "valor": 280 },
-        { "grupo": "5 a 8 pessoas", "valor": 380 }
+        {
+          "grupo": "até 4 pessoas",
+          "valor": 280
+        },
+        {
+          "grupo": "5 a 8 pessoas",
+          "valor": 380
+        }
       ],
       "encontro": "Pirâmide do Louvre",
-      "roteiro": ["Pirâmide do Louvre", "Jardin des Tuileries", "Place Vendôme", "Rue de Rivoli", "Place de la Concorde", "Champs-Élysées", "Arco do Triunfo"],
+      "roteiro": [
+        "Pirâmide do Louvre",
+        "Jardin des Tuileries",
+        "Place Vendôme",
+        "Rue de Rivoli",
+        "Place de la Concorde",
+        "Champs-Élysées",
+        "Arco do Triunfo"
+      ],
       "descricao": "Percorremos o eixo histórico de Paris para acompanhar a construção e as transformações da cidade ao longo dos séculos, entre palácios, praças e grandes símbolos de poder. Ao longo do caminho, um desvio pela Place Vendôme, Rue de Rivoli e hotéis-palácio revela como esses espaços foram apropriados pelas autoridades alemãs durante a ocupação de Paris, entre 1940 e 1944."
     },
     {
@@ -89,11 +100,24 @@
       "subtitulo": "Onde Paris começou",
       "duracao": "3h30",
       "precos": [
-        { "grupo": "até 4 pessoas", "valor": 280 },
-        { "grupo": "5 a 8 pessoas", "valor": 380 }
+        {
+          "grupo": "até 4 pessoas",
+          "valor": 280
+        },
+        {
+          "grupo": "5 a 8 pessoas",
+          "valor": 380
+        }
       ],
       "encontro": "Das Arenas à Île de la Cité",
-      "roteiro": ["Arenas de Lutécia", "Panthéon", "Notre-Dame", "Palais de la Cité", "Pont Neuf", "Île de la Cité"],
+      "roteiro": [
+        "Arenas de Lutécia",
+        "Panthéon",
+        "Notre-Dame",
+        "Palais de la Cité",
+        "Pont Neuf",
+        "Île de la Cité"
+      ],
       "ideal_para": "Você se encanta com livrarias, cafés literários e ruas que respiram séculos de história."
     },
     {
@@ -104,11 +128,22 @@
       "subtitulo": "Paris boêmia e artística",
       "duracao": "3h30",
       "precos": [
-        { "grupo": "até 4 pessoas", "valor": 280 },
-        { "grupo": "5 a 8 pessoas", "valor": 380 }
+        {
+          "grupo": "até 4 pessoas",
+          "valor": 280
+        },
+        {
+          "grupo": "5 a 8 pessoas",
+          "valor": 380
+        }
       ],
       "encontro": "Bairro de Montmartre",
-      "roteiro": ["Moulin Rouge", "Sacré-Cœur", "Place du Tertre", "Ruelas e cantinhos secretos"],
+      "roteiro": [
+        "Moulin Rouge",
+        "Sacré-Cœur",
+        "Place du Tertre",
+        "Ruelas e cantinhos secretos"
+      ],
       "ideal_para": "Você imagina Paris como cenário de filme: ruelas de paralelepípedo, ateliês de artista."
     },
     {
@@ -119,39 +154,80 @@
       "subtitulo": "Pelos bastidores da cidade mais filmada do mundo",
       "duracao": "3h30",
       "precos": [
-        { "grupo": "até 4 pessoas", "valor": 280 },
-        { "grupo": "5 a 8 pessoas", "valor": 380 }
+        {
+          "grupo": "até 4 pessoas",
+          "valor": 280
+        },
+        {
+          "grupo": "5 a 8 pessoas",
+          "valor": 380
+        }
       ],
       "encontro": "Do Quartier Latin à região do Louvre",
-      "roteiro": ["Meia-noite em Paris", "Emily in Paris", "Ratatouille", "O Corcunda de Notre-Dame", "O Diabo Veste Prada"]
+      "roteiro": [
+        "Meia-noite em Paris",
+        "Emily in Paris",
+        "Ratatouille",
+        "O Corcunda de Notre-Dame",
+        "O Diabo Veste Prada"
+      ]
     },
     {
-      "id": "paris-classica",
+      "id": "eixo-historico",
       "imagem": "tours/monumental-classico",
       "imagem_alt": "Pont Alexandre III ao entardecer, com a cúpula dos Invalides ao fundo",
-      "nome": "Paris Clássica",
-      "subtitulo": "O essencial com olhar de local",
+      "nome": "Eixo Histórico",
+      "subtitulo": "Monumentos icônicos",
       "duracao": "3h30",
       "precos": [
-        { "grupo": "até 4 pessoas", "valor": 280 },
-        { "grupo": "5 a 8 pessoas", "valor": 380 }
+        {
+          "grupo": "até 4 pessoas",
+          "valor": 280
+        },
+        {
+          "grupo": "5 a 8 pessoas",
+          "valor": 380
+        }
       ],
       "encontro": "Pirâmide do Louvre",
-      "roteiro": ["Pirâmide do Louvre", "Jardin des Tuileries", "Place de la Concorde", "Pont Alexandre III", "Champs-Élysées", "Arco do Triunfo"],
+      "roteiro": [
+        "Pirâmide do Louvre",
+        "Jardin des Tuileries",
+        "Place de la Concorde",
+        "Pont Alexandre III",
+        "Champs-Élysées",
+        "Arco do Triunfo"
+      ],
       "ideal_para": "É a sua primeira vez em Paris e você quer viver, de uma só vez, os cartões-postais que sempre sonhou ver de perto."
     },
     {
-      "id": "dia-inteiro-grandes-monumentos",
+      "id": "paris-classica",
       "imagem": "tours/dia-inteiro-grandes-monumentos",
       "imagem_alt": "Jardin des Tuileries com as cadeiras verdes e a Torre Eiffel ao fundo",
-      "nome": "Dia Inteiro dos Grandes Monumentos",
+      "nome": "Paris Clássica",
       "duracao": "7h",
       "precos": [
-        { "grupo": "até 4 pessoas", "valor": 550 },
-        { "grupo": "5 a 8 pessoas", "valor": 700 }
+        {
+          "grupo": "até 4 pessoas",
+          "valor": 550
+        },
+        {
+          "grupo": "5 a 8 pessoas",
+          "valor": 700
+        }
       ],
       "encontro": "Da Île de la Cité à Torre Eiffel",
-      "roteiro": ["Notre-Dame", "Pont Neuf", "Louvre (exterior)", "Jardin des Tuileries", "Place de la Concorde", "Champs-Élysées", "Arco do Triunfo", "Torre Eiffel"]
+      "roteiro": [
+        "Notre-Dame",
+        "Pont Neuf",
+        "Louvre (exterior)",
+        "Jardin des Tuileries",
+        "Place de la Concorde",
+        "Champs-Élysées",
+        "Arco do Triunfo",
+        "Torre Eiffel"
+      ],
+      "subtitulo": "O essencial com olhar de local"
     },
     {
       "id": "tour-personalizado",
@@ -161,13 +237,27 @@
       "subtitulo": "Sua Paris, sob medida",
       "duracao": "4h ou 8h",
       "precos": [
-        { "grupo": "4h, até 4 pessoas", "valor": 420 },
-        { "grupo": "4h, 5 a 8 pessoas", "valor": 500 },
-        { "grupo": "8h, até 4 pessoas", "valor": 800 },
-        { "grupo": "8h, 5 a 8 pessoas", "valor": 880 }
+        {
+          "grupo": "4h, até 4 pessoas",
+          "valor": 420
+        },
+        {
+          "grupo": "4h, 5 a 8 pessoas",
+          "valor": 500
+        },
+        {
+          "grupo": "8h, até 4 pessoas",
+          "valor": 800
+        },
+        {
+          "grupo": "8h, 5 a 8 pessoas",
+          "valor": 880
+        }
       ],
       "encontro": "Definido em conversa prévia",
-      "roteiro": ["Roteiro 100% desenhado para os interesses do seu grupo"],
+      "roteiro": [
+        "Roteiro 100% desenhado para os interesses do seu grupo"
+      ],
       "ideal_para": "Viajantes com interesses específicos que querem flexibilidade na programação."
     },
     {
@@ -178,14 +268,22 @@
       "subtitulo": "Para começar com toda tranquilidade",
       "duracao": "4h",
       "precos": [
-        { "grupo": "até 8 pessoas", "valor": 330 }
+        {
+          "grupo": "até 8 pessoas",
+          "valor": 330
+        }
       ],
       "encontro": "Arredores da sua hospedagem",
-      "roteiro": ["Recepção presencial", "Orientação no bairro", "Como usar metrô e transporte", "Dicas práticas de segurança", "Comércio local"],
+      "roteiro": [
+        "Recepção presencial",
+        "Orientação no bairro",
+        "Como usar metrô e transporte",
+        "Dicas práticas de segurança",
+        "Comércio local"
+      ],
       "ideal_para": "Você está chegando em Paris e quer começar com segurança e tranquilidade."
     }
   ],
-
   "guias": [
     {
       "id": "guia-paris-com-criancas",
