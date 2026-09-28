@@ -66,6 +66,7 @@ function footer(data) {
         <li><a href="mailto:${esc(m.email)}" data-contato="email">${esc(m.email)}</a></li>
         <li><a href="${esc(m.instagram)}" rel="noopener" data-contato="instagram">Instagram @mel.rolan</a></li>
         <li><a href="${url('/sobre/')}">Sobre a Mel</a></li>
+        <li><a href="${url('/parcerias/')}">Parcerias / Partenariats</a></li>
       </ul>
     </div>
   </div>

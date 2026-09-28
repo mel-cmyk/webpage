@@ -709,6 +709,7 @@ function sobre(data) {
 </section>
 ${provaRapida(m)}
 ${depoimentos(m)}
+<p class="center small">Agências de viagem e prestadores na França: <a href="${url('/parcerias/')}">conheça as nossas parcerias</a>.</p>
 ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte como é a sua viagem e receba a indicação do caminho certo.')}
 `;
   return {
@@ -718,6 +719,76 @@ ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte como é a sua viagem e re
     body,
     og: 'og/sobre.jpg',
     jsonld: [breadcrumbLd([['Início', '/'], ['Sobre a Mel', '/sobre/']])],
+  };
+}
+
+// ---------------------------------------------------------------- PARCERIAS
+function parcerias(data) {
+  const m = data.marca;
+  const mail = (assunto) => `mailto:parceria@melrolan.com.br?subject=${encodeURIComponent(assunto)}`;
+  const body = `
+<section class="hero hero-sm">
+  <div class="wrap narrow">
+    <p class="eyebrow">Parcerias</p>
+    <h1>Parcerias</h1>
+    <p class="lead">A Mel Rolan Travel Designer trabalha com viajantes brasileiros em Paris desde 2021. Além do atendimento direto, mantemos parcerias com agências de viagem no Brasil e com prestadores de experiências na França, construídas com o mesmo cuidado que dedicamos a cada cliente.</p>
+    <p>Se o seu trabalho conversa com o nosso, queremos conhecer você.</p>
+    <div class="actions">
+      <a class="btn btn-ghost" href="#agencias">Agências no Brasil</a>
+      <a class="btn btn-ghost" href="#france" lang="fr">Partenaires en France</a>
+    </div>
+  </div>
+</section>
+<section class="section" id="agencias">
+  <div class="wrap">
+    <h2 class="center">Para agências e agentes de viagem no Brasil</h2>
+    <p class="center lead-sm">A sua agência cuida da viagem inteira. Nós cuidamos de Paris com o olhar de quem vive aqui, em português, com a mesma atenção que você daria ao seu cliente.</p>
+    <div class="grid-3">
+      <article class="card"><div class="card-body"><h3>Tours privativos em português</h3><p>Passeios a pé por Paris, conduzidos pela Mel, pensados para famílias, casais, grupos de amigos e quem viaja sozinha.</p></div></article>
+      <article class="card"><div class="card-body"><h3>Roteiros personalizados</h3><p>Planejamento dia a dia, bairro por bairro, entregue pronto para o seu cliente usar durante a viagem.</p></div></article>
+      <article class="card"><div class="card-body"><h3>Consultoria de viagem</h3><p>Uma conversa por vídeo com a Mel para tirar dúvidas e ajustar um roteiro que a agência já montou.</p></div></article>
+    </div>
+    <div class="narrow">
+      <h3>Como funciona</h3>
+      <p>A agência continua sendo a referência do cliente. Combinamos juntos o formato de cada atendimento, os prazos e a forma de comunicação com o viajante. As condições comerciais são apresentadas diretamente às agências interessadas.</p>
+    </div>
+  </div>
+</section>
+${provaRapida(m)}
+<section class="section">
+  <div class="wrap narrow center">
+    <h2>Quer oferecer Paris com esse cuidado aos seus clientes?</h2>
+    <div class="actions">
+      <a class="btn" href="${mail('Parceria agência')}" data-contato="parceria-agencia">Falar sobre parceria</a>
+    </div>
+    <p class="small">ou pelo e-mail parceria@melrolan.com.br</p>
+  </div>
+</section>
+<section class="section alt" id="france" lang="fr">
+  <div class="wrap">
+    <h2 class="center">Partenaires en France</h2>
+    <div class="narrow">
+      <p>Le Brésil est le troisième marché non européen de la France en nombre de visiteurs, après les États-Unis et le Canada. Ces voyageurs aiment Paris, mais ils cherchent à la découvrir dans leur langue et avec des repères qu'ils comprennent.</p>
+      <p>Installée en France depuis plus de cinq ans, Mel Rolan accompagne des voyageurs brésiliens à Paris depuis 2021 : itinéraires sur mesure, conseil et visites privées en portugais.</p>
+    </div>
+    <div class="grid-2">
+      <article class="card"><div class="card-body"><h3>Ce que nous cherchons</h3><p>Des acteurs qui partagent notre exigence de qualité : prestataires d'expériences (ateliers, dégustations, activités pour les familles), hébergements et adresses adaptés aux familles et aux petits groupes, professionnels du tourisme qui reçoivent une clientèle brésilienne et souhaitent mieux l'accueillir.</p></div></article>
+      <article class="card"><div class="card-body"><h3>Ce que nous apportons</h3><p>Une connaissance fine du voyageur brésilien, de ses attentes et de sa façon de préparer un voyage, et une relation de confiance avec une clientèle qui voyage en famille, en couple ou entre amis. Nous recommandons uniquement ce que nous avons testé.</p></div></article>
+    </div>
+    <div class="actions center">
+      <a class="btn" href="${mail('Partenariat France')}" data-contato="parceria-franca">Nous contacter</a>
+    </div>
+    <p class="small center">ou par e-mail : parceria@melrolan.com.br</p>
+  </div>
+</section>
+`;
+  return {
+    path: '/parcerias/',
+    title: 'Parcerias | Mel Rolan Travel Designer',
+    description: 'Parcerias com agências de viagem brasileiras e prestadores de experiências na França. Tours privativos em português, roteiros e consultoria em formato B2B.',
+    body,
+    og: 'og/sobre.jpg',
+    jsonld: [breadcrumbLd([['Início', '/'], ['Parcerias', '/parcerias/']])],
   };
 }
 
@@ -828,6 +899,7 @@ export function pages(data) {
     consultoria(data),
     guias(data),
     sobre(data),
+    parcerias(data),
     diagnostico(data),
     privacidade(data),
     avisoLegal(data),
