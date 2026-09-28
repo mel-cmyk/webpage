@@ -324,5 +324,17 @@
    "w": 1536,
    "h": 1024
   }
+ ],
+ "roteiro/trello": [
+  {
+   "src": "/img/roteiro/trello-600.webp",
+   "w": 600,
+   "h": 400
+  },
+  {
+   "src": "/img/roteiro/trello-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
  ]
 }

@@ -192,8 +192,8 @@ function home(data) {
   <div class="hero-media">${img('home/hero', 'Mel Rolan caminhando sobre uma ponte do Sena, em Paris', { sizes: '100vw', eager: true })}</div>
   <div class="wrap hero-content">
     <p class="eyebrow">Mel Rolan Travel Designer · Paris</p>
-    <h1>Paris no seu ritmo, com quem vive aqui.</h1>
-    <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que mora em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos.</p>
+    <h1>Viaje pela França do seu jeito, com uma especialista em viajantes brasileiros.</h1>
+    <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que desde 2021 já planejou a viagem de mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras.</p>
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-hero">Descobrir o que combina com a minha viagem</a>
       <a class="btn btn-ghost" href="#como-ajudar">Ver tours e serviços</a>
@@ -317,7 +317,7 @@ ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte em dois minutos como é a
     path: '/',
     title: 'Mel Rolan Travel Designer | Tours, roteiros e consultoria em Paris',
     description:
-      'Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros em Paris. Curadoria de quem mora na cidade há mais de 5 anos.',
+      'Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros em Paris. Curadoria de uma especialista em viajantes brasileiros.',
     body,
     og: 'og/home.jpg',
     jsonld: [
@@ -335,7 +335,7 @@ function toursHub(data) {
 ${heroSplit(`
     <p class="eyebrow">Tours privativos em Paris</p>
     <h1>Paris além dos cartões-postais, a pé e em português.</h1>
-    <p class="lead">Passeios privativos, leves e sem correria, com uma guia brasileira que vive em Paris há mais de 5 anos. Só o seu grupo, no seu ritmo, pelas ruas, praças e jardins que contam a história da cidade.</p>
+    <p class="lead">Passeios privativos, leves e sem correria, com a Mel, travel designer especializada em viajantes brasileiros. Só o seu grupo, no seu ritmo, pelas ruas, praças e jardins que contam a história da cidade.</p>
     <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris')}
 <section class="section">
   <div class="wrap">
@@ -482,7 +482,7 @@ function roteiro(data) {
 ${heroSplit(`
     <p class="eyebrow">Roteiro sob medida</p>
     <h1>A sua viagem inteira, desenhada dia a dia para quem vai viajar.</h1>
-    <p class="lead">Um roteiro personalizado que leva em conta os seus desejos, o orçamento e o ritmo de quem vai viajar, com acesso a experiências autênticas que só quem vive aqui conhece.</p>
+    <p class="lead">Um roteiro personalizado que leva em conta os seus desejos, o orçamento e o ritmo de quem vai viajar, com experiências autênticas escolhidas pela Mel, uma a uma.</p>
     <p class="price">${precoServico(s)}</p>
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-roteiro">Começar pelo diagnóstico</a>
@@ -496,6 +496,18 @@ ${heroSplit(`
       <li><strong>Travel design.</strong> A viagem ganha forma: itinerário, experiências, restaurantes e deslocamentos definidos um a um.</li>
       <li><strong>Entrega.</strong> Você recebe o roteiro de forma visual e detalhada e, se preciso, ajustamos juntos para que fique ainda mais do seu jeito.</li>
     </ol>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <aside class="card destaque destaque-img">
+      ${img('roteiro/trello', 'Roteiro personalizado em um quadro do Trello, aberto num notebook e num celular', { sizes: '(min-width: 760px) 340px, 100vw' })}
+      <div>
+        <p class="eyebrow">Como você recebe o roteiro</p>
+        <h3>No computador e no celular</h3>
+        <p>O roteiro chega num quadro do Trello, organizado dia a dia e por período, com fotos, horários, endereços, reservas e links de caminhada no Google Maps. Você consulta no computador durante o planejamento e no celular pelas ruas de Paris.</p>
+      </div>
+    </aside>
   </div>
 </section>
 <section class="section">
@@ -555,7 +567,7 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', `Roteiros a partir de ${brl(s.p
   return {
     path: '/roteiro-sob-medida/',
     title: 'Roteiro personalizado para Paris e França | Mel Rolan',
-    description: `Roteiro sob medida para Paris e a França, dia a dia, feito por quem vive em Paris. A partir de ${brl(s.preco_a_partir_de)}.`,
+    description: `Roteiro sob medida para Paris e a França, dia a dia, feito por uma especialista em viajantes brasileiros. A partir de ${brl(s.preco_a_partir_de)}.`,
     body,
     og: 'og/roteiro.jpg',
     servico: 'roteiro',
@@ -626,7 +638,7 @@ function guias(data) {
   <div class="wrap narrow">
     <p class="eyebrow">Guias digitais de Paris</p>
     <h1>A curadoria da Mel, pronta para você planejar com autonomia.</h1>
-    <p class="lead">Guias em PDF com acesso imediato por e-mail, feitos por quem mora em Paris há mais de 5 anos.</p>
+    <p class="lead">Guias em PDF com acesso imediato por e-mail, feitos pela Mel a partir da experiência com centenas de famílias brasileiras.</p>
   </div>
 </section>
 <section class="section">
@@ -662,7 +674,7 @@ ${ctaFinal(data, 'Prefere ajuda personalizada?', 'Se quiser alguém desenhando a
     path: '/guias-de-paris/',
     title: 'Guias de Paris em PDF | Mel Rolan Travel Designer',
     description:
-      'Guias digitais de Paris em PDF: Paris com Crianças e Paris Essencial. Curadoria de quem vive em Paris, com acesso imediato.',
+      'Guias digitais de Paris em PDF: Paris com Crianças e Paris Essencial. Curadoria da Mel Rolan, com acesso imediato.',
     body,
     og: 'og/guias.jpg',
     servico: 'guias',
@@ -742,7 +754,7 @@ function parcerias(data) {
 <section class="section" id="agencias">
   <div class="wrap">
     <h2 class="center">Para agências e agentes de viagem no Brasil</h2>
-    <p class="center lead-sm">A sua agência cuida da viagem inteira. Nós cuidamos de Paris com o olhar de quem vive aqui, em português, com a mesma atenção que você daria ao seu cliente.</p>
+    <p class="center lead-sm">A sua agência cuida da viagem inteira. Nós cuidamos de Paris com o olhar de uma especialista em viajantes brasileiros, em português, com a mesma atenção que você daria ao seu cliente.</p>
     <div class="grid-3">
       <article class="card"><div class="card-body"><h3>Tours privativos em português</h3><p>Passeios a pé por Paris, conduzidos pela Mel, pensados para famílias, casais, grupos de amigos e quem viaja sozinha.</p></div></article>
       <article class="card"><div class="card-body"><h3>Roteiros personalizados</h3><p>Planejamento dia a dia, bairro por bairro, entregue pronto para o seu cliente usar durante a viagem.</p></div></article>

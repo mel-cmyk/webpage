@@ -175,6 +175,7 @@
       "imagem": "tours/ambientacao",
       "imagem_alt": "Mel Rolan com uma sacola de compras numa rua tranquila de Paris",
       "nome": "Ambientação",
+      "subtitulo": "Para começar com toda tranquilidade",
       "duracao": "4h",
       "precos": [
         { "grupo": "até 8 pessoas", "valor": 330 }
