@@ -126,11 +126,7 @@ const faqTours = [
     a: 'Sim. Como o tour é privativo, se no dia estiver chovendo ou você preferir se concentrar em um bairro, adaptamos o trajeto. Em caso de chuva forte ou imprevisto, a data pode ser remarcada.',
   },
   {
-    q: 'Os tours entram em museus ou monumentos?',
-    a: 'Não. Os tours acontecem inteiramente ao ar livre, por escolha: ruas, praças, jardins e as margens do Sena, onde a história de Paris se conta melhor a pé. Se quiser incluir museus na viagem, a Mel indica como encaixá-los na sua programação.',
-  },
-  {
-    q: 'É adequado para crianças?',
+    q: 'Os tours guiados são adequados para crianças?',
     a: 'Totalmente. Cada criança ganha o livro de atividades impresso do Monsieur Pombo, criado pela Mel, e no tour fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles.',
   },
 ];
@@ -170,12 +166,11 @@ function home(data) {
       q: 'Os serviços são só para famílias com crianças?',
       a: 'Não. A Mel atende famílias com crianças, casais, grupos de amigos, viagens com várias gerações e quem viaja sozinha, com o mesmo cuidado. O que muda é o desenho de cada dia: o ritmo, os bairros, as pausas e os programas escolhidos para quem vai estar lá.',
     },
-    faqTours[3],
     faqTours[2],
     faqTours[0],
     {
       q: 'A Mel acompanha a viagem inteira?',
-      a: 'O roteiro e a consultoria são entregues antes do embarque, com tudo pensado para você viajar com autonomia e segurança. Não oferecemos atendimento em tempo real durante toda a viagem. Os guias digitais são materiais em PDF, sem acompanhamento.',
+      a: 'O roteiro e a consultoria são entregues antes do embarque, com tudo pensado para você viajar com autonomia e segurança. Não oferecemos atendimento em tempo real durante toda a viagem, mas ficamos à disposição para um apoio pontual, se necessário. Os guias digitais são materiais em PDF, sem acompanhamento.',
     },
     {
       q: 'Quais são as formas de pagamento?',
@@ -183,7 +178,7 @@ function home(data) {
     },
     {
       q: 'Com quanta antecedência devo contratar?',
-      a: 'Para as férias de julho e para o fim de ano, as agendas costumam fechar cedo: o ideal é começar de 4 a 6 meses antes. Os guias digitais podem ser comprados a qualquer momento, com acesso imediato.',
+      a: 'Depende do serviço. A consultoria pode ser contratada a qualquer momento, e quanto antes, melhor. Para o roteiro personalizado, o ideal é contratar de 3 a 4 meses antes da viagem. Para os tours guiados nas férias de julho e no fim de ano, reserve com bastante antecedência, porque as agendas fecham cedo. Os guias digitais podem ser comprados a qualquer momento, com acesso imediato.',
     },
   ];
 
@@ -192,7 +187,7 @@ function home(data) {
   <div class="hero-media">${img('home/hero', 'Mel Rolan caminhando sobre uma ponte do Sena, em Paris', { sizes: '100vw', eager: true })}</div>
   <div class="wrap hero-content">
     <p class="eyebrow">Mel Rolan Travel Designer · Paris</p>
-    <h1>Viaje pela França do seu jeito, com uma especialista em viajantes brasileiros.</h1>
+    <h1>A sua viagem à França, pensada por quem é especialista em viajantes brasileiros.</h1>
     <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que desde 2021 já planejou a viagem de mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras.</p>
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-hero">Descobrir o que combina com a minha viagem</a>
@@ -283,8 +278,8 @@ ${depoimentos(m)}
     ${img('home/mel', 'Mel Rolan sorrindo às margens do Sena, em Paris', { cls: 'photo', sizes: '(min-width: 900px) 540px, 100vw' })}
     <div>
     <h2>Quem desenha a sua viagem</h2>
-    <p>Sou a Mel, brasileira, e moro em Paris há mais de 5 anos. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos.</p>
-    <p>O que eu entrego é o que só se aprende vivendo aqui. Curadoria não se baixa. Ela se vive.</p>
+    <p>Sou a Mel, brasileira, bacharel em Turismo, e já viajei pelos quatro cantos da França, um repertório que entra em cada roteiro. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos.</p>
+    <p>Formação, estrada e método: é isso que eu coloco em cada viagem. Curadoria não se baixa. Ela se vive.</p>
     <a class="btn btn-ghost" href="${url('/sobre/')}">Conhecer a história da Mel</a>
     </div>
   </div>
@@ -708,7 +703,7 @@ function sobre(data) {
   <div class="wrap split sobre-grid">
     ${img('sobre/retrato', 'Retrato de Mel Rolan diante da Basílica de Sacré-Cœur, em Montmartre', { cls: 'photo', sizes: '(min-width: 900px) 460px, 100vw', eager: true })}
     <div>
-    <p>Sou a Mel, brasileira, e moro em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens.</p>
+    <p>Sou a Mel, brasileira, bacharel em Turismo, e moro em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos. Já viajei pelos quatro cantos da França, e esse repertório entra em cada roteiro. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens.</p>
     <p>Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos. Muitas já planejam voltar.</p>
     <p>O meu trabalho vai além de apontar monumentos. Eu traduzo os códigos culturais de Paris para quem chega do Brasil, crio conexões e garanto que a viagem seja fluida, com escolhas que fazem sentido para cada pessoa.</p>
     </div>
