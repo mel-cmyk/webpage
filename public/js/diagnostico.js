@@ -86,8 +86,8 @@
 
     if (faixa === 0) {
       principal = 'guias';
-    } else if (q('roteiro') && ['daqui a mais de 6 meses', 'ainda sem data'].includes(val('quando')) && faixa >= 1) {
-      // Viagem distante: a consultoria define destinos e dias agora; o roteiro vem mais perto da data.
+    } else if (q('roteiro') && val('quando') === 'daqui a mais de 12 meses' && faixa >= 2) {
+      // Viagem a 12 meses ou mais, com orçamento: a consultoria define destinos e dias agora; o roteiro vem mais perto da data.
       principal = 'consultoria';
       complemento = 'roteiro';
     } else if (q('roteiro') || (indeciso && faixa >= 2)) {

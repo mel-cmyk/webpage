@@ -944,7 +944,7 @@ function diagnostico(data) {
         <p class="hint">Pode marcar mais de uma opção.</p>
         <label><input type="checkbox" name="procura" value="tours"> Passeios guiados em Paris, em português</label>
         <label><input type="checkbox" name="procura" value="roteiro"> A viagem inteira planejada, dia a dia</label>
-        <label><input type="checkbox" name="procura" value="consultoria"> Uma conversa com a Mel para começar a planejar, tirar dúvidas ou validar o que já tenho</label>
+        <label><input type="checkbox" name="procura" value="consultoria"> Uma conversa com a Mel para planejar, tirar dúvidas ou validar</label>
         <label><input type="checkbox" name="procura" value="guias"> Um guia para planejar por conta própria</label>
         <label><input type="checkbox" name="procura" value="nao-sei"> Ainda não sei, quero uma indicação</label>
       </fieldset>
@@ -953,7 +953,8 @@ function diagnostico(data) {
         <legend>Quando é a viagem?</legend>
         <label><input type="radio" name="quando" value="nos próximos 3 meses"> Nos próximos 3 meses</label>
         <label><input type="radio" name="quando" value="em 3 a 6 meses"> Em 3 a 6 meses</label>
-        <label><input type="radio" name="quando" value="daqui a mais de 6 meses"> Daqui a mais de 6 meses</label>
+        <label><input type="radio" name="quando" value="em 6 a 12 meses"> Em 6 a 12 meses</label>
+        <label><input type="radio" name="quando" value="daqui a mais de 12 meses"> Daqui a mais de 12 meses</label>
         <label><input type="radio" name="quando" value="ainda sem data"> Ainda não tenho data</label>
       </fieldset>
 
