@@ -90,7 +90,8 @@
         "Champs-Élysées",
         "Arco do Triunfo"
       ],
-      "descricao": "Percorremos o eixo histórico de Paris para acompanhar a construção e as transformações da cidade ao longo dos séculos, entre palácios, praças e grandes símbolos de poder. Ao longo do caminho, um desvio pela Place Vendôme, Rue de Rivoli e hotéis-palácio revela como esses espaços foram apropriados pelas autoridades alemãs durante a ocupação de Paris, entre 1940 e 1944."
+      "descricao": "Percorremos o eixo histórico de Paris para acompanhar a construção e as transformações da cidade ao longo dos séculos, entre palácios, praças e grandes símbolos de poder. Ao longo do caminho, um desvio pela Place Vendôme, Rue de Rivoli e hotéis-palácio revela como esses espaços foram apropriados pelas autoridades alemãs durante a ocupação de Paris, entre 1940 e 1944.",
+      "ideal_para": "Quem quer descobrir a história por trás dos grandes monumentos de Paris e entender como a cidade viveu os anos da ocupação."
     },
     {
       "id": "quartier-latin-e-ile-de-la-cite",
@@ -118,7 +119,7 @@
         "Pont Neuf",
         "Île de la Cité"
       ],
-      "ideal_para": "Você se encanta com livrarias, cafés literários e ruas que respiram séculos de história."
+      "ideal_para": "Curiosos por história que querem entender a origem e a alma de Paris."
     },
     {
       "id": "montmartre",
@@ -139,12 +140,12 @@
       ],
       "encontro": "Bairro de Montmartre",
       "roteiro": [
-        "Moulin Rouge",
         "Sacré-Cœur",
         "Place du Tertre",
-        "Ruelas e cantinhos secretos"
+        "Moulin de la Galette",
+        "Cantinhos secretos"
       ],
-      "ideal_para": "Você imagina Paris como cenário de filme: ruelas de paralelepípedo, ateliês de artista."
+      "ideal_para": "Quem quer ver uma Paris bucólica e busca charme e história artística."
     },
     {
       "id": "paris-de-cinema",
@@ -170,7 +171,8 @@
         "Ratatouille",
         "O Corcunda de Notre-Dame",
         "O Diabo Veste Prada"
-      ]
+      ],
+      "ideal_para": "Quem sonha caminhar por cartões-postais que viu em filmes e séries e, ao mesmo tempo, desvendar as histórias e curiosidades por trás de cada cenário."
     },
     {
       "id": "eixo-historico",
@@ -198,7 +200,7 @@
         "Champs-Élysées",
         "Arco do Triunfo"
       ],
-      "ideal_para": "É a sua primeira vez em Paris e você quer viver, de uma só vez, os cartões-postais que sempre sonhou ver de perto."
+      "ideal_para": "Quem quer descobrir a história por trás de alguns dos principais monumentos de Paris."
     },
     {
       "id": "paris-classica",
@@ -227,7 +229,8 @@
         "Arco do Triunfo",
         "Torre Eiffel"
       ],
-      "subtitulo": "O essencial com olhar de local"
+      "subtitulo": "O essencial com olhar de local",
+      "ideal_para": "Quem quer passar por todos os pontos mais famosos da Cidade Luz e seus cantinhos secretos."
     },
     {
       "id": "tour-personalizado",
@@ -258,7 +261,7 @@
       "roteiro": [
         "Roteiro 100% desenhado para os interesses do seu grupo"
       ],
-      "ideal_para": "Viajantes com interesses específicos que querem flexibilidade na programação."
+      "ideal_para": "Viajantes com interesses específicos que querem flexibilidade na programação: famílias que já sabem o que querem viver em Paris ou quem viaja sozinha e busca liberdade para explorar no próprio ritmo."
     },
     {
       "id": "ambientacao",
@@ -281,7 +284,7 @@
         "Dicas práticas de segurança",
         "Comércio local"
       ],
-      "ideal_para": "Você está chegando em Paris e quer começar com segurança e tranquilidade."
+      "ideal_para": "Quem quer chegar em Paris com toda tranquilidade: conhecer o bairro, o transporte e os pequenos costumes que facilitam a estadia."
     }
   ],
   "guias": [

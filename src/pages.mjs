@@ -218,7 +218,7 @@ ${provaRapida(m)}
         })
         .join('')}
     </div>
-    <p class="center">Ainda em dúvida? <a href="${url('/diagnostico/')}">Responda cinco perguntas rápidas</a> e veja qual opção combina com a sua viagem.</p>
+    <p class="center">Ainda em dúvida? <a href="${url('/diagnostico/')}">Responda seis perguntas rápidas</a> e veja qual combinação de serviços combina com a sua viagem.</p>
   </div>
 </section>
 <section class="section alt" id="para-quem">
@@ -335,6 +335,7 @@ ${heroSplit(`
 <section class="section">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
+    <p class="center">Em dúvida entre dois? <a href="${url('/qual-tour-combina-com-voce/')}" data-cta="tours-quiz">Faça o quiz e descubra o tour que combina com você</a>.</p>
     <div class="grid-3 cards">
       ${data.tours
         .map(
@@ -398,7 +399,7 @@ ${heroSplit(`
     <p class="eyebrow">Tour privativo em Paris · ${esc(t.duracao)}</p>
     <h1>${esc(t.nome)}</h1>
     ${t.subtitulo ? `<p class="subtitulo">${esc(t.subtitulo)}</p>` : ''}
-    ${t.ideal_para ? `<p class="lead"><strong>Ideal se:</strong> ${esc(t.ideal_para)}</p>` : ''}
+    ${t.ideal_para ? `<p class="lead"><strong>Ideal para:</strong> ${esc(t.ideal_para)}</p>` : ''}
     ${t.descricao ? `<p>${esc(t.descricao)}</p>` : ''}
     <p class="price">A partir de ${eur(menorPreco(t))}<span>${esc(t.precos[0].grupo)}</span></p>
     <div class="actions">
@@ -729,6 +730,118 @@ ${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte como é a sua viagem e re
   };
 }
 
+// ---------------------------------------------------------------- QUIZ: QUAL TOUR COMBINA COM VOCÊ
+const quizPerguntas = [
+  {
+    q: 'Primeira manhã em Paris. Onde você toma o seu café?',
+    o: [
+      ['Numa mesa de calçada, vendo a cidade acordar', { 'eixo-historico': 2, 'paris-classica': 1 }],
+      ['Num café literário, cercado de livros antigos', { 'quartier-latin-e-ile-de-la-cite': 2, 'eixo-historico-ocupacao-nazista': 1 }],
+      ['Numa pracinha cheia de artistas e cavaletes', { montmartre: 2 }],
+      ['No café onde foi gravada aquela cena que eu adoro', { 'paris-de-cinema': 2 }],
+      ['Café? Rapidinho, que hoje eu quero ver tudo', { 'paris-classica': 2, 'eixo-historico': 1 }],
+    ],
+  },
+  {
+    q: 'O que toca nos seus fones enquanto você caminha?',
+    o: [
+      ['A trilha sonora de um filme', { 'paris-de-cinema': 2 }],
+      ['Édith Piaf, claro', { montmartre: 2, 'quartier-latin-e-ile-de-la-cite': 1 }],
+      ['Um podcast sobre a Segunda Guerra', { 'eixo-historico-ocupacao-nazista': 2 }],
+      ['Nada. Quero ouvir a cidade', { 'quartier-latin-e-ile-de-la-cite': 1, montmartre: 1, 'eixo-historico': 1 }],
+      ['Uma playlist animada para dar ritmo ao dia', { 'paris-classica': 2 }],
+    ],
+  },
+  {
+    q: 'Se a sua viagem fosse um livro, seria…',
+    o: [
+      ['Um romance de época, com reis e revoluções', { 'quartier-latin-e-ile-de-la-cite': 2, 'eixo-historico': 1 }],
+      ['A biografia de um pintor', { montmartre: 2 }],
+      ['Um livro de história do século XX', { 'eixo-historico-ocupacao-nazista': 2 }],
+      ['O roteiro de um filme', { 'paris-de-cinema': 2 }],
+      ['Um guia com todos os lugares imperdíveis', { 'paris-classica': 2, 'eixo-historico': 1 }],
+    ],
+  },
+  {
+    q: 'No meio da tarde, bate aquela vontade de…',
+    o: [
+      ['Me perder em ruelas, sem mapa e sem pressa', { montmartre: 2, 'quartier-latin-e-ile-de-la-cite': 1 }],
+      ['Parar a cada esquina para ouvir uma curiosidade', { 'quartier-latin-e-ile-de-la-cite': 2, 'eixo-historico-ocupacao-nazista': 1 }],
+      ['Reconhecer um cenário e tirar a mesma foto do filme', { 'paris-de-cinema': 2 }],
+      ['Ver mais um monumento antes do fim do dia', { 'paris-classica': 2, 'eixo-historico': 1 }],
+      ['Sentar num jardim e olhar a cidade passar', { 'eixo-historico': 2 }],
+    ],
+  },
+  {
+    q: 'A foto que não pode faltar no seu álbum é…',
+    o: [
+      ['O Arco do Triunfo no fim da Champs-Élysées', { 'eixo-historico': 2, 'eixo-historico-ocupacao-nazista': 1 }],
+      ['A Torre Eiffel, de perto', { 'paris-classica': 2 }],
+      ['As escadarias de Montmartre', { montmartre: 2 }],
+      ['Notre-Dame vista das margens do Sena', { 'quartier-latin-e-ile-de-la-cite': 2 }],
+      ['Aquela porta ou fachada famosa de uma série', { 'paris-de-cinema': 2 }],
+    ],
+  },
+  {
+    q: 'Na mala de volta, o souvenir perfeito é…',
+    o: [
+      ['Uma gravura comprada de um artista de rua', { montmartre: 2 }],
+      ['Um livro antigo de um bouquiniste', { 'quartier-latin-e-ile-de-la-cite': 2 }],
+      ['Um postal com o cenário do meu filme favorito', { 'paris-de-cinema': 2 }],
+      ['Uma história que ninguém em casa conhecia', { 'eixo-historico-ocupacao-nazista': 2, 'quartier-latin-e-ile-de-la-cite': 1 }],
+      ['Um ímã de cada monumento que eu visitei', { 'paris-classica': 2, 'eixo-historico': 1 }],
+    ],
+  },
+];
+
+function quizTour(data) {
+  const tours = Object.fromEntries(
+    data.tours.map((t) => [t.id, { nome: t.nome, subtitulo: t.subtitulo || '', ideal: t.ideal_para || '', duracao: t.duracao, pagina: url('/tours-em-paris/' + t.id + '/'), preco: eur(menorPreco(t)) }])
+  );
+  const cfg = { tours, perguntas: quizPerguntas, whatsapp: data.marca.whatsapp_site_link, personalizado: url('/tours-em-paris/tour-personalizado/'), todos: url('/tours-em-paris/') };
+  const body = `
+<section class="hero hero-sm">
+  <div class="wrap narrow">
+    <p class="eyebrow">Quiz</p>
+    <h1>Qual tour em Paris combina com você?</h1>
+    <p class="lead">Seis perguntas sobre o seu jeito de viajar. Sem resposta certa, só escolha a que tem mais a ver com você.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap narrow">
+    <form id="quiz-tour" class="quiz" novalidate>
+      <p class="quiz-progress" aria-live="polite"></p>
+      ${quizPerguntas
+        .map(
+          (p, n) => `<fieldset class="step" data-step="${n + 1}"${n ? ' hidden' : ''}>
+        <legend>${esc(p.q)}</legend>
+        ${p.o.map((o, k) => `<label><input type="radio" name="q${n}" value="${k}"> ${esc(o[0])}</label>`).join('\n        ')}
+      </fieldset>`
+        )
+        .join('\n')}
+      <div class="quiz-nav">
+        <button type="button" class="btn btn-ghost" data-back hidden>Voltar</button>
+        <button type="button" class="btn" data-next>Continuar</button>
+      </div>
+      <p class="quiz-error small" role="alert" hidden>Escolha uma opção para continuar.</p>
+    </form>
+    <div id="quiz-resultado" class="result" hidden aria-live="polite"></div>
+  </div>
+</section>
+<script id="quiz-tour-config" type="application/json">${JSON.stringify(cfg)}</script>
+`;
+  return {
+    path: '/qual-tour-combina-com-voce/',
+    title: 'Quiz: qual tour em Paris combina com você? | Mel Rolan',
+    description: 'Responda seis perguntas divertidas sobre o seu jeito de viajar e descubra qual tour privativo em Paris, em português, tem mais a ver com você.',
+    body,
+    scripts: ['/js/quiz-tour.js'],
+    noFloat: true,
+    og: 'og/tours.jpg',
+    jsonld: [breadcrumbLd([['Início', '/'], ['Tours em Paris', '/tours-em-paris/'], ['Quiz do tour ideal', '/qual-tour-combina-com-voce/']])],
+  };
+}
+
 // ---------------------------------------------------------------- PARCERIAS
 function parcerias(data) {
   const m = data.marca;
@@ -806,6 +919,7 @@ function diagnostico(data) {
     base: url(''),
     servicos: Object.fromEntries(data.servicos.map((s) => [s.id, { nome: s.nome, preco: precoServico(s), pagina: url(s.pagina + '/') }])),
     guia: { nome: data.guias[0].nome, link: data.guias[0].landing },
+    quizTour: url('/qual-tour-combina-com-voce/'),
     wix: data.integracoes && {
       clientId: data.integracoes.wix_forms.client_id,
       formId: data.integracoes.wix_forms.form_id,
@@ -817,7 +931,7 @@ function diagnostico(data) {
   <div class="wrap narrow">
     <p class="eyebrow">Diagnóstico da viagem</p>
     <h1>Qual opção combina com a sua viagem?</h1>
-    <p class="lead">Cinco perguntas rápidas. No final, você vê a indicação da Mel, e as suas respostas chegam para a nossa equipe, que fala com você pelo WhatsApp.</p>
+    <p class="lead">Seis perguntas rápidas. No final, você vê a combinação de serviços indicada pela Mel, e as suas respostas chegam para a nossa equipe, que fala com você pelo WhatsApp.</p>
   </div>
 </section>
 <section class="section">
@@ -826,12 +940,13 @@ function diagnostico(data) {
       <p class="quiz-progress" aria-live="polite"></p>
 
       <fieldset class="step" data-step="1">
-        <legend>O que você procura?</legend>
-        <label><input type="radio" name="procura" value="tours"> Um passeio guiado em Paris</label>
-        <label><input type="radio" name="procura" value="roteiro"> A viagem inteira planejada para mim</label>
-        <label><input type="radio" name="procura" value="consultoria"> Validar o que eu já planejei</label>
-        <label><input type="radio" name="procura" value="guias"> Um guia para planejar sozinho</label>
-        <label><input type="radio" name="procura" value="nao-sei"> Ainda não sei</label>
+        <legend>O que você gostaria de ter nesta viagem?</legend>
+        <p class="hint">Pode marcar mais de uma opção.</p>
+        <label><input type="checkbox" name="procura" value="tours"> Passeios guiados em Paris, em português</label>
+        <label><input type="checkbox" name="procura" value="roteiro"> A viagem inteira planejada, dia a dia</label>
+        <label><input type="checkbox" name="procura" value="consultoria"> Alguém para validar o que eu já planejei</label>
+        <label><input type="checkbox" name="procura" value="guias"> Um guia para planejar por conta própria</label>
+        <label><input type="checkbox" name="procura" value="nao-sei"> Ainda não sei, quero uma indicação</label>
       </fieldset>
 
       <fieldset class="step" data-step="2" hidden>
@@ -855,6 +970,17 @@ function diagnostico(data) {
       </fieldset>
 
       <fieldset class="step" data-step="4" hidden>
+        <legend>Como vocês gostam de viajar?</legend>
+        <p class="hint">Pode marcar mais de uma opção.</p>
+        <label><input type="checkbox" name="estilo" value="primeira vez"> É a primeira vez em Paris</label>
+        <label><input type="checkbox" name="estilo" value="historia"> Adoramos história e curiosidades</label>
+        <label><input type="checkbox" name="estilo" value="sem pressa"> Preferimos ritmo leve, sem correria</label>
+        <label><input type="checkbox" name="estilo" value="ver tudo"> Queremos ver o máximo possível</label>
+        <label><input type="checkbox" name="estilo" value="fora do roteiro"> Queremos lugares fora do roteiro turístico</label>
+        <label><input type="checkbox" name="estilo" value="outras cidades"> Vamos visitar outras cidades da França</label>
+      </fieldset>
+
+      <fieldset class="step" data-step="5" hidden>
         <legend>Quanto você pretende investir nos serviços da Mel?</legend>
         <p class="hint">Sem contar passagens, hospedagem e ingressos. Perguntamos para indicar a opção que faz sentido para você, sem desperdiçar o seu tempo.</p>
         <label><input type="radio" name="investimento" value="até R$ 500"> Até R$ 500</label>
@@ -864,7 +990,7 @@ function diagnostico(data) {
         <label><input type="radio" name="investimento" value="ainda não sei"> Ainda não sei</label>
       </fieldset>
 
-      <fieldset class="step" data-step="5" hidden>
+      <fieldset class="step" data-step="6" hidden>
         <legend>Para quem enviamos a indicação?</legend>
         <label class="text-label">Seu primeiro nome<input type="text" name="nome" autocomplete="given-name" required maxlength="60"></label>
         <label class="text-label">Seu WhatsApp, com DDD<input type="tel" name="whatsapp" autocomplete="tel" inputmode="tel" required placeholder="Ex.: 11 91234-5678" maxlength="25"></label>
@@ -889,7 +1015,7 @@ function diagnostico(data) {
     path: '/diagnostico/',
     title: 'Diagnóstico da viagem a Paris | Mel Rolan',
     description:
-      'Responda cinco perguntas rápidas e descubra qual opção combina com a sua viagem a Paris: tour, roteiro, consultoria ou guia digital.',
+      'Responda seis perguntas rápidas e descubra qual combinação de serviços combina com a sua viagem a Paris: tour, roteiro, consultoria ou guia digital.',
     body,
     scripts: ['/js/diagnostico.js'],
     noFloat: true,
@@ -907,6 +1033,7 @@ export function pages(data) {
     guias(data),
     sobre(data),
     parcerias(data),
+    quizTour(data),
     diagnostico(data),
     privacidade(data),
     avisoLegal(data),

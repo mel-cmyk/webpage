@@ -321,3 +321,6 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .cookie-actions .btn { flex: 1 1 140px; }
 .cookie-aberto .wa-float { display: none; }
 @media (min-width: 700px) { .cookie-banner { left: 24px; right: auto; bottom: 24px; max-width: 460px; } }
+
+.result-extra { margin: 24px 0; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--white, #fff); }
+.result-extra h3 { margin: 4px 0 8px; }

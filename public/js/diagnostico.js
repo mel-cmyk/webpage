@@ -1,4 +1,4 @@
-// Diagnóstico da viagem: 5 etapas, recomendação, lead salvo no Wix e WhatsApp pré-preenchido.
+// Diagnóstico da viagem: 6 etapas, recomendação, lead salvo no Wix e WhatsApp pré-preenchido.
 (function () {
   const form = document.getElementById('diagnostico');
   if (!form) return;
@@ -13,11 +13,14 @@
   let i = 0;
   let started = false;
 
-  const val = (name) => (form.elements[name] && form.elements[name].value || '').trim();
-  const labelOf = (name) => {
-    const el = form.querySelector(`input[name="${name}"]:checked`);
-    return el ? el.parentElement.textContent.trim() : '';
+  const val = (name) => {
+    const els = form.querySelectorAll(`[name="${name}"]`);
+    if (els.length && els[0].type === 'checkbox') return [...els].filter((e) => e.checked).map((e) => e.value).join(', ');
+    return (form.elements[name] && form.elements[name].value || '').trim();
   };
+  const lista = (name) => [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((e) => e.value);
+  const labelOf = (name) =>
+    [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((el) => el.parentElement.textContent.trim()).join('; ');
 
   // WhatsApp em formato internacional (E.164). Sem código de país, assume Brasil (+55).
   function telefone() {
@@ -49,7 +52,7 @@
 
   function valid(n) {
     const step = steps[n];
-    const radios = step.querySelectorAll('input[type="radio"]');
+    const radios = step.querySelectorAll('input[type="radio"], input[type="checkbox"]');
     if (radios.length && ![...radios].some((r) => r.checked)) {
       error.textContent = 'Escolha uma opção para continuar.';
       return false;
@@ -69,15 +72,49 @@
     return 'sim';
   }
 
+  // Recomendação: combina o que a pessoa quer, o orçamento e o estilo de viagem.
+  // Devolve { principal, complemento, motivo } com ids de serviço (tours, roteiro, consultoria, guias).
   function recomendar() {
-    const procura = val('procura');
+    const quer = lista('procura');
+    const estilo = lista('estilo');
     const inv = val('investimento');
-    if (procura === 'guias' || inv === 'até R$ 500') return 'guias';
-    if (procura !== 'nao-sei') return procura;
-    if (inv === 'de R$ 500 a R$ 1.500') return 'consultoria';
-    if (inv === 'ainda não sei') return 'consultoria';
-    return 'roteiro';
+    const faixa = { 'até R$ 500': 0, 'de R$ 500 a R$ 1.500': 1, 'de R$ 1.500 a R$ 3.000': 2, 'acima de R$ 3.000': 3, 'ainda não sei': -1 }[inv];
+    const q = (id) => quer.includes(id);
+    const indeciso = !quer.length || (q('nao-sei') && quer.length === 1);
+    let principal;
+    let complemento = null;
+
+    if (faixa === 0) {
+      principal = 'guias';
+    } else if (q('roteiro') || (indeciso && faixa >= 2)) {
+      principal = faixa === 1 ? 'consultoria' : 'roteiro';
+      if (faixa === 3 || q('tours')) complemento = 'tours';
+    } else if (q('consultoria')) {
+      principal = 'consultoria';
+      if (faixa >= 3 || q('tours')) complemento = 'tours';
+    } else if (q('tours')) {
+      principal = 'tours';
+      if (faixa >= 2 && (estilo.includes('primeira vez') || estilo.includes('outras cidades'))) complemento = 'consultoria';
+      else if (q('guias')) complemento = 'guias';
+    } else if (q('guias')) {
+      principal = 'guias';
+      if (faixa >= 2) complemento = 'consultoria';
+    } else {
+      principal = 'consultoria';
+      if (faixa === 3) complemento = 'tours';
+    }
+    if (complemento === principal) complemento = null;
+    // Quem contrata roteiro ou consultoria não precisa do guia como complemento.
+    if (complemento === 'guias' && (principal === 'roteiro' || principal === 'consultoria')) complemento = null;
+    return { principal, complemento };
   }
+
+  const textos = {
+    tours: 'Passeios privativos a pé, em português, no ritmo do seu grupo.',
+    roteiro: 'A viagem inteira desenhada dia a dia, com tudo pensado para quem vai viajar.',
+    consultoria: 'Uma conversa por vídeo com a Mel para validar e ajustar o que você já planejou.',
+    guias: 'A curadoria da Mel em PDF, com acesso imediato, para planejar com autonomia.',
+  };
 
   // Salva o lead no Wix Forms (vira submissão no painel e contato no CRM), com um token anônimo de visitante.
   // Não bloqueia a pessoa: se falhar, o resultado e o WhatsApp continuam funcionando.
@@ -105,8 +142,11 @@
   }
 
   function finish() {
-    const rec = recomendar();
+    const recs = recomendar();
+    const rec = recs.principal;
     const s = cfg.servicos[rec];
+    const c = recs.complemento ? cfg.servicos[recs.complemento] : null;
+    const indicacao = c ? `${s.nome} + ${c.nome}` : s.nome;
     const nome = val('nome');
     const quem = `${val('quem')}${val('idades') ? ' (crianças: ' + val('idades') + ')' : ''}`;
     const origem = window.mrOrigem ? window.mrOrigem() : '';
@@ -115,8 +155,9 @@
       `Procuro: ${labelOf('procura')}`,
       `Viagem: ${val('quando')}`,
       `Quem viaja: ${quem}`,
+      `Estilo: ${labelOf('estilo')}`,
       `Investimento nos serviços: ${val('investimento')}`,
-      `Indicação do site: ${s.nome}`,
+      `Indicação do site: ${indicacao}`,
     ];
     if (val('obs')) linhas.push(`Observação: ${val('obs')}`);
     if (origem) linhas.push(`Ref.: site · ${origem}`);
@@ -131,16 +172,25 @@
            <div class="actions"><a class="btn" href="${waLink}" data-wa="diagnostico-${rec}">Continuar no WhatsApp</a>
            <a class="btn btn-ghost" href="${s.pagina}">Conhecer ${s.nome.toLowerCase()}</a></div>`;
 
+    const extraTour = (recs.principal === 'tours' || recs.complemento === 'tours') && cfg.quizTour
+      ? `<p class="small">Quer descobrir qual tour tem mais a ver com você? <a href="${cfg.quizTour}" data-cta="diagnostico-quiz-tour">Faça o quiz do tour ideal</a>.</p>`
+      : '';
+    const blocoComplemento = c
+      ? `<div class="result-extra"><p class="eyebrow">Para completar</p><h3>${c.nome}</h3><p>${textos[recs.complemento]}</p><p class="price">${c.preco}</p><a href="${c.pagina}">Conhecer ${c.nome.toLowerCase()}</a></div>`
+      : '';
     result.innerHTML = `
       <p class="eyebrow">A indicação para a sua viagem</p>
       <h2>${s.nome}</h2>
+      <p>${textos[rec]}</p>
       <p class="price">${s.preco}</p>
+      ${blocoComplemento}
       ${guiaExtra}
+      ${extraTour}
       <p class="small">Atendimento em português, direto de Paris.</p>`;
 
     const params = {
       metodo: 'diagnostico',
-      indicacao: rec,
+      indicacao: recs.complemento ? `${rec}+${recs.complemento}` : rec,
       faixa_investimento: val('investimento'),
       qualificado: qualificado(),
       prazo_viagem: val('quando'),
@@ -158,9 +208,9 @@
       whatsapp: telefone(),
       procura: labelOf('procura'),
       quando: val('quando'),
-      quem_viaja: quem,
+      quem_viaja: quem + (val('estilo') ? ' · estilo: ' + labelOf('estilo') : ''),
       investimento: val('investimento'),
-      indicacao: s.nome,
+      indicacao,
       observacao: val('obs'),
       origem,
     })
