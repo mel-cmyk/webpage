@@ -86,6 +86,10 @@
 
     if (faixa === 0) {
       principal = 'guias';
+    } else if (q('roteiro') && ['daqui a mais de 6 meses', 'ainda sem data'].includes(val('quando')) && faixa >= 1) {
+      // Viagem distante: a consultoria define destinos e dias agora; o roteiro vem mais perto da data.
+      principal = 'consultoria';
+      complemento = 'roteiro';
     } else if (q('roteiro') || (indeciso && faixa >= 2)) {
       principal = faixa === 1 ? 'consultoria' : 'roteiro';
       if (faixa === 3 || q('tours')) complemento = 'tours';
@@ -112,7 +116,7 @@
   const textos = {
     tours: 'Passeios privativos a pé, em português, no ritmo do seu grupo.',
     roteiro: 'A viagem inteira desenhada dia a dia, com tudo pensado para quem vai viajar.',
-    consultoria: 'Uma conversa por vídeo com a Mel para validar e ajustar o que você já planejou.',
+    consultoria: 'Uma conversa por vídeo com a Mel no ponto em que a sua viagem estiver: definir destinos e dias, tirar dúvidas ou validar o que já foi planejado.',
     guias: 'A curadoria da Mel em PDF, com acesso imediato, para planejar com autonomia.',
   };
 

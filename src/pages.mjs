@@ -147,8 +147,8 @@ function home(data) {
       cta: 'Quero um roteiro',
     },
     consultoria: {
-      para: 'validar com segurança o que já começou a planejar.',
-      txt: 'Uma conversa por vídeo para validar cidades, época, hospedagem e prioridades, com um mapa digital exclusivo para você consultar depois.',
+      para: 'começar a planejar, tirar dúvidas ou validar o que já tem.',
+      txt: 'Uma conversa por vídeo com a Mel, no ponto em que a sua viagem estiver: definir destinos e dias em cada região, esclarecer dúvidas ou validar o que já está planejado. Com um mapa digital exclusivo para consultar depois.',
       cta: 'Ver a consultoria',
     },
     guias: {
@@ -160,7 +160,7 @@ function home(data) {
   const faq = [
     {
       q: 'Qual a diferença entre tour, roteiro, consultoria e guia?',
-      a: 'O tour é um passeio a pé com a Mel, em Paris. O roteiro é a viagem inteira planejada para você, dia a dia. A consultoria é uma conversa para validar as decisões que você já está tomando. O guia digital é a curadoria pronta, para quem prefere planejar sozinho. Se ainda estiver em dúvida, o diagnóstico indica o caminho em dois minutos.',
+      a: 'O tour é um passeio a pé com a Mel, em Paris. O roteiro é a viagem inteira planejada para você, dia a dia. A consultoria é uma conversa com a Mel para o momento em que você estiver: começar a planejar, tirar dúvidas ou validar o que já decidiu. O guia digital é a curadoria pronta, para quem prefere planejar sozinho. Se ainda estiver em dúvida, o diagnóstico indica o caminho em dois minutos.',
     },
     {
       q: 'Os serviços são só para famílias com crianças?',
@@ -582,7 +582,7 @@ function consultoria(data) {
 ${heroSplit(`
     <p class="eyebrow">Consultoria personalizada</p>
     <h1>Planeje a sua viagem à França com mais segurança.</h1>
-    <p class="lead">Para quem já começou a planejar e quer tomar as melhores decisões com a ajuda de uma especialista que vive no destino.</p>
+    <p class="lead">Serve para qualquer momento da viagem: para quem ainda nem começou e quer definir destinos e dias em cada região, para quem tem dúvidas sobre a cidade e para quem já planejou tudo e quer validar cada escolha com uma especialista.</p>
     <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>
     <div class="actions">
       <a class="btn" href="${wa(data, msg)}" data-wa="consultoria">Agendar pelo WhatsApp</a>
@@ -621,7 +621,7 @@ ${ctaFinal(data, 'Vamos conversar sobre a sua viagem?', `Consultoria por ${brl(s
     og: 'og/consultoria.jpg',
     servico: 'consultoria',
     jsonld: [
-      servicoLd(s, 'Consultoria de viagem por vídeo para validar cidades, época, hospedagem e prioridades de uma viagem à França, com mapa digital exclusivo.'),
+      servicoLd(s, 'Consultoria de viagem por vídeo para começar a planejar, tirar dúvidas ou validar uma viagem à França, com mapa digital exclusivo.'),
       breadcrumbLd([['Início', '/'], ['Consultoria', '/consultoria/']]),
     ],
   };
@@ -944,7 +944,7 @@ function diagnostico(data) {
         <p class="hint">Pode marcar mais de uma opção.</p>
         <label><input type="checkbox" name="procura" value="tours"> Passeios guiados em Paris, em português</label>
         <label><input type="checkbox" name="procura" value="roteiro"> A viagem inteira planejada, dia a dia</label>
-        <label><input type="checkbox" name="procura" value="consultoria"> Alguém para validar o que eu já planejei</label>
+        <label><input type="checkbox" name="procura" value="consultoria"> Uma conversa com a Mel para começar a planejar, tirar dúvidas ou validar o que já tenho</label>
         <label><input type="checkbox" name="procura" value="guias"> Um guia para planejar por conta própria</label>
         <label><input type="checkbox" name="procura" value="nao-sei"> Ainda não sei, quero uma indicação</label>
       </fieldset>
