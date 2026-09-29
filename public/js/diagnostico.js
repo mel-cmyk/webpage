@@ -78,7 +78,7 @@
     const quer = lista('procura');
     const estilo = lista('estilo');
     const inv = val('investimento');
-    const faixa = { 'até R$ 500': 0, 'de R$ 500 a R$ 1.500': 1, 'de R$ 1.500 a R$ 3.000': 2, 'acima de R$ 3.000': 3, 'ainda não sei': -1 }[inv];
+    const faixa = { 'até R$ 500': 0, 'de R$ 500 a R$ 1.000': 1, 'de R$ 1.000 a R$ 3.000': 2, 'acima de R$ 3.000': 3, 'ainda não sei': -1 }[inv];
     const q = (id) => quer.includes(id);
     const indeciso = !quer.length || (q('nao-sei') && quer.length === 1);
     let principal;

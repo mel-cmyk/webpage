@@ -985,8 +985,8 @@ function diagnostico(data) {
         <legend>Quanto você pretende investir nos serviços da Mel?</legend>
         <p class="hint">Sem contar passagens, hospedagem e ingressos. Perguntamos para indicar a opção que faz sentido para você, sem desperdiçar o seu tempo.</p>
         <label><input type="radio" name="investimento" value="até R$ 500"> Até R$ 500</label>
-        <label><input type="radio" name="investimento" value="de R$ 500 a R$ 1.500"> De R$ 500 a R$ 1.500</label>
-        <label><input type="radio" name="investimento" value="de R$ 1.500 a R$ 3.000"> De R$ 1.500 a R$ 3.000</label>
+        <label><input type="radio" name="investimento" value="de R$ 500 a R$ 1.000"> De R$ 500 a R$ 1.000</label>
+        <label><input type="radio" name="investimento" value="de R$ 1.000 a R$ 3.000"> De R$ 1.000 a R$ 3.000</label>
         <label><input type="radio" name="investimento" value="acima de R$ 3.000"> Acima de R$ 3.000</label>
         <label><input type="radio" name="investimento" value="ainda não sei"> Ainda não sei</label>
       </fieldset>
