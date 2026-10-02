@@ -49,6 +49,7 @@ function footer(data) {
       <p class="footer-brand">Mel Rolan Travel Designer</p>
       <p>Paris, França. Atendimento em português.</p>
       <p class="small">SIRET ${esc(m.siret_franca)} · CNPJ ${esc(m.cnpj_brasil)}</p>
+      <p class="small">Agência de turismo cadastrada no <a href="https://cadastur.turismo.gov.br" target="_blank" rel="noopener">Cadastur</a>, Ministério do Turismo.</p>
     </div>
     <div>
       <p class="footer-title">Serviços</p>

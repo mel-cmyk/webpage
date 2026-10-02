@@ -263,7 +263,7 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .cta-final { background: var(--navy); color: var(--white); position: relative; overflow: hidden; }
 .cta-final .wrap { position: relative; z-index: 1; }
 .cta-bg { position: absolute; inset: 0; }
-.cta-bg img { width: 100%; height: 100%; object-fit: cover; }
+.cta-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 12%; }
 .cta-bg::after { content: ''; position: absolute; inset: 0; background: rgba(34, 39, 79, 0.74); }
 .cta-final h2 { color: var(--white); }
 .cta-final .small { color: rgba(255, 255, 255, 0.75); }

@@ -290,7 +290,7 @@ ${depoimentos(m)}
     ${faqHtml(faq)}
   </div>
 </section>
-${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte em dois minutos como é a sua viagem e receba a indicação do caminho certo. Se preferir, fale direto com a gente.')}
+${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte em dois minutos como é a sua viagem e receba a indicação do caminho certo. Se preferir, fale direto com a gente.')}
 `;
   const org = {
     '@context': 'https://schema.org',
@@ -473,7 +473,7 @@ ${heroSplit(`
 // ---------------------------------------------------------------- ROTEIRO
 function roteiro(data) {
   const s = servico(data, 'roteiro');
-  const msg = 'Olá! Vim pelo site da Mel Rolan e tenho interesse em um roteiro sob medida para Paris.';
+  const msg = 'Olá! Vim pelo site da Mel Rolan e tenho interesse em um roteiro sob medida para a minha viagem à França.';
   const body = `
 ${heroSplit(`
     <p class="eyebrow">Roteiro sob medida</p>
@@ -501,7 +501,7 @@ ${heroSplit(`
       <div>
         <p class="eyebrow">Como você recebe o roteiro</p>
         <h3>No computador e no celular</h3>
-        <p>O roteiro chega num quadro do Trello, organizado dia a dia e por período, com fotos, horários, endereços, reservas e links de caminhada no Google Maps. Você consulta no computador durante o planejamento e no celular pelas ruas de Paris.</p>
+        <p>O roteiro chega num quadro do Trello, organizado dia a dia e por período, com fotos, horários, endereços, reservas e links de caminhada no Google Maps. Você consulta no computador durante o planejamento e no celular durante a viagem.</p>
       </div>
     </aside>
   </div>
@@ -552,7 +552,7 @@ ${heroSplit(`
     <ul class="checklist">
       <li>Você se inspira e sonha, sem gastar horas em pesquisas na internet.</li>
       <li>Você não perde tempo com atrações e lugares que não fazem sentido para você.</li>
-      <li>Você chega a Paris mais preparado e seguro, com cada detalhe pensado antes do embarque.</li>
+      <li>Você chega à França mais preparado e seguro, com cada detalhe pensado antes do embarque.</li>
     </ul>
     <p class="small">O roteiro é entregue antes da viagem. Não inclui atendimento em tempo real durante a viagem.</p>
   </div>
@@ -568,7 +568,7 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', `Roteiros a partir de ${brl(s.p
     og: 'og/roteiro.jpg',
     servico: 'roteiro',
     jsonld: [
-      servicoLd(s, 'Roteiro de viagem personalizado para Paris e a França, planejado dia a dia por uma travel designer brasileira que vive em Paris.'),
+      servicoLd(s, 'Roteiro de viagem personalizado para Paris e a França, planejado dia a dia por uma travel designer especialista em viajantes brasileiros.'),
       breadcrumbLd([['Início', '/'], ['Roteiro sob medida', '/roteiro-sob-medida/']]),
     ],
   };
@@ -718,7 +718,7 @@ function sobre(data) {
 ${provaRapida(m)}
 ${depoimentos(m)}
 <p class="center small">Agências de viagem e prestadores na França: <a href="${url('/parcerias/')}">conheça as nossas parcerias</a>.</p>
-${ctaFinal(data, 'Vamos desenhar a sua Paris?', 'Conte como é a sua viagem e receba a indicação do caminho certo.')}
+${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e receba a indicação do caminho certo.')}
 `;
   return {
     path: '/sobre/',
