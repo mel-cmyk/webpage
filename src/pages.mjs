@@ -697,7 +697,7 @@ function sobre(data) {
 <section class="hero hero-sm">
   <div class="wrap narrow">
     <p class="eyebrow">Sobre a Mel</p>
-    <h1>Curadoria não se baixa. Ela se vive.</h1>
+    <h1>A França do seu jeito, com o olhar de quem conhece cada canto.</h1>
   </div>
 </section>
 <section class="section">
