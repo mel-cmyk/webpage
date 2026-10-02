@@ -1,7 +1,7 @@
 // Páginas legais: política de privacidade e aviso legal.
 import { url, esc } from './helpers.mjs';
 
-const ATUALIZACAO = '27 de setembro de 2026';
+const ATUALIZACAO = '2 de outubro de 2026';
 
 // Dados do controlador, iguais aos da política de privacidade já publicada no site atual.
 const RAZAO_SOCIAL = '44.907.716 Melissa Rolan Pinto';
@@ -32,6 +32,7 @@ export function privacidade(data) {
 <p><strong>Dados que você nos envia.</strong> Quando você fala conosco pelo WhatsApp ou por e-mail: nome, telefone, e-mail e informações sobre a viagem, como datas, quem vai viajar, idade das crianças e preferências. Quando você compra um guia: nome, e-mail e os dados necessários para o pagamento, que são tratados diretamente pela loja e pelo processador de pagamentos; nós não armazenamos números de cartão.</p>
 <p><strong>Diagnóstico da viagem.</strong> Quando você conclui o diagnóstico, suas respostas, seu primeiro nome e seu WhatsApp são enviados à nossa equipe e ficam registrados na nossa ferramenta de atendimento (Wix), para que possamos falar com você sobre a viagem. A mensagem de WhatsApp com as respostas só é enviada se você decidir enviá-la.</p>
 <p><strong>Dados de navegação, com o seu consentimento.</strong> Se você aceitar os cookies de medição, o Google Analytics registra informações como páginas visitadas, origem da visita (por exemplo, uma busca no Google ou o Instagram), tipo de dispositivo e navegador, região aproximada e cliques em botões, como os de WhatsApp. Esses dados são usados de forma agregada, para entender como o site é usado.</p>
+<p><strong>Publicidade, com o seu consentimento.</strong> Se você aceitar a publicidade, o Google Ads e o Google Analytics usam identificadores e as páginas que você visitou no site para medir o resultado dos nossos anúncios e para mostrar anúncios da Mel Rolan Travel Designer a quem já visitou o site (remarketing). Não enviamos ao Google o seu nome nem o seu telefone.</p>
 
 <h2>3. Para que usamos os dados</h2>
 <ul>
@@ -39,18 +40,24 @@ export function privacidade(data) {
   <li>Prestar o serviço contratado e entregar os guias digitais comprados.</li>
   <li>Cumprir obrigações legais, fiscais e contábeis.</li>
   <li>Medir o desempenho do site e melhorar o conteúdo, quando você aceita os cookies de medição.</li>
+  <li>Medir o resultado dos anúncios e mostrar anúncios nossos a quem já visitou o site, quando você aceita a publicidade.</li>
   <li>Enviar comunicações sobre nossos produtos e serviços, quando você consentiu ou quando a lei permitir, sempre com a opção de cancelar.</li>
 </ul>
 
 <h2>4. Bases legais</h2>
-<p>Tratamos dados para executar um contrato ou atender a um pedido seu antes da contratação, para cumprir obrigações legais, com base no nosso legítimo interesse (por exemplo, a segurança do site) e com o seu consentimento (cookies de medição e comunicações de marketing). O consentimento pode ser retirado a qualquer momento.</p>
+<p>Tratamos dados para executar um contrato ou atender a um pedido seu antes da contratação, para cumprir obrigações legais, com base no nosso legítimo interesse (por exemplo, a segurança do site) e com o seu consentimento (cookies de medição, cookies de publicidade e comunicações de marketing). O consentimento pode ser retirado a qualquer momento.</p>
 
 <h2>5. Cookies</h2>
-<p>O site só usa cookies de medição (Google Analytics, cookies _ga e _ga_*, com duração de até 13 meses) se você clicar em "Aceitar" no aviso de cookies. Se você clicar em "Recusar", eles não são gravados e o site continua funcionando normalmente. A sua escolha fica guardada no seu navegador por 6 meses; depois disso, perguntamos de novo. Você pode mudar a escolha a qualquer momento pelo link "Preferências de cookies", no rodapé.</p>
+<p>O site usa cookies e tecnologias semelhantes para duas finalidades. No aviso de cookies, você escolhe cada uma separadamente, e nada é ativado antes da sua escolha.</p>
+<ul>
+  <li><strong>Medição:</strong> Google Analytics, com os cookies _ga e _ga_*, de até 13 meses.</li>
+  <li><strong>Publicidade:</strong> Google Ads e Google Analytics, com cookies como _gcl_au e _gcl_aw, de até 90 dias, e o envio de identificadores de publicidade ao Google. Servem para medir os nossos anúncios e para mostrar anúncios da Mel Rolan Travel Designer, no Google, no YouTube e em sites parceiros do Google, a quem já visitou o site.</li>
+</ul>
+<p>Se você clicar em "Recusar tudo", nenhum desses cookies é gravado e o site continua funcionando normalmente. A sua escolha fica guardada no seu navegador por 6 meses; depois disso, perguntamos de novo. Você pode mudar a escolha a qualquer momento pelo link "Preferências de cookies", no rodapé. Para limitar anúncios personalizados em geral, você também pode usar as configurações de anúncios da sua conta Google.</p>
 <p>As páginas de venda dos guias e a loja têm seus próprios avisos de cookies, com escolha independente.</p>
 
 <h2>6. Com quem compartilhamos os dados</h2>
-<p>Apenas com quem precisa deles para o serviço funcionar: GitHub (hospedagem do site), Google (medição, se você aceitar), Meta, pelo WhatsApp (as conversas que você inicia conosco), Wix (loja, pagamentos dos guias e registro dos contatos feitos pelo diagnóstico), provedores de e-mail e de agenda e profissionais de contabilidade. Não vendemos dados pessoais.</p>
+<p>Apenas com quem precisa deles para o serviço funcionar: GitHub (hospedagem do site), Google (medição e publicidade, se você aceitar cada uma), Meta, pelo WhatsApp (as conversas que você inicia conosco), Wix (loja, pagamentos dos guias e registro dos contatos feitos pelo diagnóstico), provedores de e-mail e de agenda e profissionais de contabilidade. Não vendemos dados pessoais.</p>
 
 <h2>7. Transferência internacional</h2>
 <p>Alguns desses provedores operam fora do Brasil e da União Europeia, como nos Estados Unidos. Nesses casos, a transferência se apoia nas salvaguardas previstas na LGPD e no RGPD, como as cláusulas contratuais padrão adotadas pelos próprios provedores.</p>

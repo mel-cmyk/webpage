@@ -318,7 +318,13 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .cookie-banner p { margin: 0 0 10px; }
 .cookie-title { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; }
 .cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-.cookie-actions .btn { flex: 1 1 140px; }
+.cookie-actions .btn { flex: 1 1 110px; }
+
+.cookie-banner { max-height: calc(100vh - 24px); overflow-y: auto; }
+
+.cookie-opt { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 10px; cursor: pointer; }
+
+.cookie-opt input { flex: none; width: 18px; height: 18px; margin-top: 3px; accent-color: var(--navy); }
 .cookie-aberto .wa-float { display: none; }
 @media (min-width: 700px) { .cookie-banner { left: 24px; right: auto; bottom: 24px; max-width: 460px; } }
 
