@@ -22,12 +22,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      # Enquanto o site estiver no endereço de teste (github.io/webpage), fica fora do Google.
-      # Na troca de domínio: SITE_BASE vazio e SITE_STAGING=0.
-      - run: node build.mjs
+      # Modo de teste (padrão): endereço github.io/webpage, fora do Google.
+      # Modo de produção: criar a variável de repositório SITE_PROD com o valor true
+      # (Settings > Secrets and variables > Actions > Variables) e rodar o fluxo de novo.
+      - name: Gerar site (teste)
+        if: ${{ vars.SITE_PROD != 'true' }}
+        run: node build.mjs
         env:
           SITE_BASE: /webpage
           SITE_STAGING: '1'
+      - name: Gerar site (produção)
+        if: ${{ vars.SITE_PROD == 'true' }}
+        run: node build.mjs
+        env:
+          SITE_STAGING: '0'
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
