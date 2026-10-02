@@ -111,7 +111,6 @@ const incluidoTours = [
   'Narrativa cultural em português',
   'Paradas estratégicas para fotos',
   'Indicações gastronômicas para o dia do tour',
-  'Dicas práticas de segurança',
   'Alinhamento prévio pelo WhatsApp',
   'Para os mini clientes: o livro de atividades impresso do Monsieur Pombo, criado pela Mel',
 ];
@@ -123,11 +122,11 @@ const faqTours = [
   },
   {
     q: 'O roteiro do tour pode ser alterado?',
-    a: 'Sim. Como o tour é privativo, se no dia estiver chovendo ou você preferir se concentrar em um bairro, adaptamos o trajeto. Em caso de chuva forte ou imprevisto, a data pode ser remarcada.',
+    a: 'Sim. Como o tour é privativo, se você preferir se concentrar em um bairro, adaptamos o trajeto.',
   },
   {
     q: 'Os tours guiados são adequados para crianças?',
-    a: 'Totalmente. Cada criança ganha o livro de atividades impresso do Monsieur Pombo, criado pela Mel, e no tour fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles.',
+    a: 'Sim. A linguagem do tour é adaptada à idade de cada criança, e cada uma ganha o livro de atividades impresso do Monsieur Pombo, criado pela Mel. No tour, fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles.',
   },
 ];
 
@@ -178,7 +177,7 @@ function home(data) {
     },
     {
       q: 'Com quanta antecedência devo contratar?',
-      a: 'Depende do serviço. A consultoria pode ser contratada a qualquer momento, e quanto antes, melhor. Para o roteiro personalizado, o ideal é contratar de 3 a 4 meses antes da viagem. Para os tours guiados nas férias de julho e no fim de ano, reserve com bastante antecedência, porque as agendas fecham cedo. Os guias digitais podem ser comprados a qualquer momento, com acesso imediato.',
+      a: 'Depende do serviço. A consultoria pode ser contratada a qualquer momento, e quanto antes, melhor. Para o roteiro personalizado, o ideal é contratar com 6 meses de antecedência. Para os tours guiados nas férias de julho e no fim de ano, reserve com bastante antecedência, porque as agendas fecham cedo. Os guias digitais podem ser comprados a qualquer momento, com acesso imediato.',
     },
   ];
 
@@ -478,7 +477,7 @@ function roteiro(data) {
 ${heroSplit(`
     <p class="eyebrow">Roteiro sob medida</p>
     <h1>A sua viagem inteira, desenhada dia a dia para quem vai viajar.</h1>
-    <p class="lead">Um roteiro personalizado que leva em conta os seus desejos, o orçamento e o ritmo de quem vai viajar, com experiências autênticas escolhidas pela Mel, uma a uma.</p>
+    <p class="lead">Um roteiro personalizado que leva em conta os seus desejos, o orçamento e o ritmo de quem vai viajar, com experiências autênticas sugeridas pela Mel.</p>
     <p class="price">${precoServico(s)}</p>
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-roteiro">Começar pelo diagnóstico</a>
@@ -497,11 +496,11 @@ ${heroSplit(`
 <section class="section">
   <div class="wrap">
     <aside class="card destaque destaque-img">
-      ${img('roteiro/trello', 'Roteiro personalizado em um quadro do Trello, aberto num notebook e num celular', { sizes: '(min-width: 760px) 340px, 100vw' })}
+      ${img('roteiro/trello', 'Roteiro personalizado numa plataforma digital, aberto num notebook e num celular', { sizes: '(min-width: 760px) 340px, 100vw' })}
       <div>
         <p class="eyebrow">Como você recebe o roteiro</p>
         <h3>No computador e no celular</h3>
-        <p>O roteiro chega num quadro do Trello, organizado dia a dia e por período, com fotos, horários, endereços, reservas e links de caminhada no Google Maps. Você consulta no computador durante o planejamento e no celular durante a viagem.</p>
+        <p>O roteiro chega numa plataforma digital, organizado dia a dia e por período, com fotos, horários, endereços, links de caminhada no Google Maps e links seguros para os sites oficiais. Na mesma plataforma você faz a gestão da viagem: anexa as reservas das atrações, os ingressos e o que mais contratar, e tem todo o plano à mão no computador e no celular.</p>
       </div>
     </aside>
   </div>
@@ -522,7 +521,7 @@ ${heroSplit(`
   <div class="wrap">
     <h2 class="center">O que o roteiro inclui</h2>
     <ul class="checklist grid-2">
-      <li>A programação completa, dia a dia, com atrações, restaurantes e experiências escolhidos para você</li>
+      <li>A programação completa, dia a dia, com atrações, restaurantes e experiências sugeridos para você</li>
       <li>Organização dos serviços necessários, como traslados e guias</li>
       <li>Mapas e orientações de deslocamento, com trajetos, aplicativos e transporte</li>
       <li>Guia de informações úteis sobre os destinos</li>
@@ -593,7 +592,7 @@ ${heroSplit(`
     <h2 class="center">Consultoria em 2 etapas</h2>
     <ol class="steps steps-2">
       <li><strong>Conexão.</strong> Um questionário para a Mel conhecer você e entender as suas dúvidas e necessidades.</li>
-      <li><strong>Reunião de consultoria.</strong> Uma conversa por vídeo para esclarecer as dúvidas e ajudar você a tomar as melhores decisões.</li>
+      <li><strong>Reunião de consultoria.</strong> Uma conversa por vídeo de 1h30 para esclarecer as dúvidas e ajudar você a tomar as melhores decisões.</li>
     </ol>
   </div>
 </section>
@@ -607,6 +606,7 @@ ${heroSplit(`
       <li>Cidades-base, roteiro geral e meios de transporte entre elas</li>
       <li>Hospedagem de acordo com o seu orçamento</li>
       <li>Curadoria de atrações, restaurantes e lojas</li>
+      <li>Validação de um roteiro que você já montou</li>
     </ul>
     <p class="small">Precisa de tudo planejado, dia a dia? Veja o <a href="${url('/roteiro-sob-medida/')}">roteiro sob medida</a>.</p>
   </div>

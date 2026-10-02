@@ -178,7 +178,7 @@
       "id": "eixo-historico",
       "imagem": "tours/monumental-classico",
       "imagem_alt": "Pont Alexandre III ao entardecer, com a cúpula dos Invalides ao fundo",
-      "nome": "Eixo Histórico",
+      "nome": "Eixo Histórico e Republicano",
       "subtitulo": "Monumentos icônicos",
       "duracao": "3h30",
       "precos": [
@@ -207,7 +207,7 @@
       "imagem": "tours/dia-inteiro-grandes-monumentos",
       "imagem_alt": "Jardin des Tuileries com as cadeiras verdes e a Torre Eiffel ao fundo",
       "nome": "Paris Clássica",
-      "duracao": "7h",
+      "duracao": "8h",
       "precos": [
         {
           "grupo": "até 4 pessoas",
@@ -281,7 +281,6 @@
         "Recepção presencial",
         "Orientação no bairro",
         "Como usar metrô e transporte",
-        "Dicas práticas de segurança",
         "Comércio local"
       ],
       "ideal_para": "Quem quer chegar em Paris com toda tranquilidade: conhecer o bairro, o transporte e os pequenos costumes que facilitam a estadia."
