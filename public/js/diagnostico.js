@@ -161,7 +161,7 @@
       `Quem viaja: ${quem}`,
       `Estilo: ${labelOf('estilo')}`,
       `Investimento nos serviços: ${val('investimento')}`,
-      `Indicação do site: ${indicacao}`,
+      `Diagnóstico do site: ${indicacao}`,
     ];
     if (val('obs')) linhas.push(`Observação: ${val('obs')}`);
     if (origem) linhas.push(`Ref.: site · ${origem}`);

@@ -78,7 +78,7 @@ const provaRapida = (m) => `
 <section class="proof" aria-label="Números da Mel Rolan">
   <div class="wrap proof-grid">
     <p><strong>${m.nota_satisfacao} de 10</strong><span>na pesquisa de satisfação dos clientes (${m.pesquisas_satisfacao} respostas, ${m.periodo_pesquisas})</span></p>
-    <p><strong>${m.familias_atendidas} famílias</strong><span>atendidas em roteiros, consultorias e tours</span></p>
+    <p><strong>+${m.familias_atendidas.replace('+', '')} clientes</strong><span>atendidas em roteiros, consultorias e tours</span></p>
     <p><strong>${m.anos_na_franca} anos</strong><span>vivendo em Paris</span></p>
   </div>
 </section>`;
@@ -138,7 +138,7 @@ function home(data) {
   const textos = {
     tours: {
       para: 'conhecer Paris a pé, no próprio ritmo, com uma guia brasileira ao lado.',
-      txt: `Oito roteiros ao ar livre pelas ruas, praças e jardins que contam a história da cidade. Só o seu grupo, em português, com tempo para o café, as fotos e as pausas que o seu grupo pedir.`,
+      txt: `Roteiros ao ar livre pelas ruas, praças e jardins que contam a história da cidade. Só o seu grupo, em português, com tempo para o café, as fotos e as pausas que o seu grupo pedir.`,
       cta: 'Ver os tours',
     },
     roteiro: {
@@ -188,7 +188,7 @@ function home(data) {
   <div class="wrap hero-content">
     <p class="eyebrow">Mel Rolan Travel Designer · Paris</p>
     <h1>A sua viagem à França, pensada por quem é especialista em viajantes brasileiros.</h1>
-    <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que desde 2021 já planejou a viagem de mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras.</p>
+    <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que desde 2021 já planejou a viagem de mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros.</p>
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-hero">Descobrir o que combina com a minha viagem</a>
       <a class="btn btn-ghost" href="#como-ajudar">Ver tours e serviços</a>
@@ -233,7 +233,7 @@ ${provaRapida(m)}
       </article>
       <article class="card perfil">
         <h3>Casais</h3>
-        <p>Bairros para caminhar sem pressa, mesas escolhidas com cuidado e tempo livre de verdade, sem transformar a viagem numa maratona de pontos turísticos.</p>
+        <p>Bairros para caminhar sem pressa, mesas escolhidas com cuidado e programação com respiro, sem transformar a viagem numa maratona de pontos turísticos.</p>
       </article>
       <article class="card perfil">
         <h3>Várias gerações e amigos</h3>
@@ -278,8 +278,8 @@ ${depoimentos(m)}
     ${img('home/mel', 'Mel Rolan sorrindo às margens do Sena, em Paris', { cls: 'photo', sizes: '(min-width: 900px) 540px, 100vw' })}
     <div>
     <h2>Quem desenha a sua viagem</h2>
-    <p>Sou a Mel, brasileira, bacharel em Turismo, e já viajei pelos quatro cantos da França, um repertório que entra em cada roteiro. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos.</p>
-    <p>Formação, estrada e método: é isso que eu coloco em cada viagem. Curadoria não se baixa. Ela se vive.</p>
+    <p>Sou a Mel, brasileira, bacharel em Turismo, e já viajei pelos quatro cantos da França, um repertório que entra em cada roteiro. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos.</p>
+    
     <a class="btn btn-ghost" href="${url('/sobre/')}">Conhecer a história da Mel</a>
     </div>
   </div>
@@ -381,7 +381,7 @@ ${ctaFinal(data, 'Quer ajuda para escolher o tour?', 'Conte quem viaja e quando,
     path: '/tours-em-paris/',
     title: 'Tours privativos em Paris em português | Mel Rolan',
     description:
-      'Tours privativos a pé em Paris, em português, com guia brasileira. Oito roteiros ao ar livre, a partir de € 280 por grupo.',
+      'Tours privativos a pé em Paris, em português, com guia brasileira. Roteiros ao ar livre, a partir de € 280 por grupo.',
     body,
     og: 'og/tours.jpg',
     servico: 'tours',
@@ -512,7 +512,7 @@ ${heroSplit(`
     <p class="center lead-sm">O mesmo cuidado, com um desenho diferente para cada perfil.</p>
     <div class="grid-4 perfis">
       <article class="card perfil"><h3>Famílias com crianças</h3><p>Programação no ritmo de cada idade, com pausas, parquinhos e restaurantes onde as crianças comem bem.</p></article>
-      <article class="card perfil"><h3>Casais</h3><p>Bairros para caminhar sem pressa, mesas escolhidas com cuidado e tempo livre de verdade entre um programa e outro.</p></article>
+      <article class="card perfil"><h3>Casais</h3><p>Bairros para caminhar sem pressa, mesas escolhidas com cuidado e programação com respiro entre um passeio e outro.</p></article>
       <article class="card perfil"><h3>Várias gerações e amigos</h3><p>Um roteiro que agrada a todas as idades, com deslocamentos pensados para o fôlego de cada um.</p></article>
       <article class="card perfil"><h3>Viajando sozinha</h3><p>Hospedagem em bairros tranquilos, programas que funcionam bem para quem está sozinha e liberdade para montar cada dia do seu jeito.</p></article>
     </div>
@@ -705,7 +705,7 @@ function sobre(data) {
     ${img('sobre/retrato', 'Retrato de Mel Rolan diante da Basílica de Sacré-Cœur, em Montmartre', { cls: 'photo', sizes: '(min-width: 900px) 460px, 100vw', eager: true })}
     <div>
     <p>Sou a Mel, brasileira, bacharel em Turismo, e moro em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos. Já viajei pelos quatro cantos da França, e esse repertório entra em cada roteiro. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens.</p>
-    <p>Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} famílias brasileiras em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos. Muitas já planejam voltar.</p>
+    <p>Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos. Muitas já planejam voltar.</p>
     <p>O meu trabalho vai além de apontar monumentos. Eu traduzo os códigos culturais de Paris para quem chega do Brasil, crio conexões e garanto que a viagem seja fluida, com escolhas que fazem sentido para cada pessoa.</p>
     </div>
   </div>
@@ -723,7 +723,7 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e r
   return {
     path: '/sobre/',
     title: 'Sobre a Mel Rolan | Travel designer brasileira em Paris',
-    description: `Conheça a Mel Rolan, brasileira que vive em Paris há mais de 5 anos e já acompanhou mais de 650 famílias em roteiros, consultorias e tours.`,
+    description: `Conheça a Mel Rolan, brasileira que vive em Paris há mais de 5 anos e já acompanhou mais de 650 clientes em roteiros, consultorias e tours.`,
     body,
     og: 'og/sobre.jpg',
     jsonld: [breadcrumbLd([['Início', '/'], ['Sobre a Mel', '/sobre/']])],
@@ -945,7 +945,7 @@ function diagnostico(data) {
         <label><input type="checkbox" name="procura" value="tours"> Passeios guiados em Paris, em português</label>
         <label><input type="checkbox" name="procura" value="roteiro"> A viagem inteira planejada, dia a dia</label>
         <label><input type="checkbox" name="procura" value="consultoria"> Uma conversa com a Mel para planejar, tirar dúvidas ou validar</label>
-        <label><input type="checkbox" name="procura" value="guias"> Um guia para planejar por conta própria</label>
+        <label><input type="checkbox" name="procura" value="guias"> Um guia digital (PDF) para planejar por conta própria</label>
         <label><input type="checkbox" name="procura" value="nao-sei"> Ainda não sei, quero uma indicação</label>
       </fieldset>
 
