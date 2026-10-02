@@ -1,6 +1,7 @@
-// Consentimento de cookies (CNIL/LGPD) e medição com o Google Analytics 4.
-// O GA só é carregado depois que a pessoa clica em "Aceitar", e só no domínio oficial
-// (o endereço de teste mostra o aviso, mas não envia dados).
+// Consentimento de cookies (CNIL/LGPD), medição com o Google Analytics 4 e publicidade (remarketing).
+// Duas finalidades, escolhidas separadamente: medição (analytics_storage) e publicidade
+// (ad_storage, ad_user_data, ad_personalization). O Google só é carregado depois de uma escolha
+// que aceite ao menos uma delas, e só no domínio oficial (o endereço de teste mostra o aviso, mas não envia dados).
 (function () {
   var GA_ID = 'G-L71ZP46QX2';
   var KEY = 'mr_consent'; // mesma chave usada nas páginas de venda dos guias
@@ -18,15 +19,26 @@
     ad_personalization: 'denied',
   });
 
+  // Escolha guardada: { analytics: bool, ads: bool } ou null (nunca escolheu, expirou ou veio de versão antiga sem a finalidade de publicidade).
   function lerEscolha() {
     try {
       var s = JSON.parse(localStorage.getItem(KEY) || 'null');
-      if (s && (s.status === 'granted' || s.status === 'denied') && Date.now() - (s.timestamp || 0) < VALIDADE) return s.status;
+      if (s && typeof s.ads === 'boolean' && Date.now() - (s.timestamp || 0) < VALIDADE) return { analytics: s.status === 'granted', ads: s.ads };
     } catch (e) {}
     return null;
   }
-  function salvarEscolha(status) {
-    try { localStorage.setItem(KEY, JSON.stringify({ status: status, date: new Date().toISOString(), timestamp: Date.now() })); } catch (e) {}
+  // status continua 'granted' / 'denied' para a medição, no mesmo formato das páginas de venda dos guias.
+  function salvarEscolha(e) {
+    try { localStorage.setItem(KEY, JSON.stringify({ status: e.analytics ? 'granted' : 'denied', ads: e.ads, date: new Date().toISOString(), timestamp: Date.now() })); } catch (err) {}
+  }
+  function aplicarConsentimento(e) {
+    var a = e.ads ? 'granted' : 'denied';
+    gtag('consent', 'update', {
+      analytics_storage: e.analytics ? 'granted' : 'denied',
+      ad_storage: a,
+      ad_user_data: a,
+      ad_personalization: a,
+    });
   }
 
   // Eventos: ficam na fila até o GA ser carregado (se nunca for, nada é enviado).
@@ -39,7 +51,6 @@
   function carregarGA() {
     if (carregado || !PROD) return;
     carregado = true;
-    gtag('consent', 'update', { analytics_storage: 'granted' });
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
@@ -53,7 +64,7 @@
   function apagarCookiesGA() {
     document.cookie.split(';').forEach(function (c) {
       var nome = c.split('=')[0].trim();
-      if (/^_ga/.test(nome)) {
+      if (/^(_ga|_gid|_gat|_gcl_|_gac_)/.test(nome)) {
         ['', '; domain=.melrolan.com.br', '; domain=' + location.hostname].forEach(function (d) {
           document.cookie = nome + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
         });
@@ -75,7 +86,7 @@
     } catch (e) {}
   }
   window.mrOrigem = function () {
-    try { return lerEscolha() === 'granted' ? sessionStorage.getItem('mr_origem') || '' : ''; } catch (e) { return ''; }
+    try { var e = lerEscolha(); return e && e.analytics ? sessionStorage.getItem('mr_origem') || '' : ''; } catch (e) { return ''; }
   };
 
   // Aviso de cookies
@@ -85,21 +96,28 @@
     banner.hidden = !v;
     document.body.classList.toggle('cookie-aberto', v);
   }
-  function escolher(status) {
-    salvarEscolha(status);
+  function marcarOpcoes(e) {
+    var m = document.getElementById('consent-medicao'), p = document.getElementById('consent-anuncios');
+    if (m) m.checked = !!(e && e.analytics);
+    if (p) p.checked = !!(e && e.ads);
+  }
+  function escolher(modo) {
+    var e = modo === 'all' ? { analytics: true, ads: true }
+      : modo === 'none' ? { analytics: false, ads: false }
+      : { analytics: !!(document.getElementById('consent-medicao') || {}).checked, ads: !!(document.getElementById('consent-anuncios') || {}).checked };
+    salvarEscolha(e);
     mostrarAviso(false);
-    if (status === 'granted') { registrarOrigem(); carregarGA(); }
-    else {
-      if (carregado) gtag('consent', 'update', { analytics_storage: 'denied' });
-      apagarCookiesGA();
-      try { sessionStorage.removeItem('mr_origem'); } catch (e) {}
-    }
+    aplicarConsentimento(e);
+    if (e.analytics) registrarOrigem();
+    else { try { sessionStorage.removeItem('mr_origem'); } catch (err) {} }
+    if (e.analytics || e.ads) carregarGA();
+    if (!e.analytics || !e.ads) apagarCookiesGA();
   }
 
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-consent]');
     if (b) { escolher(b.dataset.consent); return; }
-    if (e.target.closest('[data-cookie-prefs]')) { mostrarAviso(true); return; }
+    if (e.target.closest('[data-cookie-prefs]')) { marcarOpcoes(lerEscolha()); mostrarAviso(true); return; }
 
     var a = e.target.closest('a');
     if (!a) return;
@@ -132,6 +150,9 @@
   }
 
   var escolha = lerEscolha();
-  if (escolha === 'granted') { registrarOrigem(); carregarGA(); }
-  else if (escolha === null) mostrarAviso(true);
+  if (escolha) {
+    aplicarConsentimento(escolha);
+    if (escolha.analytics) registrarOrigem();
+    if (escolha.analytics || escolha.ads) carregarGA();
+  } else { marcarOpcoes(null); mostrarAviso(true); }
 })();
