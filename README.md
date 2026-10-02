@@ -32,3 +32,9 @@ Para trocar uma foto, mande a nova imagem em alta resolução: ela é recortada,
 ```
 node build.mjs
 ```
+
+## Publicação e troca de domínio
+
+- Modo de teste (padrão): o site sai em `mel-cmyk.github.io/webpage`, bloqueado para o Google.
+- Modo de produção: criar a variável de repositório `SITE_PROD` com o valor `true` e rodar o fluxo "Publicar site". O arquivo `public/CNAME` mantém o domínio `www.melrolan.com.br`.
+- Os links de compra dos guias apontam para a loja (`loja.melrolan.com.br`), campo `link_compra` em `data/ofertas.json`.
