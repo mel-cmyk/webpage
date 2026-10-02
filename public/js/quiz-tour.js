@@ -29,7 +29,7 @@
       Object.entries(p.o[Number(el.value)][1]).forEach(([id, v]) => { pontos[id] = (pontos[id] || 0) + v; });
     });
     const ordem = Object.entries(pontos).sort((a, b) => b[1] - a[1]);
-    return { primeiro: ordem[0] && ordem[0][0], segundo: ordem[1] && ordem[1][0], empate: ordem[1] && ordem[0][1] - ordem[1][1] <= 1 };
+    return { primeiro: ordem[0] && ordem[0][0], segundo: ordem[1] && ordem[1][0], terceiro: ordem[2] && ordem[2][0], empate: ordem[1] && ordem[0][1] - ordem[1][1] <= 1 };
   }
 
   function finish() {
@@ -38,11 +38,10 @@
     const s = r.segundo ? cfg.tours[r.segundo] : null;
     const msg = `Olá! Fiz o quiz no site da Mel Rolan e o meu tour ideal deu ${t.nome}. Gostaria de consultar datas.`;
     const wa = `${cfg.whatsapp}?text=${encodeURIComponent(msg)}`;
-    const alternativa = s
-      ? `<div class="result-extra"><p class="eyebrow">${r.empate ? 'Quase empatado' : 'Também tem a ver com você'}</p><h3>${s.nome}</h3>${s.subtitulo ? `<p class="card-sub">${s.subtitulo}</p>` : ''}<a href="${s.pagina}">Ver o tour</a></div>`
-      : '';
+    const extra = (id, rotulo) => { const x = id ? cfg.tours[id] : null; return x ? `<div class="result-extra"><p class="eyebrow">${rotulo}</p><h3>${x.nome}</h3>${x.subtitulo ? `<p class="card-sub">${x.subtitulo}</p>` : ''}<a href="${x.pagina}">Ver o tour</a></div>` : ''; };
+    const alternativa = extra(r.segundo, '2º lugar para você') + extra(r.terceiro, '3º lugar para você');
     result.innerHTML = `
-      <p class="eyebrow">O seu tour ideal</p>
+      <p class="eyebrow">1º lugar: o seu tour ideal</p>
       <h2>${t.nome}</h2>
       ${t.subtitulo ? `<p class="subtitulo">${t.subtitulo}</p>` : ''}
       <p>${t.ideal}</p>

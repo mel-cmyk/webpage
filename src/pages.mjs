@@ -335,7 +335,7 @@ ${heroSplit(`
 <section class="section">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
-    <p class="center">Em dúvida entre dois? <a href="${url('/qual-tour-combina-com-voce/')}" data-cta="tours-quiz">Faça o quiz e descubra o tour que combina com você</a>.</p>
+    <div class="quiz-cta center"><p class="eyebrow">Em dúvida sobre qual escolher?</p><p>Responda 6 perguntas rápidas e descubra os tours que mais combinam com você.</p><a class="btn" href="${url('/qual-tour-combina-com-voce/')}" data-cta="tours-quiz">Fazer o quiz do tour ideal</a></div>
     <div class="grid-3 cards">
       ${data.tours
         .map(
@@ -410,7 +410,7 @@ ${heroSplit(`
     <div>
       <h2>Roteiro</h2>
       <ol class="route">${t.roteiro.map((r) => `<li>${esc(r)}</li>`).join('')}</ol>
-      <p class="small">Tour 100% ao ar livre. Ponto de encontro: ${esc(t.encontro)}.</p>
+      <p class="small">Tour 100% ao ar livre. Percurso: ${esc(t.encontro)}.</p>
     </div>
     <div>
       <h2>Valores</h2>
