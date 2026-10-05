@@ -83,13 +83,16 @@ function footer(data) {
 const cookieBanner = () => `
 <div class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-titulo" hidden>
   <p id="cookie-titulo" class="cookie-title">Cookies e privacidade</p>
-  <p>Você escolhe cada finalidade separadamente. Nada é ativado antes da sua escolha, e você pode mudar de ideia quando quiser, pelo rodapé. <a href="${url('/privacidade/')}">Política de privacidade</a></p>
-  <label class="cookie-opt"><input type="checkbox" id="consent-medicao"><span><strong>Medição.</strong> Google Analytics: mostra como o site é usado, para melhorarmos o conteúdo.</span></label>
-  <label class="cookie-opt"><input type="checkbox" id="consent-anuncios"><span><strong>Publicidade.</strong> Google Ads: mede o resultado dos anúncios e mostra anúncios da Mel Rolan a quem já visitou o site.</span></label>
+  <p>Usamos cookies para medir o uso do site (Google Analytics) e para a publicidade (Google Ads), que mede os anúncios e mostra anúncios da Mel Rolan a quem já visitou o site. Nada é ativado antes da sua escolha, e você pode mudar de ideia quando quiser, pelo rodapé. <a href="${url('/privacidade/')}">Política de privacidade</a></p>
+  <div class="cookie-opcoes" id="cookie-opcoes" hidden>
+    <label class="cookie-opt"><input type="checkbox" id="consent-medicao"><span><strong>Medição.</strong> Google Analytics: mostra como o site é usado, para melhorarmos o conteúdo.</span></label>
+    <label class="cookie-opt"><input type="checkbox" id="consent-anuncios"><span><strong>Publicidade.</strong> Google Ads: mede o resultado dos anúncios e mostra anúncios da Mel Rolan a quem já visitou o site.</span></label>
+  </div>
   <div class="cookie-actions">
     <button type="button" class="btn btn-small" data-consent="all">Aceitar tudo</button>
     <button type="button" class="btn btn-small" data-consent="none">Recusar tudo</button>
-    <button type="button" class="btn btn-small" data-consent="custom">Salvar escolhas</button>
+    <button type="button" class="btn btn-small" id="cookie-mais" data-consent="more">Personalizar</button>
+    <button type="button" class="btn btn-small" id="cookie-salvar" data-consent="custom" hidden>Salvar escolhas</button>
   </div>
 </div>`;
 

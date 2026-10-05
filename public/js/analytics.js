@@ -101,12 +101,19 @@
     if (m) m.checked = !!(e && e.analytics);
     if (p) p.checked = !!(e && e.ads);
   }
+  function expandirOpcoes(v) {
+    var o = document.getElementById('cookie-opcoes'), m = document.getElementById('cookie-mais'), s = document.getElementById('cookie-salvar');
+    if (o) o.hidden = !v;
+    if (m) m.hidden = v;
+    if (s) s.hidden = !v;
+  }
   function escolher(modo) {
     var e = modo === 'all' ? { analytics: true, ads: true }
       : modo === 'none' ? { analytics: false, ads: false }
       : { analytics: !!(document.getElementById('consent-medicao') || {}).checked, ads: !!(document.getElementById('consent-anuncios') || {}).checked };
     salvarEscolha(e);
     mostrarAviso(false);
+    expandirOpcoes(false);
     aplicarConsentimento(e);
     if (e.analytics) registrarOrigem();
     else { try { sessionStorage.removeItem('mr_origem'); } catch (err) {} }
@@ -116,8 +123,8 @@
 
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-consent]');
-    if (b) { escolher(b.dataset.consent); return; }
-    if (e.target.closest('[data-cookie-prefs]')) { marcarOpcoes(lerEscolha()); mostrarAviso(true); return; }
+    if (b) { if (b.dataset.consent === 'more') { expandirOpcoes(true); return; } escolher(b.dataset.consent); return; }
+    if (e.target.closest('[data-cookie-prefs]')) { marcarOpcoes(lerEscolha()); expandirOpcoes(true); mostrarAviso(true); return; }
 
     var a = e.target.closest('a');
     if (!a) return;
@@ -154,5 +161,5 @@
     aplicarConsentimento(escolha);
     if (escolha.analytics) registrarOrigem();
     if (escolha.analytics || escolha.ads) carregarGA();
-  } else { marcarOpcoes(null); mostrarAviso(true); }
+  } else { marcarOpcoes(null); expandirOpcoes(false); mostrarAviso(true); }
 })();
