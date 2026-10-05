@@ -78,14 +78,18 @@ function footer(data) {
 </footer>`;
 }
 
-// Aviso de cookies: aparece até a pessoa escolher. Aceitar e Recusar têm o mesmo peso (regra da CNIL).
+// Aviso de cookies: aparece até a pessoa escolher. Duas finalidades, escolhidas separadamente.
+// Aceitar tudo, Recusar tudo e Salvar escolhas têm o mesmo peso (regra da CNIL).
 const cookieBanner = () => `
 <div class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-titulo" hidden>
-  <p id="cookie-titulo" class="cookie-title">Cookies de medição</p>
-  <p>Usamos o Google Analytics para entender como o site é usado e melhorar a sua experiência. Ele só é ativado se você aceitar. Você pode mudar de ideia quando quiser, pelo rodapé. <a href="${url('/privacidade/')}">Política de privacidade</a></p>
+  <p id="cookie-titulo" class="cookie-title">Cookies e privacidade</p>
+  <p>Você escolhe cada finalidade separadamente. Nada é ativado antes da sua escolha, e você pode mudar de ideia quando quiser, pelo rodapé. <a href="${url('/privacidade/')}">Política de privacidade</a></p>
+  <label class="cookie-opt"><input type="checkbox" id="consent-medicao"><span><strong>Medição.</strong> Google Analytics: mostra como o site é usado, para melhorarmos o conteúdo.</span></label>
+  <label class="cookie-opt"><input type="checkbox" id="consent-anuncios"><span><strong>Publicidade.</strong> Google Ads: mede o resultado dos anúncios e mostra anúncios da Mel Rolan a quem já visitou o site.</span></label>
   <div class="cookie-actions">
-    <button type="button" class="btn btn-small" data-consent="granted">Aceitar</button>
-    <button type="button" class="btn btn-small" data-consent="denied">Recusar</button>
+    <button type="button" class="btn btn-small" data-consent="all">Aceitar tudo</button>
+    <button type="button" class="btn btn-small" data-consent="none">Recusar tudo</button>
+    <button type="button" class="btn btn-small" data-consent="custom">Salvar escolhas</button>
   </div>
 </div>`;
 
