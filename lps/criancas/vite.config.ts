@@ -1,0 +1,35 @@
+import path from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig(({ isSsrBuild }) => ({
+  base: process.env.LP_BASE || '/',
+  server: {
+    port: 3000,
+    host: '0.0.0.0',
+  },
+  plugins: [react()],
+  build: {
+    target: 'es2020',
+    minify: isSsrBuild ? false : 'esbuild',
+    cssMinify: !isSsrBuild,
+    rollupOptions: isSsrBuild
+      ? {}
+      : {
+          output: {
+            manualChunks: {
+              'vendor-react': ['react', 'react-dom', 'react-dom/client'],
+              'vendor-icons': ['lucide-react'],
+            },
+            entryFileNames: 'assets/[name]-[hash].js',
+            chunkFileNames: 'assets/[name]-[hash].js',
+            assetFileNames: 'assets/[name]-[hash].[ext]',
+          },
+        },
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '.'),
+    }
+  }
+}));

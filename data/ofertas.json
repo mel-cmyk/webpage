@@ -1,6 +1,7 @@
 {
+  "_sobre_os_guias": "Em cada guia, preco é o valor normal. O bloco promocao vale até valido_ate (horário de Paris); depois dessa data o guia volta sozinho ao preco, sem publicar de novo. Para encerrar ou trocar a promoção, edite ou apague o bloco promocao.",
   "_sobre_este_arquivo": "Fonte única de preços e ofertas do site melrolan.com.br. Todas as páginas leem daqui: mudou um valor aqui, muda no site inteiro. Tours seguem o catálogo aprovado em tours.melrolan.com.br.",
-  "_atualizado_em": "2026-10-02",
+  "_atualizado_em": "2026-10-06",
   "marca": {
     "anos_na_franca": "5+",
     "familias_atendidas": "650+",
@@ -293,12 +294,17 @@
       "imagem_alt": "Capa do guia Paris com Crianças",
       "nome": "Paris com Crianças: o guia completo para famílias brasileiras",
       "preco": 297,
-      "preco_de": 397,
-      "parcelamento": "4x de R$ 74,25 sem juros",
+      "parcelas": 4,
+      "promocao": {
+        "preco": 147,
+        "preco_de": 297,
+        "valido_ate": "2026-10-09T23:59:59+02:00",
+        "rotulo": "Oferta de outubro"
+      },
       "paginas": 158,
       "bonus": "Checklist de Viagem com Crianças para Paris (valor R$ 98)",
       "link_compra": "https://loja.melrolan.com.br/product-page/guia-paris-com-criancas",
-      "landing": "https://criancas.melrolan.com.br"
+      "landing": "/guias/paris-com-criancas/"
     },
     {
       "id": "guia-paris-essencial",
@@ -306,10 +312,15 @@
       "imagem_alt": "Capa do guia Paris Essencial",
       "nome": "Guia Paris Essencial: roteiro estratégico de 4 dias + 6 bate-voltas",
       "preco": 152,
-      "preco_de": 297,
+      "promocao": {
+        "preco": 97,
+        "preco_de": 152,
+        "valido_ate": "2026-10-09T23:59:59+02:00",
+        "rotulo": "Oferta de outubro"
+      },
       "descricao": "Roteiro pronto de 4 dias em Paris, organizado dia a dia, e 6 sugestões de bate-volta para conhecer os arredores.",
       "link_compra": "https://loja.melrolan.com.br/product-page/guia-paris-essencial-roteiro-estrat%C3%A9gico-de-4-dias-6-dias-bate-e-voltas",
-      "landing": "https://essencial.melrolan.com.br"
+      "landing": "/guias/paris-essencial/"
     }
   ]
 }

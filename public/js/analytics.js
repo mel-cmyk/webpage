@@ -10,14 +10,28 @@
   var carregado = false;
   var fila = [];
 
+  // Páginas dos guias (body[data-medicao="avancada"]): Consent Mode avançado. A tag do Google carrega desde o início,
+  // com tudo negado por padrão (sem cookies, só pings sem identificação), e passa a usar cookies se a pessoa aceitar.
+  // As demais páginas continuam carregando o Google só depois do aceite.
+  var AVANCADO = document.body.dataset.medicao === 'avancada';
+  var ADS_ID = 'AW-17904451325';
+  var META_ID = document.body.dataset.metaPixel || ''; // pixel da Meta: só nas páginas que o declaram e só com consentimento de publicidade
+  var LOJA = 'loja.melrolan.com.br';
+  var PARAMS_LOJA = /^(gclid|gbraid|wbraid|fbclid|utm_[a-z0-9_]+)$/i;
+  var metaCarregado = false;
+  var metaFila = [];
+
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
-  gtag('consent', 'default', {
+  var padrao = {
     analytics_storage: 'denied',
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
-  });
+  };
+  if (AVANCADO) padrao.wait_for_update = 500; // dá meio segundo para a escolha guardada chegar antes do primeiro envio
+  gtag('consent', 'default', padrao);
+  if (AVANCADO) gtag('set', 'url_passthrough', true);
 
   // Escolha guardada: { analytics: bool, ads: bool } ou null (nunca escolheu, expirou ou veio de versão antiga sem a finalidade de publicidade).
   function lerEscolha() {
@@ -39,14 +53,72 @@
       ad_user_data: a,
       ad_personalization: a,
     });
+    if (META_ID) { if (e.ads) carregarMeta(); else if (metaCarregado) window.fbq('consent', 'revoke'); }
   }
 
   // Eventos: ficam na fila até o GA ser carregado (se nunca for, nada é enviado).
   function track(nome, params) {
-    if (carregado) gtag('event', nome, params || {});
-    else fila.push([nome, params || {}]);
+    params = normalizar(params || {});
+    if (carregado) gtag('event', nome, params);
+    else fila.push([nome, params]);
+    meta(nome, params);
   }
   window.mrTrack = track;
+
+  // Itens com valido_ate: se a promoção venceu com a página aberta, vale o preco_normal.
+  // Os dois campos auxiliares não vão para o Google.
+  function normalizar(params) {
+    if (!params.items || !params.items.some(function (it) { return it.valido_ate; })) return params;
+    var total = 0, mudou = false;
+    var itens = params.items.map(function (it) {
+      if (!it.valido_ate) { total += (it.price || 0) * (it.quantity || 1); return it; }
+      var c = {};
+      for (var k in it) c[k] = it[k];
+      if (Date.now() >= Date.parse(it.valido_ate)) { c.price = it.preco_normal; mudou = true; }
+      delete c.valido_ate; delete c.preco_normal;
+      total += (c.price || 0) * (c.quantity || 1);
+      return c;
+    });
+    var p = {};
+    for (var k in params) p[k] = params[k];
+    p.items = itens;
+    if (mudou && p.value != null) p.value = total;
+    return p;
+  }
+
+  // Pixel da Meta: só existe depois do consentimento de publicidade.
+  function meta(nome, params) {
+    var map = { view_item: 'ViewContent', begin_checkout: 'InitiateCheckout' };
+    if (!META_ID || !map[nome]) return;
+    var it = (params.items || [])[0] || {};
+    var dados = ['track', map[nome], { content_name: it.item_name, content_ids: [it.item_id], content_type: 'product', value: params.value, currency: params.currency }];
+    if (metaCarregado) window.fbq.apply(window, dados);
+    else metaFila.push(dados);
+  }
+  function carregarMeta() {
+    if (metaCarregado || !PROD || !META_ID) return;
+    metaCarregado = true;
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+      t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('set', 'autoConfig', false, META_ID);
+    window.fbq('init', META_ID);
+    window.fbq('track', 'PageView');
+    metaFila.forEach(function (d) { window.fbq.apply(window, d); });
+    metaFila = [];
+  }
+
+  // Leva gclid, gbraid, wbraid, fbclid e UTMs da visita para o link da loja.
+  function decorarLink(a) {
+    try {
+      var u = new URL(a.href);
+      if (u.hostname !== LOJA) return;
+      new URLSearchParams(location.search).forEach(function (v, k) { if (PARAMS_LOJA.test(k)) u.searchParams.set(k, v); });
+      a.href = u.toString();
+    } catch (e) {}
+  }
 
   function carregarGA() {
     if (carregado || !PROD) return;
@@ -56,7 +128,10 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
     gtag('js', new Date());
-    gtag('config', GA_ID);
+    if (AVANCADO) {
+      gtag('config', GA_ID, { linker: { domains: ['melrolan.com.br', 'www.melrolan.com.br', LOJA], accept_incoming: true } });
+      gtag('config', ADS_ID);
+    } else gtag('config', GA_ID);
     fila.forEach(function (e) { gtag('event', e[0], e[1]); });
     fila = [];
   }
@@ -139,8 +214,12 @@
       for (var k in extra) p[k] = extra[k];
       track('whatsapp_click', p);
     } else if (a.dataset.checkout) {
+      // O link da loja é decorado no clique, antes da navegação. A LP abre a loja em nova aba, então o evento não se perde.
+      decorarLink(a);
       var g = JSON.parse(a.dataset.checkout);
-      track('begin_checkout', { currency: 'BRL', value: g.price, items: [g] });
+      var p = { currency: 'BRL', value: g.price * (g.quantity || 1), items: [g] };
+      if (a.dataset.slot) p.creative_slot = a.dataset.slot;
+      track('begin_checkout', p);
     } else if (a.dataset.item) {
       track('select_item', { item_list_name: 'tours', items: [JSON.parse(a.dataset.item)] });
     } else if (a.dataset.contato) {
@@ -162,4 +241,5 @@
     if (escolha.analytics) registrarOrigem();
     if (escolha.analytics || escolha.ads) carregarGA();
   } else { marcarOpcoes(null); expandirOpcoes(false); mostrarAviso(true); }
+  if (AVANCADO) carregarGA();
 })();

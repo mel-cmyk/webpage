@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Reconstrói o site logo depois que a promoção dos guias vence (valido_ate em data/ofertas.json), para o HTML voltar ao preço normal.
+  # Os horários são UTC. 22:05 UTC = 00:05 em Paris no dia 10/10/2026 (horário de verão); os seguintes são reforços.
+  # As páginas dos guias também trocam o preço sozinhas no navegador, sem depender desta publicação.
+  schedule:
+    - cron: '5 22 9 10 *'
+    - cron: '5 23 9 10 *'
+    - cron: '5 4 10 10 *'
 
 permissions:
   contents: read
@@ -22,6 +29,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Instalar as páginas dos guias
+        run: npm ci --prefix lps
       # Modo de teste (padrão): endereço github.io/webpage, fora do Google.
       # Modo de produção: criar a variável de repositório SITE_PROD com o valor true
       # (Settings > Secrets and variables > Actions > Variables) e rodar o fluxo de novo.
