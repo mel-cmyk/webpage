@@ -9,6 +9,10 @@ export const asset = (p) => {
   return `${url(p)}?v=${versoes[p]}`;
 };
 
+// Páginas que podem receber anúncios: usam o Consent Mode avançado (analytics.js, body data-medicao="avancada").
+// A regra de envio no endereço de teste, em public/js/analytics.js (TESTE), deve acompanhar esta lista.
+const PAGINAS_ANUNCIOS = /^\/($|(tours-em-paris|roteiro-sob-medida|consultoria|diagnostico|guias-de-paris|qual-tour-combina-com-voce)\/)/;
+
 const nav = [
   ['/tours-em-paris/', 'Tours em Paris'],
   ['/roteiro-sob-medida/', 'Roteiro sob medida'],
@@ -83,7 +87,7 @@ function footer(data) {
 export const cookieBanner = () => `
 <div class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-titulo" hidden>
   <p id="cookie-titulo" class="cookie-title">Cookies e privacidade</p>
-  <p>Usamos cookies para medir o uso do site (Google Analytics) e para a publicidade (Google Ads), que mede os anúncios e mostra anúncios da Mel Rolan a quem já visitou o site. Nada é ativado antes da sua escolha, e você pode mudar de ideia quando quiser, pelo rodapé. <a href="${url('/privacidade/')}">Política de privacidade</a></p>
+  <p>Usamos cookies para medir o uso do site (Google Analytics) e para a publicidade (Google Ads), que mede os anúncios e mostra anúncios da Mel Rolan a quem já visitou o site. Os cookies só são gravados depois da sua escolha. Se você recusar, nas páginas de serviços e de venda o Google ainda recebe sinais de uso sem cookies, como a visita a uma página e o clique em um botão, para medir os anúncios de forma agregada. Esses sinais não incluem o seu nome nem o seu contato. Você pode mudar de ideia quando quiser, pelo rodapé. <a href="${url('/privacidade/')}">Política de privacidade</a></p>
   <div class="cookie-opcoes" id="cookie-opcoes" hidden>
     <label class="cookie-opt"><input type="checkbox" id="consent-medicao"><span><strong>Medição.</strong> Google Analytics: mostra como o site é usado, para melhorarmos o conteúdo.</span></label>
     <label class="cookie-opt"><input type="checkbox" id="consent-anuncios"><span><strong>Publicidade.</strong> Google Ads: mede o resultado dos anúncios e mostra anúncios da Mel Rolan a quem já visitou o site.</span></label>
@@ -131,7 +135,7 @@ ${STAGING ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <link rel="stylesheet" href="${asset('/css/site.css')}">
 ${ld}
 </head>
-<body data-servico="${esc(servico)}">
+<body data-servico="${esc(servico)}"${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 ${header(path)}
 <main id="conteudo">

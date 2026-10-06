@@ -6,13 +6,21 @@
   var GA_ID = 'G-L71ZP46QX2';
   var KEY = 'mr_consent'; // mesma chave usada nas páginas de venda dos guias
   var VALIDADE = 182 * 24 * 60 * 60 * 1000; // a escolha vale 6 meses, depois perguntamos de novo
-  var PROD = /(^|\.)melrolan\.com\.br$/.test(location.hostname);
+  // REGRA ÚNICA DE ENVIO: onde o Google (GA4 e Google Ads) pode receber dados.
+  // - Domínio oficial (melrolan.com.br): todas as páginas.
+  // - Endereço de teste (mel-cmyk.github.io/webpage): só as páginas que recebem anúncios, para validar a medição
+  //   antes da troca de domínio. Quando o site passar a ser servido só pelo domínio oficial, apague a linha
+  //   TESTE e use PROD = OFICIAL. A lista de páginas deve acompanhar PAGINAS_ANUNCIOS em src/layout.mjs.
+  var OFICIAL = /(^|\.)melrolan\.com\.br$/.test(location.hostname);
+  var TESTE = location.hostname === 'mel-cmyk.github.io' && /^\/webpage\/($|(guias|guias-de-paris|tours-em-paris|roteiro-sob-medida|consultoria|diagnostico|qual-tour-combina-com-voce)\/)/.test(location.pathname);
+  var PROD = OFICIAL || TESTE;
   var carregado = false;
   var fila = [];
 
-  // Páginas dos guias (body[data-medicao="avancada"]): Consent Mode avançado. A tag do Google carrega desde o início,
-  // com tudo negado por padrão (sem cookies, só pings sem identificação), e passa a usar cookies se a pessoa aceitar.
-  // As demais páginas continuam carregando o Google só depois do aceite.
+  // Páginas que podem receber anúncios (body[data-medicao="avancada"]: guias, início, tours, quiz, roteiro, consultoria,
+  // diagnóstico e guias de Paris): Consent Mode avançado. A tag do Google carrega desde o início, com tudo negado por
+  // padrão (sem cookies, só sinais de uso sem cookies), e passa a usar cookies se a pessoa aceitar.
+  // As demais páginas (privacidade, aviso legal, sobre, parcerias) carregam o Google só depois do aceite.
   var AVANCADO = document.body.dataset.medicao === 'avancada';
   var ADS_ID = 'AW-17904451325';
   var META_ID = document.body.dataset.metaPixel || ''; // pixel da Meta: só nas páginas que o declaram e só com consentimento de publicidade
@@ -96,7 +104,7 @@
     else metaFila.push(dados);
   }
   function carregarMeta() {
-    if (metaCarregado || !PROD || !META_ID) return;
+    if (metaCarregado || !OFICIAL || !META_ID) return; // pixel da Meta só no domínio oficial
     metaCarregado = true;
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
@@ -110,13 +118,28 @@
     metaFila = [];
   }
 
-  // Leva gclid, gbraid, wbraid, fbclid e UTMs da visita para o link da loja.
+  // Leva gclid, gbraid, wbraid, fbclid e UTMs da visita pelos links do site, da loja e do WhatsApp (neste, na linha "Ref.").
+  // Só usa o endereço da página atual: nada é gravado, então funciona mesmo com cookies recusados.
+  // Roda no clique, antes da navegação.
   function decorarLink(a) {
     try {
+      var h = a.getAttribute('href') || '';
+      if (!h || h.charAt(0) === '#' || !/^(https?:)?\/\/|^\/|^[a-z0-9]/i.test(h)) return;
       var u = new URL(a.href);
-      if (u.hostname !== LOJA) return;
-      new URLSearchParams(location.search).forEach(function (v, k) { if (PARAMS_LOJA.test(k)) u.searchParams.set(k, v); });
-      a.href = u.toString();
+      if (u.hostname === 'wa.me') {
+        var origem = window.mrOrigem();
+        if (!origem) return;
+        var m = /[?&]text=([^&]*)/.exec(u.search);
+        var t = m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : 'Olá! Vim pelo site da Mel Rolan.';
+        if (t.indexOf('Ref.:') !== -1) return;
+        u.search = '?text=' + encodeURIComponent(t + '\nRef.: site · ' + origem);
+        a.href = u.toString();
+        return;
+      }
+      if (u.hostname !== LOJA && u.hostname !== location.hostname) return;
+      var mudou = false;
+      new URLSearchParams(location.search).forEach(function (v, k) { if (PARAMS_LOJA.test(k)) { u.searchParams.set(k, v); mudou = true; } });
+      if (mudou) a.href = u.toString();
     } catch (e) {}
   }
 
@@ -147,21 +170,27 @@
     });
   }
 
-  // Origem da visita (Google, Instagram, anúncio...), guardada só durante a visita e só com consentimento.
+  // Origem da visita (Google, Instagram, anúncio...).
+  // Pelos parâmetros do endereço (UTMs, gclid...), que vão de página em página pelos links do site. Não grava nada.
+  function origemDaUrl() {
+    var q = new URLSearchParams(location.search);
+    return q.get('utm_source') ? q.get('utm_source') + (q.get('utm_medium') ? ' / ' + q.get('utm_medium') : '') + (q.get('utm_campaign') ? ' / ' + q.get('utm_campaign') : '')
+      : (q.get('gclid') || q.get('gbraid') || q.get('wbraid')) ? 'google / anuncio'
+      : q.get('fbclid') ? 'meta'
+      : '';
+  }
+  // Com consentimento de medição, a origem da primeira página da visita (inclui quem veio do Instagram, do Google etc.)
+  // fica guardada só durante a visita.
   function registrarOrigem() {
     try {
       if (sessionStorage.getItem('mr_origem')) return;
-      var q = new URLSearchParams(location.search);
-      var origem = q.get('utm_source') ? q.get('utm_source') + (q.get('utm_medium') ? ' / ' + q.get('utm_medium') : '') + (q.get('utm_campaign') ? ' / ' + q.get('utm_campaign') : '')
-        : q.get('gclid') ? 'google / anuncio'
-        : q.get('fbclid') ? 'meta'
-        : document.referrer && new URL(document.referrer).hostname.indexOf('melrolan.com.br') === -1 ? new URL(document.referrer).hostname.replace(/^www\./, '').replace(/^l\./, '').replace(/^lm\./, '')
-        : '';
+      var origem = origemDaUrl()
+        || (document.referrer && new URL(document.referrer).hostname.indexOf('melrolan.com.br') === -1 ? new URL(document.referrer).hostname.replace(/^www\./, '').replace(/^l\./, '').replace(/^lm\./, '') : '');
       if (origem) sessionStorage.setItem('mr_origem', origem);
     } catch (e) {}
   }
   window.mrOrigem = function () {
-    try { var e = lerEscolha(); return e && e.analytics ? sessionStorage.getItem('mr_origem') || '' : ''; } catch (e) { return ''; }
+    try { var e = lerEscolha(); var g = e && e.analytics ? sessionStorage.getItem('mr_origem') : ''; return g || origemDaUrl(); } catch (er) { return origemDaUrl(); }
   };
 
   // Aviso de cookies
@@ -203,6 +232,7 @@
 
     var a = e.target.closest('a');
     if (!a) return;
+    decorarLink(a);
     var servico = document.body.dataset.servico || 'geral';
     var extra = {};
     try { if (a.dataset.lead) extra = JSON.parse(a.dataset.lead); } catch (err) {}
@@ -214,8 +244,7 @@
       for (var k in extra) p[k] = extra[k];
       track('whatsapp_click', p);
     } else if (a.dataset.checkout) {
-      // O link da loja é decorado no clique, antes da navegação. A LP abre a loja em nova aba, então o evento não se perde.
-      decorarLink(a);
+      // O link já foi decorado acima. As páginas abrem a loja em nova aba, então o evento não se perde.
       var g = JSON.parse(a.dataset.checkout);
       var p = { currency: 'BRL', value: g.price * (g.quantity || 1), items: [g] };
       if (a.dataset.slot) p.creative_slot = a.dataset.slot;

@@ -1,7 +1,7 @@
 // Páginas legais: política de privacidade e aviso legal.
 import { url, esc } from './helpers.mjs';
 
-const ATUALIZACAO = '2 de outubro de 2026';
+const ATUALIZACAO = '6 de outubro de 2026';
 
 // Dados do controlador, iguais aos da política de privacidade já publicada no site atual.
 const RAZAO_SOCIAL = '44.907.716 Melissa Rolan Pinto';
@@ -33,6 +33,7 @@ export function privacidade(data) {
 <p><strong>Diagnóstico da viagem.</strong> Quando você conclui o diagnóstico, suas respostas, seu primeiro nome e seu WhatsApp são enviados à nossa equipe e ficam registrados na nossa ferramenta de atendimento (Wix), para que possamos falar com você sobre a viagem. A mensagem de WhatsApp com as respostas só é enviada se você decidir enviá-la.</p>
 <p><strong>Dados de navegação, com o seu consentimento.</strong> Se você aceitar os cookies de medição, o Google Analytics registra informações como páginas visitadas, origem da visita (por exemplo, uma busca no Google ou o Instagram), tipo de dispositivo e navegador, região aproximada e cliques em botões, como os de WhatsApp. Esses dados são usados de forma agregada, para entender como o site é usado.</p>
 <p><strong>Publicidade, com o seu consentimento.</strong> Se você aceitar a publicidade, o Google Ads e o Google Analytics usam identificadores e as páginas que você visitou no site para medir o resultado dos nossos anúncios e para mostrar anúncios da Mel Rolan Travel Designer a quem já visitou o site (remarketing). Não enviamos ao Google o seu nome nem o seu telefone.</p>
+<p><strong>Sinais de uso sem cookies, mesmo se você recusar.</strong> Nas páginas de serviços e de venda (início, tours, quiz, roteiro sob medida, consultoria, diagnóstico e guias), a tag do Google é carregada desde a abertura da página, no modo avançado de consentimento do Google (Consent Mode). Se você recusar os cookies, ela não grava cookies nem usa identificadores de publicidade, mas pode enviar ao Google sinais de uso, como a visita a uma página, o clique em um botão, o endereço da página (que pode conter o código do anúncio em que você clicou) e dados técnicos do navegador e do dispositivo, para medirmos os anúncios de forma agregada. Esses sinais não incluem o seu nome nem o seu contato.</p>
 
 <h2>3. Para que usamos os dados</h2>
 <ul>
@@ -48,13 +49,14 @@ export function privacidade(data) {
 <p>Tratamos dados para executar um contrato ou atender a um pedido seu antes da contratação, para cumprir obrigações legais, com base no nosso legítimo interesse (por exemplo, a segurança do site) e com o seu consentimento (cookies de medição, cookies de publicidade e comunicações de marketing). O consentimento pode ser retirado a qualquer momento.</p>
 
 <h2>5. Cookies</h2>
-<p>O site usa cookies e tecnologias semelhantes para duas finalidades. No aviso de cookies, você escolhe cada uma separadamente, e nada é ativado antes da sua escolha.</p>
+<p>O site usa cookies e tecnologias semelhantes para duas finalidades. No aviso de cookies, você escolhe cada uma separadamente, e nenhum cookie é gravado antes da sua escolha. Nas páginas de serviços e de venda, a tag do Google é carregada desde o início e, enquanto o consentimento não for dado, funciona sem cookies (veja abaixo).</p>
 <ul>
   <li><strong>Medição:</strong> Google Analytics, com os cookies _ga e _ga_*, de até 13 meses.</li>
   <li><strong>Publicidade:</strong> Google Ads e Google Analytics, com cookies como _gcl_au e _gcl_aw, de até 90 dias, e o envio de identificadores de publicidade ao Google. Servem para medir os nossos anúncios e para mostrar anúncios da Mel Rolan Travel Designer, no Google, no YouTube e em sites parceiros do Google, a quem já visitou o site.</li>
+  <li><strong>Sem consentimento (Consent Mode avançado):</strong> sem cookies e sem identificadores de publicidade, o Google pode receber os sinais de uso descritos na seção 2, nas páginas de serviços e de venda.</li>
 </ul>
-<p>Se você clicar em "Recusar tudo", nenhum desses cookies é gravado e o site continua funcionando normalmente. A sua escolha fica guardada no seu navegador por 6 meses; depois disso, perguntamos de novo. Você pode mudar a escolha a qualquer momento pelo link "Preferências de cookies", no rodapé. Para limitar anúncios personalizados em geral, você também pode usar as configurações de anúncios da sua conta Google.</p>
-<p>As páginas de venda dos guias e a loja têm seus próprios avisos de cookies, com escolha independente.</p>
+<p>Se você clicar em "Recusar tudo", nenhum desses cookies é gravado, o Google continua a receber apenas os sinais sem cookies descritos acima, e o site funciona normalmente. A sua escolha fica guardada no seu navegador por 6 meses; depois disso, perguntamos de novo. Você pode mudar a escolha a qualquer momento pelo link "Preferências de cookies", no rodapé. Para limitar anúncios personalizados em geral, você também pode usar as configurações de anúncios da sua conta Google.</p>
+<p>As páginas de venda dos guias usam o mesmo aviso e a mesma escolha do site. A loja (loja.melrolan.com.br) tem o seu próprio aviso de cookies, com escolha independente.</p>
 
 <h2>6. Com quem compartilhamos os dados</h2>
 <p>Apenas com quem precisa deles para o serviço funcionar: GitHub (hospedagem do site), Google (medição e publicidade, se você aceitar cada uma), Meta, pelo WhatsApp (as conversas que você inicia conosco), Wix (loja, pagamentos dos guias e registro dos contatos feitos pelo diagnóstico), provedores de e-mail e de agenda e profissionais de contabilidade. Não vendemos dados pessoais.</p>
