@@ -6,6 +6,7 @@ import { layout } from './src/layout.mjs';
 import { pages } from './src/pages.mjs';
 import { SITE_URL, STAGING, url } from './src/helpers.mjs';
 import { vigente } from './src/oferta.mjs';
+import { paginaRedirecionamento } from './src/redirect.mjs';
 
 const OUT = 'dist';
 const data = JSON.parse(fs.readFileSync('data/ofertas.json', 'utf8'));
@@ -57,10 +58,7 @@ for (const [from, to] of Object.entries(redirecionamentos)) {
   const file = path.join(OUT, from, 'index.html');
   if (!fs.existsSync(file)) {
     fs.mkdirSync(path.dirname(file), { recursive: true });
-    fs.writeFileSync(
-      file,
-      `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Página transferida</title><link rel="canonical" href="${encodeURI(canon)}"><meta http-equiv="refresh" content="0; url=${encodeURI(alvo)}"></head><body><p>Esta página mudou de endereço: <a href="${encodeURI(alvo)}">continuar</a>.</p><script>location.replace(${JSON.stringify(encodeURI(alvo))} + location.search);</script></body></html>`
-    );
+    fs.writeFileSync(file, paginaRedirecionamento(alvo, canon));
   }
   netlify.push(`${encodeURI(from)}  ${encodeURI(to)}  301`);
 }
