@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F7F4EA;
+    color: #22274F;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Lora', serif;
+  }
+}
+
+@layer utilities {
+  .bg-navy { background-color: #22274F; }
+  .text-navy { color: #22274F; }
+  .bg-gold { background-color: #C19450; }
+  .text-gold { color: #C19450; }
+  .border-gold { border-color: #C19450; }
+  .bg-cream { background-color: #F7F4EA; }
+  .text-cream { color: #F7F4EA; }
+  .bg-light-blue { background-color: #A2CBED; }
+  .text-light-blue { color: #A2CBED; }
+}

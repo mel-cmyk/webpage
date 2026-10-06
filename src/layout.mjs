@@ -4,7 +4,7 @@ import { url, esc, wa, STAGING, SITE_URL, PUBLIC_URL } from './helpers.mjs';
 
 // Endereço com versão (?v=) para CSS e JS: quando o arquivo muda, o navegador baixa a versão nova.
 const versoes = {};
-const asset = (p) => {
+export const asset = (p) => {
   if (!versoes[p]) versoes[p] = crypto.createHash('sha1').update(fs.readFileSync('public' + p)).digest('hex').slice(0, 8);
   return `${url(p)}?v=${versoes[p]}`;
 };
@@ -80,7 +80,7 @@ function footer(data) {
 
 // Aviso de cookies: aparece até a pessoa escolher. Duas finalidades, escolhidas separadamente.
 // Aceitar tudo, Recusar tudo e Salvar escolhas têm o mesmo peso (regra da CNIL).
-const cookieBanner = () => `
+export const cookieBanner = () => `
 <div class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-titulo" hidden>
   <p id="cookie-titulo" class="cookie-title">Cookies e privacidade</p>
   <p>Usamos cookies para medir o uso do site (Google Analytics) e para a publicidade (Google Ads), que mede os anúncios e mostra anúncios da Mel Rolan a quem já visitou o site. Nada é ativado antes da sua escolha, e você pode mudar de ideia quando quiser, pelo rodapé. <a href="${url('/privacidade/')}">Política de privacidade</a></p>

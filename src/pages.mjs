@@ -1,6 +1,7 @@
 // Conteúdo de todas as páginas. Preços, números e contatos vêm de data/ofertas.json.
 import { url, esc, eur, brl, money, wa, menorPreco, img, SITE_URL } from './helpers.mjs';
 import { privacidade, avisoLegal } from './legal.mjs';
+import { vigente, itemGA } from './oferta.mjs';
 
 const servico = (data, id) => data.servicos.find((s) => s.id === id);
 
@@ -20,7 +21,7 @@ const heroSplit = (inner, key, alt) => `
 
 // Itens no formato do GA4 (comércio eletrônico), usados nos eventos de visualização e clique.
 const tourItem = (t) => ({ item_id: t.id, item_name: t.nome, item_category: 'tour', price: menorPreco(t), currency: 'EUR' });
-const guiaItem = (g) => ({ item_id: g.id, item_name: g.nome, item_category: 'guia digital', price: g.preco, currency: 'BRL' });
+const guiaItem = (g) => itemGA(g);
 const attr = (o) => esc(JSON.stringify(o));
 
 const breadcrumbLd = (itens) => ({
@@ -228,7 +229,7 @@ ${provaRapida(m)}
       <article class="card perfil">
         <h3>Famílias com crianças</h3>
         <p>Cada idade tem um ritmo, uma hora de soneca e um limite de caminhada. Parquinhos, pausas e restaurantes onde as crianças comem bem já entram no plano.</p>
-        <p class="small">Para planejar por conta própria, conheça o <a href="${esc(data.guias[0].landing)}">guia Paris com Crianças</a>.</p>
+        <p class="small">Para planejar por conta própria, conheça o <a href="${url(data.guias[0].landing)}">guia Paris com Crianças</a>.</p>
       </article>
       <article class="card perfil">
         <h3>Casais</h3>
@@ -641,19 +642,19 @@ function guias(data) {
   <div class="wrap grid-2 cards">
     ${data.guias
       .map(
-        (g) => `<article class="card card-h">
+        (g) => { const v = vigente(g); return `<article class="card card-h">
       ${img(g.imagem, g.imagem_alt, { cls: 'cover', sizes: '(min-width: 600px) 200px, 100vw' })}
       <div class="card-body">
       <h2 class="h3">${esc(g.nome)}</h2>
       ${g.paginas ? `<p>${g.paginas} páginas de curadoria real${g.bonus ? `, com bônus: ${esc(g.bonus)}` : ''}.</p>` : ''}
       ${g.descricao ? `<p>${esc(g.descricao)}</p>` : ''}
-      <p class="price">${g.preco_de ? `<s>${brl(g.preco_de)}</s> ` : ''}${brl(g.preco)}${g.parcelamento ? `<span>ou ${esc(g.parcelamento)}</span>` : '<span aria-hidden="true">&nbsp;</span>'}</p>
+      <p class="price">${v.preco_de ? `<s>${brl(v.preco_de)}</s> ` : ''}${brl(v.preco)}${v.parcela ? `<span>ou ${v.parcelas}x de ${brl(v.parcela)} sem juros</span>` : '<span aria-hidden="true">&nbsp;</span>'}</p>
       <div class="actions stack guia-actions">
         <a class="btn btn-small" href="${esc(g.link_compra)}" data-checkout="${attr(guiaItem(g))}">Comprar agora</a>
-        <a class="btn btn-small btn-ghost" href="${esc(g.landing)}">Conhecer o guia</a>
+        <a class="btn btn-small btn-ghost" href="${url(g.landing)}">Conhecer o guia</a>
       </div>
       </div>
-    </article>`
+    </article>`; }
       )
       .join('')}
   </div>
@@ -683,7 +684,7 @@ ${ctaFinal(data, 'Prefere ajuda personalizada?', 'Se quiser alguém desenhando a
         image: `${SITE_URL}/img/${g.imagem}-600.webp`,
         description: g.paginas ? `Guia digital em PDF com ${g.paginas} páginas.` : 'Guia digital em PDF.',
         brand: { '@type': 'Brand', name: 'Mel Rolan Travel Designer' },
-        offers: { '@type': 'Offer', price: g.preco, priceCurrency: 'BRL', availability: 'https://schema.org/InStock', url: g.link_compra },
+        offers: { '@type': 'Offer', price: vigente(g).preco, priceCurrency: 'BRL', availability: 'https://schema.org/InStock', url: g.link_compra },
       })),
       breadcrumbLd([['Início', '/'], ['Guias de Paris', '/guias-de-paris/']]),
     ],
@@ -918,7 +919,7 @@ function diagnostico(data) {
     whatsapp: data.marca.whatsapp_site_link,
     base: url(''),
     servicos: Object.fromEntries(data.servicos.map((s) => [s.id, { nome: s.nome, preco: precoServico(s), pagina: url(s.pagina + '/') }])),
-    guia: { nome: data.guias[0].nome, link: data.guias[0].landing },
+    guia: { nome: data.guias[0].nome, link: url(data.guias[0].landing) },
     quizTour: url('/qual-tour-combina-com-voce/'),
     wix: data.integracoes && {
       clientId: data.integracoes.wix_forms.client_id,

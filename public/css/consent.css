@@ -1,0 +1,15 @@
+/* Aviso de cookies das páginas dos guias (visual igual ao do site, sem depender do site.css). */
+#cookie-banner { --navy: #22274f; --gold: #c19450; --gold-dark: #86632b; --cream: #f7f4ea; --radius: 14px; position: fixed; z-index: 70; left: 12px; right: 12px; bottom: 12px; background: var(--cream); color: var(--navy); border: 1px solid var(--gold); border-radius: var(--radius); box-shadow: 0 10px 40px rgba(34, 39, 79, 0.25); padding: 16px 18px; font: 0.9rem/1.5 'Poppins', system-ui, sans-serif; max-height: calc(100vh - 24px); overflow-y: auto; }
+#cookie-banner[hidden] { display: none !important; }
+#cookie-banner p { margin: 0 0 10px; }
+#cookie-banner a { color: var(--navy); text-decoration-color: var(--gold); text-underline-offset: 3px; }
+#cookie-banner .cookie-title { font-family: 'Lora', Georgia, serif; font-weight: 600; font-size: 1.05rem; }
+#cookie-banner [hidden] { display: none !important; }
+#cookie-banner .cookie-opt { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 10px; cursor: pointer; }
+#cookie-banner .cookie-opt input { flex: none; width: 18px; height: 18px; margin-top: 3px; accent-color: var(--navy); }
+#cookie-banner .cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+#cookie-banner .btn { flex: 1 1 110px; display: inline-block; background: var(--navy); color: #fff; border: 2px solid var(--navy); border-radius: 999px; padding: 0.55em 1.1em; font: 500 0.92rem 'Poppins', system-ui, sans-serif; cursor: pointer; text-align: center; }
+#cookie-banner .btn:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
+/* No celular, o aviso fica acima da barra fixa de compra */
+@media (max-width: 699px) { #cookie-banner { bottom: calc(env(safe-area-inset-bottom, 0px) + 76px); max-height: 60vh; } }
+@media (min-width: 700px) { #cookie-banner { left: auto; right: 24px; bottom: 24px; max-width: 460px; } }

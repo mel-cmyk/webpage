@@ -1,13 +1,19 @@
 // Gera o site estático em dist/. Uso: node build.mjs
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { layout } from './src/layout.mjs';
 import { pages } from './src/pages.mjs';
 import { SITE_URL, STAGING, url } from './src/helpers.mjs';
+import { vigente } from './src/oferta.mjs';
 
 const OUT = 'dist';
 const data = JSON.parse(fs.readFileSync('data/ofertas.json', 'utf8'));
 data.integracoes = JSON.parse(fs.readFileSync('data/integracoes.json', 'utf8'));
+
+// "A partir de" dos guias acompanha o menor preço vigente (promoção ou preço normal).
+const cardGuias = data.servicos.find((x) => x.id === 'guias');
+cardGuias.preco_a_partir_de = Math.min(...data.guias.map((g) => vigente(g).preco));
 
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.cpSync('public', OUT, { recursive: true });
@@ -18,6 +24,13 @@ for (const p of all) {
   const file = path.join(OUT, p.path, 'index.html');
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html);
+}
+
+// Páginas de venda dos guias (React), montadas por lps/build.mjs. Precisa de: npm ci --prefix lps
+const lpsPaginas = data.guias.map((g) => ({ path: g.landing, title: g.nome }));
+if (process.env.SKIP_LPS !== '1') {
+  if (!fs.existsSync('lps/node_modules')) throw new Error('Falta instalar as páginas dos guias: rode "npm ci --prefix lps" (ou use SKIP_LPS=1 para pular).');
+  execFileSync('node', ['lps/build.mjs'], { stdio: 'inherit' });
 }
 
 // 404
@@ -57,7 +70,7 @@ fs.writeFileSync(path.join(OUT, '_redirects'), netlify.join('\n') + '\n');
 const today = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(
   path.join(OUT, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...all, ...lpsPaginas]
     .map((p) => `  <url><loc>${SITE_URL}${p.path}</loc><lastmod>${today}</lastmod></url>`)
     .join('\n')}\n</urlset>\n`
 );
@@ -72,10 +85,10 @@ fs.writeFileSync(
 const m = data.marca;
 fs.writeFileSync(
   path.join(OUT, 'llms.txt'),
-  `# Mel Rolan Travel Designer\n\n> Tours privativos em português em Paris, roteiros sob medida, consultoria de viagem e guias digitais para brasileiros. Mel Rolan é brasileira, vive em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos e já atendeu mais de ${m.familias_atendidas.replace('+', '')} famílias em todos os serviços. Nota ${m.nota_satisfacao} de 10 em ${m.pesquisas_satisfacao} pesquisas de satisfação (${m.periodo_pesquisas}).\n\n## Páginas\n${all
+  `# Mel Rolan Travel Designer\n\n> Tours privativos em português em Paris, roteiros sob medida, consultoria de viagem e guias digitais para brasileiros. Mel Rolan é brasileira, vive em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos e já atendeu mais de ${m.familias_atendidas.replace('+', '')} famílias em todos os serviços. Nota ${m.nota_satisfacao} de 10 em ${m.pesquisas_satisfacao} pesquisas de satisfação (${m.periodo_pesquisas}).\n\n## Páginas\n${[...all, ...lpsPaginas]
     .filter((p) => p.path !== '/404/')
     .map((p) => `- [${p.title.split(' | ')[0]}](${SITE_URL}${p.path})`)
     .join('\n')}\n\n## Contato\n- WhatsApp: ${m.whatsapp_site}\n- E-mail: ${m.email}\n`
 );
 
-console.log(`OK: ${all.length} páginas geradas em ${OUT}/`);
+console.log(`OK: ${all.length} páginas geradas em ${OUT}/ (+ ${lpsPaginas.length} páginas de guias)`);

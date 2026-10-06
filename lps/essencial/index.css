@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-paris-navy { background-color: #22274F; }
+  .text-paris-navy { color: #22274F; }
+  .bg-paris-beige { background-color: #F7F4EA; }
+  .text-paris-gold { color: #C19450; }
+  .border-paris-gold { border-color: #C19450; }
+  .bg-paris-gold { background-color: #C19450; }
+}
