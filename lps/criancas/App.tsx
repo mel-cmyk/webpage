@@ -212,7 +212,7 @@ const Hero: React.FC = () => {
             </div>
 
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#22274F] leading-[1.15] mb-3 sm:mb-5">
-              O que fazer em Paris com crianças: lista curada por idade.
+              O que fazer em Paris com crianças: seleção testada e organizada por idade.
             </h1>
 
             <p className="text-sm sm:text-lg md:text-xl text-[#22274F]/90 font-sans font-medium leading-snug sm:leading-relaxed mb-3 sm:mb-4 max-w-2xl mx-auto md:mx-0">
