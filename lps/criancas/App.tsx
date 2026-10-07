@@ -212,15 +212,16 @@ const Hero: React.FC = () => {
             </div>
 
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#22274F] leading-[1.15] mb-3 sm:mb-5">
-              Paris com crianças, sem improviso.
+              O que fazer em Paris com crianças: lista curada por idade.
             </h1>
 
-            <p className="text-sm sm:text-lg md:text-xl text-[#22274F]/90 font-sans font-medium leading-snug sm:leading-relaxed mb-2 sm:mb-4 max-w-2xl mx-auto md:mx-0">
-              158 páginas de curadoria real, feitas por quem é mãe, mora em Paris e já acompanhou centenas de famílias no planejamento de suas viagens.
+            <p className="text-sm sm:text-lg md:text-xl text-[#22274F]/90 font-sans font-medium leading-snug sm:leading-relaxed mb-3 sm:mb-4 max-w-2xl mx-auto md:mx-0">
+              Atrações, parquinhos, metrô com carrinho e restaurantes, organizados por faixa etária, de 0 a 12 anos. São 158 páginas de curadoria real.
             </p>
 
-            <p className="text-xs sm:text-base text-[#22274F]/75 font-sans leading-relaxed mb-4 sm:mb-6 max-w-xl mx-auto md:mx-0">
-              PDF com acesso imediato. Você recebe por e-mail logo após a compra.
+            {/* Aviso de escopo: confirma, logo no topo, o que o guia é e o que não é */}
+            <p className="text-xs sm:text-base text-[#22274F] font-sans leading-relaxed mb-4 sm:mb-6 max-w-xl mx-auto md:mx-0 border-l-4 border-[#C19450] bg-white/70 px-3 py-2 rounded-r text-left">
+              É uma lista curada para você montar os dias da sua família, não um roteiro dia a dia.
             </p>
 
             <div className="flex flex-col items-center md:items-start w-full max-w-md mx-auto md:mx-0">
@@ -231,12 +232,15 @@ const Hero: React.FC = () => {
                 className="w-full text-sm sm:text-base min-h-[52px] py-3.5"
               />
               <p className="text-[11px] sm:text-xs text-[#22274F]/80 font-sans text-center md:text-left mt-2 w-full">
-                ou {oferta.parcelas}x de R$ {formatPriceBR(oferta.parcela ?? 0)} sem juros no cartão. Também aceitamos Pix.
+                PDF com entrega imediata por e-mail. Ou {oferta.parcelas}x de R$ {formatPriceBR(oferta.parcela ?? 0)} sem juros no cartão. Também aceitamos Pix.
               </p>
-                            <div className={`flex items-center justify-center md:justify-start gap-1.5 text-xs text-[#22274F]/85 font-sans mt-2.5`}>
+              <div className="flex items-center justify-center md:justify-start gap-1.5 text-xs text-[#22274F]/85 font-sans mt-2">
                 <ShieldCheck className="w-4 h-4 text-[#C19450] shrink-0" aria-hidden="true" />
                 <span>Garantia de 7 dias</span>
               </div>
+              <p className="text-xs sm:text-sm text-[#22274F] font-sans font-medium leading-snug mt-4 pt-3 border-t border-[#22274F]/10 w-full text-center md:text-left">
+                Mel Rolan, Travel Designer especialista em viajantes brasileiros, já atendeu mais de 650 clientes.
+              </p>
             </div>
           </div>
 
@@ -294,6 +298,40 @@ const Hero: React.FC = () => {
               )}
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Para quem é este guia ---
+
+const ForWhoSection: React.FC = () => {
+  const perfis = [
+    {
+      titulo: "Primeira viagem a Paris com crianças",
+      texto: "Famílias que estão planejando a primeira viagem com os filhos e querem uma lista curada de atrações, parquinhos e restaurantes por idade para começar."
+    },
+    {
+      titulo: "Quem já foi e quer novas ideias",
+      texto: "Famílias que já conhecem Paris e procuram novas ideias de atrações, parquinhos e restaurantes, separadas por faixa etária."
+    }
+  ];
+
+  return (
+    <section className="py-16 md:py-20 bg-white border-b border-[#22274F]/5">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <SectionHeader 
+          title="Para quem é este guia" 
+          subtitle="Para Quem É"
+        />
+        <div className="grid sm:grid-cols-2 gap-6 text-left">
+          {perfis.map((perfil, index) => (
+            <div key={index} className="bg-[#F7F4EA] p-6 sm:p-7 rounded-lg border border-[#22274F]/5 shadow-sm">
+              <h3 className="font-serif font-bold text-lg text-[#22274F] mb-2">{perfil.titulo}</h3>
+              <p className="text-base text-[#22274F]/85 font-sans leading-relaxed">{perfil.texto}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -571,7 +609,7 @@ const SampleImagesSection: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeader 
           title="Veja por dentro: páginas do guia" 
-          subtitle="Este é o nível de detalhe de todas as 158 páginas: endereço, metrô, horário, idade recomendada e a opinião da Mel."
+          subtitle="Três páginas reais do guia. Cada indicação traz endereço, metrô, horário, idade recomendada e a opinião da Mel."
         />
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
@@ -708,11 +746,11 @@ const AuthorSection: React.FC = () => {
               Sobre a Autora
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#F7F4EA] leading-tight mb-6">
-              Feito por quem vive Paris com famílias brasileiras.
+              Feito por uma especialista em viajantes brasileiros.
             </h2>
             
             <p className="text-base sm:text-lg text-[#F7F4EA]/90 font-sans leading-relaxed mb-6">
-              Sou a Mel, sou mãe e moro em Paris há mais de 5 anos. Já acompanhei mais de 650 clientes brasileiros em roteiros personalizados, consultorias e passeios. Este guia é o material que eu faria para uma amiga querida que estivesse organizando a viagem da vida com os filhos.
+              Sou a Mel, Travel Designer especialista em viajantes brasileiros. Já acompanhei mais de 650 clientes em roteiros personalizados, consultorias e passeios. Sou mãe e moro em Paris há mais de 5 anos. Este guia é o material que eu faria para uma amiga querida que estivesse organizando a viagem da vida com os filhos.
             </p>
 
             <div className="inline-flex items-center gap-3 bg-white/5 border border-[#C19450]/30 px-5 py-3 rounded-md">
@@ -1048,20 +1086,16 @@ const FAQSection: React.FC = () => {
 
   const faqs: FAQItem[] = [
     {
-      question: "Para qual idade é o guia?",
-      answer: "Para famílias com crianças de 0 a 12 anos. As atrações e experiências trazem a faixa etária indicada."
+      question: "É um roteiro?",
+      answer: "Não. É uma lista curada de atrações, parquinhos, restaurantes e dicas de metrô, organizada por idade, para você montar os dias da sua família do seu jeito. Se preferir um roteiro sob medida, a Mel também faz, e leitores do guia têm 10% de desconto."
     },
     {
-      question: "Serve para quem vai com bebê?",
-      answer: "Sim. O guia trata do metrô com carrinho, bebê e crianças pequenas."
+      question: "Em que formato recebo?",
+      answer: "Em PDF, por e-mail, logo após a confirmação do pagamento, com o link para baixar. Se não encontrar o e-mail, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
     },
     {
-      question: "É um roteiro dia a dia?",
-      answer: "O guia não oferece um roteiro pronto. É uma curadoria para servir de inspiração, para que cada família monte o próprio roteiro. Se preferir um roteiro sob medida, a Mel também faz, e leitores do guia têm 10% de desconto."
-    },
-    {
-      question: "Como recebo o guia?",
-      answer: "Você recebe o PDF por e-mail logo após a confirmação do pagamento, com o link para baixar. Se não encontrar o e-mail, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
+      question: "Serve para a idade dos meus filhos?",
+      answer: "Serve para famílias com crianças de 0 a 12 anos. O guia traz ideias para as faixas de 0 a 2, 3 a 5, 6 a 9 e 10 a 12 anos, e cada atração indica a idade recomendada. Para quem vai com bebê, trata também do metrô com carrinho."
     },
     {
       question: "Posso pagar no Pix?",
@@ -1322,8 +1356,9 @@ const App: React.FC = () => {
       <Header />
       <main id="main-content">
         <Hero />
-        <ProblemSection />
         <SampleImagesSection />
+        <ForWhoSection />
+        <ProblemSection />
         <InclusionsSection />
         <AgeGroupsSection />
         <AuthorSection />
