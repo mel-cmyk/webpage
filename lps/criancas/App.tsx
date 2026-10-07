@@ -221,7 +221,7 @@ const Hero: React.FC = () => {
 
             {/* Aviso de escopo: confirma, logo no topo, o que o guia é e o que não é */}
             <p className="text-xs sm:text-base text-[#22274F] font-sans leading-relaxed mb-4 sm:mb-6 max-w-xl mx-auto md:mx-0 border-l-4 border-[#C19450] bg-white/70 px-3 py-2 rounded-r text-left">
-              É uma lista curada para você montar os dias da sua família, não um roteiro dia a dia.
+              É uma seleção para você montar os dias da sua família, não um roteiro dia a dia.
             </p>
 
             <div className="flex flex-col items-center md:items-start w-full max-w-md mx-auto md:mx-0">
