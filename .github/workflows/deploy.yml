@@ -5,12 +5,13 @@ on:
     branches: [main]
   workflow_dispatch:
   # Reconstrói o site logo depois que a promoção dos guias vence (valido_ate em data/ofertas.json), para o HTML voltar ao preço normal.
-  # Os horários são UTC. 22:05 UTC = 00:05 em Paris no dia 10/10/2026 (horário de verão); os seguintes são reforços.
+  # Os horários são UTC. A promoção vai até 31/10/2026 23h59 (Brasília, UTC-3), ou seja, 02:59 UTC de 01/11/2026.
+  # 03:05 UTC = 00:05 em Brasília; os seguintes são reforços.
   # As páginas dos guias também trocam o preço sozinhas no navegador, sem depender desta publicação.
   schedule:
-    - cron: '5 22 9 10 *'
-    - cron: '5 23 9 10 *'
-    - cron: '5 4 10 10 *'
+    - cron: '5 3 1 11 *'
+    - cron: '5 4 1 11 *'
+    - cron: '5 9 1 11 *'
 
 permissions:
   contents: read

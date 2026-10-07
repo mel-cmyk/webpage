@@ -18,7 +18,7 @@ Em cada guia de `data/ofertas.json`, `preco` é o valor normal e o bloco `promoc
 
 - as páginas de venda conferem a data no navegador e trocam o preço na hora;
 - o fluxo "Publicar site" também roda sozinho logo após o prazo e deixa o HTML com o preço normal (agendamento no `deploy.yml`);
-- para uma nova campanha, edite o bloco `promocao` (preço, `valido_ate`, `rotulo`) e, se o prazo for depois de 10/10/2026, ajuste as datas do agendamento em `.github/workflows/deploy.yml`.
+- para uma nova campanha, edite o bloco `promocao` (preço, `valido_ate`, `rotulo`) e ajuste também as datas do agendamento (hoje, 01/11/2026 em UTC) em `.github/workflows/deploy.yml`.
 
 O preço mostrado nas páginas é só vitrine: quem cobra é a loja (Wix). A troca do preço na Wix é manual e precisa acompanhar as datas daqui.
 
