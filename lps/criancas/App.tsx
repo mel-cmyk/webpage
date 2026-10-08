@@ -966,6 +966,9 @@ const OfferSection: React.FC = () => {
             <p className="text-xs sm:text-sm text-[#22274F]/85 font-sans text-center mt-5 leading-relaxed">
               Você recebe o link de download dos dois bônus no e-mail de confirmação da compra, junto com o guia.
             </p>
+            <p className="text-xs text-[#22274F]/70 font-sans text-center mt-2 leading-relaxed">
+              Conforme as datas ainda não divulgadas forem anunciadas, atualizamos o Bônus de Inverno e reenviamos a nova versão para quem comprou o guia.
+            </p>
           </div>
 
           {/* Linha de Resultado e Bloco de Preço */}
