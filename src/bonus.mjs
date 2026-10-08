@@ -30,7 +30,8 @@ export function paginaBonus(data) {
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:720px;margin:0 auto;align-items:stretch">
     ${cartoes}
     </div>
-    <p class="center small" style="margin-top:24px">Se tiver qualquer dificuldade, escreva para ${esc(data.marca.email)}.</p>
+    ${pagina.nota_rodape ? `<p class="center small" style="margin-top:24px">${esc(pagina.nota_rodape)}</p>` : ''}
+    <p class="center small" style="margin-top:12px">Se tiver qualquer dificuldade, escreva para ${esc(data.marca.email)}.</p>
   </div>
 </section>`;
   return {
