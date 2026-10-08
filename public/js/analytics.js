@@ -118,7 +118,7 @@
     metaFila = [];
   }
 
-  // Leva gclid, gbraid, wbraid, fbclid e UTMs da visita pelos links do site, da loja e do WhatsApp (neste, na linha "Ref.").
+  // Leva gclid, gbraid, wbraid, fbclid e UTMs da visita pelos links do site e da loja. O WhatsApp não recebe nada: a mensagem fica limpa.
   // Só usa o endereço da página atual: nada é gravado, então funciona mesmo com cookies recusados.
   // Roda no clique, antes da navegação.
   function decorarLink(a) {
@@ -126,16 +126,6 @@
       var h = a.getAttribute('href') || '';
       if (!h || h.charAt(0) === '#' || !/^(https?:)?\/\/|^\/|^[a-z0-9]/i.test(h)) return;
       var u = new URL(a.href);
-      if (u.hostname === 'wa.me') {
-        var origem = window.mrOrigem();
-        if (!origem) return;
-        var m = /[?&]text=([^&]*)/.exec(u.search);
-        var t = m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : 'Olá! Vim pelo site da Mel Rolan.';
-        if (t.indexOf('Ref.:') !== -1) return;
-        u.search = '?text=' + encodeURIComponent(t + '\nRef.: site · ' + origem);
-        a.href = u.toString();
-        return;
-      }
       if (u.hostname !== LOJA && u.hostname !== location.hostname) return;
       var mudou = false;
       new URLSearchParams(location.search).forEach(function (v, k) { if (PARAMS_LOJA.test(k)) { u.searchParams.set(k, v); mudou = true; } });
