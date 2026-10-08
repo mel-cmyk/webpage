@@ -629,6 +629,9 @@ ${ctaFinal(data, 'Vamos conversar sobre a sua viagem?', `Consultoria por ${brl(s
 }
 
 // ---------------------------------------------------------------- GUIAS
+// Linha extra no cartão do guia (bônus de inverno do Guia Paris com Crianças).
+const BONUS_EXTRA = { 'guia-paris-com-criancas': 'Inclui bônus de inverno 2026/2027' };
+
 function guias(data) {
   const body = `
 <section class="hero hero-sm">
@@ -647,6 +650,7 @@ function guias(data) {
       <div class="card-body">
       <h2 class="h3">${esc(g.nome)}</h2>
       ${g.paginas ? `<p>${g.paginas} páginas de curadoria real${g.bonus ? `, com bônus: ${esc(g.bonus)}` : ''}.</p>` : ''}
+      ${BONUS_EXTRA[g.id] ? `<p><strong>${BONUS_EXTRA[g.id]}</strong></p>` : ''}
       ${g.descricao ? `<p>${esc(g.descricao)}</p>` : ''}
       <p class="price">${v.preco_de ? `<s>${brl(v.preco_de)}</s> ` : ''}${brl(v.preco)}${v.parcela ? `<span>ou ${v.parcelas}x de ${brl(v.parcela)} sem juros</span>` : '<span aria-hidden="true">&nbsp;</span>'}</p>
       <div class="actions stack guia-actions">

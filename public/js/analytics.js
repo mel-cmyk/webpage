@@ -253,6 +253,8 @@
       track('select_item', { item_list_name: 'tours', items: [JSON.parse(a.dataset.item)] });
     } else if (a.dataset.contato) {
       track(a.dataset.contato === 'email' ? 'email_click' : 'instagram_click', { origem: 'rodape' });
+    } else if (a.dataset.download) {
+      track('bonus_download', { bonus: a.dataset.download });
     } else if (a.dataset.cta) {
       track('clique_cta', { origem: a.dataset.cta });
     }
