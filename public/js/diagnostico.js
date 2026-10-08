@@ -164,7 +164,6 @@
       `Diagnóstico do site: ${indicacao}`,
     ];
     if (val('obs')) linhas.push(`Observação: ${val('obs')}`);
-    if (origem) linhas.push(`Ref.: site · ${origem}`);
     const waLink = `${cfg.whatsapp}?text=${encodeURIComponent(linhas.join('\n'))}`;
 
     const guiaExtra =
