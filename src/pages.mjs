@@ -630,7 +630,7 @@ ${ctaFinal(data, 'Vamos conversar sobre a sua viagem?', `Consultoria por ${brl(s
 
 // ---------------------------------------------------------------- GUIAS
 // Linha extra no cartão do guia (bônus de inverno do Guia Paris com Crianças).
-const BONUS_EXTRA = { 'guia-paris-com-criancas': 'Inclui bônus de inverno 2026/2027' };
+const BONUS_EXTRA = { 'guia-paris-com-criancas': 'Inclui dois bônus' };
 
 function guias(data) {
   const body = `

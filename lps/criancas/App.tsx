@@ -962,6 +962,10 @@ const OfferSection: React.FC = () => {
                 icon={<Gift className="w-5 h-5 text-[#C19450] shrink-0" aria-hidden="true" />}
               />
             </div>
+
+            <p className="text-xs sm:text-sm text-[#22274F]/85 font-sans text-center mt-5 leading-relaxed">
+              Você recebe o link de download dos dois bônus no e-mail de confirmação da compra, junto com o guia.
+            </p>
           </div>
 
           {/* Linha de Resultado e Bloco de Preço */}
@@ -1061,8 +1065,12 @@ const FAQSection: React.FC = () => {
       answer: "Em PDF, por e-mail, logo após a confirmação do pagamento, com o link para baixar. Se não encontrar o e-mail, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
     },
     {
-      question: "O que é o bônus de inverno e como recebo?",
-      answer: "É um PDF de 19 páginas com o que fazer em Paris com crianças entre novembro e fevereiro. Você recebe o link de download no e-mail de confirmação da compra, junto com o guia."
+      question: "O que é o bônus de inverno?",
+      answer: "É um PDF de 19 páginas com o que fazer em Paris com crianças entre novembro e fevereiro."
+    },
+    {
+      question: "Como recebo os bônus?",
+      answer: "Você recebe o link de download do Bônus de Inverno e do Checklist no e-mail de confirmação da compra, junto com o guia. Se o e-mail não chegar, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
     },
     {
       question: "Serve para a idade dos meus filhos?",
