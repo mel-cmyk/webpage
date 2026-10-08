@@ -7,6 +7,7 @@ import { pages } from './src/pages.mjs';
 import { SITE_URL, STAGING, url } from './src/helpers.mjs';
 import { vigente } from './src/oferta.mjs';
 import { paginaRedirecionamento } from './src/redirect.mjs';
+import { BONUS, paginaBonus } from './src/bonus.mjs';
 
 const OUT = 'dist';
 const data = JSON.parse(fs.readFileSync('data/ofertas.json', 'utf8'));
@@ -32,6 +33,21 @@ const lpsPaginas = data.guias.map((g) => ({ path: g.landing, title: g.nome }));
 if (process.env.SKIP_LPS !== '1') {
   if (!fs.existsSync('lps/node_modules')) throw new Error('Falta instalar as páginas dos guias: rode "npm ci --prefix lps" (ou use SKIP_LPS=1 para pular).');
   execFileSync('node', ['lps/build.mjs'], { stdio: 'inherit' });
+}
+
+// Página única de entrega dos bônus (data/bonus-criancas.json): fora de pages() de propósito, para não entrar no sitemap nem no llms.txt.
+{
+  for (const b of BONUS.bonus) {
+    const pdf = path.join('public/bonus', b.arquivo);
+    if (fs.existsSync(pdf)) continue;
+    const aviso = `O PDF do bônus "${b.id}" não está em ${pdf}. O botão de download ficaria quebrado.`;
+    if (process.env.CI) throw new Error(aviso);
+    console.warn(`AVISO: ${aviso}`);
+  }
+  const b = paginaBonus(data);
+  const file = path.join(OUT, b.path, 'index.html');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, layout({ data, ...b }));
 }
 
 // 404
@@ -76,7 +92,7 @@ fs.writeFileSync(
 // robots.txt (o endereço de teste não é indexado)
 fs.writeFileSync(
   path.join(OUT, 'robots.txt'),
-  STAGING ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
+  STAGING ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nDisallow: /bonus/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
 );
 
 // llms.txt

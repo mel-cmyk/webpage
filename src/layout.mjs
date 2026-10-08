@@ -100,7 +100,7 @@ export const cookieBanner = () => `
   </div>
 </div>`;
 
-export function layout({ data, path, title, description, body, jsonld = [], scripts = [], noFloat = false, og = 'og/home.jpg', servico = 'geral', analytics = [] }) {
+export function layout({ data, path, title, description, body, jsonld = [], scripts = [], noFloat = false, og = 'og/home.jpg', servico = 'geral', analytics = [], noindex = false }) {
   const canonical = `${SITE_URL}${path}`;
   const ogImage = `${PUBLIC_URL}/img/${og}`;
   const ld = jsonld
@@ -114,7 +114,7 @@ export function layout({ data, path, title, description, body, jsonld = [], scri
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-${STAGING ? '<meta name="robots" content="noindex, nofollow">' : ''}
+${STAGING || noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <link rel="canonical" href="${canonical}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)}">

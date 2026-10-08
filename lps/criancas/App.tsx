@@ -31,12 +31,6 @@ const GUARANTEE_TEXT = "Garantia incondicional de 7 dias. Você tem 7 dias compl
 
 const formatPriceBR = formatBR;
 
-// Constantes dos Bônus
-const CHECKLIST_BONUS_VALUE = 98;
-const SEASONAL_BONUS_VALUE = 134;
-const SEASONAL_BONUS_DEADLINE_TEXT = "Disponível para compras feitas até o fim de fevereiro de 2027.";
-const SEASONAL_BONUS_ACTIVE = false;
-
 // Endereço-base da página (muda com o endereço de publicação)
 const B = import.meta.env.BASE_URL;
 
@@ -216,7 +210,7 @@ const Hero: React.FC = () => {
             </h1>
 
             <p className="text-sm sm:text-lg md:text-xl text-[#22274F]/90 font-sans font-medium leading-snug sm:leading-relaxed mb-3 sm:mb-4 max-w-2xl mx-auto md:mx-0">
-              Atrações, parquinhos, metrô com carrinho e restaurantes, organizados por faixa etária, de 0 a 12 anos. São 158 páginas de curadoria real.
+              Atrações, parquinhos, metrô e restaurantes por idade, de 0 a 12 anos, e bônus de inverno 2026/2027.
             </p>
 
             {/* Aviso de escopo: confirma, logo no topo, o que o guia é e o que não é */}
@@ -848,13 +842,63 @@ const TestimonialsSection: React.FC = () => {
   );
 };
 
+// --- Cartão de bônus (os dois bônus usam o mesmo cartão: mesmo tamanho e alinhamento) ---
+
+interface BonusCardProps {
+  img: string;
+  alt: string;
+  badge: string;
+  title: string;
+  text: string;
+  footer: string;
+  icon: React.ReactNode;
+}
+
+const BonusCard: React.FC<BonusCardProps> = ({ img, alt, badge, title, text, footer, icon }) => {
+  const [imgError, setImgError] = useState(false);
+  return (
+    <div className="bg-white p-5 sm:p-6 rounded-lg border border-[#22274F]/10 shadow-xs flex flex-col items-center gap-4 h-full">
+      <div className="w-[180px] h-[180px] shrink-0">
+        {!imgError ? (
+          <img
+            src={img}
+            alt={alt}
+            width="600"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            onError={() => setImgError(true)}
+            className="w-full h-full object-cover rounded-xl shadow-xs"
+          />
+        ) : (
+          <div className="w-full h-full rounded-xl bg-[#F7F4EA] border border-[#C19450]/30" aria-hidden="true" />
+        )}
+      </div>
+      <div className="flex-1 flex flex-col w-full min-w-0">
+        <div className="flex items-center justify-between gap-2 mb-3 min-h-[28px]">
+          <span className="inline-block bg-[#C19450] text-[#22274F] text-xs font-sans font-bold uppercase tracking-wider px-2.5 py-0.5 rounded whitespace-nowrap">
+            {badge}
+          </span>
+          {icon}
+        </div>
+        <h4 className="font-serif text-base sm:text-lg font-bold text-[#22274F] mb-2 leading-snug min-h-[48px] sm:min-h-[56px] flex items-start">
+          {title}
+        </h4>
+        <p className="text-xs sm:text-sm text-[#22274F]/85 font-sans leading-relaxed mb-4">
+          {text}
+        </p>
+        <div className="mt-auto pt-3 border-t border-[#22274F]/10">
+          <p className="text-xs font-sans font-medium text-[#22274F]">{footer}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- Bloco 8: Oferta ---
 
 const OfferSection: React.FC = () => {
   const oferta = useOferta();
-  const [checklistImgError, setChecklistImgError] = useState(false);
-  const [invernoImgError, setInvernoImgError] = useState(false);
-  const totalBonusValue = CHECKLIST_BONUS_VALUE + (SEASONAL_BONUS_ACTIVE ? SEASONAL_BONUS_VALUE : 0);
 
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -892,109 +936,36 @@ const OfferSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Bônus em Destaque no Bloco Oferta */}
-          <div className={`mb-8 ${SEASONAL_BONUS_ACTIVE ? "max-w-xl sm:max-w-2xl" : "max-w-xl"} mx-auto`}>
+          {/* Bônus em destaque no bloco Oferta */}
+          <div className="mb-8 max-w-2xl mx-auto">
             <h3 className="font-serif text-lg sm:text-xl font-bold text-[#22274F] text-center mb-5">
-              {SEASONAL_BONUS_ACTIVE 
-                ? "Você leva dois bônus junto com o guia" 
-                : "Você leva um bônus junto com o guia"}
+              Você leva dois bônus junto com o guia
             </h3>
 
-            <div className={`grid grid-cols-1 gap-4 mb-5 text-left ${SEASONAL_BONUS_ACTIVE ? "" : "max-w-xl mx-auto"}`}>
-              {/* Cartão 1: Checklist */}
-              <div className="bg-white p-5 sm:p-6 rounded-lg border border-[#22274F]/10 shadow-xs flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
-                {!checklistImgError && (
-                  <div className="w-full sm:w-auto flex justify-center shrink-0">
-                    <img
-                      src={`${B}images/bonus-checklist.webp`}
-                      alt={SEASONAL_BONUS_ACTIVE ? "Capa do Bônus 1: Checklist de Viagem com Crianças para Paris" : "Capa do Bônus: Checklist de Viagem com Crianças para Paris"}
-                      width="600"
-                      height="600"
-                      loading="lazy"
-                      decoding="async"
-                      onError={() => setChecklistImgError(true)}
-                      className="w-full max-w-[200px] sm:w-[160px] sm:h-[160px] md:w-[180px] md:h-[180px] aspect-square object-cover rounded-xl shadow-xs"
-                    />
-                  </div>
-                )}
-                <div className="flex-1 flex flex-col justify-between h-full w-full min-w-0">
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-3 min-h-[28px]">
-                      <span className="inline-block bg-[#C19450] text-[#22274F] text-xs font-sans font-bold uppercase tracking-wider px-2.5 py-0.5 rounded whitespace-nowrap">
-                        {SEASONAL_BONUS_ACTIVE ? "Bônus 1" : "Bônus"}
-                      </span>
-                      <Gift className="w-5 h-5 text-[#C19450] shrink-0" aria-hidden="true" />
-                    </div>
-                    <h4 className="font-serif text-base sm:text-lg font-bold text-[#22274F] mb-2 leading-snug min-h-[48px] sm:min-h-[56px] flex items-center">
-                      Checklist de Viagem com Crianças para Paris
-                    </h4>
-                    <p className="text-xs sm:text-sm text-[#22274F]/85 font-sans leading-relaxed mb-4">
-                      Lista completa organizada por tema e por prazo, do passaporte ao primeiro dia em Paris, para você não esquecer nada.
-                    </p>
-                  </div>
-                  <div className="pt-3 border-t border-[#22274F]/10">
-                    <p className="text-xs font-sans font-medium text-[#22274F]">
-                      Valor: R$ {CHECKLIST_BONUS_VALUE},00. Não é vendido separadamente: só recebe quem compra o guia.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Cartão 2: Bônus Sazonal (Condicional a SEASONAL_BONUS_ACTIVE) */}
-              {SEASONAL_BONUS_ACTIVE && (
-                <div className="bg-white p-5 sm:p-6 rounded-lg border border-[#22274F]/10 shadow-xs flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
-                  {!invernoImgError && (
-                    <div className="w-full sm:w-auto flex justify-center shrink-0">
-                      <img
-                        src={`${B}images/bonus-inverno.webp`}
-                        alt="Capa do Bônus 2: Bônus Sazonal de Inverno, Paris 2026/2027"
-                        width="600"
-                        height="600"
-                        loading="lazy"
-                        decoding="async"
-                        onError={() => setInvernoImgError(true)}
-                        className="w-full max-w-[200px] sm:w-[160px] sm:h-[160px] md:w-[180px] md:h-[180px] aspect-square object-cover rounded-xl shadow-xs"
-                      />
-                    </div>
-                  )}
-                  <div className="flex-1 flex flex-col justify-between h-full w-full min-w-0">
-                    <div>
-                      <div className="flex items-center justify-between gap-2 mb-3 min-h-[28px]">
-                        <span className="inline-block bg-[#C19450] text-[#22274F] text-xs font-sans font-bold uppercase tracking-wider px-2.5 py-0.5 rounded whitespace-nowrap">
-                          Bônus 2, tempo limitado
-                        </span>
-                        <Sparkles className="w-5 h-5 text-[#C19450] shrink-0" aria-hidden="true" />
-                      </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-[#22274F] mb-2 leading-snug min-h-[48px] sm:min-h-[56px] flex items-center">
-                        Bônus Sazonal de Inverno
-                      </h4>
-                      <p className="text-xs sm:text-sm text-[#22274F]/85 font-sans leading-relaxed mb-4">
-                        Guia com orientações e cuidados para viver Paris com crianças no inverno, da roupa certa ao ritmo dos passeios.
-                      </p>
-                    </div>
-                    <div className="pt-3 border-t border-[#22274F]/10 space-y-1">
-                      <p className="text-xs font-sans font-medium text-[#22274F]">
-                        Valor: R$ {SEASONAL_BONUS_VALUE},00. Não é vendido separadamente: só recebe quem compra o guia.
-                      </p>
-                      <p className="text-[11px] font-sans text-[#C19450] font-medium">
-                        {SEASONAL_BONUS_DEADLINE_TEXT}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 auto-rows-fr gap-4 text-left items-stretch">
+              <BonusCard
+                img={`${B}images/bonus-inverno.webp`}
+                alt="Capa do Bônus de Inverno 2026/2027"
+                badge="Bônus 1"
+                title="Bônus de Inverno 2026/2027"
+                text="19 páginas para viajar com crianças entre novembro e fevereiro: mercados de Natal, patinação, espetáculos e refúgios para os dias frios. Endereço, metrô, idade recomendada e se precisa reservar em cada indicação."
+                footer="Incluído na compra do guia, sem custo adicional."
+                icon={<Sparkles className="w-5 h-5 text-[#C19450] shrink-0" aria-hidden="true" />}
+              />
+              <BonusCard
+                img={`${B}images/bonus-checklist.webp`}
+                alt="Capa do Bônus: Checklist de Viagem com Crianças para Paris"
+                badge="Bônus 2"
+                title="Checklist de Viagem com Crianças para Paris"
+                text="Lista completa organizada por tema e por prazo, do passaporte ao primeiro dia em Paris, para você não esquecer nada."
+                footer="Não é vendido separadamente: só recebe quem compra o guia."
+                icon={<Gift className="w-5 h-5 text-[#C19450] shrink-0" aria-hidden="true" />}
+              />
             </div>
 
-            {/* Linha de Resumo de Valor Calculada a partir das Constantes */}
-            <div className={`py-3 px-4 bg-white/80 rounded-lg border border-[#22274F]/10 ${SEASONAL_BONUS_ACTIVE ? "" : "max-w-xl mx-auto"}`}>
-              <p className="text-xs sm:text-sm font-sans text-[#22274F] font-medium text-center">
-                Bônus no valor de{" "}
-                <span className="font-bold text-[#C19450]">
-                  R$ {totalBonusValue},00{SEASONAL_BONUS_ACTIVE ? ` (R$ ${CHECKLIST_BONUS_VALUE} + R$ ${SEASONAL_BONUS_VALUE})` : ""}
-                </span>
-                , {SEASONAL_BONUS_ACTIVE ? "incluídos" : "incluído"} na compra do guia.
-              </p>
-            </div>
+            <p className="text-xs sm:text-sm text-[#22274F]/85 font-sans text-center mt-5 leading-relaxed">
+              Você recebe o link de download dos dois bônus no e-mail de confirmação da compra, junto com o guia.
+            </p>
           </div>
 
           {/* Linha de Resultado e Bloco de Preço */}
@@ -1094,6 +1065,14 @@ const FAQSection: React.FC = () => {
       answer: "Em PDF, por e-mail, logo após a confirmação do pagamento, com o link para baixar. Se não encontrar o e-mail, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
     },
     {
+      question: "O que é o bônus de inverno?",
+      answer: "É um PDF de 19 páginas com o que fazer em Paris com crianças entre novembro e fevereiro."
+    },
+    {
+      question: "Como recebo os bônus?",
+      answer: "Você recebe o link de download do Bônus de Inverno e do Checklist no e-mail de confirmação da compra, junto com o guia. Se o e-mail não chegar, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
+    },
+    {
       question: "Serve para a idade dos meus filhos?",
       answer: "Serve para famílias com crianças de 0 a 12 anos. O guia traz ideias para as faixas de 0 a 2, 3 a 5, 6 a 9 e 10 a 12 anos, e cada atração indica a idade recomendada. Para quem vai com bebê, trata também do metrô com carrinho."
     },
@@ -1171,11 +1150,7 @@ const FinalCTASection: React.FC = () => {
   const oferta = useOferta();
   const [checklistErr, setChecklistErr] = useState(false);
   const [invernoErr, setInvernoErr] = useState(false);
-  const totalBonusValue = CHECKLIST_BONUS_VALUE + (SEASONAL_BONUS_ACTIVE ? SEASONAL_BONUS_VALUE : 0);
-  const totalOfferValue = oferta.preco_normal + totalBonusValue;
-  const bonusSummaryShort = SEASONAL_BONUS_ACTIVE
-    ? `Guia + 2 bônus, no valor de R$ ${totalOfferValue}, por R$ ${oferta.preco}`
-    : `Guia + bônus, no valor de R$ ${totalOfferValue}, por R$ ${oferta.preco}`;
+  const bonusSummaryShort = `Guia + 2 bônus por R$ ${oferta.preco}`;
 
   return (
     <section className="py-16 md:py-20 bg-[#F7F4EA] border-t border-[#22274F]/10 text-center">
@@ -1185,27 +1160,27 @@ const FinalCTASection: React.FC = () => {
         </h2>
         <div className="flex items-center justify-center gap-3.5 mb-6">
           <div className="hidden sm:flex items-center gap-2 shrink-0">
-            {!checklistErr && (
-              <img 
-                src={`${B}images/bonus-checklist.webp`} 
-                alt={SEASONAL_BONUS_ACTIVE ? "Capa do Bônus 1: Checklist de Viagem com Crianças para Paris" : "Capa do Bônus: Checklist de Viagem com Crianças para Paris"}
-                width="56" 
-                height="56" 
-                loading="lazy" 
-                decoding="async" 
-                onError={() => setChecklistErr(true)}
-                className="w-14 h-14 object-cover rounded-lg shadow-xs"
-              />
-            )}
-            {SEASONAL_BONUS_ACTIVE && !invernoErr && (
+            {!invernoErr && (
               <img 
                 src={`${B}images/bonus-inverno.webp`} 
-                alt="Capa do Bônus 2: Bônus Sazonal de Inverno, Paris 2026/2027" 
+                alt="Capa do Bônus de Inverno 2026/2027" 
                 width="56" 
                 height="56" 
                 loading="lazy" 
                 decoding="async" 
                 onError={() => setInvernoErr(true)}
+                className="w-14 h-14 object-cover rounded-lg shadow-xs"
+              />
+            )}
+            {!checklistErr && (
+              <img 
+                src={`${B}images/bonus-checklist.webp`} 
+                alt="Capa do Bônus: Checklist de Viagem com Crianças para Paris"
+                width="56" 
+                height="56" 
+                loading="lazy" 
+                decoding="async" 
+                onError={() => setChecklistErr(true)}
                 className="w-14 h-14 object-cover rounded-lg shadow-xs"
               />
             )}
@@ -1263,7 +1238,7 @@ const StickyMobileCTA: React.FC = () => {
       <ChicCTA 
         id="sticky-mobile-cta"
         text={`Quero meu guia - R$ ${oferta.preco}`}
-        subtext={SEASONAL_BONUS_ACTIVE ? "Guia + 2 bônus inclusos" : "Guia + bônus incluso"}
+        subtext="Guia + 2 bônus inclusos"
         slot="sticky_mobile"
         className="w-full text-sm py-2.5"
       />

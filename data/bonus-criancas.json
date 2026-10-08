@@ -1,0 +1,26 @@
+{
+  "_sobre_este_arquivo": "Bônus do Guia Paris com Crianças, entregues numa única página não listada (um só link no e-mail de confirmação da compra). Para a troca sazonal, edite só este arquivo: título, descrição, capa e arquivo de cada bônus. Os PDFs ficam em public/bonus/ e as capas em public/img/. Se mudar o endereço da página ou o nome de um PDF, use sempre um código difícil de adivinhar.",
+  "pagina": {
+    "caminho": "/bonus/criancas-e1ce53c3/",
+    "titulo": "Seus bônus do Guia Paris com Crianças",
+    "boas_vindas": "Obrigada por levar o Guia Paris com Crianças. Aqui estão os seus dois bônus, prontos para baixar."
+  },
+  "bonus": [
+    {
+      "id": "inverno",
+      "titulo": "Bônus de Inverno 2026/2027",
+      "descricao": "19 páginas para viajar com crianças entre novembro e fevereiro.",
+      "capa": "/img/bonus-inverno-capa.webp",
+      "capa_alt": "Capa do Bônus de Inverno 2026/2027",
+      "arquivo": "inverno-2026-2027-8270e0fa.pdf"
+    },
+    {
+      "id": "checklist",
+      "titulo": "Checklist de Viagem com Crianças para Paris",
+      "descricao": "Do passaporte ao primeiro dia em Paris, organizado por tema e prazo.",
+      "capa": "/img/bonus-checklist-capa.webp",
+      "capa_alt": "Capa do Checklist de Viagem com Crianças para Paris",
+      "arquivo": "checklist-e1fcf0d0.pdf"
+    }
+  ]
+}
