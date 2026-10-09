@@ -9,6 +9,9 @@ export const asset = (p) => {
   return `${url(p)}?v=${versoes[p]}`;
 };
 
+// Pixel da Meta (dataset Mel Rolan): carregado só com consentimento de publicidade e no domínio oficial (analytics.js).
+const META_PIXEL = '1769596457566966';
+
 // Páginas que podem receber anúncios: usam o Consent Mode avançado (analytics.js, body data-medicao="avancada").
 // A regra de envio no endereço de teste, em public/js/analytics.js (TESTE), deve acompanhar esta lista.
 const PAGINAS_ANUNCIOS = /^\/($|(tours-em-paris|roteiro-sob-medida|consultoria|diagnostico|guias-de-paris|qual-tour-combina-com-voce)\/)/;
@@ -135,7 +138,7 @@ ${STAGING || noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <link rel="stylesheet" href="${asset('/css/site.css')}">
 ${ld}
 </head>
-<body data-servico="${esc(servico)}"${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
+<body data-servico="${esc(servico)}" data-meta-pixel="${META_PIXEL}"${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 ${header(path)}
 <main id="conteudo">
