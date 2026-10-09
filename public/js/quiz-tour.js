@@ -10,8 +10,11 @@
   const progress = form.querySelector('.quiz-progress');
   const result = document.getElementById('quiz-resultado');
   const track = (name, params) => { if (window.mrTrack) window.mrTrack(name, params || {}); };
+  const fluxo = window.mrFluxo ? window.mrFluxo('quiz_tours', steps.length) : null;
+  const nomeEtapa = (n) => { const el = steps[n].querySelector('input'); return el ? el.name : 'etapa_' + (n + 1); };
   let i = 0;
   let started = false;
+  if (fluxo) fluxo.view();
 
   function show(n) {
     steps.forEach((s, idx) => (s.hidden = idx !== n));
@@ -47,18 +50,19 @@
       <p>${t.ideal}</p>
       <p class="price">${t.duracao} · a partir de ${t.preco} por grupo</p>
       <div class="actions"><a class="btn" href="${t.pagina}" data-cta="quiz-tour-resultado">Conhecer o tour</a>
-      <a class="btn btn-ghost" href="${wa}" data-wa="quiz-tour" data-lead='${JSON.stringify({ metodo: 'quiz_tour', tour_id: r.primeiro })}'>Consultar datas no WhatsApp</a></div>
+      <a class="btn btn-ghost" href="${wa}" data-wa="quiz-tour" data-flow="quiz_tours" data-result-id="tour_${r.primeiro}" data-lead='${JSON.stringify({ metodo: 'quiz_tour', tour_id: r.primeiro })}'>Consultar datas no WhatsApp</a></div>
       ${alternativa}
       <p class="small">Gostou de mais de um? No <a href="${cfg.personalizado}">Tour Personalizado</a>, a Mel desenha um percurso só com o que tem a ver com você. Ou <a href="${cfg.todos}">veja todos os tours</a>.</p>`;
     form.hidden = true;
     result.hidden = false;
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    track('quiz_tour_conclusao', { tour_id: r.primeiro, segundo: r.segundo || '' });
+    if (fluxo) { fluxo.resultId = `tour_${r.primeiro}`; fluxo.conclusao(fluxo.resultId); }
   }
 
-  form.addEventListener('change', () => { if (!started) { started = true; track('quiz_tour_inicio'); } });
+  form.addEventListener('change', () => { if (!started) { started = true; if (fluxo) fluxo.inicio(); } });
   next.addEventListener('click', () => {
     if (!steps[i].querySelector('input:checked')) { error.hidden = false; return; }
+    if (fluxo) fluxo.etapa(i + 1, nomeEtapa(i));
     if (i < steps.length - 1) { i += 1; show(i); } else { next.disabled = true; finish(); }
   });
   back.addEventListener('click', () => { if (i > 0) { i -= 1; show(i); } });

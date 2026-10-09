@@ -10,8 +10,14 @@
   const progress = form.querySelector('.quiz-progress');
   const result = document.getElementById('resultado');
   const track = (name, params) => { if (window.mrTrack) window.mrTrack(name, params || {}); };
+  const fluxo = window.mrFluxo ? window.mrFluxo('diagnostico', steps.length) : null;
+  const nomeEtapa = (n) => {
+    const el = steps[n].querySelector('input, select, textarea');
+    return el ? (el.name === 'nome' || el.name === 'whatsapp' ? 'contato' : el.name) : 'etapa_' + (n + 1);
+  };
   let i = 0;
   let started = false;
+  if (fluxo) fluxo.view();
 
   const val = (name) => {
     const els = form.querySelectorAll(`[name="${name}"]`);
@@ -170,9 +176,9 @@
       rec === 'guias'
         ? `<p>Para quem quer planejar com autonomia, os guias digitais trazem a curadoria completa da Mel, com acesso imediato.</p>
            <div class="actions"><a class="btn" href="${s.pagina}" data-cta="diagnostico-resultado-guias">Ver os guias</a>
-           <a class="btn btn-ghost" href="${waLink}" data-wa="diagnostico-guias">Tirar uma dúvida no WhatsApp</a></div>`
+           <a class="btn btn-ghost" href="${waLink}" data-wa="diagnostico-guias" data-flow="diagnostico">Tirar uma dúvida no WhatsApp</a></div>`
         : `<p>Suas respostas já chegaram para a nossa equipe. Se quiser adiantar, continue a conversa agora pelo WhatsApp: a mensagem já vai com tudo o que você respondeu.</p>
-           <div class="actions"><a class="btn" href="${waLink}" data-wa="diagnostico-${rec}">Continuar no WhatsApp</a>
+           <div class="actions"><a class="btn" href="${waLink}" data-wa="diagnostico-${rec}" data-flow="diagnostico">Continuar no WhatsApp</a>
            <a class="btn btn-ghost" href="${s.pagina}">Conhecer ${s.nome.toLowerCase()}</a></div>`;
 
     const extraTour = (recs.principal === 'tours' || recs.complemento === 'tours') && cfg.quizTour
@@ -203,7 +209,8 @@
     form.hidden = true;
     result.hidden = false;
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    track('diagnostico_conclusao', Object.assign({ procura: val('procura') }, params));
+    if (fluxo) { fluxo.resultId = rec; fluxo.conclusao(rec, Object.assign({ procura: val('procura') }, params)); }
+    else track('diagnostico_conclusao', Object.assign({ procura: val('procura') }, params));
 
     // Sem nome ou WhatsApp no GA: só as respostas de múltipla escolha vão para a medição.
     salvarLead({
@@ -217,17 +224,22 @@
       observacao: val('obs'),
       origem,
     })
-      .then((ok) => { if (ok) track('generate_lead', Object.assign({ servico: rec }, params)); })
+      .then((ok) => {
+        if (!ok) return;
+        if (fluxo) fluxo.lead('formulario', 'diagnostico_form', rec, Object.assign({ servico: rec }, params));
+        else track('generate_lead', Object.assign({ servico: rec }, params));
+      })
       .catch((e) => { console.warn('Lead do diagnóstico não foi salvo:', e.message); track('lead_erro', { metodo: 'diagnostico' }); });
   }
 
   form.addEventListener('change', () => {
     toggleConditional();
-    if (!started) { started = true; track('diagnostico_inicio'); }
+    if (!started) { started = true; if (fluxo) fluxo.inicio(); else track('diagnostico_inicio'); }
   });
   next.addEventListener('click', () => {
     if (!valid(i)) { error.hidden = false; return; }
-    if (i < steps.length - 1) { i += 1; show(i); track('diagnostico_etapa', { etapa: i + 1 }); } else { next.disabled = true; finish(); }
+    if (fluxo) fluxo.etapa(i + 1, nomeEtapa(i), { etapa: i + 1 });
+    if (i < steps.length - 1) { i += 1; show(i); } else { next.disabled = true; finish(); }
   });
   back.addEventListener('click', () => { if (i > 0) { i -= 1; show(i); } });
   form.addEventListener('submit', (e) => { e.preventDefault(); next.click(); });
