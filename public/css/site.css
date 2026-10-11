@@ -335,3 +335,18 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 
 .quiz-cta { margin: 2.5rem auto 0; padding: 1.75rem; max-width: 640px; border: 1px solid #C19450; border-radius: 12px; background: #fbf7f1; }
 .quiz-cta .btn { margin-top: 0.5rem; }
+
+/* Na imprensa */
+.imprensa-grid { margin-top: 24px; }
+.imprensa-card { display: flex; flex-direction: column; gap: 8px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; text-decoration: none; color: inherit; }
+.imprensa-card:hover { border-color: var(--gold); }
+.imprensa-veiculo { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-dark); font-weight: 600; }
+.imprensa-titulo { font-family: var(--serif); font-size: 1.1rem; line-height: 1.3; }
+.imprensa-data { margin-top: auto; font-size: 0.85rem; color: var(--muted); }
+.imprensa-citacao figure { margin: 0; text-align: center; }
+.imprensa-citacao blockquote { margin: 0 0 12px; font-family: var(--serif); font-style: italic; font-size: 1.25rem; }
+.imprensa-citacao figcaption { font-size: 0.88rem; color: var(--muted); }
+.imprensa-item { padding: 24px 0; border-top: 1px solid var(--line); }
+.imprensa-item h2 { font-size: 1.3rem; margin: 6px 0 10px; }
+.imprensa-item blockquote { margin: 12px 0; padding-left: 16px; border-left: 3px solid var(--gold); font-family: var(--serif); font-style: italic; }
+.imprensa .small { margin-top: 20px; }

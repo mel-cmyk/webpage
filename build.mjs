@@ -12,6 +12,7 @@ import { BONUS, paginaBonus } from './src/bonus.mjs';
 const OUT = 'dist';
 const data = JSON.parse(fs.readFileSync('data/ofertas.json', 'utf8'));
 data.integracoes = JSON.parse(fs.readFileSync('data/integracoes.json', 'utf8'));
+data.imprensa = JSON.parse(fs.readFileSync('data/imprensa.json', 'utf8')).materias;
 
 // "A partir de" dos guias acompanha o menor preço vigente (promoção ou preço normal).
 const cardGuias = data.servicos.find((x) => x.id === 'guias');
