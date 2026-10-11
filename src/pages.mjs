@@ -115,7 +115,7 @@ const imprensaFaixa = (data) => `
     <p class="eyebrow center">Na imprensa</p>
     <h2 class="center">A Mel nos veículos brasileiros</h2>
     <div class="grid-3 imprensa-grid">
-      ${data.imprensa.map((x) => `<a class="imprensa-card" href="${esc(x.url)}" target="_blank" rel="noopener"><span class="imprensa-veiculo">${veiculoTxt(x)}</span><span class="imprensa-titulo">${esc(x.titulo)}</span><span class="imprensa-data">${dataBR(x.data)}</span></a>`).join('')}
+      ${data.imprensa.slice(0, 3).map((x) => `<a class="imprensa-card" href="${esc(x.url)}" target="_blank" rel="noopener"><span class="imprensa-veiculo">${veiculoTxt(x)}</span><span class="imprensa-titulo">${esc(x.titulo)}</span><span class="imprensa-data">${dataBR(x.data)}</span></a>`).join('')}
     </div>
     <p class="center small"><a href="${url('/na-midia/')}">Ver todas as matérias</a></p>
   </div>
