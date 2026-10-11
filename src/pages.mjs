@@ -108,6 +108,7 @@ const depoimentos = (m) => `
 
 // Imprensa (data/imprensa.json): só o que a matéria diz. Citação entre aspas e sempre com veículo, data e link.
 const dataBR = (iso) => iso.split('-').reverse().join('/');
+const logoImg = (x) => `<img class="imprensa-logo" src="${url(x.logo.src)}" width="${x.logo.w}" height="${x.logo.h}" alt="${esc(x.veiculo)}" loading="lazy">`;
 const veiculoTxt = (x) => esc(x.veiculo) + (x.secao ? `, ${esc(x.secao)}` : '');
 const imprensaFaixa = (data) => `
 <section class="section imprensa">
@@ -115,7 +116,7 @@ const imprensaFaixa = (data) => `
     <p class="eyebrow center">Na imprensa</p>
     <h2 class="center">A Mel nos veículos brasileiros</h2>
     <div class="grid-3 imprensa-grid">
-      ${data.imprensa.slice(0, 3).map((x) => `<a class="imprensa-card" href="${esc(x.url)}" target="_blank" rel="noopener"><span class="imprensa-veiculo">${veiculoTxt(x)}</span><span class="imprensa-titulo">${esc(x.titulo)}</span><span class="imprensa-data">${dataBR(x.data)}</span></a>`).join('')}
+      ${data.imprensa.slice(0, 3).map((x) => `<a class="imprensa-card" href="${esc(x.url)}" target="_blank" rel="noopener">${logoImg(x)}<span class="imprensa-veiculo">${x.secao ? esc(x.secao) : '&nbsp;'}</span><span class="imprensa-titulo">${esc(x.titulo)}</span><span class="imprensa-data">${dataBR(x.data)}</span></a>`).join('')}
     </div>
     <p class="center small"><a href="${url('/na-midia/')}">Ver todas as matérias</a></p>
   </div>
@@ -769,12 +770,19 @@ function naMidia(data) {
     <p class="lead">Matérias em que a Mel fala sobre planejar viagens, Paris e viagens em família.</p>
     <div class="imprensa-lista">
       ${data.imprensa.map((x) => `<article class="imprensa-item">
+        ${logoImg(x)}
         <p class="imprensa-veiculo">${veiculoTxt(x)} · ${dataBR(x.data)}${x.autor ? ` · por ${esc(x.autor)}` : ''}</p>
         <h2><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.titulo)}</a></h2>
         <p>${esc(x.subtitulo)}</p>
         ${x.citacao ? `<blockquote>“${esc(x.citacao)}”</blockquote>` : ''}
         <p class="small"><a href="${esc(x.url)}" target="_blank" rel="noopener">Ler a matéria em ${esc(x.veiculo)}</a></p>
       </article>`).join('')}
+    </div>
+    <div class="assessoria">
+      <p class="eyebrow">Assessoria de imprensa</p>
+      <p><strong>${esc(data.assessoria.nome)}</strong>, ${esc(data.assessoria.cargo.toLowerCase())}</p>
+      <p>Jornalistas e veículos: entrem em contato para entrevistas, pautas e imagens.</p>
+      <p><a href="mailto:${esc(data.assessoria.email)}">${esc(data.assessoria.email)}</a> · <a href="tel:${data.assessoria.telefone.replace(/[^+\d]/g, '')}">${esc(data.assessoria.telefone)}</a></p>
     </div>
   </div>
 </section>

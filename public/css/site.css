@@ -350,3 +350,7 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .imprensa-item h2 { font-size: 1.3rem; margin: 6px 0 10px; }
 .imprensa-item blockquote { margin: 12px 0; padding-left: 16px; border-left: 3px solid var(--gold); font-family: var(--serif); font-style: italic; }
 .imprensa .small { margin-top: 20px; }
+.assessoria { margin-top: 32px; padding: 24px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+.assessoria p { margin: 0 0 8px; }
+.imprensa-logo { height: 40px; width: auto; max-width: 100%; align-self: flex-start; object-fit: contain; border-radius: 6px; margin-bottom: 4px; }
+.imprensa-item .imprensa-logo { display: block; margin-bottom: 10px; }
