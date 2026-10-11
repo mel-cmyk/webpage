@@ -106,6 +106,30 @@ const depoimentos = (m) => `
   </div>
 </section>`;
 
+// Imprensa (data/imprensa.json): só o que a matéria diz. Citação entre aspas e sempre com veículo, data e link.
+const dataBR = (iso) => iso.split('-').reverse().join('/');
+const veiculoTxt = (x) => esc(x.veiculo) + (x.secao ? `, ${esc(x.secao)}` : '');
+const imprensaFaixa = (data) => `
+<section class="section imprensa">
+  <div class="wrap">
+    <p class="eyebrow center">Na imprensa</p>
+    <h2 class="center">A Mel nos veículos brasileiros</h2>
+    <div class="grid-3 imprensa-grid">
+      ${data.imprensa.map((x) => `<a class="imprensa-card" href="${esc(x.url)}" target="_blank" rel="noopener"><span class="imprensa-veiculo">${veiculoTxt(x)}</span><span class="imprensa-titulo">${esc(x.titulo)}</span><span class="imprensa-data">${dataBR(x.data)}</span></a>`).join('')}
+    </div>
+    <p class="center small"><a href="${url('/na-midia/')}">Ver todas as matérias</a></p>
+  </div>
+</section>`;
+const imprensaCitacao = (data, id) => {
+  const x = data.imprensa.find((m) => m.id === id);
+  return `
+<section class="section imprensa-citacao">
+  <div class="wrap narrow">
+    <figure><blockquote>“${esc(x.citacao)}”</blockquote><figcaption>Mel Rolan, em <a href="${esc(x.url)}" target="_blank" rel="noopener">${veiculoTxt(x)}</a> · ${dataBR(x.data)}</figcaption></figure>
+  </div>
+</section>`;
+};
+
 const incluidoTours = [
   'Guia brasileira exclusiva para o seu grupo',
   'Logística a pé pensada para o seu ritmo',
@@ -272,6 +296,7 @@ ${provaRapida(m)}
     <p class="center small">Os guias digitais têm compra direta, com acesso imediato por e-mail.</p>
   </div>
 </section>
+${imprensaFaixa(data)}
 ${depoimentos(m)}
 <section class="section alt">
   <div class="wrap split">
@@ -375,6 +400,7 @@ ${heroSplit(`
     ${faqHtml(faqTours)}
   </div>
 </section>
+${imprensaCitacao(data, 'r7-calor-paris')}
 ${ctaFinal(data, 'Quer ajuda para escolher o tour?', 'Conte quem viaja e quando, e a gente indica o tour que combina com o seu grupo.')}
 `;
   return {
@@ -557,6 +583,7 @@ ${heroSplit(`
     <p class="small">O roteiro é entregue antes da viagem. Não inclui atendimento em tempo real durante a viagem.</p>
   </div>
 </section>
+${imprensaCitacao(data, 'catraca-livre-ia')}
 ${depoimentos(data.marca)}
 ${ctaFinal(data, 'Vamos desenhar a sua viagem?', `Roteiros a partir de ${brl(s.preco_a_partir_de)}. Conte como é a sua viagem e a Mel indica o formato certo.`)}
 `;
@@ -612,6 +639,7 @@ ${heroSplit(`
     <p class="small">Precisa de tudo planejado, dia a dia? Veja o <a href="${url('/roteiro-sob-medida/')}">roteiro sob medida</a>.</p>
   </div>
 </section>
+${imprensaCitacao(data, 'catraca-livre-ia')}
 ${ctaFinal(data, 'Vamos conversar sobre a sua viagem?', `Consultoria por ${brl(s.preco)}, com mapa digital exclusivo.`)}
 `;
   return {
@@ -728,6 +756,37 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e r
     body,
     og: 'og/sobre.jpg',
     jsonld: [breadcrumbLd([['Início', '/'], ['Sobre a Mel', '/sobre/']])],
+  };
+}
+
+// ---------------------------------------------------------------- NA MÍDIA
+function naMidia(data) {
+  const body = `
+<section class="section">
+  <div class="wrap narrow">
+    <p class="eyebrow">Na mídia</p>
+    <h1>A Mel Rolan na imprensa</h1>
+    <p class="lead">Matérias em que a Mel fala sobre planejar viagens, Paris e viagens em família.</p>
+    <div class="imprensa-lista">
+      ${data.imprensa.map((x) => `<article class="imprensa-item">
+        <p class="imprensa-veiculo">${veiculoTxt(x)} · ${dataBR(x.data)}${x.autor ? ` · por ${esc(x.autor)}` : ''}</p>
+        <h2><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.titulo)}</a></h2>
+        <p>${esc(x.subtitulo)}</p>
+        ${x.citacao ? `<blockquote>“${esc(x.citacao)}”</blockquote>` : ''}
+        <p class="small"><a href="${esc(x.url)}" target="_blank" rel="noopener">Ler a matéria em ${esc(x.veiculo)}</a></p>
+      </article>`).join('')}
+    </div>
+  </div>
+</section>
+${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e receba a indicação do caminho certo.')}
+`;
+  return {
+    path: '/na-midia/',
+    title: 'Mel Rolan na mídia | Matérias e entrevistas',
+    description: 'Matérias da imprensa brasileira com a Mel Rolan, travel designer brasileira em Paris, sobre planejamento de viagens, calor em Paris e viagens em família.',
+    body,
+    og: 'og/sobre.jpg',
+    jsonld: [breadcrumbLd([['Início', '/'], ['Na mídia', '/na-midia/']])],
   };
 }
 
@@ -1034,6 +1093,7 @@ export function pages(data) {
     consultoria(data),
     guias(data),
     sobre(data),
+    naMidia(data),
     parcerias(data),
     quizTour(data),
     diagnostico(data),
