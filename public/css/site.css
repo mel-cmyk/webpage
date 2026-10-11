@@ -352,3 +352,5 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .imprensa .small { margin-top: 20px; }
 .assessoria { margin-top: 32px; padding: 24px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
 .assessoria p { margin: 0 0 8px; }
+.imprensa-logo { height: 40px; width: auto; max-width: 100%; align-self: flex-start; object-fit: contain; border-radius: 6px; margin-bottom: 4px; }
+.imprensa-item .imprensa-logo { display: block; margin-bottom: 10px; }

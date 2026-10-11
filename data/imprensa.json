@@ -14,7 +14,12 @@
       "autor": "Silvia Melo",
       "data": "2026-09-23",
       "url": "https://catracalivre.com.br/viagem-livre/o-que-a-inteligencia-artificial-ainda-nao-consegue-fazer-ao-planejar-uma-viagem/",
-      "citacao": "Uma viagem não é apenas uma sequência de lugares no mapa."
+      "citacao": "Uma viagem não é apenas uma sequência de lugares no mapa.",
+      "logo": {
+        "src": "/img/imprensa/catraca-livre.webp",
+        "w": 336,
+        "h": 160
+      }
     },
     {
       "id": "r7-calor-paris",
@@ -25,7 +30,12 @@
       "autor": "Luiz Fara Monteiro",
       "data": "2026-08-04",
       "url": "https://noticias.r7.com/prisma/luiz-fara-monteiro/como-aproveitar-paris-mesmo-nos-dias-de-calor-intenso-04082026/",
-      "citacao": "Durante os tours privativos que ofereço, adaptamos o roteiro e o ritmo conforme a intensidade do calor."
+      "citacao": "Durante os tours privativos que ofereço, adaptamos o roteiro e o ritmo conforme a intensidade do calor.",
+      "logo": {
+        "src": "/img/imprensa/r7.webp",
+        "w": 187,
+        "h": 160
+      }
     },
     {
       "id": "r7-novo-luxo-tempo",
@@ -36,7 +46,12 @@
       "autor": "Luiz Fara Monteiro",
       "data": "2026-06-21",
       "url": "https://noticias.r7.com/prisma/luiz-fara-monteiro/o-novo-luxo-das-viagens-a-europa-e-ter-tempo-21062026/",
-      "citacao": "Hoje existe informação de sobra. O que falta é contexto."
+      "citacao": "Hoje existe informação de sobra. O que falta é contexto.",
+      "logo": {
+        "src": "/img/imprensa/r7.webp",
+        "w": 187,
+        "h": 160
+      }
     },
     {
       "id": "portal-tela-tempo-luxo",
@@ -44,7 +59,12 @@
       "titulo": "Tempo é o novo luxo das viagens pela Europa",
       "subtitulo": "Viagens com propósito ganham espaço na Europa: menos cidades, mais experiências autênticas e roteiros sob medida para famílias multigeracionais",
       "data": "2026-06-20",
-      "url": "https://www.portaltela.com/noticias/geral/2026/06/20/tempo-e-o-novo-luxo-das-viagens-pela-europa/"
+      "url": "https://www.portaltela.com/noticias/geral/2026/06/20/tempo-e-o-novo-luxo-das-viagens-pela-europa/",
+      "logo": {
+        "src": "/img/imprensa/portal-tela.webp",
+        "w": 357,
+        "h": 160
+      }
     }
   ]
 }
