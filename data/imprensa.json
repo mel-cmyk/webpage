@@ -1,4 +1,10 @@
 {
+  "assessoria": {
+    "nome": "Milene Pinto",
+    "cargo": "Assessora de imprensa",
+    "email": "milene@melrolan.com.br",
+    "telefone": "+55 11 99246-5780"
+  },
   "materias": [
     {
       "id": "catraca-livre-ia",

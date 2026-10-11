@@ -776,6 +776,12 @@ function naMidia(data) {
         <p class="small"><a href="${esc(x.url)}" target="_blank" rel="noopener">Ler a matéria em ${esc(x.veiculo)}</a></p>
       </article>`).join('')}
     </div>
+    <div class="assessoria">
+      <p class="eyebrow">Assessoria de imprensa</p>
+      <p><strong>${esc(data.assessoria.nome)}</strong>, ${esc(data.assessoria.cargo.toLowerCase())}</p>
+      <p>Jornalistas e veículos: entrem em contato para entrevistas, pautas e imagens.</p>
+      <p><a href="mailto:${esc(data.assessoria.email)}">${esc(data.assessoria.email)}</a> · <a href="tel:${data.assessoria.telefone.replace(/[^+\d]/g, '')}">${esc(data.assessoria.telefone)}</a></p>
+    </div>
   </div>
 </section>
 ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e receba a indicação do caminho certo.')}
