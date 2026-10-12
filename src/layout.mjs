@@ -11,6 +11,8 @@ export const asset = (p) => {
 
 // Pixel da Meta (dataset Mel Rolan): carregado só com consentimento de publicidade e no domínio oficial (analytics.js).
 const META_PIXEL = '1769596457566966';
+// Microsoft Clarity: o ID vem de data/integracoes.json (clarity_id). Vazio ou inválido: o atributo não é escrito e nada carrega.
+export const clarityAttr = (data) => { const id = (data.integracoes && data.integracoes.clarity_id) || ''; return /^[a-z0-9]{8,12}$/i.test(id) ? ` data-clarity="${id}"` : ''; };
 // Páginas de anúncios (Consent Mode avançado) carregam o Google desde o início: conectar e baixar o gtag.js em paralelo ao resto da página.
 export const dicasGoogle = '<link rel="preconnect" href="https://www.googletagmanager.com">\n<link rel="preconnect" href="https://www.google-analytics.com">\n<link rel="preload" as="script" href="https://www.googletagmanager.com/gtag/js?id=G-L71ZP46QX2">';
 
@@ -141,7 +143,7 @@ ${STAGING || noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
 ${PAGINAS_ANUNCIOS.test(path) ? dicasGoogle + '\n' : ''}<link rel="stylesheet" href="${asset('/css/site.css')}">
 ${ld}
 </head>
-<body data-servico="${esc(servico)}" data-meta-pixel="${META_PIXEL}"${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
+<body data-servico="${esc(servico)}" data-meta-pixel="${META_PIXEL}"${clarityAttr(data)}${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 ${header(path)}
 <main id="conteudo">

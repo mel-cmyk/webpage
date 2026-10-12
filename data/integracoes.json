@@ -14,5 +14,7 @@
       "observacao": "observacao_f1z8h6",
       "origem": "origem_g6y2p4"
     }
-  }
+  },
+  "clarity_id": "",
+  "_clarity": "ID do projeto no Microsoft Clarity (clarity.microsoft.com > Settings > Overview). Vazio: o Clarity não carrega."
 }
