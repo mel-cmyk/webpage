@@ -395,6 +395,24 @@ ${heroSplit(`
     </aside>
   </div>
 </section>
+<section class="section alt">
+  <div class="wrap">
+    <h2 class="center">Quer a viagem inteira pensada para você?</h2>
+    <p class="center lead">O tour resolve um dia em Paris. Se você quer o resto da viagem resolvido, a Mel também planeja.</p>
+    <div class="grid-2 cards">
+      <article class="card"><div class="card-body">
+        <h3>Roteiro sob medida</h3>
+        <p class="card-txt">A viagem planejada dia a dia, com atrações, restaurantes e deslocamentos, numa plataforma que você leva no celular.</p>
+        <a class="btn btn-small" href="${url('/roteiro-sob-medida/')}" data-cta="tours-roteiro">Conhecer o roteiro</a>
+      </div></article>
+      <article class="card"><div class="card-body">
+        <h3>Consultoria</h3>
+        <p class="card-txt">Uma conversa por vídeo com a Mel para começar a planejar, tirar dúvidas ou validar o que você já decidiu.</p>
+        <a class="btn btn-small" href="${url('/consultoria/')}" data-cta="tours-consultoria">Conhecer a consultoria</a>
+      </div></article>
+    </div>
+  </div>
+</section>
 <section class="section">
   <div class="wrap narrow">
     <h2 class="center">Perguntas frequentes</h2>

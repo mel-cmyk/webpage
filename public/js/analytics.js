@@ -14,6 +14,15 @@
   var OFICIAL = /(^|\.)melrolan\.com\.br$/.test(location.hostname);
   var TESTE = location.hostname === 'mel-cmyk.github.io' && /^\/webpage\/($|(guias|guias-de-paris|tours-em-paris|roteiro-sob-medida|consultoria|diagnostico|qual-tour-combina-com-voce)\/)/.test(location.pathname);
   var PROD = OFICIAL || TESTE;
+  // Tráfego interno (equipe): abrir o site uma vez com ?interno=1 marca este navegador (traffic_type=internal no GA4,
+  // para o filtro de dados do GA4 excluir as visitas). ?interno=0 desmarca. Navegador marcado também não alimenta Meta e TikTok.
+  var INTERNO = false;
+  try {
+    var qi = new URLSearchParams(location.search).get('interno');
+    if (qi === '1') localStorage.setItem('mr_interno', '1');
+    else if (qi === '0') localStorage.removeItem('mr_interno');
+    INTERNO = localStorage.getItem('mr_interno') === '1';
+  } catch (e) {}
   var carregado = false;
   var fila = [];
 
@@ -158,7 +167,7 @@
   // Pixel da Meta: só existe depois do consentimento de publicidade.
   function meta(nome, params) {
     var map = { view_item: 'ViewContent', begin_checkout: 'InitiateCheckout', generate_lead: 'Lead', whatsapp_click: 'Contact' };
-    if (!META_ID || !map[nome]) return;
+    if (INTERNO || !META_ID || !map[nome]) return;
     if (nome === 'generate_lead' || nome === 'whatsapp_click') { // sem dados pessoais: só o evento
       var d = ['track', map[nome]];
       if (metaCarregado) window.fbq.apply(window, d); else metaFila.push(d);
@@ -173,7 +182,7 @@
   // Sem dado pessoal: só slugs, categorias e ids do fluxo. Todo evento leva event_id único (deduplicação futura com a Events API).
   // Fluxo: o clique no WhatsApp do resultado vira SubmitForm (generate_lead) e não Contact; conclusão nunca é lead.
   function tiktok(nome, params) {
-    if (!TT_ID || !OFICIAL) return;
+    if (INTERNO || !TT_ID || !OFICIAL) return;
     var it = (params.items || [])[0] || {};
     var fluxo = { flow: params.flow, flow_run_id: params.flow_run_id, result_id: params.result_id, lead_method: params.lead_method, lead_source: params.lead_source };
     var ev = null;
@@ -192,7 +201,7 @@
   }
   function limpar(o) { var r = {}; for (var k in o) if (o[k] !== undefined && o[k] !== '') r[k] = o[k]; return r; }
   function carregarTikTok() {
-    if (!TT_ID || !OFICIAL) return;
+    if (INTERNO || !TT_ID || !OFICIAL) return;
     if (ttCarregado) { window.ttq.grantConsent(); return; }
     ttCarregado = true;
     !function (w, d, t) {
@@ -221,7 +230,7 @@
   }
 
   function carregarMeta() {
-    if (metaCarregado || !OFICIAL || !META_ID) return; // pixel da Meta só no domínio oficial
+    if (INTERNO || metaCarregado || !OFICIAL || !META_ID) return; // pixel da Meta só no domínio oficial
     metaCarregado = true;
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
@@ -258,10 +267,12 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
     gtag('js', new Date());
+    var cfg = INTERNO ? { traffic_type: 'internal' } : {};
     if (AVANCADO) {
-      gtag('config', GA_ID, { linker: { domains: ['melrolan.com.br', 'www.melrolan.com.br', LOJA], accept_incoming: true } });
+      cfg.linker = { domains: ['melrolan.com.br', 'www.melrolan.com.br', LOJA], accept_incoming: true };
+      gtag('config', GA_ID, cfg);
       gtag('config', ADS_ID);
-    } else gtag('config', GA_ID);
+    } else gtag('config', GA_ID, cfg);
     fila.forEach(function (e) { gtag('event', e[0], e[1]); });
     fila = [];
   }
