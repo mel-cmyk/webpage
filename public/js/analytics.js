@@ -35,6 +35,8 @@
   var META_ID = document.body.dataset.metaPixel || ''; // pixel da Meta: só nas páginas que o declaram e só com consentimento de publicidade
   var LOJA = 'loja.melrolan.com.br';
   var PARAMS_LOJA = /^(gclid|gbraid|wbraid|fbclid|utm_[a-z0-9_]+)$/i;
+  var CLARITY_ID = document.body.dataset.clarity || ''; // Microsoft Clarity (mapas de calor e gravações): só com consentimento de medição, nunca em navegador interno, e só se houver ID
+  var clarityCarregado = false;
   var metaCarregado = false;
   var metaFila = [];
   var TT_ID = 'DB4J9FBC77UFMHL9D7L0'; // pixel do TikTok (só navegador): todas as páginas, só com consentimento de publicidade
@@ -75,6 +77,7 @@
     });
     if (META_ID) { if (e.ads) carregarMeta(); else if (metaCarregado) window.fbq('consent', 'revoke'); }
     if (e.ads) carregarTikTok(); else revogarTikTok();
+    if (e.analytics) carregarClarity(e); else revogarClarity();
   }
 
   // Eventos: ficam na fila até o GA ser carregado (se nunca for, nada é enviado).
@@ -229,6 +232,23 @@
     if (ttCarregado) window.ttq.revokeConsent();
   }
 
+  // Microsoft Clarity: só existe depois do consentimento de medição, no domínio oficial, fora do tráfego interno e com ID configurado.
+  // O diagnóstico é mascarado (data-clarity-mask), então nome e WhatsApp nunca aparecem nas gravações.
+  function carregarClarity(e) {
+    if (!CLARITY_ID || !OFICIAL || INTERNO) return;
+    if (!clarityCarregado) {
+      clarityCarregado = true;
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', CLARITY_ID);
+    }
+    window.clarity('consentv2', { ad_Storage: e.ads ? 'granted' : 'denied', analytics_Storage: 'granted' });
+  }
+  function revogarClarity() {
+    if (clarityCarregado) window.clarity('consent', false);
+  }
   function carregarMeta() {
     if (INTERNO || metaCarregado || !OFICIAL || !META_ID) return; // pixel da Meta só no domínio oficial
     metaCarregado = true;
@@ -280,7 +300,7 @@
   function apagarCookiesGA() {
     document.cookie.split(';').forEach(function (c) {
       var nome = c.split('=')[0].trim();
-      if (/^(_ga|_gid|_gat|_gcl_|_gac_)/.test(nome)) {
+      if (/^(_ga|_gid|_gat|_gcl_|_gac_|_clck|_clsk)/.test(nome)) {
         ['', '; domain=.melrolan.com.br', '; domain=' + location.hostname].forEach(function (d) {
           document.cookie = nome + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
         });

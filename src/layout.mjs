@@ -11,6 +11,8 @@ export const asset = (p) => {
 
 // Pixel da Meta (dataset Mel Rolan): carregado só com consentimento de publicidade e no domínio oficial (analytics.js).
 const META_PIXEL = '1769596457566966';
+// Microsoft Clarity: o ID vem de data/integracoes.json (clarity_id). Vazio ou inválido: o atributo não é escrito e nada carrega.
+export const clarityAttr = (data) => { const id = (data.integracoes && data.integracoes.clarity_id) || ''; return /^[a-z0-9]{8,12}$/i.test(id) ? ` data-clarity="${id}"` : ''; };
 
 // Páginas que podem receber anúncios: usam o Consent Mode avançado (analytics.js, body data-medicao="avancada").
 // A regra de envio no endereço de teste, em public/js/analytics.js (TESTE), deve acompanhar esta lista.
@@ -139,7 +141,7 @@ ${STAGING || noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <link rel="stylesheet" href="${asset('/css/site.css')}">
 ${ld}
 </head>
-<body data-servico="${esc(servico)}" data-meta-pixel="${META_PIXEL}"${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
+<body data-servico="${esc(servico)}" data-meta-pixel="${META_PIXEL}"${clarityAttr(data)}${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 ${header(path)}
 <main id="conteudo">

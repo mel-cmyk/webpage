@@ -6,7 +6,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { cookieBanner } from '../src/layout.mjs';
+import { cookieBanner, clarityAttr } from '../src/layout.mjs';
 import { url, STAGING, SITE_URL } from '../src/helpers.mjs';
 import { vigente, itemGA } from '../src/oferta.mjs';
 
@@ -15,6 +15,7 @@ const raiz = path.resolve(aqui, '..');
 const ofertas = JSON.parse(fs.readFileSync(path.join(raiz, 'data/ofertas.json'), 'utf8'));
 const BASE = (process.env.SITE_BASE || '').replace(/\/$/, '');
 const META_PIXEL = '1769596457566966';
+const integracoes = JSON.parse(fs.readFileSync(new URL('../data/integracoes.json', import.meta.url), 'utf8'));
 
 export const LPS = [
   { pasta: 'criancas', guia: 'guia-paris-com-criancas', destino: 'paris-com-criancas' },
@@ -50,7 +51,7 @@ for (const lp of LPS) {
   html = html.replace('<!--MR_BANNER-->', () => cookieBanner());
   const pagina = [{ name: 'view_item', params: { currency: 'BRL', value: v.preco, items: [itemGA(g, agora)] } }];
   html = html.replace('<!--MR_ANALYTICS-->', () => `<script id="ga-page" type="application/json">${JSON.stringify(pagina)}</script>\n<script src="${url('/js/analytics.js')}?v=${versao('js/analytics.js')}" defer></script>`);
-  html = html.replace(/<body /, `<body data-servico="guias" data-medicao="avancada" data-meta-pixel="${META_PIXEL}" `);
+  html = html.replace(/<body /, `<body data-servico="guias" data-medicao="avancada" data-meta-pixel="${META_PIXEL}"${clarityAttr({ integracoes })} `);
   if (/<!--MR_/.test(html)) throw new Error(`Marcador não substituído em ${lp.pasta}`);
 
   const saida = path.join(raiz, 'dist/guias', lp.destino);

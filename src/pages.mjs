@@ -1022,7 +1022,7 @@ function diagnostico(data) {
 </section>
 <section class="section">
   <div class="wrap narrow">
-    <form id="diagnostico" class="quiz" novalidate>
+    <form id="diagnostico" class="quiz" novalidate data-clarity-mask="True">
       <p class="quiz-progress" aria-live="polite"></p>
 
       <fieldset class="step" data-step="1">
@@ -1093,7 +1093,7 @@ function diagnostico(data) {
       <p class="quiz-error small" role="alert" hidden>Escolha uma opção para continuar.</p>
     </form>
 
-    <div id="resultado" class="result" hidden aria-live="polite"></div>
+    <div id="resultado" class="result" hidden aria-live="polite" data-clarity-mask="True"></div>
   </div>
 </section>
 <script id="diagnostico-config" type="application/json">${JSON.stringify(cfg)}</script>
