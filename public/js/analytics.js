@@ -3,6 +3,11 @@
 // (ad_storage, ad_user_data, ad_personalization). O Google só é carregado depois de uma escolha
 // que aceite ao menos uma delas, e só no domínio oficial (o endereço de teste mostra o aviso, mas não envia dados).
 (function () {
+  // Barra dupla no endereço (ex.: /guias/paris-essencial//, vinda de links de fora como anúncios ou e-mails):
+  // limpa antes de qualquer medição, para o Google Analytics registrar sempre a mesma página.
+  try {
+    if (/\/\/+/.test(location.pathname)) history.replaceState(history.state, '', location.pathname.replace(/\/{2,}/g, '/') + location.search + location.hash);
+  } catch (e) {}
   var GA_ID = 'G-L71ZP46QX2';
   var KEY = 'mr_consent'; // mesma chave usada nas páginas de venda dos guias
   var VALIDADE = 182 * 24 * 60 * 60 * 1000; // a escolha vale 6 meses, depois perguntamos de novo

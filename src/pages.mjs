@@ -121,12 +121,12 @@ const imprensaFaixa = (data) => `
     <p class="center small"><a href="${url('/na-midia/')}">Ver todas as matérias</a></p>
   </div>
 </section>`;
-const imprensaCitacao = (data, id) => {
+const imprensaCitacao = (data, id, citacao) => {
   const x = data.imprensa.find((m) => m.id === id);
   return `
 <section class="section imprensa-citacao">
   <div class="wrap narrow">
-    <figure><blockquote>“${esc(x.citacao)}”</blockquote><figcaption>Mel Rolan, em <a href="${esc(x.url)}" target="_blank" rel="noopener">${veiculoTxt(x)}</a> · ${dataBR(x.data)}</figcaption></figure>
+    <figure><blockquote>“${esc(citacao || x.citacao)}”</blockquote><figcaption>Mel Rolan, em <a href="${esc(x.url)}" target="_blank" rel="noopener">${veiculoTxt(x)}</a> · ${dataBR(x.data)}</figcaption></figure>
   </div>
 </section>`;
 };
@@ -419,7 +419,7 @@ ${heroSplit(`
     ${faqHtml(faqTours)}
   </div>
 </section>
-${imprensaCitacao(data, 'r7-calor-paris')}
+${imprensaCitacao(data, 'r7-novo-luxo-tempo', 'Quando a viagem deixa de ser uma corrida contra o relógio, as pessoas conseguem aproveitar melhor o destino.')}
 ${ctaFinal(data, 'Quer ajuda para escolher o tour?', 'Conte quem viaja e quando, e a gente indica o tour que combina com o seu grupo.')}
 `;
   return {
