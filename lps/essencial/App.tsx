@@ -744,7 +744,7 @@ const AuthorSection = () => (
         <span className="text-[#C19450] font-bold uppercase tracking-[0.2em] text-xs mb-4 block">Sobre a Autora</span>
         <h2 className="text-3xl md:text-5xl font-serif italic mb-6 text-white">Mel Rolan</h2>
         <p className="text-gray-300 font-sans leading-relaxed mb-6">
-          Mel Rolan é Travel Designer especialista em viajantes brasileiros, com mais de 650 clientes atendidos. Mora na França há mais de 5 anos e é formada em Turismo.
+          Mel Rolan é Travel Designer especialista em viajantes brasileiros, com mais de 650 clientes atendidos. Mora na França há mais de 5 anos e é formada em Turismo e foi aluna da École du Louvre (2025/2026).
         </p>
         <p className="text-gray-300 font-sans leading-relaxed">
           Especialista em viagens e roteiros personalizados, Mel transformou sua vivência real no país em uma metodologia que organiza o roteiro dos brasileiros em Paris, unindo conhecimento do destino com a prática de quem viaja.
