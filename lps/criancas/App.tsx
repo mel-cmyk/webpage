@@ -744,7 +744,7 @@ const AuthorSection: React.FC = () => {
             </h2>
             
             <p className="text-base sm:text-lg text-[#F7F4EA]/90 font-sans leading-relaxed mb-6">
-              Sou a Mel, Travel Designer especialista em viajantes brasileiros. Já acompanhei mais de 650 clientes em roteiros personalizados, consultorias e passeios. Sou mãe e moro em Paris há mais de 5 anos. Este guia é o material que eu faria para uma amiga querida que estivesse organizando a viagem da vida com os filhos.
+              Sou a Mel, Travel Designer especialista em viajantes brasileiros. Já acompanhei mais de 650 clientes em roteiros personalizados, consultorias e passeios. Sou mãe, ex-aluna da École du Louvre (2025/2026) e moro em Paris há mais de 5 anos. Este guia é o material que eu faria para uma amiga querida que estivesse organizando a viagem da vida com os filhos.
             </p>
 
             <div className="inline-flex items-center gap-3 bg-white/5 border border-[#C19450]/30 px-5 py-3 rounded-md">
