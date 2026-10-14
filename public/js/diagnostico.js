@@ -1,4 +1,4 @@
-// Diagnóstico da viagem: 6 etapas, recomendação, lead salvo no Wix e WhatsApp pré-preenchido.
+// Diagnóstico da viagem: 5 etapas, recomendação, lead salvo no Wix e WhatsApp pré-preenchido.
 (function () {
   const form = document.getElementById('diagnostico');
   if (!form) return;
@@ -70,48 +70,36 @@
     return true;
   }
 
-  // Critério de qualificação: orçamento para os serviços.
-  function qualificado() {
-    const inv = val('investimento');
-    if (inv === 'até R$ 500') return 'nao';
-    if (inv === 'ainda não sei') return 'indefinido';
-    return 'sim';
-  }
-
-  // Recomendação: combina o que a pessoa quer, o orçamento e o estilo de viagem.
-  // Devolve { principal, complemento, motivo } com ids de serviço (tours, roteiro, consultoria, guias).
+  // Recomendação: combina o que a pessoa quer, o prazo e o estilo de viagem (sem pergunta de orçamento desde 14/10/2026;
+  // a qualificação acontece na proposta). Devolve { principal, complemento } com ids de serviço (tours, roteiro, consultoria, guias).
   function recomendar() {
     const quer = lista('procura');
     const estilo = lista('estilo');
-    const inv = val('investimento');
-    const faixa = { 'até R$ 500': 0, 'de R$ 500 a R$ 1.000': 1, 'de R$ 1.000 a R$ 3.000': 2, 'acima de R$ 3.000': 3, 'ainda não sei': -1 }[inv];
     const q = (id) => quer.includes(id);
-    const indeciso = !quer.length || (q('nao-sei') && quer.length === 1);
+    const primeiraOuCidades = estilo.includes('primeira vez') || estilo.includes('outras cidades');
     let principal;
     let complemento = null;
 
-    if (faixa === 0) {
-      principal = 'guias';
-    } else if (q('roteiro') && val('quando') === 'daqui a mais de 12 meses' && faixa >= 2) {
-      // Viagem a 12 meses ou mais, com orçamento: a consultoria define destinos e dias agora; o roteiro vem mais perto da data.
+    if (q('roteiro') && val('quando') === 'daqui a mais de 12 meses') {
+      // Viagem a 12 meses ou mais: a consultoria define destinos e dias agora; o roteiro vem mais perto da data.
       principal = 'consultoria';
       complemento = 'roteiro';
-    } else if (q('roteiro') || (indeciso && faixa >= 2)) {
-      principal = faixa === 1 ? 'consultoria' : 'roteiro';
-      if (faixa === 3 || q('tours')) complemento = 'tours';
+    } else if (q('roteiro')) {
+      principal = 'roteiro';
+      if (q('tours')) complemento = 'tours';
     } else if (q('consultoria')) {
       principal = 'consultoria';
-      if (faixa >= 3 || q('tours')) complemento = 'tours';
+      if (q('tours')) complemento = 'tours';
     } else if (q('tours')) {
       principal = 'tours';
-      if (faixa >= 2 && (estilo.includes('primeira vez') || estilo.includes('outras cidades'))) complemento = 'consultoria';
+      if (primeiraOuCidades) complemento = 'consultoria';
       else if (q('guias')) complemento = 'guias';
     } else if (q('guias')) {
       principal = 'guias';
-      if (faixa >= 2) complemento = 'consultoria';
     } else {
+      // Ainda não sabe: a consultoria é o ponto de partida; quem vai pela primeira vez também vê os tours.
       principal = 'consultoria';
-      if (faixa === 3) complemento = 'tours';
+      if (estilo.includes('primeira vez')) complemento = 'tours';
     }
     if (complemento === principal) complemento = null;
     // Quem contrata roteiro ou consultoria não precisa do guia como complemento.
@@ -166,7 +154,6 @@
       `Viagem: ${val('quando')}`,
       `Quem viaja: ${quem}`,
       `Estilo: ${labelOf('estilo')}`,
-      `Investimento nos serviços: ${val('investimento')}`,
       `Diagnóstico do site: ${indicacao}`,
     ];
     if (val('obs')) linhas.push(`Observação: ${val('obs')}`);
@@ -200,8 +187,6 @@
     const params = {
       metodo: 'diagnostico',
       indicacao: recs.complemento ? `${rec}+${recs.complemento}` : rec,
-      faixa_investimento: val('investimento'),
-      qualificado: qualificado(),
       prazo_viagem: val('quando'),
       perfil_viagem: val('quem'),
     };
@@ -219,7 +204,6 @@
       procura: labelOf('procura'),
       quando: val('quando'),
       quem_viaja: quem + (val('estilo') ? ' · estilo: ' + labelOf('estilo') : ''),
-      investimento: val('investimento'),
       indicacao,
       observacao: val('obs'),
       origem,

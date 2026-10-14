@@ -243,7 +243,7 @@ ${provaRapida(m)}
         })
         .join('')}
     </div>
-    <p class="center">Ainda em dúvida? <a href="${url('/diagnostico/')}">Responda seis perguntas rápidas</a> e veja qual combinação de serviços combina com a sua viagem.</p>
+    <p class="center">Ainda em dúvida? <a href="${url('/diagnostico/')}">Responda cinco perguntas rápidas</a> e veja qual combinação de serviços combina com a sua viagem.</p>
   </div>
 </section>
 <section class="section alt" id="para-quem">
@@ -1017,7 +1017,7 @@ function diagnostico(data) {
   <div class="wrap narrow">
     <p class="eyebrow">Diagnóstico da viagem</p>
     <h1>Qual opção combina com a sua viagem?</h1>
-    <p class="lead">Seis perguntas rápidas. No final, você vê a combinação de serviços indicada pela Mel, e as suas respostas chegam para a nossa equipe, que fala com você pelo WhatsApp.</p>
+    <p class="lead">Cinco perguntas rápidas. No final, você vê a combinação de serviços indicada pela Mel, e as suas respostas chegam para a nossa equipe, que fala com você pelo WhatsApp.</p>
   </div>
 </section>
 <section class="section">
@@ -1068,16 +1068,6 @@ function diagnostico(data) {
       </fieldset>
 
       <fieldset class="step" data-step="5" hidden>
-        <legend>Quanto você pretende investir nos serviços da Mel?</legend>
-        <p class="hint">Sem contar passagens, hospedagem e ingressos. Perguntamos para indicar a opção que faz sentido para você, sem desperdiçar o seu tempo.</p>
-        <label><input type="radio" name="investimento" value="até R$ 500"> Até R$ 500</label>
-        <label><input type="radio" name="investimento" value="de R$ 500 a R$ 1.000"> De R$ 500 a R$ 1.000</label>
-        <label><input type="radio" name="investimento" value="de R$ 1.000 a R$ 3.000"> De R$ 1.000 a R$ 3.000</label>
-        <label><input type="radio" name="investimento" value="acima de R$ 3.000"> Acima de R$ 3.000</label>
-        <label><input type="radio" name="investimento" value="ainda não sei"> Ainda não sei</label>
-      </fieldset>
-
-      <fieldset class="step" data-step="6" hidden>
         <legend>Para quem enviamos a indicação?</legend>
         <label class="text-label">Seu primeiro nome<input type="text" name="nome" autocomplete="given-name" required maxlength="60"></label>
         <label class="text-label">Seu WhatsApp, com DDD<input type="tel" name="whatsapp" autocomplete="tel" inputmode="tel" required placeholder="Ex.: 11 91234-5678" maxlength="25"></label>
@@ -1102,7 +1092,7 @@ function diagnostico(data) {
     path: '/diagnostico/',
     title: 'Diagnóstico da viagem a Paris | Mel Rolan',
     description:
-      'Responda seis perguntas rápidas e descubra qual combinação de serviços combina com a sua viagem a Paris: tour, roteiro, consultoria ou guia digital.',
+      'Responda cinco perguntas rápidas e descubra qual combinação de serviços combina com a sua viagem a Paris: tour, roteiro, consultoria ou guia digital.',
     body,
     scripts: ['/js/diagnostico.js'],
     noFloat: true,
