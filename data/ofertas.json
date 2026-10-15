@@ -25,7 +25,7 @@
       "nome": "Tours privativos em Paris",
       "ordem": 1,
       "moeda": "EUR",
-      "preco_a_partir_de": 280,
+      "preco_a_partir_de": 260,
       "unidade_preco": "por grupo",
       "pagina": "/tours-em-paris"
     },
@@ -128,15 +128,15 @@
       "imagem_alt": "Mel Rolan diante da Maison Rose, em Montmartre",
       "nome": "Montmartre",
       "subtitulo": "Paris boêmia e artística",
-      "duracao": "3h30",
+      "duracao": "3h",
       "precos": [
         {
           "grupo": "até 4 pessoas",
-          "valor": 280
+          "valor": 260
         },
         {
           "grupo": "5 a 8 pessoas",
-          "valor": 380
+          "valor": 360
         }
       ],
       "encontro": "Bairro de Montmartre",
@@ -181,15 +181,15 @@
       "imagem_alt": "Pont Alexandre III ao entardecer, com a cúpula dos Invalides ao fundo",
       "nome": "Eixo Histórico e Republicano",
       "subtitulo": "Monumentos icônicos",
-      "duracao": "3h30",
+      "duracao": "3h",
       "precos": [
         {
           "grupo": "até 4 pessoas",
-          "valor": 280
+          "valor": 260
         },
         {
           "grupo": "5 a 8 pessoas",
-          "valor": 380
+          "valor": 360
         }
       ],
       "encontro": "Da Pirâmide do Louvre ao Arco do Triunfo",

@@ -425,8 +425,7 @@ ${ctaFinal(data, 'Quer ajuda para escolher o tour?', 'Conte quem viaja e quando,
   return {
     path: '/tours-em-paris/',
     title: 'Tours privativos em Paris em português | Mel Rolan',
-    description:
-      'Tours privativos a pé em Paris, em português, com guia brasileira. Roteiros ao ar livre, a partir de € 280 por grupo.',
+    description: `Tours privativos a pé em Paris, em português, com guia brasileira. Roteiros ao ar livre, a partir de ${eur(Math.min(...data.tours.map(menorPreco)))} por grupo.`,
     body,
     og: 'og/tours.jpg',
     servico: 'tours',
