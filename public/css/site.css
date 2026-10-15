@@ -354,3 +354,10 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 .assessoria p { margin: 0 0 8px; }
 .imprensa-logo { height: 40px; width: auto; max-width: 100%; align-self: flex-start; object-fit: contain; border-radius: 6px; margin-bottom: 4px; }
 .imprensa-item .imprensa-logo { display: block; margin-bottom: 10px; }
+
+/* Card inteiro clicável: o botão do card cobre o card todo (foto, título e preço também levam à página). */
+.card-photo { position: relative; }
+.card-photo .card-body > .btn::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.card-photo:has(.card-body > .btn) { cursor: pointer; }
+.card-photo:has(.card-body > .btn:hover) { border-color: var(--gold-dark); }
+.hero-split-media a { display: block; }

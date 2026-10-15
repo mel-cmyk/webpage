@@ -14,7 +14,7 @@ const META_PIXEL = '1769596457566966';
 // Microsoft Clarity: o ID vem de data/integracoes.json (clarity_id). Vazio ou inválido: o atributo não é escrito e nada carrega.
 export const clarityAttr = (data) => { const id = (data.integracoes && data.integracoes.clarity_id) || ''; return /^[a-z0-9]{8,12}$/i.test(id) ? ` data-clarity="${id}"` : ''; };
 // Páginas de anúncios (Consent Mode avançado) carregam o Google desde o início: conectar e baixar o gtag.js em paralelo ao resto da página.
-export const dicasGoogle = '<link rel="preconnect" href="https://www.googletagmanager.com">\n<link rel="preconnect" href="https://www.google-analytics.com">\n<link rel="preload" as="script" href="https://www.googletagmanager.com/gtag/js?id=G-L71ZP46QX2">';
+export const dicasGoogle = '<link rel="preconnect" href="https://www.googletagmanager.com">\n<link rel="preconnect" href="https://www.google-analytics.com">';
 
 // Páginas que podem receber anúncios: usam o Consent Mode avançado (analytics.js, body data-medicao="avancada").
 // A regra de envio no endereço de teste, em public/js/analytics.js (TESTE), deve acompanhar esta lista.
