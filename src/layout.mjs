@@ -106,7 +106,8 @@ export const cookieBanner = () => `
     <button type="button" class="btn btn-small" id="cookie-mais" data-consent="more">Personalizar</button>
     <button type="button" class="btn btn-small" id="cookie-salvar" data-consent="custom" hidden>Salvar escolhas</button>
   </div>
-</div>`;
+</div>
+<script>/* Mostra o aviso já na primeira pintura (sem esperar o analytics.js): ele é o maior elemento da tela no celular (LCP). Mesma regra de lerEscolha() em analytics.js. */try{var mrS=JSON.parse(localStorage.getItem('mr_consent')||'null');if(!(mrS&&typeof mrS.ads==='boolean'&&Date.now()-(mrS.timestamp||0)<15724800000)){document.getElementById('cookie-banner').hidden=false;document.body.classList.add('cookie-aberto');}}catch(e){}</script>`;
 
 export function layout({ data, path, title, description, body, jsonld = [], scripts = [], noFloat = false, og = 'og/home.jpg', servico = 'geral', analytics = [], noindex = false }) {
   const canonical = `${SITE_URL}${path}`;
