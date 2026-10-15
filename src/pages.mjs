@@ -11,13 +11,17 @@ const precoServico = (s) =>
 const CARD_SIZES = '(min-width: 1000px) 340px, (min-width: 700px) 50vw, 100vw';
 
 // Topo das páginas internas: texto à esquerda, foto à direita (no celular, foto abaixo do texto).
-const heroSplit = (inner, key, alt) => `
+// href (opcional): a foto vira link (ex.: leva à lista de tours), porque muita gente toca na foto do topo.
+const heroSplit = (inner, key, alt, href = '') => {
+  const foto = img(key, alt, { sizes: '(min-width: 900px) 540px, 100vw', eager: true });
+  return `
 <section class="hero hero-sm hero-split">
   <div class="wrap hero-split-grid">
     <div>${inner}</div>
-    <div class="hero-split-media">${img(key, alt, { sizes: '(min-width: 900px) 540px, 100vw', eager: true })}</div>
+    <div class="hero-split-media">${href ? `<a href="${href}" data-cta="hero-foto" aria-label="Ver os tours">${foto}</a>` : foto}</div>
   </div>
 </section>`;
+};
 
 // Itens no formato do GA4 (comércio eletrônico), usados nos eventos de visualização e clique.
 const tourItem = (t) => ({ item_id: t.id, item_name: t.nome, item_category: 'tour', price: menorPreco(t), currency: 'EUR' });
@@ -357,8 +361,8 @@ ${heroSplit(`
     <p class="eyebrow">Tours privativos em Paris</p>
     <h1>Paris além dos cartões-postais, a pé e em português.</h1>
     <p class="lead">Passeios privativos, leves e sem correria, com a Mel, travel designer especializada em viajantes brasileiros. Só o seu grupo, no seu ritmo, pelas ruas, praças e jardins que contam a história da cidade.</p>
-    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris')}
-<section class="section">
+    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris', '#escolha-o-tour')}
+<section class="section" id="escolha-o-tour">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
     <div class="quiz-cta center"><p class="eyebrow">Em dúvida sobre qual escolher?</p><p>Responda 6 perguntas rápidas e descubra os tours que mais combinam com você.</p><a class="btn" href="${url('/qual-tour-combina-com-voce/')}" data-cta="tours-quiz">Fazer o quiz do tour ideal</a></div>

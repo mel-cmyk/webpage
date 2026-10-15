@@ -361,6 +361,11 @@
     salvarEscolha(e);
     mostrarAviso(false);
     expandirOpcoes(false);
+    // Fecha o aviso na hora e só depois carrega Google, Clarity e pixels (resposta ao toque mais rápida, INP).
+    depois(function () { aplicarDepois(e); });
+  }
+  function depois(fn) { requestAnimationFrame(function () { setTimeout(fn, 0); }); }
+  function aplicarDepois(e) {
     aplicarConsentimento(e);
     if (e.analytics) registrarOrigem();
     else { try { sessionStorage.removeItem('mr_origem'); } catch (err) {} }
@@ -427,5 +432,10 @@
     if (escolha.analytics) registrarOrigem();
     if (escolha.analytics || escolha.ads) carregarGA();
   } else { marcarOpcoes(null); expandirOpcoes(false); mostrarAviso(true); }
-  if (AVANCADO) carregarGA();
+  // Páginas de anúncios: o Google carrega logo após a página terminar de abrir, para não disputar banda com a foto do topo (LCP).
+  // Os eventos ficam na fila até lá.
+  if (AVANCADO) {
+    if (document.readyState === 'complete') carregarGA();
+    else window.addEventListener('load', function () { setTimeout(carregarGA, 0); }, { once: true });
+  }
 })();
