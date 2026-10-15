@@ -65,6 +65,34 @@
   ],
   "tours": [
     {
+      "id": "eixo-historico",
+      "imagem": "tours/monumental-classico",
+      "imagem_alt": "Pont Alexandre III ao entardecer, com a cúpula dos Invalides ao fundo",
+      "nome": "Eixo Histórico e Republicano",
+      "subtitulo": "Monumentos icônicos",
+      "duracao": "3h",
+      "precos": [
+        {
+          "grupo": "até 4 pessoas",
+          "valor": 260
+        },
+        {
+          "grupo": "5 a 8 pessoas",
+          "valor": 360
+        }
+      ],
+      "encontro": "Da Pirâmide do Louvre ao Arco do Triunfo",
+      "roteiro": [
+        "Pirâmide do Louvre",
+        "Jardin des Tuileries",
+        "Place de la Concorde",
+        "Pont Alexandre III",
+        "Champs-Élysées",
+        "Arco do Triunfo"
+      ],
+      "ideal_para": "Quem quer descobrir a história por trás de alguns dos principais monumentos de Paris."
+    },
+    {
       "id": "eixo-historico-ocupacao-nazista",
       "imagem": "tours/historia-e-memoria",
       "imagem_alt": "Arcadas da Rue de Rivoli pela manhã",
@@ -93,34 +121,6 @@
       ],
       "descricao": "Percorremos o eixo histórico de Paris para acompanhar a construção e as transformações da cidade ao longo dos séculos, entre palácios, praças e grandes símbolos de poder. Ao longo do caminho, um desvio pela Place Vendôme, Rue de Rivoli e hotéis-palácio revela como esses espaços foram apropriados pelas autoridades alemãs durante a ocupação de Paris, entre 1940 e 1944.",
       "ideal_para": "Quem quer descobrir a história por trás dos grandes monumentos de Paris e entender como a cidade viveu os anos da ocupação."
-    },
-    {
-      "id": "quartier-latin-e-ile-de-la-cite",
-      "imagem": "tours/rive-gauche-e-berco-de-paris",
-      "imagem_alt": "Mel Rolan na Rue des Ursins, na Île de la Cité, com a placa da cheia de 1910",
-      "nome": "Quartier Latin + Île de la Cité",
-      "subtitulo": "Onde Paris começou",
-      "duracao": "3h30",
-      "precos": [
-        {
-          "grupo": "até 4 pessoas",
-          "valor": 280
-        },
-        {
-          "grupo": "5 a 8 pessoas",
-          "valor": 380
-        }
-      ],
-      "encontro": "Das Arenas à Île de la Cité",
-      "roteiro": [
-        "Arenas de Lutécia",
-        "Panthéon",
-        "Notre-Dame",
-        "Palais de la Cité",
-        "Pont Neuf",
-        "Île de la Cité"
-      ],
-      "ideal_para": "Curiosos por história que querem entender a origem e a alma de Paris."
     },
     {
       "id": "montmartre",
@@ -176,32 +176,32 @@
       "ideal_para": "Quem sonha caminhar por cartões-postais que viu em filmes e séries e, ao mesmo tempo, desvendar as histórias e curiosidades por trás de cada cenário."
     },
     {
-      "id": "eixo-historico",
-      "imagem": "tours/monumental-classico",
-      "imagem_alt": "Pont Alexandre III ao entardecer, com a cúpula dos Invalides ao fundo",
-      "nome": "Eixo Histórico e Republicano",
-      "subtitulo": "Monumentos icônicos",
-      "duracao": "3h",
+      "id": "quartier-latin-e-ile-de-la-cite",
+      "imagem": "tours/rive-gauche-e-berco-de-paris",
+      "imagem_alt": "Mel Rolan na Rue des Ursins, na Île de la Cité, com a placa da cheia de 1910",
+      "nome": "Quartier Latin + Île de la Cité",
+      "subtitulo": "Onde Paris começou",
+      "duracao": "3h30",
       "precos": [
         {
           "grupo": "até 4 pessoas",
-          "valor": 260
+          "valor": 280
         },
         {
           "grupo": "5 a 8 pessoas",
-          "valor": 360
+          "valor": 380
         }
       ],
-      "encontro": "Da Pirâmide do Louvre ao Arco do Triunfo",
+      "encontro": "Das Arenas à Île de la Cité",
       "roteiro": [
-        "Pirâmide do Louvre",
-        "Jardin des Tuileries",
-        "Place de la Concorde",
-        "Pont Alexandre III",
-        "Champs-Élysées",
-        "Arco do Triunfo"
+        "Arenas de Lutécia",
+        "Panthéon",
+        "Notre-Dame",
+        "Palais de la Cité",
+        "Pont Neuf",
+        "Île de la Cité"
       ],
-      "ideal_para": "Quem quer descobrir a história por trás de alguns dos principais monumentos de Paris."
+      "ideal_para": "Curiosos por história que querem entender a origem e a alma de Paris."
     },
     {
       "id": "paris-classica",
