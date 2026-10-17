@@ -79,12 +79,14 @@ const ctaFinal = (data, titulo, texto) => `
   </div>
 </section>`;
 
+const TRIP_URL = 'https://www.tripadvisor.fr/Attraction_Review-g187147-d34501789-Reviews-Mel_Rolan_Tours_em_Paris_para_Brasileiros-Paris_Ile_de_France.html';
 const provaRapida = (m) => `
 <section class="proof" aria-label="Números da Mel Rolan">
   <div class="wrap proof-grid">
     <p><strong>${m.nota_satisfacao} de 10</strong><span>na pesquisa de satisfação dos clientes (${m.pesquisas_satisfacao} respostas, ${m.periodo_pesquisas})</span></p>
     <p><strong>+${m.familias_atendidas.replace('+', '')} clientes</strong><span>atendidas em roteiros, consultorias e tours</span></p>
     <p><strong>${m.anos_na_franca} anos</strong><span>vivendo em Paris</span></p>
+    <p><strong>5,0 no Tripadvisor</strong><span>nas avaliações de quem fez o tour (<a href="${TRIP_URL}" target="_blank" rel="noopener" data-cta="tripadvisor-home">ver avaliações</a>)</span></p>
   </div>
 </section>`;
 
@@ -112,7 +114,6 @@ const depoimentos = (m, extra = '') => `
 
 // Avaliações do Tripadvisor (perfil "Mel Rolan — Tours em Paris"), publicadas com autorização dos clientes (Diogo, 17/10/2026).
 // Trechos fiéis ao texto original; [...] marca cortes e [colchetes] marcam edições (a ferramenta do roteiro não é nomeada).
-const TRIP_URL = 'https://www.tripadvisor.fr/Attraction_Review-g187147-d34501789-Reviews-Mel_Rolan_Tours_em_Paris_para_Brasileiros-Paris_Ile_de_France.html';
 const TRIP = {
   marise: { tours: ['paris-de-cinema'], titulo: 'Uma das melhores tardes da minha vida!', texto: 'Fiz o roteiro Paris de Cinema com meu marido e foi uma experiência incrível. [...] A Mel faz toda a diferença. Existe uma sensibilidade enorme na construção do roteiro, na escolha de cada lugar, nas histórias que ela conta e até na música que acompanha alguns momentos.', autor: 'Marise Lemos', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
   rafael: { tours: ['paris-de-cinema'], titulo: 'Paris com a Mel é ainda mais interessante e especial', texto: 'Já estive algumas vezes em Paris, mas esse tour me fez enxergar a cidade de outra forma. [...] Recomendo muito para todos e especialmente, para os brasileiros.', autor: 'Rafael D.', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
@@ -435,25 +436,19 @@ ${heroSplit(`
   </div>
 </section>
 ${avaliacoesTours()}
-<section class="section">
-  <div class="wrap">
-    <h2 class="center">Um tour para cada grupo</h2>
-    <p class="center lead-sm">Todos os tours funcionam para todos os perfis. O conteúdo é adaptado a cada grupo, do livro de atividades para os pequenos à profundidade histórica para quem quer ir mais longe.</p>
-    ${perfisTour(null)}
-  </div>
-</section>
 <section class="section alt">
   <div class="wrap">
-    <h2 class="center">O que está incluído em todos os tours</h2>
+    <h2 class="center">Para todos os grupos, com tudo incluído</h2>
+    <p class="center lead-sm">Todos os tours funcionam para todos os perfis. O conteúdo é adaptado a cada grupo, do livro de atividades para os pequenos à profundidade histórica para quem quer ir mais longe.</p>
+    <ul class="checklist grid-2">
+      <li><strong>Com crianças:</strong> todas as idades, inclusive com carrinho de bebê. Cada criança ganha o livro impresso do Monsieur Pombo.</li>
+      <li><strong>Com avós:</strong> grupos de até três gerações, ritmo leve e muitas paradas no caminho.</li>
+      <li><strong>Casais:</strong> só vocês dois e a Mel, no ritmo de vocês.</li>
+      <li><strong>Viajando sozinha:</strong> uma guia brasileira ao seu lado e liberdade para parar onde der vontade.</li>
+    </ul>
+    <h3 class="center">Incluído em todos os tours</h3>
     <ul class="checklist grid-2">${incluidoTours.map((i) => `<li>${i}</li>`).join('')}</ul>
-    <aside class="card destaque destaque-img">
-      ${img('pombo/tours-livro', 'Livro de atividades impresso do Monsieur Pombo, fechado e aberto numa mesa', { sizes: '(min-width: 760px) 340px, 100vw' })}
-      <div>
-        <p class="eyebrow">Para os mini clientes</p>
-        <h3>O livro do Monsieur Pombo, impresso</h3>
-        <p>Nos tours com crianças, cada mini cliente ganha o livro de atividades impresso criado pela Mel, com curiosidades, jogos e desafios sobre a história de Paris para acompanhar o passeio.</p>
-      </div>
-    </aside>
+    <p class="center small">Todos os passeios têm paradas para descansar, tomar um café e ir ao banheiro.</p>
   </div>
 </section>
 <section class="section alt">
