@@ -177,7 +177,7 @@ const blocoSozinha = () => `
       <div>
         <p class="eyebrow">Para quem viaja sozinha</p>
         <h3>Viajando sozinha, com tranquilidade</h3>
-        <p>Paris é uma cidade segura e que se aproveita muito bem sozinha. A Mel indica bairros tranquilos e bem servidos de transporte para se hospedar, os trajetos mais simples entre um programa e outro e os horários em que cada região é mais agradável. Nos tours, você tem uma guia brasileira ao seu lado do início ao fim, e no roteiro sob medida cada dia já chega pensado para quem está sozinha.</p>
+        <p>Paris se aproveita muito bem sozinha, com os mesmos cuidados de qualquer grande cidade. A Mel indica bairros tranquilos e bem servidos de transporte para se hospedar, os trajetos mais simples entre um programa e outro e os horários em que cada região é mais agradável. Nos tours, você tem uma guia brasileira ao seu lado do início ao fim, e no roteiro sob medida cada dia já chega pensado para quem está sozinha.</p>
       </div>
     </aside>`;
 const TOURS_CURTOS = ['3h', '3h30'];
