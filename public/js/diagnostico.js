@@ -114,6 +114,15 @@
     guias: 'A curadoria da Mel em PDF, com acesso imediato, para planejar com autonomia.',
   };
 
+  // Parágrafo por perfil de quem viaja (textos aprovados por Diogo em 17/10/2026).
+  const perfis = {
+    'família com crianças': 'Com crianças, cada dia é pensado no ritmo delas: pausas, parquinhos, restaurantes onde os pequenos comem bem e passeios que cabem na energia de cada idade. Nos tours, cada criança ganha o livro de atividades do Monsieur Pombo, criado pela Mel.',
+    'casal': 'Para o casal, a viagem ganha respiro: bairros para caminhar sem pressa, mesas escolhidas com cuidado e tempo para aproveitar Paris a dois, sem transformar os dias numa maratona de pontos turísticos.',
+    'viagem solo': 'Para quem viaja sozinho, a Mel sugere bairros tranquilos para se hospedar e programas que funcionam bem para uma pessoa só, com a liberdade de montar cada dia do seu jeito.',
+    'amigos ou grupo': 'Para grupos, o desafio é agradar a todos. A Mel desenha uma programação que equilibra os interesses do grupo, com momentos juntos e espaço para cada um.',
+    'família com avós': 'Com avós, pais e netos no mesmo grupo, o ritmo respeita o fôlego de cada um: deslocamentos curtos, pausas para descansar e programas que agradam a todas as idades. A Mel já recebeu grupos de três gerações no mesmo passeio.',
+  };
+
   // Salva o lead no Wix Forms (vira submissão no painel e contato no CRM), com um token anônimo de visitante.
   // Não bloqueia a pessoa: se falhar, o resultado e o WhatsApp continuam funcionando.
   async function salvarLead(valores) {
@@ -179,6 +188,8 @@
       <h2>${s.nome}</h2>
       <p>${textos[rec]}</p>
       <p class="price">${s.preco}</p>
+      ${perfis[val('quem')] ? `<p>${perfis[val('quem')]}</p>` : ''}
+      ${rec === 'roteiro' && val('quando') === 'nos próximos 3 meses' ? '<p class="small">O ideal é contratar o roteiro com 6 meses de antecedência. Para viagens mais próximas, a Mel confirma pelo WhatsApp se ainda há agenda.</p>' : ''}
       ${blocoComplemento}
       ${guiaExtra}
       ${extraTour}
