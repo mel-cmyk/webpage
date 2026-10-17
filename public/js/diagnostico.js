@@ -193,7 +193,7 @@
       ${blocoComplemento}
       ${guiaExtra}
       ${extraTour}
-      <p class="small">Atendimento em português, direto de Paris.</p>`;
+      <p class="small">Respondemos em até 24 horas, no horário de Paris (4 a 5 horas à frente de Brasília, conforme a época do ano). Nosso atendimento é 100% humano.</p>`;
 
     const params = {
       metodo: 'diagnostico',

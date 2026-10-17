@@ -28,7 +28,12 @@ const nav = [
   ['/sobre/', 'Sobre a Mel'],
 ];
 
-function header(current) {
+function header(current, data) {
+  // Botão do topo contextual: nas páginas de tour, o caminho mais usado é o WhatsApp (GA4, 30 dias até 17/10/2026).
+  const emTours = current.startsWith('/tours-em-paris/');
+  const cta = emTours
+    ? `<a class="btn btn-small nav-cta" href="${wa(data, 'Olá! Vim pelo site da Mel Rolan e gostaria de consultar datas para um tour em Paris.')}" data-wa="cabecalho-tours">Consultar datas</a>`
+    : `<a class="btn btn-small nav-cta" href="${url('/diagnostico/')}">Planejar minha viagem</a>`;
   const links = nav
     .map(
       ([href, label]) =>
@@ -42,7 +47,7 @@ function header(current) {
       <img src="${url('/img/logo.webp')}" alt="Mel Rolan Travel Designer" width="115" height="50">
     </a>
     <nav class="nav-desktop" aria-label="Principal">${links}</nav>
-    <a class="btn btn-small nav-cta" href="${url('/diagnostico/')}">Planejar minha viagem</a>
+    ${cta}
     <details class="nav-mobile">
       <summary aria-label="Abrir menu">Menu</summary>
       <nav aria-label="Principal (celular)">${links}<a class="btn" href="${url('/diagnostico/')}">Planejar minha viagem</a></nav>
@@ -147,7 +152,7 @@ ${ld}
 </head>
 <body data-servico="${esc(servico)}" data-meta-pixel="${META_PIXEL}"${clarityAttr(data)}${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-${header(path)}
+${header(path, data)}
 <main id="conteudo">
 ${body}
 </main>

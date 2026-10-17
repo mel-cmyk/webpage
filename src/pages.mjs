@@ -3,6 +3,13 @@ import { url, esc, eur, brl, money, wa, menorPreco, img, SITE_URL } from './help
 import { privacidade, avisoLegal } from './legal.mjs';
 import { vigente, itemGA } from './oferta.mjs';
 
+// Expectativa de resposta (Diogo, 17/10/2026).
+const RESPOSTA = 'Respondemos em até 24 horas, no horário de Paris (4 a 5 horas à frente de Brasília, conforme a época do ano). Nosso atendimento é 100% humano.';
+
+// Selos nos cards de tour (Diogo, 17/10/2026: mais procurados; Paris de Cinema tem mais avaliações no Tripadvisor).
+const SELOS = { 'eixo-historico': 'Mais procurado', montmartre: 'Entre os mais procurados', 'paris-de-cinema': 'Mais bem avaliado' };
+const seloTour = (t) => (SELOS[t.id] ? `<p class="selo-tour">${SELOS[t.id]}</p>` : '');
+
 const servico = (data, id) => data.servicos.find((s) => s.id === id);
 
 const precoServico = (s) =>
@@ -75,7 +82,7 @@ const ctaFinal = (data, titulo, texto) => `
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico">Começar o diagnóstico</a>
       <a class="btn btn-ghost" href="${wa(data, 'Olá! Vim pelo site da Mel Rolan e gostaria de conversar sobre a minha viagem a Paris.')}" data-wa="cta-final">Falar no WhatsApp</a>
     </div>
-    <p class="small">Atendimento em português, direto de Paris.</p>
+    <p class="small">${RESPOSTA}</p>
   </div>
 </section>`;
 
@@ -277,7 +284,7 @@ function home(data) {
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-hero">Descobrir o que combina com a minha viagem</a>
       <a class="btn btn-ghost" href="#como-ajudar">Ver tours e serviços</a>
     </div>
-    <p class="small">Atendimento em português, direto de Paris.</p>
+    <p class="small">${RESPOSTA}</p>
   </div>
 </section>
 ${provaRapida(m)}
@@ -420,7 +427,9 @@ ${heroSplit(`
     <div class="actions">
       <a class="btn" href="#escolha-o-tour" data-cta="tours-hero-lista">Escolher o meu tour</a>
       <a class="btn btn-ghost" href="${wa(data, 'Olá! Vim pelo site da Mel Rolan e gostaria de consultar datas para um tour em Paris.')}" data-wa="tours-hero">Consultar datas no WhatsApp</a>
-    </div>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris', '#escolha-o-tour')}
+    </div>
+    <p class="small"><a href="${TRIP_URL}" target="_blank" rel="noopener" data-cta="tripadvisor-tours">5,0 no Tripadvisor</a> · ${data.marca.nota_satisfacao} de 10 na pesquisa de satisfação</p>
+    <p class="small">${RESPOSTA}</p>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris', '#escolha-o-tour')}
 <section class="section" id="escolha-o-tour">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
@@ -431,7 +440,7 @@ ${heroSplit(`
           (t) => `<article class="card card-photo">
         ${img(t.imagem, t.imagem_alt, { sizes: CARD_SIZES })}
         <div class="card-body">
-        <p class="card-meta">${esc(t.duracao)} · ${esc(t.encontro)}</p>
+        ${seloTour(t)}<p class="card-meta">${esc(t.duracao)} · ${esc(t.encontro)}</p>
         <h3>${esc(t.nome)}</h3>
         ${t.subtitulo ? `<p class="card-sub">${esc(t.subtitulo)}</p>` : ''}
         <p class="card-txt">${esc(t.ideal_para || t.descricao || t.roteiro.join(' · '))}</p>
@@ -514,7 +523,8 @@ ${heroSplit(`
     <p class="price">A partir de ${eur(menorPreco(t))}<span>${esc(t.precos[0].grupo)}</span></p>
     <div class="actions">
       <a class="btn" href="${wa(data, msg)}" data-wa="tour-${t.id}" data-lead="${attr({ tour_id: t.id })}">Consultar datas no WhatsApp</a>
-    </div>`, t.imagem, t.imagem_alt)}
+    </div>
+    <p class="small">${RESPOSTA}</p>`, t.imagem, t.imagem_alt)}
 <section class="section">
   <div class="wrap split">
     <div>
@@ -562,7 +572,7 @@ ${avaliacoesTours(t.id)}
     <h2 class="center">Outros tours</h2>
     <div class="grid-3 cards">${outros
       .map(
-        (o) => `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body"><p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3>${o.subtitulo ? `<p class="card-sub">${esc(o.subtitulo)}</p>` : ''}<p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}" data-item="${attr(tourItem(o))}">Ver o tour</a></div></article>`
+        (o) => `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body">${seloTour(o)}<p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3>${o.subtitulo ? `<p class="card-sub">${esc(o.subtitulo)}</p>` : ''}<p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}" data-item="${attr(tourItem(o))}">Ver o tour</a></div></article>`
       )
       .join('')}</div>
   </div>
@@ -579,7 +589,7 @@ ${avaliacoesTours(t.id)}
   };
   return {
     path: `/tours-em-paris/${t.id}/`,
-    title: t.subtitulo ? `${t.nome}: ${t.subtitulo} | Tour privativo em Paris` : `${t.nome}: tour privativo em Paris em português | Mel Rolan`,
+    title: `${/^tour /i.test(t.nome) ? t.nome : 'Tour ' + t.nome}${/paris/i.test(t.nome) ? ' em português' : ' em Paris'} | Mel Rolan`,
     description: `${t.nome}: tour privativo de ${t.duracao} em Paris, em português, com guia brasileira. A partir de ${eur(menorPreco(t))} por grupo.`,
     body,
     og: `og/tour-${t.id}.jpg`,

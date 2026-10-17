@@ -383,3 +383,5 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
   .cards .card-photo > img { aspect-ratio: 16 / 9; }
   .cards .card-txt { -webkit-line-clamp: 2; }
 }
+
+.selo-tour { display: inline-block; align-self: flex-start; margin: 0 0 8px; padding: 3px 10px; border-radius: 999px; background: var(--navy); color: var(--white); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em; }
