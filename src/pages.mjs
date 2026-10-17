@@ -361,7 +361,11 @@ ${heroSplit(`
     <p class="eyebrow">Tours privativos em Paris</p>
     <h1>Paris além dos cartões-postais, a pé e em português.</h1>
     <p class="lead">Passeios privativos, leves e sem correria, com a Mel, travel designer especializada em viajantes brasileiros. Só o seu grupo, no seu ritmo, pelas ruas, praças e jardins que contam a história da cidade.</p>
-    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris', '#escolha-o-tour')}
+    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>
+    <div class="actions">
+      <a class="btn" href="#escolha-o-tour" data-cta="tours-hero-lista">Escolher o meu tour</a>
+      <a class="btn btn-ghost" href="${wa(data, 'Olá! Vim pelo site da Mel Rolan e gostaria de consultar datas para um tour em Paris.')}" data-wa="tours-hero">Consultar datas no WhatsApp</a>
+    </div>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris', '#escolha-o-tour')}
 <section class="section" id="escolha-o-tour">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
