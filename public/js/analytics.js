@@ -348,12 +348,15 @@
     if (m) m.checked = !!(e && e.analytics);
     if (p) p.checked = !!(e && e.ads);
   }
+  // Detalhes e escolhas por finalidade ficam num modal; o aviso na tela é só uma linha e três botões.
   function expandirOpcoes(v) {
-    var o = document.getElementById('cookie-opcoes'), m = document.getElementById('cookie-mais'), s = document.getElementById('cookie-salvar');
-    if (o) o.hidden = !v;
-    if (m) m.hidden = v;
-    if (s) s.hidden = !v;
+    var m = document.getElementById('cookie-modal');
+    if (!m) return;
+    m.hidden = !v;
+    document.body.classList.toggle('cookie-modal-aberto', v);
+    if (v) { var f = document.getElementById('cookie-salvar'); if (f) f.focus(); }
   }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') expandirOpcoes(false); });
   function escolher(modo) {
     var e = modo === 'all' ? { analytics: true, ads: true }
       : modo === 'none' ? { analytics: false, ads: false }
@@ -375,8 +378,8 @@
 
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-consent]');
-    if (b) { if (b.dataset.consent === 'more') { expandirOpcoes(true); return; } escolher(b.dataset.consent); return; }
-    if (e.target.closest('[data-cookie-prefs]')) { marcarOpcoes(lerEscolha()); expandirOpcoes(true); mostrarAviso(true); return; }
+    if (b) { if (b.dataset.consent === 'more') { expandirOpcoes(true); return; } if (b.dataset.consent === 'close') { expandirOpcoes(false); return; } escolher(b.dataset.consent); return; }
+    if (e.target.closest('[data-cookie-prefs]')) { marcarOpcoes(lerEscolha()); expandirOpcoes(true); return; }
 
     var a = e.target.closest('a');
     if (!a) return;
