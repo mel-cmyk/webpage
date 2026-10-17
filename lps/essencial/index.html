@@ -45,15 +45,7 @@
     <!-- Preload da Imagem Principal Acima da Dobra (LCP) -->
     <link rel="preload" as="image" href="/images/hero-celular.webp" type="image/webp" fetchpriority="high">
 
-    <!-- Conexões Críticas para Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Fonts: Lora e Poppins com font-display: swap -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@400;500;600;700&display=swap">
-    </noscript>
+    <!-- Fontes próprias: definidas em lps/build.mjs (sem Google Fonts, sem requisição a terceiros) -->
 
     <style>
         body {

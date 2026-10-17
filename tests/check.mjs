@@ -115,6 +115,9 @@ const temClarity = /data-clarity="/.test(home);
 if (temClarity !== /^[a-z0-9]{8,12}$/i.test(integ.clarity_id || '')) erro('Clarity: atributo data-clarity não bate com clarity_id');
 if (!/id="cookie-modal"/.test(home)) erro('home: sem modal de cookies');
 
+// 6b. Privacidade: nenhuma página pede fonte ao Google antes do aceite (as fontes são próprias)
+for (const f of paginasHtml) if (/fonts\.(googleapis|gstatic)\.com/.test(ler(f))) erro(`${nome(f)}: usa Google Fonts (use as fontes de public/fonts)`);
+
 // 7. Peso: nenhuma imagem acima de 600 KB (PDFs dos bônus ficam de fora)
 for (const f of arquivos(DIST)) {
   if (!/\.(webp|jpg|jpeg|png)$/i.test(f)) continue;

@@ -82,7 +82,7 @@ const ChicCTA = ({ text, subtext, className = "", slot = "hero" }: ChicCTAProps)
       <span className="flex items-center justify-center gap-2 uppercase tracking-widest text-sm md:text-base font-sans font-bold">
         {text} <ArrowRight className="w-5 h-5 text-[#22274F]" />
       </span>
-      {subtext && <span className="text-[10px] text-[#22274F]/85 font-medium mt-1 font-sans tracking-wide">{subtext}</span>}
+      {subtext && <span className="text-[10px] text-[#22274F] font-medium mt-1 font-sans tracking-wide">{subtext}</span>}
     </a>
   );
 };
@@ -185,7 +185,7 @@ const Hero = () => {
           
           <div className="flex flex-col gap-4 max-w-md mx-auto md:mx-0">
             <div className="flex items-baseline justify-center md:justify-start gap-3 mb-2">
-              {oferta.preco_de && <span className="text-gray-500 line-through font-serif text-lg">De R$ {oferta.preco_de}</span>}
+              {oferta.preco_de && <span className="text-gray-600 line-through font-serif text-lg">De R$ {oferta.preco_de}</span>}
               <span className="text-[#22274F] font-bold text-xl font-sans">{oferta.preco_de ? 'Por ' : ''}R$ {oferta.preco}</span>
             </div>
             
@@ -277,7 +277,7 @@ const SampleDaySection = ({ onOpenSample }: SampleDaySectionProps) => {
             type="button"
             onClick={() => onOpenSample(imgSrc, altText)}
             className="group relative block w-full text-left focus:outline-none focus:ring-2 focus:ring-[#C19450] focus:ring-offset-4 rounded-sm shadow-2xl bg-white p-2 md:p-3 border border-[#C19450]/30 transition-transform duration-300 hover:scale-[1.01]"
-            aria-label="Abrir amostra ampliada da página do roteiro"
+            aria-label="Toque para ampliar a página: abrir a amostra do roteiro"
           >
             <img 
               src={imgSrc} 
@@ -336,7 +336,7 @@ const WhyNotSoloSection = ({ onOpenSample }: WhyNotSoloSectionProps) => {
               onClick={() => onOpenSample(imgSrc, altText)}
               id="btn-sample-trigger"
               className="group relative block w-full text-left focus:outline-none focus:ring-2 focus:ring-[#C19450] focus:ring-offset-4 rounded-sm"
-              aria-label="Abrir ilustração da lógica por região do Roteiro Paris Essencial"
+              aria-label="Toque para ampliar: abrir a ilustração da lógica por região do Roteiro Paris Essencial"
             >
               <img 
                 src={imgSrc} 
@@ -595,7 +595,7 @@ const PricingSection = () => {
           ) : null}
 
           <div className="flex flex-col items-center justify-center gap-2 mb-10">
-             {oferta.preco_de && <p className="text-gray-500 font-serif italic text-xl line-through decoration-[#C19450]">De R$ {oferta.preco_de},00</p>}
+             {oferta.preco_de && <p className="text-gray-600 font-serif italic text-xl line-through decoration-[#C19450]">De R$ {oferta.preco_de},00</p>}
              <div className="flex items-baseline gap-2">
                <span className="text-gray-700 font-sans uppercase tracking-widest text-sm font-bold">{oferta.preco_de ? 'Por apenas' : 'Valor'}</span>
                <span className="text-6xl md:text-8xl font-serif text-[#22274F] font-bold">{oferta.preco}</span>
