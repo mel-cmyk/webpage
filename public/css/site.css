@@ -365,3 +365,13 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 /* Aviso de cookies com a fonte do aparelho: aparece na hora, sem esperar o download das fontes (é o LCP no celular). */
 .cookie-banner, .cookie-banner .btn { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
 .cookie-banner .cookie-title { font-family: Georgia, 'Times New Roman', serif; }
+
+/* Celular: na home, os botões sobem para logo abaixo do título, para aparecerem na primeira tela. */
+@media (max-width: 899px) {
+  .hero-photo .hero-content { display: flex; flex-direction: column; padding-top: 24px; }
+  .hero-photo .hero-content .actions { order: 1; margin-top: 4px; }
+  .hero-photo .hero-content .lead { order: 2; margin-top: 20px; }
+  .hero-photo .hero-content .small { order: 3; }
+}
+
+.quotes .quote-title { font-family: var(--serif); font-weight: 600; margin: 0 0 8px; }

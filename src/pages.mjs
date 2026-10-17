@@ -88,7 +88,7 @@ const provaRapida = (m) => `
   </div>
 </section>`;
 
-const depoimentos = (m) => `
+const depoimentos = (m, extra = '') => `
 <section class="section">
   <div class="wrap">
     <div class="selo-wrap">
@@ -102,13 +102,37 @@ const depoimentos = (m) => `
         <p class="selo-txt">Nota média ${m.nota_satisfacao} de 10 em ${m.pesquisas_satisfacao} pesquisas de satisfação respondidas por clientes de roteiros, consultorias e tours, de ${m.periodo_pesquisas}.</p>
       </div>
     </div>
-    <div class="grid-3 quotes">
+    <div class="grid-3 quotes">${extra}
       <figure><blockquote>“Mel tem uma sensibilidade impressionante! Desde a primeira conversa dá pra sentir o quanto ela é competente, organizada e ama o que faz. Que sorte a nossa encontrar a Mel nessa viagem mãe e filha, que será inesquecível para nós. Ela cuidou de tudo, nos colocou com as melhores pessoas e nos melhores lugares.”</blockquote><figcaption><strong>Roberta</strong>, São Paulo (SP) · viagem mãe e filha</figcaption></figure>
       <figure><blockquote>“Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível.”</blockquote><figcaption><strong>Fernanda</strong>, Natal (RN) · viagem em grupo</figcaption></figure>
-      <figure><blockquote>“Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!”</blockquote><figcaption><strong>Renata</strong>, Pereiras (SP)</figcaption></figure>
+      ${extra ? '' : `<figure><blockquote>“Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!”</blockquote><figcaption><strong>Renata</strong>, Pereiras (SP)</figcaption></figure>`}
     </div>
   </div>
 </section>`;
+
+// Avaliações do Tripadvisor (perfil "Mel Rolan — Tours em Paris"), publicadas com autorização dos clientes (Diogo, 17/10/2026).
+// Trechos fiéis ao texto original; [...] marca cortes e [colchetes] marcam edições (a ferramenta do roteiro não é nomeada).
+const TRIP_URL = 'https://www.tripadvisor.fr/Attraction_Review-g187147-d34501789-Reviews-Mel_Rolan_Tours_em_Paris_para_Brasileiros-Paris_Ile_de_France.html';
+const TRIP = {
+  marise: { tours: ['paris-de-cinema'], titulo: 'Uma das melhores tardes da minha vida!', texto: 'Fiz o roteiro Paris de Cinema com meu marido e foi uma experiência incrível. [...] A Mel faz toda a diferença. Existe uma sensibilidade enorme na construção do roteiro, na escolha de cada lugar, nas histórias que ela conta e até na música que acompanha alguns momentos.', autor: 'Marise Lemos', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
+  rafael: { tours: ['paris-de-cinema'], titulo: 'Paris com a Mel é ainda mais interessante e especial', texto: 'Já estive algumas vezes em Paris, mas esse tour me fez enxergar a cidade de outra forma. [...] Recomendo muito para todos e especialmente, para os brasileiros.', autor: 'Rafael D.', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
+  lucas: { tours: ['quartier-latin-e-ile-de-la-cite', 'tour-personalizado'], titulo: 'O melhor tour de Paris', texto: 'Nada pareceu apressado ou decorado. Ela sempre estava disposta a parar, responder perguntas, se aprofundar em algo que despertava a minha curiosidade e adaptar a experiência ao longo do caminho. [...] Recomendo sem hesitar a quem quer descobrir Paris de um jeito mais pessoal, interessante e humano.', autor: 'Lucas A.', info: 'viajando sozinho · Quartier Latin · traduzido do inglês' },
+  rafaelRoteiro: { titulo: 'Paris com roteiro perfeito e organização impecável', texto: 'Recebemos um guia super completo da cidade, com um roteiro muito bem planejado, sugestões dos melhores restaurantes e toda a programação organizada dia a dia [numa plataforma digital]. [...] A organização foi impecável e deixou nossa viagem muito mais tranquila e especial.', autor: 'Rafael D.', info: 'São Paulo (SP) · em família · roteiro sob medida' },
+};
+const tripCard = (d) => `<figure><p class="quote-title">${esc(d.titulo)}</p><blockquote>“${esc(d.texto)}”</blockquote><figcaption><strong>${esc(d.autor)}</strong>, ${esc(d.info)} · Tripadvisor, 5 de 5</figcaption></figure>`;
+// Avaliações de tours: as do próprio tour primeiro.
+const avaliacoesTours = (tourId = '') => {
+  const lista = [TRIP.marise, TRIP.rafael, TRIP.lucas].sort((a, b) => (b.tours.includes(tourId) ? 1 : 0) - (a.tours.includes(tourId) ? 1 : 0));
+  return `
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow center">Avaliações no Tripadvisor</p>
+    <h2 class="center">Nota 5,0 de quem fez o tour</h2>
+    <div class="grid-3 quotes">${lista.map(tripCard).join('')}</div>
+    <p class="center"><a href="${TRIP_URL}" target="_blank" rel="noopener" data-cta="tripadvisor">Ver todas as avaliações no Tripadvisor</a></p>
+  </div>
+</section>`;
+};
 
 // Imprensa (data/imprensa.json): só o que a matéria diz. Citação entre aspas e sempre com veículo, data e link.
 const dataBR = (iso) => iso.split('-').reverse().join('/');
@@ -145,7 +169,28 @@ const incluidoTours = [
   'Para os mini clientes: o livro de atividades impresso do Monsieur Pombo, criado pela Mel',
 ];
 
+// Para quem é cada tour (informações da Mel, 17/10/2026): todos os tours servem a todos os perfis; o conteúdo é adaptado ao grupo.
+const TOURS_CURTOS = ['3h', '3h30'];
+const perfisTour = (t) => {
+  const ritmo = t && TOURS_CURTOS.includes(t.duracao)
+    ? 'Percurso de 4 a 5 km, com muitas paradas no caminho. Não exige preparo físico.'
+    : 'Ritmo leve, com muitas paradas no caminho. Não exige preparo físico.';
+  const montmartre = t && t.id === 'montmartre' ? ' Em Montmartre, o percurso foi pensado para ter pouquíssimas escadas, e as subidas são curtas e leves.' : '';
+  return `
+    <div class="grid-4 perfis">
+      <article class="card perfil"><h3>Com crianças</h3><p>Para todas as idades, inclusive com carrinho de bebê. A linguagem é adaptada a cada criança, e cada uma ganha o livro de atividades do Monsieur Pombo.</p></article>
+      <article class="card perfil"><h3>Com avós</h3><p>Grupos de até três gerações no mesmo passeio. ${ritmo}${montmartre}</p></article>
+      <article class="card perfil"><h3>Casais</h3><p>Só vocês dois e a Mel, no ritmo de vocês, com tempo para o café, as fotos e as histórias que mais interessarem.</p></article>
+      <article class="card perfil"><h3>Viajando sozinha</h3><p>Uma guia brasileira ao seu lado, com a profundidade histórica que você quiser e liberdade para parar onde der vontade.</p></article>
+    </div>
+    <p class="center small">Todos os passeios têm paradas para descansar, tomar um café e ir ao banheiro.</p>`;
+};
+
 const faqTours = [
+  {
+    q: 'Os tours funcionam com carrinho de bebê ou com avós?',
+    a: 'Sim. Todos os tours funcionam para todas as idades, inclusive com carrinho de bebê, e já recebemos grupos de até três gerações no mesmo passeio. O ritmo é leve, com muitas paradas no caminho para descansar, tomar um café e ir ao banheiro.',
+  },
   {
     q: 'Como funciona a reserva de um tour?',
     a: 'Você chama no WhatsApp, verificamos a disponibilidade para as datas da sua viagem e definimos o roteiro. Para garantir a data, pedimos um sinal, reembolsável em cancelamentos feitos com pelo menos 30 dias de antecedência. O restante é pago perto do passeio.',
@@ -195,8 +240,8 @@ function home(data) {
       q: 'Os serviços são só para famílias com crianças?',
       a: 'Não. A Mel atende famílias com crianças, casais, grupos de amigos, viagens com várias gerações e quem viaja sozinha, com o mesmo cuidado. O que muda é o desenho de cada dia: o ritmo, os bairros, as pausas e os programas escolhidos para quem vai estar lá.',
     },
-    faqTours[2],
-    faqTours[0],
+    faqTours[3],
+    faqTours[1],
     {
       q: 'A Mel acompanha a viagem inteira?',
       a: 'O roteiro e a consultoria são entregues antes do embarque, com tudo pensado para você viajar com autonomia e segurança. Não oferecemos atendimento em tempo real durante toda a viagem, mas ficamos à disposição para um apoio pontual, se necessário. Os guias digitais são materiais em PDF, sem acompanhamento.',
@@ -361,7 +406,11 @@ ${heroSplit(`
     <p class="eyebrow">Tours privativos em Paris</p>
     <h1>Paris além dos cartões-postais, a pé e em português.</h1>
     <p class="lead">Passeios privativos, leves e sem correria, com a Mel, travel designer especializada em viajantes brasileiros. Só o seu grupo, no seu ritmo, pelas ruas, praças e jardins que contam a história da cidade.</p>
-    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris', '#escolha-o-tour')}
+    <p class="price">${precoServico(s)}<span>${esc(s.unidade_preco)}</span></p>
+    <div class="actions">
+      <a class="btn" href="#escolha-o-tour" data-cta="tours-hero-lista">Escolher o meu tour</a>
+      <a class="btn btn-ghost" href="${wa(data, 'Olá! Vim pelo site da Mel Rolan e gostaria de consultar datas para um tour em Paris.')}" data-wa="tours-hero">Consultar datas no WhatsApp</a>
+    </div>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris', '#escolha-o-tour')}
 <section class="section" id="escolha-o-tour">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
@@ -383,6 +432,14 @@ ${heroSplit(`
         )
         .join('')}
     </div>
+  </div>
+</section>
+${avaliacoesTours()}
+<section class="section">
+  <div class="wrap">
+    <h2 class="center">Um tour para cada grupo</h2>
+    <p class="center lead-sm">Todos os tours funcionam para todos os perfis. O conteúdo é adaptado a cada grupo, do livro de atividades para os pequenos à profundidade histórica para quem quer ir mais longe.</p>
+    ${perfisTour(null)}
   </div>
 </section>
 <section class="section alt">
@@ -467,6 +524,14 @@ ${heroSplit(`
       </table>
       <p class="small">Valor por grupo, não por pessoa. Duração: ${esc(t.duracao)}.</p>
     </div>
+  </div>
+</section>
+${avaliacoesTours(t.id)}
+<section class="section">
+  <div class="wrap">
+    <h2 class="center">Para quem é este tour</h2>
+    <p class="center lead-sm">Para todos os perfis. O conteúdo é adaptado a cada grupo, do livro de atividades para os pequenos à profundidade histórica para quem quer ir mais longe.</p>
+    ${perfisTour(t)}
   </div>
 </section>
 <section class="section alt">
@@ -606,7 +671,7 @@ ${heroSplit(`
   </div>
 </section>
 ${imprensaCitacao(data, 'catraca-livre-ia')}
-${depoimentos(data.marca)}
+${depoimentos(data.marca, tripCard(TRIP.rafaelRoteiro))}
 ${ctaFinal(data, 'Vamos desenhar a sua viagem?', `Roteiros a partir de ${brl(s.preco_a_partir_de)}. Conte como é a sua viagem e a Mel indica o formato certo.`)}
 `;
   return {
