@@ -156,7 +156,9 @@ html { scroll-padding-top: 96px; }
 .proof p { margin: 0; display: flex; flex-direction: column; }
 .proof strong { font-family: var(--serif); font-size: 1.5rem; color: var(--gold); }
 .proof span { font-size: 0.9rem; opacity: 0.9; }
-@media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .proof-grid { grid-template-columns: repeat(4, 1fr); } }
+.proof a { color: inherit; }
 
 /* Grades e cards */
 .grid-2, .grid-3, .grid-4 { display: grid; gap: 20px; grid-template-columns: 1fr; }
@@ -375,3 +377,9 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 }
 
 .quotes .quote-title { font-family: var(--serif); font-weight: 600; margin: 0 0 8px; }
+
+/* Celular: cards de tour mais compactos (foto mais baixa e descrição em 2 linhas) para encurtar a lista. */
+@media (max-width: 699px) {
+  .cards .card-photo > img { aspect-ratio: 16 / 9; }
+  .cards .card-txt { -webkit-line-clamp: 2; }
+}
