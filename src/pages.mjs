@@ -402,9 +402,9 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte em dois minutos como é 
   };
   return {
     path: '/',
-    title: 'Mel Rolan Travel Designer | Tours, roteiros e consultoria em Paris',
+    title: 'Mel Rolan | Tours, roteiros e consultoria em Paris',
     description:
-      'Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros em Paris. Curadoria de uma especialista em viajantes brasileiros.',
+      'Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros em Paris, com curadoria de uma especialista.',
     body,
     og: 'og/home.jpg',
     jsonld: [
@@ -749,7 +749,7 @@ ${ctaFinal(data, 'Vamos conversar sobre a sua viagem?', `Consultoria por ${brl(s
   return {
     path: '/consultoria/',
     title: 'Consultoria de viagem para Paris e França | Mel Rolan',
-    description: `Consultoria por vídeo para planejar a sua viagem à França, com mapa digital exclusivo. ${brl(s.preco)}.`,
+    description: `Consultoria por vídeo com a Mel, especialista em viajantes brasileiros: tire dúvidas, valide o plano e receba um mapa digital exclusivo. ${brl(s.preco)}.`,
     body,
     og: 'og/consultoria.jpg',
     servico: 'consultoria',
