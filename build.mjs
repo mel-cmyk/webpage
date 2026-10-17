@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { layout } from './src/layout.mjs';
-import { pages } from './src/pages.mjs';
+import { pages } from './src/pages/index.mjs';
 import { SITE_URL, STAGING, url } from './src/helpers.mjs';
 import { vigente } from './src/oferta.mjs';
 import { paginaRedirecionamento } from './src/redirect.mjs';
