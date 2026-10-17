@@ -112,6 +112,7 @@ const depoimentos = (m, extra = '') => `
 
 // Avaliações do Tripadvisor (perfil "Mel Rolan — Tours em Paris"), publicadas com autorização dos clientes (Diogo, 17/10/2026).
 // Trechos fiéis ao texto original; [...] marca cortes e [colchetes] marcam edições (a ferramenta do roteiro não é nomeada).
+const TRIP_URL = 'https://www.tripadvisor.fr/Attraction_Review-g187147-d34501789-Reviews-Mel_Rolan_Tours_em_Paris_para_Brasileiros-Paris_Ile_de_France.html';
 const TRIP = {
   marise: { tours: ['paris-de-cinema'], titulo: 'Uma das melhores tardes da minha vida!', texto: 'Fiz o roteiro Paris de Cinema com meu marido e foi uma experiência incrível. [...] A Mel faz toda a diferença. Existe uma sensibilidade enorme na construção do roteiro, na escolha de cada lugar, nas histórias que ela conta e até na música que acompanha alguns momentos.', autor: 'Marise Lemos', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
   rafael: { tours: ['paris-de-cinema'], titulo: 'Paris com a Mel é ainda mais interessante e especial', texto: 'Já estive algumas vezes em Paris, mas esse tour me fez enxergar a cidade de outra forma. [...] Recomendo muito para todos e especialmente, para os brasileiros.', autor: 'Rafael D.', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
@@ -128,6 +129,7 @@ const avaliacoesTours = (tourId = '') => {
     <p class="eyebrow center">Avaliações no Tripadvisor</p>
     <h2 class="center">Nota 5,0 de quem fez o tour</h2>
     <div class="grid-3 quotes">${lista.map(tripCard).join('')}</div>
+    <p class="center"><a href="${TRIP_URL}" target="_blank" rel="noopener" data-cta="tripadvisor">Ver todas as avaliações no Tripadvisor</a></p>
   </div>
 </section>`;
 };
