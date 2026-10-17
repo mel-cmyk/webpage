@@ -171,6 +171,15 @@ const incluidoTours = [
 ];
 
 // Para quem é cada tour (informações da Mel, 17/10/2026): todos os tours servem a todos os perfis; o conteúdo é adaptado ao grupo.
+// Bloco para quem viaja sozinha (texto de Diogo, 17/10/2026).
+const blocoSozinha = () => `
+    <aside class="card destaque">
+      <div>
+        <p class="eyebrow">Para quem viaja sozinha</p>
+        <h3>Viajando sozinha, com tranquilidade</h3>
+        <p>Paris é uma cidade segura e que se aproveita muito bem sozinha. A Mel indica bairros tranquilos e bem servidos de transporte para se hospedar, os trajetos mais simples entre um programa e outro e os horários em que cada região é mais agradável. Nos tours, você tem uma guia brasileira ao seu lado do início ao fim, e no roteiro sob medida cada dia já chega pensado para quem está sozinha.</p>
+      </div>
+    </aside>`;
 const TOURS_CURTOS = ['3h', '3h30'];
 const perfisTour = (t) => {
   const ritmo = t && TOURS_CURTOS.includes(t.duracao)
@@ -449,6 +458,7 @@ ${avaliacoesTours()}
     <h3 class="center">Incluído em todos os tours</h3>
     <ul class="checklist grid-2">${incluidoTours.map((i) => `<li>${i}</li>`).join('')}</ul>
     <p class="center small">Todos os passeios têm paradas para descansar, tomar um café e ir ao banheiro.</p>
+    ${blocoSozinha()}
   </div>
 </section>
 <section class="section alt">
@@ -527,6 +537,7 @@ ${avaliacoesTours(t.id)}
     <h2 class="center">Para quem é este tour</h2>
     <p class="center lead-sm">Para todos os perfis. O conteúdo é adaptado a cada grupo, do livro de atividades para os pequenos à profundidade histórica para quem quer ir mais longe.</p>
     ${perfisTour(t)}
+    ${blocoSozinha()}
   </div>
 </section>
 <section class="section alt">
@@ -624,6 +635,7 @@ ${heroSplit(`
       <article class="card perfil"><h3>Várias gerações e amigos</h3><p>Um roteiro que agrada a todas as idades, com deslocamentos pensados para o fôlego de cada um.</p></article>
       <article class="card perfil"><h3>Viajando sozinha</h3><p>Hospedagem em bairros tranquilos, programas que funcionam bem para quem está sozinha e liberdade para montar cada dia do seu jeito.</p></article>
     </div>
+    ${blocoSozinha()}
   </div>
 </section>
 <section class="section alt">
