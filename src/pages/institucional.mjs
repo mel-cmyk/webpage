@@ -1,5 +1,5 @@
 // Sobre a Mel, Na mídia e Parcerias. Preços, números e contatos vêm de data/ofertas.json.
-import { url, esc, img } from '../helpers.mjs';
+import { url, esc, img, SITE_URL } from '../helpers.mjs';
 import { breadcrumbLd, ctaFinal } from './comum.mjs';
 import { provaRapida, depoimentos, dataBR, logoImg, veiculoTxt } from './blocos.mjs';
 
@@ -39,7 +39,23 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e r
     description: `Conheça a Mel Rolan, brasileira que vive em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos e já acompanhou mais de ${m.familias_atendidas.replace('+', '')} clientes em roteiros, consultorias e tours.`,
     body,
     og: 'og/sobre.jpg',
-    jsonld: [breadcrumbLd([['Início', '/'], ['Sobre a Mel', '/sobre/']])],
+    jsonld: [
+      breadcrumbLd([['Início', '/'], ['Sobre a Mel', '/sobre/']]),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Mel Rolan',
+        jobTitle: 'Travel designer e guia em Paris',
+        description: 'Brasileira que vive em Paris, bacharel em Turismo e ex-aluna da École du Louvre (2025/2026), especialista em viajantes brasileiros.',
+        url: `${SITE_URL}/sobre/`,
+        image: `${SITE_URL}/img/og/sobre.jpg`,
+        alumniOf: { '@type': 'CollegeOrUniversity', name: 'École du Louvre' },
+        worksFor: { '@type': 'TravelAgency', name: 'Mel Rolan Travel Designer', url: SITE_URL },
+        homeLocation: { '@type': 'City', name: 'Paris' },
+        knowsLanguage: ['pt-BR', 'fr'],
+        sameAs: [m.instagram],
+      },
+    ],
   };
 }
 

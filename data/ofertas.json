@@ -1,7 +1,6 @@
 {
   "_sobre_os_guias": "Em cada guia, preco é o valor normal. O bloco promocao vale até valido_ate (horário de Paris); depois dessa data o guia volta sozinho ao preco, sem publicar de novo. Para encerrar ou trocar a promoção, edite ou apague o bloco promocao.",
   "_sobre_este_arquivo": "Fonte única de preços e ofertas do site melrolan.com.br. Todas as páginas leem daqui: mudou um valor aqui, muda no site inteiro. Tours seguem o catálogo aprovado em tours.melrolan.com.br.",
-  "_atualizado_em": "2026-10-07",
   "marca": {
     "anos_na_franca": "5+",
     "ano_fundacao": "2021",

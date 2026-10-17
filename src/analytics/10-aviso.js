@@ -11,14 +11,34 @@
     if (p) p.checked = !!(e && e.ads);
   }
   // Detalhes e escolhas por finalidade ficam num modal; o aviso na tela é só uma linha e três botões.
+  // Teclado: o foco entra no modal, o Tab fica preso dentro dele e, ao fechar, o foco volta ao botão que abriu.
+  var focoAnterior = null;
   function expandirOpcoes(v) {
     var m = document.getElementById('cookie-modal');
-    if (!m) return;
+    if (!m || m.hidden === !v) return;
     m.hidden = !v;
     document.body.classList.toggle('cookie-modal-aberto', v);
-    if (v) { var f = document.getElementById('cookie-salvar'); if (f) f.focus(); }
+    if (v) {
+      focoAnterior = document.activeElement;
+      var f = document.getElementById('cookie-salvar');
+      if (f) f.focus();
+    } else if (focoAnterior && document.body.contains(focoAnterior) && focoAnterior.offsetParent !== null) {
+      focoAnterior.focus();
+      focoAnterior = null;
+    }
   }
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') expandirOpcoes(false); });
+  document.addEventListener('keydown', function (e) {
+    var m = document.getElementById('cookie-modal');
+    if (!m || m.hidden) return;
+    if (e.key === 'Escape') { expandirOpcoes(false); return; }
+    if (e.key !== 'Tab') return;
+    var itens = m.querySelectorAll('button, a[href], input');
+    if (!itens.length) return;
+    var primeiro = itens[0], ultimo = itens[itens.length - 1];
+    if (e.shiftKey && document.activeElement === primeiro) { e.preventDefault(); ultimo.focus(); }
+    else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primeiro.focus(); }
+    else if (!m.contains(document.activeElement)) { e.preventDefault(); primeiro.focus(); }
+  });
   function escolher(modo) {
     var e = modo === 'all' ? { analytics: true, ads: true }
       : modo === 'none' ? { analytics: false, ads: false }

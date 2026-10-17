@@ -139,7 +139,7 @@ const SectionHeader: React.FC<{
 }> = ({ title, subtitle, light = false }) => (
   <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
     {subtitle && (
-      <span className={`block text-xs font-sans font-semibold uppercase tracking-[0.2em] mb-3 ${light ? 'text-[#A2CBED]' : 'text-[#C19450]'}`}>
+      <span className={`block text-xs font-sans font-semibold uppercase tracking-[0.2em] mb-3 ${light ? 'text-[#A2CBED]' : 'text-[#86632B]'}`}>
         {subtitle}
       </span>
     )}
@@ -260,7 +260,7 @@ const Hero: React.FC = () => {
               ) : (
                 <div className="bg-white rounded-lg p-6 sm:p-10 shadow-xl border border-[#C19450]/30 text-center flex flex-col justify-between min-h-[340px]">
                   <div className="border-b border-[#22274F]/10 pb-4">
-                    <span className="text-xs uppercase tracking-[0.25em] font-sans font-semibold text-[#C19450] block mb-2">
+                    <span className="text-xs uppercase tracking-[0.25em] font-sans font-semibold text-[#86632B] block mb-2">
                       Guia Digital em PDF
                     </span>
                     <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-[#22274F] leading-tight">
@@ -439,7 +439,7 @@ const InclusionsSection: React.FC = () => {
               className="bg-white p-6 rounded-lg border border-[#22274F]/10 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow"
             >
               <div>
-                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#C19450]/15 text-[#C19450] text-xs font-sans font-bold mb-4">
+                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#C19450]/15 text-[#86632B] text-xs font-sans font-bold mb-4">
                   0{index + 1}
                 </span>
                 <h3 className="text-base font-serif font-bold text-[#22274F] mb-2 leading-snug">
@@ -496,7 +496,7 @@ const AgeGroupsSection: React.FC = () => {
     <section className="py-16 md:py-24 bg-white border-b border-[#22274F]/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
-          <span className="block text-xs font-sans font-semibold uppercase tracking-[0.2em] mb-3 text-[#C19450]">
+          <span className="block text-xs font-sans font-semibold uppercase tracking-[0.2em] mb-3 text-[#86632B]">
             Faixa Etária
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold leading-tight text-[#22274F]">
@@ -643,7 +643,7 @@ const SampleImagesSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={(e) => openModal(sample, e.currentTarget)}
-                  className="mt-1.5 inline-flex items-center gap-1 text-xs font-sans font-medium text-[#C19450] hover:text-[#B38541] focus:outline-none focus:underline"
+                  className="mt-1.5 inline-flex items-center gap-1 text-xs font-sans font-medium text-[#86632B] hover:text-[#22274F] focus:outline-none focus:underline"
                 >
                   <Maximize2 className="w-3 h-3" aria-hidden="true" />
                   <span>Toque para ampliar</span>
@@ -904,7 +904,7 @@ const OfferSection: React.FC = () => {
     <section className="py-16 md:py-24 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="bg-[#F7F4EA] border border-[#22274F]/10 rounded-xl p-6 sm:p-10 md:p-12 shadow-lg text-center">
-          <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#C19450] block mb-2">
+          <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#86632B] block mb-2">
             Acesso Imediato
           </span>
 
@@ -987,7 +987,7 @@ const OfferSection: React.FC = () => {
             )}
 
             {oferta.preco_de && (
-              <span className="text-[#22274F]/50 line-through font-serif text-xl block mb-1">
+              <span className="text-[#22274F]/70 line-through font-serif text-xl block mb-1">
                 De R$ {oferta.preco_de}
               </span>
             )}
