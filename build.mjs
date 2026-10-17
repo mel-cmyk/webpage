@@ -8,6 +8,7 @@ import { SITE_URL, STAGING, url } from './src/helpers.mjs';
 import { vigente } from './src/oferta.mjs';
 import { paginaRedirecionamento } from './src/redirect.mjs';
 import { BONUS, paginaBonus } from './src/bonus.mjs';
+import { analyticsJs } from './src/analytics.mjs';
 
 const OUT = 'dist';
 const data = JSON.parse(fs.readFileSync('data/ofertas.json', 'utf8'));
@@ -22,6 +23,9 @@ cardGuias.preco_a_partir_de = Math.min(...data.guias.map((g) => vigente(g).preco
 
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.cpSync('public', OUT, { recursive: true });
+// analytics.js é montado a partir das partes em src/analytics/ (ver src/analytics.mjs)
+fs.mkdirSync(path.join(OUT, 'js'), { recursive: true });
+fs.writeFileSync(path.join(OUT, 'js', 'analytics.js'), analyticsJs());
 
 const all = pages(data);
 for (const p of all) {

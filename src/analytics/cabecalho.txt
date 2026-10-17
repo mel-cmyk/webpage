@@ -1,0 +1,4 @@
+// Consentimento de cookies (CNIL/LGPD), medição com o Google Analytics 4 e publicidade (remarketing).
+// Duas finalidades, escolhidas separadamente: medição (analytics_storage) e publicidade
+// (ad_storage, ad_user_data, ad_personalization). O Google só é carregado depois de uma escolha
+// que aceite ao menos uma delas, e só no domínio oficial (o endereço de teste mostra o aviso, mas não envia dados).

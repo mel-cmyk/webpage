@@ -6,7 +6,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { cookieBanner, clarityAttr, dicasGoogle } from '../src/layout.mjs';
+import { cookieBanner, clarityAttr, dicasGoogle, asset } from '../src/layout.mjs';
 import { url, STAGING, SITE_URL } from '../src/helpers.mjs';
 import { vigente, itemGA } from '../src/oferta.mjs';
 
@@ -47,7 +47,7 @@ for (const lp of LPS) {
 
   html = html.replace('<html lang="pt-BR">', `<html lang="pt-BR" data-promo="${v.ativa ? 1 : 0}">`);
   html = html.replace('<div id="root"></div>', () => `<div id="root">${render()}</div>`);
-  html = html.replace('<!--MR_HEAD-->', `${STAGING ? '<meta name="robots" content="noindex, nofollow">\n    ' : ''}<link rel="stylesheet" href="${url('/css/consent.css')}?v=${versao('css/consent.css')}">\n    ${dicasGoogle}\n    <script src="${url('/js/analytics.js')}?v=${versao('js/analytics.js')}" defer></script>`);
+  html = html.replace('<!--MR_HEAD-->', `${STAGING ? '<meta name="robots" content="noindex, nofollow">\n    ' : ''}<link rel="stylesheet" href="${url('/css/consent.css')}?v=${versao('css/consent.css')}">\n    ${dicasGoogle}\n    <script src="${asset('/js/analytics.js')}" defer></script>`);
   html = html.replace('<!--MR_BANNER-->', () => cookieBanner());
   const pagina = [{ name: 'view_item', params: { currency: 'BRL', value: v.preco, items: [itemGA(g, agora)] } }];
   html = html.replace('<!--MR_ANALYTICS-->', () => `<script id="ga-page" type="application/json">${JSON.stringify(pagina)}</script>`);
