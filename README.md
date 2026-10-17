@@ -36,7 +36,7 @@ Para trocar uma foto, mande a nova imagem em alta resolução: ela é recortada,
 - `lps/shared/oferta.tsx`: lê o preço de `data/ofertas.json` (lógica em `src/oferta.mjs`);
 - `lps/build.mjs`: gera as páginas, pré-gera o HTML e acrescenta o aviso de cookies e o `analytics.js` do site.
 
-Medição (`public/js/analytics.js`): nessas páginas (`data-medicao="avancada"`) o Google carrega desde o início com tudo negado por padrão (Consent Mode avançado, `url_passthrough` ativo). Eventos: `view_item` ao abrir e `begin_checkout` no clique de cada botão de compra. Os links para a loja levam `gclid`, `gbraid`, `wbraid`, `fbclid` e UTMs da visita. O pixel da Meta só carrega com o consentimento de publicidade.
+Medição (`src/analytics/`, montado em `dist/js/analytics.js` por `src/analytics.mjs`): nessas páginas (`data-medicao="avancada"`) o Google carrega desde o início com tudo negado por padrão (Consent Mode avançado, `url_passthrough` ativo). Eventos: `view_item` ao abrir e `begin_checkout` no clique de cada botão de compra. Os links para a loja levam `gclid`, `gbraid`, `wbraid`, `fbclid` e UTMs da visita. O pixel da Meta só carrega com o consentimento de publicidade.
 
 ## Estrutura
 
@@ -46,6 +46,7 @@ Medição (`public/js/analytics.js`): nessas páginas (`data-medicao="avancada"`
 - `tests/check.mjs`: conferência do site gerado (`npm test`), roda antes do deploy
 - `src/layout.mjs`: cabeçalho, rodapé e estrutura comum
 - `public/`: estilos, scripts e imagens
+- `src/analytics/`: partes do `analytics.js` por assunto (consentimento, eventos, funis, Meta, TikTok, Clarity, links, aviso de cookies); o build junta tudo num arquivo só
 - `build.mjs`: gera o site em `dist/`
 
 ## Rodar localmente
