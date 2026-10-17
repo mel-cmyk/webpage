@@ -42,7 +42,8 @@ Medição (`src/analytics/`, montado em `dist/js/analytics.js` por `src/analytic
 
 - `data/ofertas.json`: fonte única de preços, tours e dados da marca
 - `data/imagens.json`: lista das fotos e dos tamanhos disponíveis
-- `src/pages.mjs`: textos de cada página
+- `src/pages/`: textos das páginas, um arquivo por tema (`home`, `tours`, `servicos`, `guias`, `institucional`, `funis`); `comum.mjs` e `blocos.mjs` guardam as peças reaproveitadas e `index.mjs` lista as páginas
+- `tests/check.mjs`: conferência do site gerado (`npm test`), roda antes do deploy
 - `src/layout.mjs`: cabeçalho, rodapé e estrutura comum
 - `public/`: estilos, scripts e imagens
 - `src/analytics/`: partes do `analytics.js` por assunto (consentimento, eventos, funis, Meta, TikTok, Clarity, links, aviso de cookies); o build junta tudo num arquivo só
