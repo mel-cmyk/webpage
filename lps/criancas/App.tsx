@@ -16,7 +16,7 @@ import {
   X,
   Maximize2
 } from 'lucide-react';
-import { OfertaProvider, useOferta, formatBR } from '../shared/oferta';
+import { OfertaProvider, useOferta, formatBR, numeros } from '../shared/oferta';
 
 declare global {
   interface Window {
@@ -233,7 +233,7 @@ const Hero: React.FC = () => {
                 <span>Garantia de 7 dias</span>
               </div>
               <p className="text-xs sm:text-sm text-[#22274F] font-sans font-medium leading-snug mt-4 pt-3 border-t border-[#22274F]/10 w-full text-center md:text-left">
-                Mel Rolan, Travel Designer especialista em viajantes brasileiros, já atendeu mais de 650 clientes.
+                Mel Rolan, Travel Designer especialista em viajantes brasileiros, já atendeu mais de {numeros.clientes} clientes.
               </p>
             </div>
           </div>
@@ -744,13 +744,13 @@ const AuthorSection: React.FC = () => {
             </h2>
             
             <p className="text-base sm:text-lg text-[#F7F4EA]/90 font-sans leading-relaxed mb-6">
-              Sou a Mel, Travel Designer especialista em viajantes brasileiros. Já acompanhei mais de 650 clientes em roteiros personalizados, consultorias e passeios. Sou mãe, ex-aluna da École du Louvre (2025/2026) e moro em Paris há mais de 5 anos. Este guia é o material que eu faria para uma amiga querida que estivesse organizando a viagem da vida com os filhos.
+              Sou a Mel, Travel Designer especialista em viajantes brasileiros. Já acompanhei mais de {numeros.clientes} clientes em roteiros personalizados, consultorias e passeios. Sou mãe, ex-aluna da École du Louvre (2025/2026) e moro em Paris há mais de {numeros.anos} anos. Este guia é o material que eu faria para uma amiga querida que estivesse organizando a viagem da vida com os filhos.
             </p>
 
             <div className="inline-flex items-center gap-3 bg-white/5 border border-[#C19450]/30 px-5 py-3 rounded-md">
               <Sparkles className="w-5 h-5 text-[#C19450] shrink-0" aria-hidden="true" />
               <p className="text-xs sm:text-sm text-[#F7F4EA]/90 font-sans font-medium">
-                Nota 9,97 de 10 nas pesquisas de satisfação dos serviços da Mel Rolan (mais de 110 respostas, 2022 a 2026).
+                Nota {numeros.nota} de 10 nas pesquisas de satisfação dos serviços da Mel Rolan (mais de {numeros.respostas} respostas, {numeros.periodo}).
               </p>
             </div>
           </div>
@@ -812,7 +812,7 @@ const TestimonialsSection: React.FC = () => {
             />
 
             <p className="text-xs sm:text-sm font-sans text-[#22274F]/75 text-center max-w-2xl mx-auto mb-8">
-              Depoimentos de clientes dos roteiros personalizados, consultorias e tours da Mel. Mais de 110 respostas nas pesquisas de satisfação, nota 9,97 de 10 (2022 a 2026).
+              Depoimentos de clientes dos roteiros personalizados, consultorias e tours da Mel. Mais de {numeros.respostas} respostas nas pesquisas de satisfação, nota {numeros.nota} de 10 ({numeros.periodo}).
             </p>
 
             <div className="grid md:grid-cols-3 gap-8">

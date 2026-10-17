@@ -19,6 +19,17 @@ export interface Oferta {
   item: Record<string, unknown>;
 }
 
+// Números da marca (clientes, anos, nota), vindos de data/ofertas.json: um lugar só para atualizar.
+const limpar = (v: string): string => String(v).replace('+', '');
+const marca = (ofertas as any).marca;
+export const numeros = {
+  clientes: limpar(marca.familias_atendidas),
+  anos: limpar(marca.anos_na_franca),
+  nota: marca.nota_satisfacao as string,
+  respostas: limpar(marca.pesquisas_satisfacao),
+  periodo: marca.periodo_pesquisas as string,
+};
+
 const guia = (id: string): any => {
   const g = (ofertas as any).guias.find((x: any) => x.id === id);
   if (!g) throw new Error(`Guia não encontrado em data/ofertas.json: ${id}`);

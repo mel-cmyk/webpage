@@ -279,7 +279,7 @@ function home(data) {
   <div class="wrap hero-content">
     <p class="eyebrow">Mel Rolan Travel Designer · Paris</p>
     <h1>A sua viagem à França, pensada por quem é especialista em viajantes brasileiros.</h1>
-    <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que desde 2021 já planejou a viagem de mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros.</p>
+    <p class="lead">Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros que querem viver Paris com tempo, contexto e escolhas certas. Curadoria da Mel, que desde ${m.ano_fundacao} já planejou a viagem de mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros.</p>
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-hero">Descobrir o que combina com a minha viagem</a>
       <a class="btn btn-ghost" href="#como-ajudar">Ver tours e serviços</a>
@@ -370,7 +370,7 @@ ${depoimentos(m)}
     ${img('home/mel', 'Mel Rolan sorrindo às margens do Sena, em Paris', { cls: 'photo', sizes: '(min-width: 900px) 540px, 100vw' })}
     <div>
     <h2>Quem desenha a sua viagem</h2>
-    <p>Sou a Mel, brasileira, bacharel em Turismo e ex-aluna da École du Louvre (2025/2026), e já viajei pelos quatro cantos da França, um repertório que entra em cada roteiro. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos.</p>
+    <p>Sou a Mel, brasileira, bacharel em Turismo e ex-aluna da École du Louvre (2025/2026), e já viajei pelos quatro cantos da França, um repertório que entra em cada roteiro. Antes de fundar a Mel Rolan Travel Designer, em ${m.ano_fundacao}, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens. Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos.</p>
     
     <a class="btn btn-ghost" href="${url('/sobre/')}">Conhecer a história da Mel</a>
     </div>
@@ -856,7 +856,7 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e r
   return {
     path: '/sobre/',
     title: 'Sobre a Mel Rolan | Travel designer brasileira em Paris',
-    description: `Conheça a Mel Rolan, brasileira que vive em Paris há mais de 5 anos e já acompanhou mais de 650 clientes em roteiros, consultorias e tours.`,
+    description: `Conheça a Mel Rolan, brasileira que vive em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos e já acompanhou mais de ${m.familias_atendidas.replace('+', '')} clientes em roteiros, consultorias e tours.`,
     body,
     og: 'og/sobre.jpg',
     jsonld: [breadcrumbLd([['Início', '/'], ['Sobre a Mel', '/sobre/']])],
@@ -1025,7 +1025,7 @@ function parcerias(data) {
   <div class="wrap narrow">
     <p class="eyebrow">Parcerias</p>
     <h1>Parcerias</h1>
-    <p class="lead">A Mel Rolan Travel Designer trabalha com viajantes brasileiros em Paris desde 2021. Além do atendimento direto, mantemos parcerias com agências de viagem no Brasil e com prestadores de experiências na França, construídas com o mesmo cuidado que dedicamos a cada cliente.</p>
+    <p class="lead">A Mel Rolan Travel Designer trabalha com viajantes brasileiros em Paris desde ${m.ano_fundacao}. Além do atendimento direto, mantemos parcerias com agências de viagem no Brasil e com prestadores de experiências na França, construídas com o mesmo cuidado que dedicamos a cada cliente.</p>
     <p>Se o seu trabalho conversa com o nosso, queremos conhecer você.</p>
     <div class="actions">
       <a class="btn btn-ghost" href="#agencias">Agências no Brasil</a>
@@ -1063,7 +1063,7 @@ ${provaRapida(m)}
     <h2 class="center">Partenaires en France</h2>
     <div class="narrow">
       <p>Le Brésil est le troisième marché non européen de la France en nombre de visiteurs, après les États-Unis et le Canada. Ces voyageurs aiment Paris, mais ils cherchent à la découvrir dans leur langue et avec des repères qu'ils comprennent.</p>
-      <p>Installée en France depuis plus de cinq ans, Mel Rolan accompagne des voyageurs brésiliens à Paris depuis 2021 : itinéraires sur mesure, conseil et visites privées en portugais.</p>
+      <p>Installée en France depuis plus de ${({ 5: 'cinq', 6: 'six', 7: 'sept', 8: 'huit', 9: 'neuf', 10: 'dix' })[m.anos_na_franca.replace('+', '')] || m.anos_na_franca.replace('+', '')} ans, Mel Rolan accompagne des voyageurs brésiliens à Paris depuis ${m.ano_fundacao} : itinéraires sur mesure, conseil et visites privées en portugais.</p>
     </div>
     <div class="grid-2">
       <article class="card"><div class="card-body"><h3>Ce que nous cherchons</h3><p>Des acteurs qui partagent notre exigence de qualité : prestataires d'expériences (ateliers, dégustations, activités pour les familles), hébergements et adresses adaptés aux familles et aux petits groupes, professionnels du tourisme qui reçoivent une clientèle brésilienne et souhaitent mieux l'accueillir.</p></div></article>
