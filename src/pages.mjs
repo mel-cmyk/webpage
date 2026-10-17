@@ -88,7 +88,7 @@ const provaRapida = (m) => `
   </div>
 </section>`;
 
-const depoimentos = (m) => `
+const depoimentos = (m, extra = '') => `
 <section class="section">
   <div class="wrap">
     <div class="selo-wrap">
@@ -102,13 +102,35 @@ const depoimentos = (m) => `
         <p class="selo-txt">Nota média ${m.nota_satisfacao} de 10 em ${m.pesquisas_satisfacao} pesquisas de satisfação respondidas por clientes de roteiros, consultorias e tours, de ${m.periodo_pesquisas}.</p>
       </div>
     </div>
-    <div class="grid-3 quotes">
+    <div class="grid-3 quotes">${extra}
       <figure><blockquote>“Mel tem uma sensibilidade impressionante! Desde a primeira conversa dá pra sentir o quanto ela é competente, organizada e ama o que faz. Que sorte a nossa encontrar a Mel nessa viagem mãe e filha, que será inesquecível para nós. Ela cuidou de tudo, nos colocou com as melhores pessoas e nos melhores lugares.”</blockquote><figcaption><strong>Roberta</strong>, São Paulo (SP) · viagem mãe e filha</figcaption></figure>
       <figure><blockquote>“Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível.”</blockquote><figcaption><strong>Fernanda</strong>, Natal (RN) · viagem em grupo</figcaption></figure>
-      <figure><blockquote>“Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!”</blockquote><figcaption><strong>Renata</strong>, Pereiras (SP)</figcaption></figure>
+      ${extra ? '' : `<figure><blockquote>“Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!”</blockquote><figcaption><strong>Renata</strong>, Pereiras (SP)</figcaption></figure>`}
     </div>
   </div>
 </section>`;
+
+// Avaliações do Tripadvisor (perfil "Mel Rolan — Tours em Paris"), publicadas com autorização dos clientes (Diogo, 17/10/2026).
+// Trechos fiéis ao texto original; [...] marca cortes e [colchetes] marcam edições (a ferramenta do roteiro não é nomeada).
+const TRIP = {
+  marise: { tours: ['paris-de-cinema'], titulo: 'Uma das melhores tardes da minha vida!', texto: 'Fiz o roteiro Paris de Cinema com meu marido e foi uma experiência incrível. [...] A Mel faz toda a diferença. Existe uma sensibilidade enorme na construção do roteiro, na escolha de cada lugar, nas histórias que ela conta e até na música que acompanha alguns momentos.', autor: 'Marise Lemos', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
+  rafael: { tours: ['paris-de-cinema'], titulo: 'Paris com a Mel é ainda mais interessante e especial', texto: 'Já estive algumas vezes em Paris, mas esse tour me fez enxergar a cidade de outra forma. [...] Recomendo muito para todos e especialmente, para os brasileiros.', autor: 'Rafael D.', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
+  lucas: { tours: ['quartier-latin-e-ile-de-la-cite', 'tour-personalizado'], titulo: 'O melhor tour de Paris', texto: 'Nada pareceu apressado ou decorado. Ela sempre estava disposta a parar, responder perguntas, se aprofundar em algo que despertava a minha curiosidade e adaptar a experiência ao longo do caminho. [...] Recomendo sem hesitar a quem quer descobrir Paris de um jeito mais pessoal, interessante e humano.', autor: 'Lucas A.', info: 'viajando sozinho · Quartier Latin · traduzido do inglês' },
+  rafaelRoteiro: { titulo: 'Paris com roteiro perfeito e organização impecável', texto: 'Recebemos um guia super completo da cidade, com um roteiro muito bem planejado, sugestões dos melhores restaurantes e toda a programação organizada dia a dia [numa plataforma digital]. [...] A organização foi impecável e deixou nossa viagem muito mais tranquila e especial.', autor: 'Rafael D.', info: 'São Paulo (SP) · em família · roteiro sob medida' },
+};
+const tripCard = (d) => `<figure><p class="quote-title">${esc(d.titulo)}</p><blockquote>“${esc(d.texto)}”</blockquote><figcaption><strong>${esc(d.autor)}</strong>, ${esc(d.info)} · Tripadvisor, 5 de 5</figcaption></figure>`;
+// Avaliações de tours: as do próprio tour primeiro.
+const avaliacoesTours = (tourId = '') => {
+  const lista = [TRIP.marise, TRIP.rafael, TRIP.lucas].sort((a, b) => (b.tours.includes(tourId) ? 1 : 0) - (a.tours.includes(tourId) ? 1 : 0));
+  return `
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow center">Avaliações no Tripadvisor</p>
+    <h2 class="center">Nota 5,0 de quem fez o tour</h2>
+    <div class="grid-3 quotes">${lista.map(tripCard).join('')}</div>
+  </div>
+</section>`;
+};
 
 // Imprensa (data/imprensa.json): só o que a matéria diz. Citação entre aspas e sempre com veículo, data e link.
 const dataBR = (iso) => iso.split('-').reverse().join('/');
@@ -410,6 +432,7 @@ ${heroSplit(`
     </div>
   </div>
 </section>
+${avaliacoesTours()}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Um tour para cada grupo</h2>
@@ -501,6 +524,7 @@ ${heroSplit(`
     </div>
   </div>
 </section>
+${avaliacoesTours(t.id)}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Para quem é este tour</h2>
@@ -645,7 +669,7 @@ ${heroSplit(`
   </div>
 </section>
 ${imprensaCitacao(data, 'catraca-livre-ia')}
-${depoimentos(data.marca)}
+${depoimentos(data.marca, tripCard(TRIP.rafaelRoteiro))}
 ${ctaFinal(data, 'Vamos desenhar a sua viagem?', `Roteiros a partir de ${brl(s.preco_a_partir_de)}. Conte como é a sua viagem e a Mel indica o formato certo.`)}
 `;
   return {

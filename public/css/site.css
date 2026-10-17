@@ -373,3 +373,5 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
   .hero-photo .hero-content .lead { order: 2; margin-top: 20px; }
   .hero-photo .hero-content .small { order: 3; }
 }
+
+.quotes .quote-title { font-family: var(--serif); font-weight: 600; margin: 0 0 8px; }
