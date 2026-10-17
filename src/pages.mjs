@@ -145,7 +145,28 @@ const incluidoTours = [
   'Para os mini clientes: o livro de atividades impresso do Monsieur Pombo, criado pela Mel',
 ];
 
+// Para quem é cada tour (informações da Mel, 17/10/2026): todos os tours servem a todos os perfis; o conteúdo é adaptado ao grupo.
+const TOURS_CURTOS = ['3h', '3h30'];
+const perfisTour = (t) => {
+  const ritmo = t && TOURS_CURTOS.includes(t.duracao)
+    ? 'Percurso de 4 a 5 km, com muitas paradas no caminho. Não exige preparo físico.'
+    : 'Ritmo leve, com muitas paradas no caminho. Não exige preparo físico.';
+  const montmartre = t && t.id === 'montmartre' ? ' Em Montmartre, o percurso foi pensado para ter pouquíssimas escadas, e as subidas são curtas e leves.' : '';
+  return `
+    <div class="grid-4 perfis">
+      <article class="card perfil"><h3>Com crianças</h3><p>Para todas as idades, inclusive com carrinho de bebê. A linguagem é adaptada a cada criança, e cada uma ganha o livro de atividades do Monsieur Pombo.</p></article>
+      <article class="card perfil"><h3>Com avós</h3><p>Grupos de até três gerações no mesmo passeio. ${ritmo}${montmartre}</p></article>
+      <article class="card perfil"><h3>Casais</h3><p>Só vocês dois e a Mel, no ritmo de vocês, com tempo para o café, as fotos e as histórias que mais interessarem.</p></article>
+      <article class="card perfil"><h3>Viajando sozinha</h3><p>Uma guia brasileira ao seu lado, com a profundidade histórica que você quiser e liberdade para parar onde der vontade.</p></article>
+    </div>
+    <p class="center small">Todos os passeios têm paradas para descansar, tomar um café e ir ao banheiro.</p>`;
+};
+
 const faqTours = [
+  {
+    q: 'Os tours funcionam com carrinho de bebê ou com avós?',
+    a: 'Sim. Todos os tours funcionam para todas as idades, inclusive com carrinho de bebê, e já recebemos grupos de até três gerações no mesmo passeio. O ritmo é leve, com muitas paradas no caminho para descansar, tomar um café e ir ao banheiro.',
+  },
   {
     q: 'Como funciona a reserva de um tour?',
     a: 'Você chama no WhatsApp, verificamos a disponibilidade para as datas da sua viagem e definimos o roteiro. Para garantir a data, pedimos um sinal, reembolsável em cancelamentos feitos com pelo menos 30 dias de antecedência. O restante é pago perto do passeio.',
@@ -195,8 +216,8 @@ function home(data) {
       q: 'Os serviços são só para famílias com crianças?',
       a: 'Não. A Mel atende famílias com crianças, casais, grupos de amigos, viagens com várias gerações e quem viaja sozinha, com o mesmo cuidado. O que muda é o desenho de cada dia: o ritmo, os bairros, as pausas e os programas escolhidos para quem vai estar lá.',
     },
-    faqTours[2],
-    faqTours[0],
+    faqTours[3],
+    faqTours[1],
     {
       q: 'A Mel acompanha a viagem inteira?',
       a: 'O roteiro e a consultoria são entregues antes do embarque, com tudo pensado para você viajar com autonomia e segurança. Não oferecemos atendimento em tempo real durante toda a viagem, mas ficamos à disposição para um apoio pontual, se necessário. Os guias digitais são materiais em PDF, sem acompanhamento.',
@@ -389,6 +410,13 @@ ${heroSplit(`
     </div>
   </div>
 </section>
+<section class="section">
+  <div class="wrap">
+    <h2 class="center">Um tour para cada grupo</h2>
+    <p class="center lead-sm">Todos os tours funcionam para todos os perfis. O conteúdo é adaptado a cada grupo, do livro de atividades para os pequenos à profundidade histórica para quem quer ir mais longe.</p>
+    ${perfisTour(null)}
+  </div>
+</section>
 <section class="section alt">
   <div class="wrap">
     <h2 class="center">O que está incluído em todos os tours</h2>
@@ -471,6 +499,13 @@ ${heroSplit(`
       </table>
       <p class="small">Valor por grupo, não por pessoa. Duração: ${esc(t.duracao)}.</p>
     </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <h2 class="center">Para quem é este tour</h2>
+    <p class="center lead-sm">Para todos os perfis. O conteúdo é adaptado a cada grupo, do livro de atividades para os pequenos à profundidade histórica para quem quer ir mais longe.</p>
+    ${perfisTour(t)}
   </div>
 </section>
 <section class="section alt">
