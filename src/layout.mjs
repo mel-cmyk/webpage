@@ -98,19 +98,26 @@ function footer(data) {
 // Aviso de cookies: aparece até a pessoa escolher. Duas finalidades, escolhidas separadamente.
 // Aceitar tudo, Recusar tudo e Salvar escolhas têm o mesmo peso (regra da CNIL).
 export const cookieBanner = () => `
-<div class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-titulo" hidden>
-  <p id="cookie-titulo" class="cookie-title">Cookies e privacidade</p>
-  <p>Cookies de medição e publicidade (Google), só se você aceitar. <a href="${url('/privacidade/')}">Saiba mais</a></p>
-  <div class="cookie-opcoes" id="cookie-opcoes" hidden>
-    <p class="small">Os cookies só são gravados depois da sua escolha. Se você recusar, nas páginas de serviços e de venda o Google ainda recebe sinais de uso sem cookies, como a visita a uma página e o clique em um botão, para medir os anúncios de forma agregada. Esses sinais não incluem o seu nome nem o seu contato. Você pode mudar de ideia quando quiser, pelo rodapé.</p>
-    <label class="cookie-opt"><input type="checkbox" id="consent-medicao"><span><strong>Medição.</strong> Google Analytics: mostra como o site é usado, para melhorarmos o conteúdo.</span></label>
-    <label class="cookie-opt"><input type="checkbox" id="consent-anuncios"><span><strong>Publicidade.</strong> Google Ads: mede o resultado dos anúncios e mostra anúncios da Mel Rolan a quem já visitou o site.</span></label>
-  </div>
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookies" hidden>
+  <p>Usamos cookies para medir e anunciar.</p>
   <div class="cookie-actions">
-    <button type="button" class="btn btn-small" data-consent="all">Aceitar tudo</button>
-    <button type="button" class="btn btn-small" data-consent="none">Recusar tudo</button>
-    <button type="button" class="btn btn-small" id="cookie-mais" data-consent="more">Personalizar</button>
-    <button type="button" class="btn btn-small" id="cookie-salvar" data-consent="custom" hidden>Salvar escolhas</button>
+    <button type="button" class="btn btn-small" data-consent="all">Aceitar</button>
+    <button type="button" class="btn btn-small" data-consent="none">Recusar</button>
+    <button type="button" class="btn btn-small btn-ghost" id="cookie-mais" data-consent="more">Personalizar</button>
+  </div>
+</div>
+<div class="cookie-modal" id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-titulo" hidden>
+  <div class="cookie-modal-box">
+    <button type="button" class="cookie-fechar" data-consent="close" aria-label="Fechar">&times;</button>
+    <p id="cookie-titulo" class="cookie-title">Cookies e privacidade</p>
+    <p class="small">Os cookies só são gravados depois da sua escolha. Se você recusar, nas páginas de serviços e de venda o Google ainda recebe sinais de uso sem cookies, como a visita a uma página e o clique em um botão, para medir os anúncios de forma agregada. Esses sinais não incluem o seu nome nem o seu contato. Você pode mudar de ideia quando quiser, pelo rodapé.</p>
+    <label class="cookie-opt"><input type="checkbox" id="consent-medicao"><span><strong>Medição.</strong> Google Analytics e Microsoft Clarity: mostram como o site é usado (páginas, cliques e a navegação, de forma anônima), para melhorarmos o conteúdo.</span></label>
+    <label class="cookie-opt"><input type="checkbox" id="consent-anuncios"><span><strong>Publicidade.</strong> Google Ads, Meta (Facebook e Instagram) e TikTok: medem o resultado dos anúncios e mostram anúncios da Mel Rolan a quem já visitou o site.</span></label>
+    <p class="small"><a href="${url('/privacidade/')}">Política de privacidade</a></p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-small" id="cookie-salvar" data-consent="custom">Salvar escolhas</button>
+      <button type="button" class="btn btn-small btn-ghost" data-consent="all">Aceitar tudo</button>
+    </div>
   </div>
 </div>
 <script>/* Mostra o aviso já na primeira pintura (sem esperar o analytics.js): ele é o maior elemento da tela no celular (LCP). Mesma regra de lerEscolha() em analytics.js. */try{var mrS=JSON.parse(localStorage.getItem('mr_consent')||'null');if(!(mrS&&typeof mrS.ads==='boolean'&&Date.now()-(mrS.timestamp||0)<15724800000)){document.getElementById('cookie-banner').hidden=false;document.body.classList.add('cookie-aberto');}}catch(e){}</script>`;
