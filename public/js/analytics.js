@@ -11,14 +11,10 @@
   var GA_ID = 'G-L71ZP46QX2';
   var KEY = 'mr_consent'; // mesma chave usada nas páginas de venda dos guias
   var VALIDADE = 182 * 24 * 60 * 60 * 1000; // a escolha vale 6 meses, depois perguntamos de novo
-  // REGRA ÚNICA DE ENVIO: onde o Google (GA4 e Google Ads) pode receber dados.
-  // - Domínio oficial (melrolan.com.br): todas as páginas.
-  // - Endereço de teste (mel-cmyk.github.io/webpage): só as páginas que recebem anúncios, para validar a medição
-  //   antes da troca de domínio. Quando o site passar a ser servido só pelo domínio oficial, apague a linha
-  //   TESTE e use PROD = OFICIAL. A lista de páginas deve acompanhar PAGINAS_ANUNCIOS em src/layout.mjs.
+  // REGRA ÚNICA DE ENVIO: o Google (GA4 e Google Ads) só recebe dados no domínio oficial (melrolan.com.br).
+  // Qualquer outro endereço (prévia, teste local) mostra o aviso de cookies, mas não envia nada.
   var OFICIAL = /(^|\.)melrolan\.com\.br$/.test(location.hostname);
-  var TESTE = location.hostname === 'mel-cmyk.github.io' && /^\/webpage\/($|(guias|guias-de-paris|tours-em-paris|roteiro-sob-medida|consultoria|diagnostico|qual-tour-combina-com-voce)\/)/.test(location.pathname);
-  var PROD = OFICIAL || TESTE;
+  var PROD = OFICIAL;
   // Tráfego interno (equipe): abrir o site uma vez com ?interno=1 marca este navegador (traffic_type=internal no GA4,
   // para o filtro de dados do GA4 excluir as visitas). ?interno=0 desmarca. Navegador marcado também não alimenta Meta e TikTok.
   var INTERNO = false;
