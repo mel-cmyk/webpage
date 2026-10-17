@@ -42,7 +42,8 @@ Medição (`public/js/analytics.js`): nessas páginas (`data-medicao="avancada"`
 
 - `data/ofertas.json`: fonte única de preços, tours e dados da marca
 - `data/imagens.json`: lista das fotos e dos tamanhos disponíveis
-- `src/pages.mjs`: textos de cada página
+- `src/pages/`: textos das páginas, um arquivo por tema (`home`, `tours`, `servicos`, `guias`, `institucional`, `funis`); `comum.mjs` e `blocos.mjs` guardam as peças reaproveitadas e `index.mjs` lista as páginas
+- `tests/check.mjs`: conferência do site gerado (`npm test`), roda antes do deploy
 - `src/layout.mjs`: cabeçalho, rodapé e estrutura comum
 - `public/`: estilos, scripts e imagens
 - `build.mjs`: gera o site em `dist/`
