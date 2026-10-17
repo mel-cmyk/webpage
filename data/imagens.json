@@ -336,5 +336,17 @@
    "w": 1200,
    "h": 800
   }
+ ],
+ "imprensa/milene-pinto": [
+  {
+   "src": "/img/imprensa/milene-pinto-240.webp",
+   "w": 240,
+   "h": 240
+  },
+  {
+   "src": "/img/imprensa/milene-pinto-480.webp",
+   "w": 480,
+   "h": 480
+  }
  ]
 }
