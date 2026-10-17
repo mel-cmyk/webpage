@@ -385,3 +385,18 @@ th { font-family: var(--serif); background: var(--navy); color: var(--white); fo
 }
 
 .selo-tour { display: inline-block; align-self: flex-start; margin: 0 0 8px; padding: 3px 10px; border-radius: 999px; background: var(--navy); color: var(--white); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em; }
+
+/* Espaçamento entre seções: duas seções seguidas com o mesmo fundo não somam o respiro (evita vãos grandes no celular). */
+/* Só entre seções de fundo claro (não vale para a faixa escura do convite final). */
+.section:not(.alt):not(.cta-final) + .section:not(.alt):not(.cta-final),
+.section.alt + .section.alt { padding-top: 0; }
+/* O respiro vem da seção, não das margens do primeiro e do último bloco. */
+.section > .wrap > :first-child { margin-top: 0; }
+.section > .wrap > :last-child { margin-bottom: 0; }
+.hero-sm + .section { padding-top: 24px; }
+@media (max-width: 699px) {
+  .section { padding: 44px 0; }
+  .hero-sm { padding-bottom: 16px; }
+}
+.section > .wrap.cards { margin-top: 0; }
+.hero-sm > .wrap > :last-child, .hero-split-grid > div > :last-child { margin-bottom: 0; }
