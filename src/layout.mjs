@@ -16,8 +16,7 @@ export const clarityAttr = (data) => { const id = (data.integracoes && data.inte
 // Páginas de anúncios (Consent Mode avançado) carregam o Google desde o início: conectar e baixar o gtag.js em paralelo ao resto da página.
 export const dicasGoogle = '<link rel="preconnect" href="https://www.googletagmanager.com">\n<link rel="preconnect" href="https://www.google-analytics.com">';
 
-// Páginas que podem receber anúncios: usam o Consent Mode avançado (analytics.js, body data-medicao="avancada").
-// A regra de envio no endereço de teste, em public/js/analytics.js (TESTE), deve acompanhar esta lista.
+// Páginas que podem receber anúncios: usam o Consent Mode avançado (analytics.js, body data-medicao="avancada"). Lista única: o analytics.js só lê o atributo.
 const PAGINAS_ANUNCIOS = /^\/($|(tours-em-paris|roteiro-sob-medida|consultoria|diagnostico|guias-de-paris|qual-tour-combina-com-voce)\/)/;
 
 const nav = [
