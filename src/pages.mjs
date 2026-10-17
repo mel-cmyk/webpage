@@ -882,10 +882,13 @@ function naMidia(data) {
       </article>`).join('')}
     </div>
     <div class="assessoria">
+      ${img('imprensa/milene-pinto', `${data.assessoria.nome}, ${data.assessoria.cargo.toLowerCase()}`, { cls: 'assessoria-foto', sizes: '96px' })}
+      <div>
       <p class="eyebrow">Assessoria de imprensa</p>
       <p><strong>${esc(data.assessoria.nome)}</strong>, ${esc(data.assessoria.cargo.toLowerCase())}</p>
       <p>Jornalistas e veículos: entrem em contato para entrevistas, pautas e imagens.</p>
       <p><a href="mailto:${esc(data.assessoria.email)}">${esc(data.assessoria.email)}</a> · <a href="tel:${data.assessoria.telefone.replace(/[^+\d]/g, '')}">${esc(data.assessoria.telefone)}</a></p>
+      </div>
     </div>
   </div>
 </section>
