@@ -93,6 +93,8 @@
       var g = JSON.parse(a.dataset.checkout);
       var p = { currency: 'BRL', value: g.price * (g.quantity || 1), items: [g] };
       if (a.dataset.slot) p.creative_slot = a.dataset.slot;
+      // Quem processa o pagamento: hoje só a loja Wix (loja.melrolan.com.br). Vira dimensão no GA4 para separar meios de pagamento no futuro.
+      p.checkout_provider = 'wix';
       track('begin_checkout', p);
     } else if (a.dataset.item) {
       track('select_item', { item_list_name: 'tours', items: [JSON.parse(a.dataset.item)] });

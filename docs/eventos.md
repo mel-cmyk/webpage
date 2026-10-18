@@ -9,7 +9,7 @@ Fonte: `src/analytics/`. Tudo só envia depois do consentimento e só no domíni
 | `view_item` | Abrir a página de um tour ou de um guia | item (id, nome, preço), `currency`, `value` |
 | `view_item_list` | Abrir a lista de tours ou de guias | `item_list_name`, itens |
 | `select_item` | Clicar num card de tour | item |
-| `begin_checkout` | Clicar em comprar um guia (abre a loja Wix) | item, `value`, `creative_slot` |
+| `begin_checkout` | Clicar em comprar um guia (abre a loja Wix) | item, `value`, `creative_slot`, `checkout_provider` (`wix`) |
 | `clique_cta` | Clicar num botão que leva ao quiz ou ao diagnóstico | `origem` |
 | `whatsapp_click` | Clicar em qualquer botão de WhatsApp (evento-chave) | `origem`, `servico`; nos funis também `origin_flow`, `flow_run_id` |
 | `email_click`, `instagram_click` | Clicar no e-mail ou no Instagram do rodapé | `origem` |
