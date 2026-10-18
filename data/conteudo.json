@@ -1,0 +1,352 @@
+{
+  "_sobre": "Textos do site que mudam com frequência. Edite aqui, rode npm test e confira. Preços, números e contatos ficam em ofertas.json.",
+  "selos_tours": {
+    "eixo-historico": "Muito procurado",
+    "montmartre": "Queridinho dos viajantes",
+    "paris-de-cinema": "Novidade"
+  },
+  "tripadvisor": {
+    "url": "https://www.tripadvisor.fr/Attraction_Review-g187147-d34501789-Reviews-Mel_Rolan_Tours_em_Paris_para_Brasileiros-Paris_Ile_de_France.html",
+    "avaliacoes": {
+      "marise": {
+        "tours": [
+          "paris-de-cinema"
+        ],
+        "titulo": "Uma das melhores tardes da minha vida!",
+        "texto": "Fiz o roteiro Paris de Cinema com meu marido e foi uma experiência incrível. [...] A Mel faz toda a diferença. Existe uma sensibilidade enorme na construção do roteiro, na escolha de cada lugar, nas histórias que ela conta e até na música que acompanha alguns momentos.",
+        "autor": "Marise Lemos",
+        "info": "São Paulo (SP) · em casal · Paris de Cinema"
+      },
+      "rafael": {
+        "tours": [
+          "paris-de-cinema"
+        ],
+        "titulo": "Paris com a Mel é ainda mais interessante e especial",
+        "texto": "Já estive algumas vezes em Paris, mas esse tour me fez enxergar a cidade de outra forma. [...] Recomendo muito para todos e especialmente, para os brasileiros.",
+        "autor": "Rafael D.",
+        "info": "São Paulo (SP) · em casal · Paris de Cinema"
+      },
+      "lucas": {
+        "tours": [
+          "quartier-latin-e-ile-de-la-cite",
+          "tour-personalizado"
+        ],
+        "titulo": "O melhor tour de Paris",
+        "texto": "Nada pareceu apressado ou decorado. Ela sempre estava disposta a parar, responder perguntas, se aprofundar em algo que despertava a minha curiosidade e adaptar a experiência ao longo do caminho. [...] Recomendo sem hesitar a quem quer descobrir Paris de um jeito mais pessoal, interessante e humano.",
+        "autor": "Lucas A.",
+        "info": "viajando sozinho · Quartier Latin · traduzido do inglês"
+      },
+      "rafaelRoteiro": {
+        "titulo": "Paris com roteiro perfeito e organização impecável",
+        "texto": "Recebemos um guia super completo da cidade, com um roteiro muito bem planejado, sugestões dos melhores restaurantes e toda a programação organizada dia a dia [numa plataforma digital]. [...] A organização foi impecável e deixou nossa viagem muito mais tranquila e especial.",
+        "autor": "Rafael D.",
+        "info": "São Paulo (SP) · em família · roteiro sob medida"
+      }
+    }
+  },
+  "tours_incluido": [
+    "Guia brasileira exclusiva para o seu grupo",
+    "Logística a pé pensada para o seu ritmo",
+    "Narrativa cultural em português",
+    "Paradas estratégicas para fotos",
+    "Indicações gastronômicas para o dia do tour",
+    "Alinhamento prévio pelo WhatsApp",
+    "Para os mini clientes: o livro de atividades impresso do Monsieur Pombo, criado pela Mel"
+  ],
+  "tours_faq": [
+    {
+      "q": "Os tours funcionam com carrinho de bebê ou com avós?",
+      "a": "Sim. Todos os tours funcionam para todas as idades, inclusive com carrinho de bebê, e já recebemos grupos de até três gerações no mesmo passeio. O ritmo é leve, com muitas paradas no caminho para descansar, tomar um café e ir ao banheiro."
+    },
+    {
+      "q": "Como funciona a reserva de um tour?",
+      "a": "Você chama no WhatsApp, verificamos a disponibilidade para as datas da sua viagem e definimos o roteiro. Para garantir a data, pedimos um sinal, reembolsável em cancelamentos feitos com pelo menos 30 dias de antecedência. O restante é pago perto do passeio."
+    },
+    {
+      "q": "O roteiro do tour pode ser alterado?",
+      "a": "Sim. Como o tour é privativo, se você preferir se concentrar em um bairro, adaptamos o trajeto."
+    },
+    {
+      "q": "Os tours guiados são adequados para crianças?",
+      "a": "Sim. A linguagem do tour é adaptada à idade de cada criança, e cada uma ganha o livro de atividades impresso do Monsieur Pombo, criado pela Mel. No tour, fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles."
+    }
+  ],
+  "home": {
+    "servicos": {
+      "tours": {
+        "para": "conhecer Paris a pé, no próprio ritmo, com uma guia brasileira ao lado.",
+        "txt": "Roteiros ao ar livre pelas ruas, praças e jardins que contam a história da cidade. Só o seu grupo, em português, com tempo para o café, as fotos e as pausas que o seu grupo pedir.",
+        "cta": "Ver os tours"
+      },
+      "roteiro": {
+        "para": "receber a viagem inteira desenhada, dia a dia.",
+        "txt": "A Mel conhece quem vai viajar, entende o ritmo de cada um e monta a programação completa: atrações, restaurantes, deslocamentos e o que precisa ser reservado com antecedência, tudo numa plataforma que você leva no celular.",
+        "cta": "Quero um roteiro"
+      },
+      "consultoria": {
+        "para": "começar a planejar, tirar dúvidas ou validar o que já tem.",
+        "txt": "Uma conversa por vídeo com a Mel, no ponto em que a sua viagem estiver: definir destinos e dias em cada região, esclarecer dúvidas ou validar o que já está planejado. Com um mapa digital exclusivo para consultar depois.",
+        "cta": "Ver a consultoria"
+      },
+      "guias": {
+        "para": "planejar com autonomia, com a curadoria pronta.",
+        "txt": "Curadoria completa em PDF, com acesso imediato: Paris com Crianças, com 158 páginas pensadas para cada idade, e Paris Essencial, com roteiro de 4 dias e 6 bate-voltas.",
+        "cta": "Ver os guias"
+      }
+    },
+    "faq": [
+      {
+        "q": "Qual a diferença entre tour, roteiro, consultoria e guia?",
+        "a": "O tour é um passeio a pé com a Mel, em Paris. O roteiro é a viagem inteira planejada para você, dia a dia. A consultoria é uma conversa com a Mel para o momento em que você estiver: começar a planejar, tirar dúvidas ou validar o que já decidiu. O guia digital é a curadoria pronta, para quem prefere planejar sozinho. Se ainda estiver em dúvida, o diagnóstico indica o caminho em dois minutos."
+      },
+      {
+        "q": "Os serviços são só para famílias com crianças?",
+        "a": "Não. A Mel atende famílias com crianças, casais, grupos de amigos, viagens com várias gerações e quem viaja sozinha, com o mesmo cuidado. O que muda é o desenho de cada dia: o ritmo, os bairros, as pausas e os programas escolhidos para quem vai estar lá."
+      },
+      {
+        "faq_tours": 3
+      },
+      {
+        "faq_tours": 1
+      },
+      {
+        "q": "A Mel acompanha a viagem inteira?",
+        "a": "O roteiro e a consultoria são entregues antes do embarque, com tudo pensado para você viajar com autonomia e segurança. Não oferecemos atendimento em tempo real durante toda a viagem, mas ficamos à disposição para um apoio pontual, se necessário. Os guias digitais são materiais em PDF, sem acompanhamento."
+      },
+      {
+        "q": "Quais são as formas de pagamento?",
+        "a": "Serviços: Pix, cartão ou Wise. Guias digitais: cartão em até 4x sem juros ou Pix, em loja segura."
+      },
+      {
+        "q": "Com quanta antecedência devo contratar?",
+        "a": "Depende do serviço. A consultoria pode ser contratada a qualquer momento, e quanto antes, melhor. Para o roteiro personalizado, o ideal é contratar com 6 meses de antecedência. Para os tours guiados nas férias de julho e no fim de ano, reserve com bastante antecedência, porque as agendas fecham cedo. Os guias digitais podem ser comprados a qualquer momento, com acesso imediato."
+      }
+    ]
+  },
+  "quiz_perguntas": [
+    {
+      "pergunta": "Primeira manhã em Paris. Onde você toma o seu café?",
+      "opcoes": [
+        {
+          "texto": "Numa mesa de calçada, vendo a cidade acordar",
+          "pontos": {
+            "eixo-historico": 2,
+            "paris-classica": 1
+          }
+        },
+        {
+          "texto": "Num café literário, cercado de livros antigos",
+          "pontos": {
+            "quartier-latin-e-ile-de-la-cite": 2,
+            "eixo-historico-ocupacao-nazista": 1
+          }
+        },
+        {
+          "texto": "Numa pracinha cheia de artistas e cavaletes",
+          "pontos": {
+            "montmartre": 2
+          }
+        },
+        {
+          "texto": "No café onde foi gravada aquela cena que eu adoro",
+          "pontos": {
+            "paris-de-cinema": 2
+          }
+        },
+        {
+          "texto": "Café? Rapidinho, que hoje eu quero ver tudo",
+          "pontos": {
+            "paris-classica": 2,
+            "eixo-historico": 1
+          }
+        }
+      ]
+    },
+    {
+      "pergunta": "O que toca nos seus fones enquanto você caminha?",
+      "opcoes": [
+        {
+          "texto": "A trilha sonora de um filme",
+          "pontos": {
+            "paris-de-cinema": 2
+          }
+        },
+        {
+          "texto": "Édith Piaf, claro",
+          "pontos": {
+            "montmartre": 2,
+            "quartier-latin-e-ile-de-la-cite": 1
+          }
+        },
+        {
+          "texto": "Um podcast sobre a Segunda Guerra",
+          "pontos": {
+            "eixo-historico-ocupacao-nazista": 2
+          }
+        },
+        {
+          "texto": "Nada. Quero ouvir a cidade",
+          "pontos": {
+            "quartier-latin-e-ile-de-la-cite": 1,
+            "montmartre": 1,
+            "eixo-historico": 1
+          }
+        },
+        {
+          "texto": "Uma playlist animada para dar ritmo ao dia",
+          "pontos": {
+            "paris-classica": 2
+          }
+        }
+      ]
+    },
+    {
+      "pergunta": "Se a sua viagem fosse um livro, seria…",
+      "opcoes": [
+        {
+          "texto": "Um romance de época, com reis e revoluções",
+          "pontos": {
+            "quartier-latin-e-ile-de-la-cite": 2,
+            "eixo-historico": 1
+          }
+        },
+        {
+          "texto": "A biografia de um pintor",
+          "pontos": {
+            "montmartre": 2
+          }
+        },
+        {
+          "texto": "Um livro de história do século XX",
+          "pontos": {
+            "eixo-historico-ocupacao-nazista": 2
+          }
+        },
+        {
+          "texto": "O roteiro de um filme",
+          "pontos": {
+            "paris-de-cinema": 2
+          }
+        },
+        {
+          "texto": "Um guia com todos os lugares imperdíveis",
+          "pontos": {
+            "paris-classica": 2,
+            "eixo-historico": 1
+          }
+        }
+      ]
+    },
+    {
+      "pergunta": "No meio da tarde, bate aquela vontade de…",
+      "opcoes": [
+        {
+          "texto": "Me perder em ruelas, sem mapa e sem pressa",
+          "pontos": {
+            "montmartre": 2,
+            "quartier-latin-e-ile-de-la-cite": 1
+          }
+        },
+        {
+          "texto": "Parar a cada esquina para ouvir uma curiosidade",
+          "pontos": {
+            "quartier-latin-e-ile-de-la-cite": 2,
+            "eixo-historico-ocupacao-nazista": 1
+          }
+        },
+        {
+          "texto": "Reconhecer um cenário e tirar a mesma foto do filme",
+          "pontos": {
+            "paris-de-cinema": 2
+          }
+        },
+        {
+          "texto": "Ver mais um monumento antes do fim do dia",
+          "pontos": {
+            "paris-classica": 2,
+            "eixo-historico": 1
+          }
+        },
+        {
+          "texto": "Sentar num jardim e olhar a cidade passar",
+          "pontos": {
+            "eixo-historico": 2
+          }
+        }
+      ]
+    },
+    {
+      "pergunta": "A foto que não pode faltar no seu álbum é…",
+      "opcoes": [
+        {
+          "texto": "O Arco do Triunfo no fim da Champs-Élysées",
+          "pontos": {
+            "eixo-historico": 2,
+            "eixo-historico-ocupacao-nazista": 1
+          }
+        },
+        {
+          "texto": "A Torre Eiffel, de perto",
+          "pontos": {
+            "paris-classica": 2
+          }
+        },
+        {
+          "texto": "As escadarias de Montmartre",
+          "pontos": {
+            "montmartre": 2
+          }
+        },
+        {
+          "texto": "Notre-Dame vista das margens do Sena",
+          "pontos": {
+            "quartier-latin-e-ile-de-la-cite": 2
+          }
+        },
+        {
+          "texto": "Aquela porta ou fachada famosa de uma série",
+          "pontos": {
+            "paris-de-cinema": 2
+          }
+        }
+      ]
+    },
+    {
+      "pergunta": "Na mala de volta, o souvenir perfeito é…",
+      "opcoes": [
+        {
+          "texto": "Uma gravura comprada de um artista de rua",
+          "pontos": {
+            "montmartre": 2
+          }
+        },
+        {
+          "texto": "Um livro antigo de um bouquiniste",
+          "pontos": {
+            "quartier-latin-e-ile-de-la-cite": 2
+          }
+        },
+        {
+          "texto": "Um postal com o cenário do meu filme favorito",
+          "pontos": {
+            "paris-de-cinema": 2
+          }
+        },
+        {
+          "texto": "Uma história que ninguém em casa conhecia",
+          "pontos": {
+            "eixo-historico-ocupacao-nazista": 2,
+            "quartier-latin-e-ile-de-la-cite": 1
+          }
+        },
+        {
+          "texto": "Um ímã de cada monumento que eu visitei",
+          "pontos": {
+            "paris-classica": 2,
+            "eixo-historico": 1
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,70 +1,10 @@
 // Quiz do tour ideal e diagnóstico da viagem. Preços, números e contatos vêm de data/ofertas.json.
 import { url, esc, eur, menorPreco } from '../helpers.mjs';
 import { precoServico, breadcrumbLd } from './comum.mjs';
+import { CONTEUDO } from '../conteudo.mjs';
 
 // ---------------------------------------------------------------- QUIZ: QUAL TOUR COMBINA COM VOCÊ
-const quizPerguntas = [
-  {
-    q: 'Primeira manhã em Paris. Onde você toma o seu café?',
-    o: [
-      ['Numa mesa de calçada, vendo a cidade acordar', { 'eixo-historico': 2, 'paris-classica': 1 }],
-      ['Num café literário, cercado de livros antigos', { 'quartier-latin-e-ile-de-la-cite': 2, 'eixo-historico-ocupacao-nazista': 1 }],
-      ['Numa pracinha cheia de artistas e cavaletes', { montmartre: 2 }],
-      ['No café onde foi gravada aquela cena que eu adoro', { 'paris-de-cinema': 2 }],
-      ['Café? Rapidinho, que hoje eu quero ver tudo', { 'paris-classica': 2, 'eixo-historico': 1 }],
-    ],
-  },
-  {
-    q: 'O que toca nos seus fones enquanto você caminha?',
-    o: [
-      ['A trilha sonora de um filme', { 'paris-de-cinema': 2 }],
-      ['Édith Piaf, claro', { montmartre: 2, 'quartier-latin-e-ile-de-la-cite': 1 }],
-      ['Um podcast sobre a Segunda Guerra', { 'eixo-historico-ocupacao-nazista': 2 }],
-      ['Nada. Quero ouvir a cidade', { 'quartier-latin-e-ile-de-la-cite': 1, montmartre: 1, 'eixo-historico': 1 }],
-      ['Uma playlist animada para dar ritmo ao dia', { 'paris-classica': 2 }],
-    ],
-  },
-  {
-    q: 'Se a sua viagem fosse um livro, seria…',
-    o: [
-      ['Um romance de época, com reis e revoluções', { 'quartier-latin-e-ile-de-la-cite': 2, 'eixo-historico': 1 }],
-      ['A biografia de um pintor', { montmartre: 2 }],
-      ['Um livro de história do século XX', { 'eixo-historico-ocupacao-nazista': 2 }],
-      ['O roteiro de um filme', { 'paris-de-cinema': 2 }],
-      ['Um guia com todos os lugares imperdíveis', { 'paris-classica': 2, 'eixo-historico': 1 }],
-    ],
-  },
-  {
-    q: 'No meio da tarde, bate aquela vontade de…',
-    o: [
-      ['Me perder em ruelas, sem mapa e sem pressa', { montmartre: 2, 'quartier-latin-e-ile-de-la-cite': 1 }],
-      ['Parar a cada esquina para ouvir uma curiosidade', { 'quartier-latin-e-ile-de-la-cite': 2, 'eixo-historico-ocupacao-nazista': 1 }],
-      ['Reconhecer um cenário e tirar a mesma foto do filme', { 'paris-de-cinema': 2 }],
-      ['Ver mais um monumento antes do fim do dia', { 'paris-classica': 2, 'eixo-historico': 1 }],
-      ['Sentar num jardim e olhar a cidade passar', { 'eixo-historico': 2 }],
-    ],
-  },
-  {
-    q: 'A foto que não pode faltar no seu álbum é…',
-    o: [
-      ['O Arco do Triunfo no fim da Champs-Élysées', { 'eixo-historico': 2, 'eixo-historico-ocupacao-nazista': 1 }],
-      ['A Torre Eiffel, de perto', { 'paris-classica': 2 }],
-      ['As escadarias de Montmartre', { montmartre: 2 }],
-      ['Notre-Dame vista das margens do Sena', { 'quartier-latin-e-ile-de-la-cite': 2 }],
-      ['Aquela porta ou fachada famosa de uma série', { 'paris-de-cinema': 2 }],
-    ],
-  },
-  {
-    q: 'Na mala de volta, o souvenir perfeito é…',
-    o: [
-      ['Uma gravura comprada de um artista de rua', { montmartre: 2 }],
-      ['Um livro antigo de um bouquiniste', { 'quartier-latin-e-ile-de-la-cite': 2 }],
-      ['Um postal com o cenário do meu filme favorito', { 'paris-de-cinema': 2 }],
-      ['Uma história que ninguém em casa conhecia', { 'eixo-historico-ocupacao-nazista': 2, 'quartier-latin-e-ile-de-la-cite': 1 }],
-      ['Um ímã de cada monumento que eu visitei', { 'paris-classica': 2, 'eixo-historico': 1 }],
-    ],
-  },
-];
+const quizPerguntas = CONTEUDO.quiz_perguntas.map((p) => ({ q: p.pergunta, o: p.opcoes.map((o) => [o.texto, o.pontos]) }));
 
 export function quizTour(data) {
   const tours = Object.fromEntries(

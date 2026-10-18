@@ -1,58 +1,15 @@
 // Página inicial. Preços, números e contatos vêm de data/ofertas.json.
 import { url, esc, img, SITE_URL } from '../helpers.mjs';
 import { RESPOSTA, precoServico, faqHtml, faqLd, ctaFinal } from './comum.mjs';
-import { provaRapida, depoimentos, imprensaFaixa, faqTours } from './blocos.mjs';
+import { provaRapida, depoimentos, imprensaFaixa } from './blocos.mjs';
+import { CONTEUDO, faqHome } from '../conteudo.mjs';
 
 // ---------------------------------------------------------------- HOME
 export function home(data) {
   const m = data.marca;
   const cards = [...data.servicos].sort((a, b) => a.ordem - b.ordem);
-  const textos = {
-    tours: {
-      para: 'conhecer Paris a pé, no próprio ritmo, com uma guia brasileira ao lado.',
-      txt: `Roteiros ao ar livre pelas ruas, praças e jardins que contam a história da cidade. Só o seu grupo, em português, com tempo para o café, as fotos e as pausas que o seu grupo pedir.`,
-      cta: 'Ver os tours',
-    },
-    roteiro: {
-      para: 'receber a viagem inteira desenhada, dia a dia.',
-      txt: 'A Mel conhece quem vai viajar, entende o ritmo de cada um e monta a programação completa: atrações, restaurantes, deslocamentos e o que precisa ser reservado com antecedência, tudo numa plataforma que você leva no celular.',
-      cta: 'Quero um roteiro',
-    },
-    consultoria: {
-      para: 'começar a planejar, tirar dúvidas ou validar o que já tem.',
-      txt: 'Uma conversa por vídeo com a Mel, no ponto em que a sua viagem estiver: definir destinos e dias em cada região, esclarecer dúvidas ou validar o que já está planejado. Com um mapa digital exclusivo para consultar depois.',
-      cta: 'Ver a consultoria',
-    },
-    guias: {
-      para: 'planejar com autonomia, com a curadoria pronta.',
-      txt: 'Curadoria completa em PDF, com acesso imediato: Paris com Crianças, com 158 páginas pensadas para cada idade, e Paris Essencial, com roteiro de 4 dias e 6 bate-voltas.',
-      cta: 'Ver os guias',
-    },
-  };
-  const faq = [
-    {
-      q: 'Qual a diferença entre tour, roteiro, consultoria e guia?',
-      a: 'O tour é um passeio a pé com a Mel, em Paris. O roteiro é a viagem inteira planejada para você, dia a dia. A consultoria é uma conversa com a Mel para o momento em que você estiver: começar a planejar, tirar dúvidas ou validar o que já decidiu. O guia digital é a curadoria pronta, para quem prefere planejar sozinho. Se ainda estiver em dúvida, o diagnóstico indica o caminho em dois minutos.',
-    },
-    {
-      q: 'Os serviços são só para famílias com crianças?',
-      a: 'Não. A Mel atende famílias com crianças, casais, grupos de amigos, viagens com várias gerações e quem viaja sozinha, com o mesmo cuidado. O que muda é o desenho de cada dia: o ritmo, os bairros, as pausas e os programas escolhidos para quem vai estar lá.',
-    },
-    faqTours[3],
-    faqTours[1],
-    {
-      q: 'A Mel acompanha a viagem inteira?',
-      a: 'O roteiro e a consultoria são entregues antes do embarque, com tudo pensado para você viajar com autonomia e segurança. Não oferecemos atendimento em tempo real durante toda a viagem, mas ficamos à disposição para um apoio pontual, se necessário. Os guias digitais são materiais em PDF, sem acompanhamento.',
-    },
-    {
-      q: 'Quais são as formas de pagamento?',
-      a: 'Serviços: Pix, cartão ou Wise. Guias digitais: cartão em até 4x sem juros ou Pix, em loja segura.',
-    },
-    {
-      q: 'Com quanta antecedência devo contratar?',
-      a: 'Depende do serviço. A consultoria pode ser contratada a qualquer momento, e quanto antes, melhor. Para o roteiro personalizado, o ideal é contratar com 6 meses de antecedência. Para os tours guiados nas férias de julho e no fim de ano, reserve com bastante antecedência, porque as agendas fecham cedo. Os guias digitais podem ser comprados a qualquer momento, com acesso imediato.',
-    },
-  ];
+  const textos = CONTEUDO.home.servicos;
+  const faq = faqHome();
 
   const body = `
 <section class="hero hero-photo">
