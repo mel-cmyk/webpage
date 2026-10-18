@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import { url, esc, wa, STAGING, SITE_URL, PUBLIC_URL } from './helpers.mjs';
 import { analyticsVersao } from './analytics.mjs';
+import { META_PIXEL } from './integracoes.mjs';
 
 // Endereço com versão (?v=) para CSS e JS: quando o arquivo muda, o navegador baixa a versão nova.
 const versoes = {};
@@ -10,8 +11,7 @@ export const asset = (p) => {
   return `${url(p)}?v=${versoes[p]}`;
 };
 
-// Pixel da Meta (dataset Mel Rolan): carregado só com consentimento de publicidade e no domínio oficial (analytics.js).
-const META_PIXEL = '1769596457566966';
+// Pixel da Meta (dataset Mel Rolan, ID em data/integracoes.json): carregado só com consentimento de publicidade e no domínio oficial (analytics.js).
 // Microsoft Clarity: o ID vem de data/integracoes.json (clarity_id). Vazio ou inválido: o atributo não é escrito e nada carrega.
 export const clarityAttr = (data) => { const id = (data.integracoes && data.integracoes.clarity_id) || ''; return /^[a-z0-9]{8,12}$/i.test(id) ? ` data-clarity="${id}"` : ''; };
 // Páginas de anúncios (Consent Mode avançado) carregam o Google desde o início: conectar e baixar o gtag.js em paralelo ao resto da página.

@@ -3,7 +3,7 @@
   try {
     if (/\/\/+/.test(location.pathname)) history.replaceState(history.state, '', location.pathname.replace(/\/{2,}/g, '/') + location.search + location.hash);
   } catch (e) {}
-  var GA_ID = 'G-L71ZP46QX2';
+  var GA_ID = '{{GA_ID}}';
   var KEY = 'mr_consent'; // mesma chave usada nas páginas de venda dos guias
   var VALIDADE = 182 * 24 * 60 * 60 * 1000; // a escolha vale 6 meses, depois perguntamos de novo
   // REGRA ÚNICA DE ENVIO: o Google (GA4 e Google Ads) só recebe dados no domínio oficial (melrolan.com.br).
@@ -27,7 +27,7 @@
   // padrão (sem cookies, só sinais de uso sem cookies), e passa a usar cookies se a pessoa aceitar.
   // As demais páginas (privacidade, aviso legal, sobre, parcerias) carregam o Google só depois do aceite.
   var AVANCADO = document.body.dataset.medicao === 'avancada';
-  var ADS_ID = 'AW-17904451325';
+  var ADS_ID = '{{ADS_ID}}';
   var META_ID = document.body.dataset.metaPixel || ''; // pixel da Meta: só nas páginas que o declaram e só com consentimento de publicidade
   var LOJA = 'loja.melrolan.com.br';
   var PARAMS_LOJA = /^(gclid|gbraid|wbraid|fbclid|utm_[a-z0-9_]+)$/i;
@@ -35,7 +35,7 @@
   var clarityCarregado = false;
   var metaCarregado = false;
   var metaFila = [];
-  var TT_ID = 'DB4J9FBC77UFMHL9D7L0'; // pixel do TikTok (só navegador): todas as páginas, só com consentimento de publicidade
+  var TT_ID = '{{TIKTOK_ID}}'; // pixel do TikTok (só navegador): todas as páginas, só com consentimento de publicidade
   var ttCarregado = false;
   var ttFila = [];
 

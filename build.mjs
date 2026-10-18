@@ -9,10 +9,11 @@ import { vigente } from './src/oferta.mjs';
 import { paginaRedirecionamento } from './src/redirect.mjs';
 import { BONUS, paginaBonus } from './src/bonus.mjs';
 import { analyticsJs } from './src/analytics.mjs';
+import { INTEG } from './src/integracoes.mjs';
 
 const OUT = 'dist';
 const data = JSON.parse(fs.readFileSync('data/ofertas.json', 'utf8'));
-data.integracoes = JSON.parse(fs.readFileSync('data/integracoes.json', 'utf8'));
+data.integracoes = INTEG;
 const imprensa = JSON.parse(fs.readFileSync('data/imprensa.json', 'utf8'));
 data.imprensa = imprensa.materias;
 data.assessoria = imprensa.assessoria;
