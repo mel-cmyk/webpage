@@ -2,7 +2,7 @@
 import { url, esc, img } from '../helpers.mjs';
 
 // Selos nos cards de tour. Sem comparação entre tours (Diogo, 18/10/2026): nada de "mais" ou "melhor", só elogio ao próprio tour.
-export const SELOS = { 'eixo-historico': 'Muito procurado', montmartre: 'Queridinho dos viajantes', 'paris-de-cinema': 'Muito elogiado' };
+export const SELOS = { 'eixo-historico': 'Muito procurado', montmartre: 'Queridinho dos viajantes', 'paris-de-cinema': 'Novidade' };
 
 export const seloTour = (t) => (SELOS[t.id] ? `<p class="selo-tour">${SELOS[t.id]}</p>` : '');
 
