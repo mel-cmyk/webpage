@@ -1,0 +1,22 @@
+/* Cabeçalho */
+.site-header { background: var(--cream); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+html { scroll-padding-top: 96px; }
+.header-inner { display: flex; align-items: center; gap: 20px; min-height: 72px; }
+.brand { display: flex; align-items: center; text-decoration: none; }
+.brand img { height: 50px; width: auto; }
+.photo-top { margin-top: 28px; }
+.photo { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 24px; }
+.nav-desktop { display: none; gap: 22px; margin-left: auto; }
+.nav-desktop a { text-decoration: none; font-size: 0.93rem; }
+.nav-desktop a[aria-current="page"] { color: var(--gold-dark); font-weight: 600; }
+.nav-cta { display: none; }
+.nav-mobile { margin-left: auto; position: relative; }
+.nav-mobile summary { list-style: none; cursor: pointer; border: 2px solid var(--navy); border-radius: 999px; padding: 0.35em 1em; font-weight: 500; }
+.nav-mobile summary::-webkit-details-marker { display: none; }
+.nav-mobile nav { position: absolute; right: 0; top: calc(100% + 10px); background: var(--white); box-shadow: var(--shadow); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 240px; }
+.nav-mobile nav a:not(.btn) { text-decoration: none; }
+@media (min-width: 1000px) {
+  .nav-desktop, .nav-cta { display: flex; }
+  .nav-cta { display: inline-block; }
+  .nav-mobile { display: none; }
+}

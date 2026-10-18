@@ -1,0 +1,16 @@
+/* Diagnóstico */
+.quiz fieldset { border: 0; padding: 0; margin: 0; }
+.quiz legend { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; margin-bottom: 16px; }
+.quiz label { display: block; background: var(--white); border: 2px solid var(--line); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; cursor: pointer; transition: border-color 0.15s; }
+.quiz label:hover { border-color: var(--gold); }
+.quiz label:has(input:checked) { border-color: var(--navy); background: #eef1fb; }
+.quiz input[type="radio"] { margin-right: 10px; accent-color: var(--navy); }
+.quiz .text-label { cursor: default; }
+.quiz input[type="text"], .quiz input[type="tel"], .quiz textarea { display: block; width: 100%; margin-top: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font: inherit; }
+.quiz .hint { color: var(--muted); font-size: 0.92rem; }
+.quiz-progress { font-size: 0.85rem; color: var(--gold-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.quiz-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.quiz-nav [data-next] { margin-left: auto; }
+.quiz-error { color: #a33; }
+.result { background: var(--white); border-radius: var(--radius); padding: 28px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.result h2 { margin-top: 0; }

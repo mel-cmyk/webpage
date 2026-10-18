@@ -1,0 +1,38 @@
+/* Prova */
+.proof { background: var(--navy); color: var(--white); padding: 28px 0; }
+.proof-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+.proof p { margin: 0; display: flex; flex-direction: column; }
+.proof strong { font-family: var(--serif); font-size: 1.5rem; color: var(--gold); }
+.proof span { font-size: 0.9rem; opacity: 0.9; }
+@media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .proof-grid { grid-template-columns: repeat(4, 1fr); } }
+.proof a { color: inherit; }
+
+/* Grades e cards */
+.grid-2, .grid-3, .grid-4 { display: grid; gap: 20px; grid-template-columns: 1fr; }
+@media (min-width: 700px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+.cards { margin-top: 28px; margin-bottom: 28px; }
+.card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; box-shadow: var(--shadow); }
+.alt .card { background: var(--cream); }
+.card .btn { margin-top: auto; align-self: flex-start; }
+.card-for { font-size: 0.95rem; color: var(--muted); }
+.card-photo { padding: 0; overflow: hidden; }
+.card-photo > img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.card-body { padding: 20px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+/* Regra de design: nos cartões, preço e botão ficam presos ao pé do cartão, na mesma altura em
+   todos os cartões da fileira, e o botão ocupa a largura toda (mesmo tamanho em todos). */
+.card-body .btn { margin-top: auto; align-self: stretch; }
+.card-body > .price { margin-top: auto; }
+.card-body > .price + .btn { margin-top: 0; }
+.card-h { padding: 0; overflow: hidden; }
+.card-h .cover { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+@media (min-width: 600px) {
+  .card-h { flex-direction: row; align-items: flex-start; }
+  .card-h .cover { width: 200px; flex: 0 0 200px; margin: 24px 0 24px 24px; border-radius: 10px; box-shadow: var(--shadow); }
+}
+.card-txt { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.card-meta { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dark); margin-bottom: 0.5em; }
+.price { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 0.6em 0 1em; }
+.price span { display: block; font-family: var(--sans); font-size: 0.82rem; font-weight: 400; color: var(--muted); }
+.price s { color: var(--muted); font-weight: 400; font-size: 1rem; }

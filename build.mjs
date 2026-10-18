@@ -10,6 +10,7 @@ import { paginaRedirecionamento } from './src/redirect.mjs';
 import { BONUS, paginaBonus } from './src/bonus.mjs';
 import { analyticsJs } from './src/analytics.mjs';
 import { INTEG } from './src/integracoes.mjs';
+import { siteCss, consentCss } from './src/css.mjs';
 
 const OUT = 'dist';
 const data = JSON.parse(fs.readFileSync('data/ofertas.json', 'utf8'));
@@ -27,6 +28,10 @@ fs.cpSync('public', OUT, { recursive: true });
 // analytics.js é montado a partir das partes em src/analytics/ (ver src/analytics.mjs)
 fs.mkdirSync(path.join(OUT, 'js'), { recursive: true });
 fs.writeFileSync(path.join(OUT, 'js', 'analytics.js'), analyticsJs());
+// site.css e consent.css são montados a partir das partes em src/css/ (ver src/css.mjs)
+fs.mkdirSync(path.join(OUT, 'css'), { recursive: true });
+fs.writeFileSync(path.join(OUT, 'css', 'site.css'), siteCss());
+fs.writeFileSync(path.join(OUT, 'css', 'consent.css'), consentCss());
 
 const all = pages(data);
 for (const p of all) {

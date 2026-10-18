@@ -1,0 +1,28 @@
+/* Topo com foto (home) */
+.hero-photo { position: relative; padding: 0; background: var(--navy); color: var(--white); overflow: hidden; }
+.hero-photo .hero-media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 66% 50%; }
+.hero-photo .hero-content { padding-top: 32px; padding-bottom: 44px; }
+.hero-photo h1 { color: var(--white); }
+.hero-photo .eyebrow { color: var(--gold); }
+.hero-photo .lead { color: rgba(255, 255, 255, 0.9); }
+.hero-photo .small { color: rgba(255, 255, 255, 0.75); }
+.hero-photo .btn { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+.hero-photo .btn:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+.hero-photo .btn-ghost { background: transparent; color: var(--white); border-color: var(--white); }
+@media (min-width: 900px) {
+  .hero-photo { min-height: min(84vh, 700px); display: flex; align-items: center; }
+  .hero-photo .hero-media { position: absolute; inset: 0; }
+  .hero-photo .hero-media img { height: 100%; aspect-ratio: auto; object-position: 50% 45%; }
+  .hero-photo .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(34, 39, 79, 0.94) 0%, rgba(34, 39, 79, 0.8) 36%, rgba(34, 39, 79, 0.2) 66%, rgba(34, 39, 79, 0) 100%); }
+  .hero-photo .hero-content { position: relative; z-index: 1; padding-top: 72px; padding-bottom: 72px; }
+  .hero-photo .hero-content > * { max-width: 540px; }
+  .hero-photo .hero-content > .actions { max-width: 680px; }
+}
+
+/* Topo das páginas internas com foto */
+.hero-split-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: center; }
+.hero-split-media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+@media (min-width: 900px) {
+  .hero-split-grid { grid-template-columns: 1.05fr 1fr; gap: 48px; }
+  .hero-split-media img { aspect-ratio: 4 / 3; }
+}

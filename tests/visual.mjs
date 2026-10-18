@@ -46,6 +46,36 @@ for (const v of variantes) {
   await p.screenshot({ path: path.join(dir, 'cookies-aviso.cel.png') });
   await p.click('#cookie-mais'); await p.waitForTimeout(200);
   await p.screenshot({ path: path.join(dir, 'cookies-modal.cel.png') });
+  // o mesmo nas páginas dos guias (usam o mesmo aviso, com estilos próprios)
+  for (const lp of ['/guias/paris-essencial/', '/guias/paris-com-criancas/']) {
+    const q = await ctx.newPage();
+    await q.goto(SITE + lp);
+    await q.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important}' });
+    await q.waitForTimeout(300);
+    const id = lp.split('/')[2];
+    await q.screenshot({ path: path.join(dir, `cookies-aviso.${id}.cel.png`) });
+    await q.click('#cookie-mais'); await q.waitForTimeout(200);
+    await q.screenshot({ path: path.join(dir, `cookies-modal.${id}.cel.png`) });
+    await q.close();
+  }
+  await ctx.close();
+}
+{
+  const { ctx } = await contexto(browser, variantes[1]);
+  const p = await ctx.newPage();
+  await p.goto(SITE + '/guias/paris-essencial/');
+  await p.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important}' });
+  await p.waitForTimeout(300);
+  await p.screenshot({ path: path.join(dir, 'cookies-aviso.paris-essencial.desk.png') });
+  await p.click('#cookie-mais'); await p.waitForTimeout(200);
+  await p.screenshot({ path: path.join(dir, 'cookies-modal.paris-essencial.desk.png') });
+  const h = await ctx.newPage();
+  await h.goto(SITE + '/');
+  await h.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important}' });
+  await h.waitForTimeout(300);
+  await h.screenshot({ path: path.join(dir, 'cookies-aviso.home.desk.png') });
+  await h.click('#cookie-mais'); await h.waitForTimeout(200);
+  await h.screenshot({ path: path.join(dir, 'cookies-modal.home.desk.png') });
   await ctx.close();
 }
 await browser.close();

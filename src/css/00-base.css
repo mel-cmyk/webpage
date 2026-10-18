@@ -1,0 +1,50 @@
+/* Mel Rolan Travel Designer — estilos do site */
+
+/* Fontes hospedadas no próprio site (sem chamada ao Google Fonts: mais rápido e sem enviar dados a terceiros) */
+@font-face { font-family: 'Lora'; font-style: normal; font-weight: 500 600; font-display: swap; src: url('../fonts/lora-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Lora'; font-style: italic; font-weight: 500; font-display: swap; src: url('../fonts/lora-italic-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/poppins-400.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/poppins-500.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/poppins-600.woff2') format('woff2'); }
+:root {
+  --navy: #22274f;
+  --gold: #c19450;
+  --gold-dark: #86632b; /* dourado escurecido para texto: contraste AA sobre creme e branco */
+  --cream: #f7f4ea;
+  --blue: #a2cbed;
+  --white: #ffffff;
+  --text: #22274f;
+  --muted: #5a5f7d;
+  --line: #e4ddc8;
+  --radius: 14px;
+  --shadow: 0 6px 24px rgba(34, 39, 79, 0.08);
+  --serif: 'Lora', Georgia, serif;
+  --sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--navy); text-decoration-color: var(--gold); text-underline-offset: 3px; }
+a:hover { color: var(--gold-dark); }
+h1, h2, h3, .h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; margin: 0 0 0.6em; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+h3, .h3 { font-size: 1.25rem; }
+p { margin: 0 0 1em; }
+.small { font-size: 0.875rem; color: var(--muted); }
+.center { text-align: center; }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.narrow { max-width: 760px; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--navy); color: var(--white); padding: 8px 12px; z-index: 100; }
+.skip:focus { left: 8px; }
