@@ -4,7 +4,6 @@ html { scroll-padding-top: 96px; }
 .header-inner { display: flex; align-items: center; gap: 20px; min-height: 72px; }
 .brand { display: flex; align-items: center; text-decoration: none; }
 .brand img { height: 50px; width: auto; }
-.photo-top { margin-top: 28px; }
 .photo { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 24px; }
 .nav-desktop { display: none; gap: 22px; margin-left: auto; }
 .nav-desktop a { text-decoration: none; font-size: 0.93rem; }
