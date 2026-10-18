@@ -47,7 +47,7 @@ export function quizTour(data) {
     title: 'Quiz: qual tour em Paris combina com você? | Mel Rolan',
     description: 'Responda seis perguntas divertidas sobre o seu jeito de viajar e descubra qual tour privativo em Paris, em português, tem mais a ver com você.',
     body,
-    scripts: ['/js/quiz-tour.js'],
+    scripts: ['/js/wizard.js', '/js/quiz-tour.js'],
     noFloat: true,
     og: 'og/tours.jpg',
     jsonld: [breadcrumbLd([['Início', '/'], ['Tours em Paris', '/tours-em-paris/'], ['Quiz do tour ideal', '/qual-tour-combina-com-voce/']])],
@@ -150,7 +150,7 @@ export function diagnostico(data) {
     description:
       'Responda cinco perguntas rápidas e descubra qual combinação de serviços combina com a sua viagem a Paris: tour, roteiro, consultoria ou guia digital.',
     body,
-    scripts: ['/js/diagnostico.js'],
+    scripts: ['/js/wizard.js', '/js/diagnostico.js'],
     noFloat: true,
     og: 'og/diagnostico.jpg',
   };

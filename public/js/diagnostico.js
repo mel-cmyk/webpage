@@ -1,24 +1,9 @@
 // Diagnóstico da viagem: 5 etapas, recomendação, lead salvo no Wix e WhatsApp pré-preenchido.
 (function () {
+  const cfg = JSON.parse((document.getElementById('diagnostico-config') || {}).textContent || 'null');
   const form = document.getElementById('diagnostico');
-  if (!form) return;
-  const cfg = JSON.parse(document.getElementById('diagnostico-config').textContent);
-  const steps = [...form.querySelectorAll('.step')];
-  const back = form.querySelector('[data-back]');
-  const next = form.querySelector('[data-next]');
-  const error = form.querySelector('.quiz-error');
-  const progress = form.querySelector('.quiz-progress');
-  const result = document.getElementById('resultado');
-  const track = (name, params) => { if (window.mrTrack) window.mrTrack(name, params || {}); };
-  const fluxo = window.mrFluxo ? window.mrFluxo('diagnostico', steps.length) : null;
-  const nomeEtapa = (n) => {
-    const el = steps[n].querySelector('input, select, textarea');
-    return el ? (el.name === 'nome' || el.name === 'whatsapp' ? 'contato' : el.name) : 'etapa_' + (n + 1);
-  };
-  let i = 0;
-  let started = false;
-  if (fluxo) fluxo.view();
-
+  if (!cfg || !form) return;
+  let w; let result; let fluxo; let track;
   const val = (name) => {
     const els = form.querySelectorAll(`[name="${name}"]`);
     if (els.length && els[0].type === 'checkbox') return [...els].filter((e) => e.checked).map((e) => e.value).join(', ');
@@ -47,17 +32,7 @@
     });
   }
 
-  function show(n) {
-    steps.forEach((s, idx) => (s.hidden = idx !== n));
-    back.hidden = n === 0;
-    next.textContent = n === steps.length - 1 ? 'Ver a indicação' : 'Continuar';
-    progress.textContent = `Pergunta ${n + 1} de ${steps.length}`;
-    error.hidden = true;
-    toggleConditional();
-  }
-
-  function valid(n) {
-    const step = steps[n];
+  function valid(step, error) {
     const radios = step.querySelectorAll('input[type="radio"], input[type="checkbox"]');
     if (radios.length && ![...radios].some((r) => r.checked)) {
       error.textContent = 'Escolha uma opção para continuar.';
@@ -202,9 +177,7 @@
       perfil_viagem: val('quem'),
     };
     result.querySelectorAll('a[data-wa]').forEach((a) => { a.dataset.lead = JSON.stringify(params); a.dataset.servico = rec; });
-    form.hidden = true;
-    result.hidden = false;
-    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    w.mostrarResultado();
     if (fluxo) { fluxo.resultId = rec; fluxo.conclusao(rec, Object.assign({ procura: val('procura') }, params)); }
     else track('diagnostico_conclusao', Object.assign({ procura: val('procura') }, params));
 
@@ -227,16 +200,23 @@
       .catch((e) => { console.warn('Lead do diagnóstico não foi salvo:', e.message); track('lead_erro', { metodo: 'diagnostico' }); });
   }
 
-  form.addEventListener('change', () => {
-    toggleConditional();
-    if (!started) { started = true; if (fluxo) fluxo.inicio(); else track('diagnostico_inicio'); }
+  // Só no fim: os ganchos acima usam funções declaradas neste arquivo.
+  w = window.mrWizard({
+    formId: 'diagnostico',
+    resultId: 'resultado',
+    fluxo: 'diagnostico',
+    rotuloFinal: 'Ver a indicação',
+    eventoInicio: 'diagnostico_inicio',
+    nomeEtapa: (step, n) => {
+      const el = step.querySelector('input, select, textarea');
+      return el ? (el.name === 'nome' || el.name === 'whatsapp' ? 'contato' : el.name) : 'etapa_' + (n + 1);
+    },
+    paramsEtapa: (n) => ({ etapa: n + 1 }),
+    aoMostrar: () => toggleConditional(),
+    aoMudar: () => toggleConditional(),
+    validar: (step, n, error) => valid(step, error),
+    concluir: () => finish(),
   });
-  next.addEventListener('click', () => {
-    if (!valid(i)) { error.hidden = false; return; }
-    if (fluxo) fluxo.etapa(i + 1, nomeEtapa(i), { etapa: i + 1 });
-    if (i < steps.length - 1) { i += 1; show(i); } else { next.disabled = true; finish(); }
-  });
-  back.addEventListener('click', () => { if (i > 0) { i -= 1; show(i); } });
-  form.addEventListener('submit', (e) => { e.preventDefault(); next.click(); });
-  show(0);
+  if (!w) return;
+  ({ result, fluxo, track } = w);
 })();

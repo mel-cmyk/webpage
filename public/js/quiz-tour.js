@@ -1,28 +1,18 @@
 // Quiz "Qual tour combina com você": soma pontos por tour e mostra o resultado.
 (function () {
-  const form = document.getElementById('quiz-tour');
-  if (!form) return;
-  const cfg = JSON.parse(document.getElementById('quiz-tour-config').textContent);
-  const steps = [...form.querySelectorAll('.step')];
-  const back = form.querySelector('[data-back]');
-  const next = form.querySelector('[data-next]');
-  const error = form.querySelector('.quiz-error');
-  const progress = form.querySelector('.quiz-progress');
-  const result = document.getElementById('quiz-resultado');
-  const track = (name, params) => { if (window.mrTrack) window.mrTrack(name, params || {}); };
-  const fluxo = window.mrFluxo ? window.mrFluxo('quiz_tours', steps.length) : null;
-  const nomeEtapa = (n) => { const el = steps[n].querySelector('input'); return el ? el.name : 'etapa_' + (n + 1); };
-  let i = 0;
-  let started = false;
-  if (fluxo) fluxo.view();
-
-  function show(n) {
-    steps.forEach((s, idx) => (s.hidden = idx !== n));
-    back.hidden = n === 0;
-    next.textContent = n === steps.length - 1 ? 'Ver o meu tour' : 'Continuar';
-    progress.textContent = `Pergunta ${n + 1} de ${steps.length}`;
-    error.hidden = true;
-  }
+  const cfg = JSON.parse((document.getElementById('quiz-tour-config') || {}).textContent || 'null');
+  if (!cfg) return;
+  const w = window.mrWizard({
+    formId: 'quiz-tour',
+    resultId: 'quiz-resultado',
+    fluxo: 'quiz_tours',
+    rotuloFinal: 'Ver o meu tour',
+    nomeEtapa: (step, n) => { const el = step.querySelector('input'); return el ? el.name : 'etapa_' + (n + 1); },
+    validar: (step) => !!step.querySelector('input:checked'),
+    concluir: () => finish(),
+  });
+  if (!w) return;
+  const { form, result, fluxo } = w;
 
   function resultado() {
     const pontos = {};
@@ -53,19 +43,8 @@
       <a class="btn btn-ghost" href="${wa}" data-wa="quiz-tour" data-flow="quiz_tours" data-result-id="tour_${r.primeiro}" data-lead='${JSON.stringify({ metodo: 'quiz_tour', tour_id: r.primeiro })}'>Consultar datas no WhatsApp</a></div>
       ${alternativa}
       <p class="small">Gostou de mais de um? No <a href="${cfg.personalizado}">Tour Personalizado</a>, a Mel desenha um percurso só com o que tem a ver com você. Ou <a href="${cfg.todos}">veja todos os tours</a>.</p>`;
-    form.hidden = true;
-    result.hidden = false;
-    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    w.mostrarResultado();
     if (fluxo) { fluxo.resultId = `tour_${r.primeiro}`; fluxo.conclusao(fluxo.resultId); }
   }
 
-  form.addEventListener('change', () => { if (!started) { started = true; if (fluxo) fluxo.inicio(); } });
-  next.addEventListener('click', () => {
-    if (!steps[i].querySelector('input:checked')) { error.hidden = false; return; }
-    if (fluxo) fluxo.etapa(i + 1, nomeEtapa(i));
-    if (i < steps.length - 1) { i += 1; show(i); } else { next.disabled = true; finish(); }
-  });
-  back.addEventListener('click', () => { if (i > 0) { i -= 1; show(i); } });
-  form.addEventListener('submit', (e) => { e.preventDefault(); next.click(); });
-  show(0);
 })();
