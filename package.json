@@ -4,14 +4,15 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node tests/check.mjs",
+    "test": "node tests/check.mjs && node tests/texto.mjs",
     "test:browser": "node tests/comportamento.mjs",
     "verify": "node build.mjs && node tests/check.mjs && node tests/comportamento.mjs",
     "referencia": "node tests/referencia.mjs salvar",
     "comparar": "node tests/referencia.mjs comparar",
     "visual:salvar": "node tests/visual.mjs salvar",
     "visual": "node tests/visual.mjs comparar",
-    "estilos": "node tests/estilos.mjs"
+    "estilos": "node tests/estilos.mjs",
+    "texto": "node tests/texto.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.64.1"

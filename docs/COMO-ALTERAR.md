@@ -46,7 +46,7 @@ lps/ (React) ──> lps/build.mjs ─> dist/guias/
 ## Antes de publicar
 
 1. `node build.mjs` (use `SKIP_LPS=1` para pular as LPs).
-2. `npm test` confere links, SEO, preços e ids.
+2. `npm test` confere links, SEO, preços e ids, e revisa o texto (travessão, emoji, "+650", palavra repetida, pontuação, concordância conhecida e palavras novas). Se aparecer "palavra desconhecida" e a palavra estiver certa, acrescente em `tests/palavras.txt`.
 3. `npm run test:browser` confere cookies, medição, funis e checkout.
 4. Se mexeu em aparência ou estrutura: `npm run comparar` e `npm run visual` (guardar o antes com `npm run referencia` e `npm run visual:salvar`). Devem dizer "idêntico" quando a mudança não deveria alterar nada.
 
