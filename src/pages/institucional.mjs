@@ -18,7 +18,7 @@ export function sobre(data) {
     ${img('sobre/retrato', 'Retrato de Mel Rolan diante da Basílica de Sacré-Cœur, em Montmartre', { cls: 'photo', sizes: '(min-width: 900px) 460px, 100vw', eager: true })}
     <div>
     <p>Sou a Mel, brasileira, bacharel em Turismo e ex-aluna da École du Louvre (2025/2026), e moro em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos. Já viajei pelos quatro cantos da França, e esse repertório entra em cada roteiro. Antes de fundar a Mel Rolan Travel Designer, em 2021, trabalhei com compliance e gestão de riscos, e trouxe esse cuidado com cada detalhe para o planejamento de viagens.</p>
-    <p>Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos. Muitas já planejam voltar.</p>
+    <p>Desde então, já acompanhei mais de ${m.familias_atendidas.replace('+', '')} clientes brasileiros em roteiros, consultorias e passeios, de casais a grupos de 16 pessoas, de bebês a viajantes de 89 anos. Muitos já planejam voltar.</p>
     <p>O meu trabalho vai além de apontar monumentos. Eu traduzo os códigos culturais de Paris para quem chega do Brasil, crio conexões e garanto que a viagem seja fluida, com escolhas que fazem sentido para cada pessoa.</p>
     </div>
   </div>

@@ -56,7 +56,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     nome: "Fernanda",
-    texto: "Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com Mel, tornou a experiência inesquecível."
+    texto: "Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível."
   },
   {
     nome: "Renata",

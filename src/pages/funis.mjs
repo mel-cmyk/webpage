@@ -129,7 +129,7 @@ export function diagnostico(data) {
         <label class="text-label">Seu WhatsApp, com DDD<input type="tel" name="whatsapp" autocomplete="tel" inputmode="tel" required placeholder="Ex.: 11 91234-5678" maxlength="25"></label>
         <p class="hint">Mora fora do Brasil? Use o código do país, por exemplo +33 6 12 34 56 78.</p>
         <label class="text-label">Algo mais que a Mel deveria saber? (opcional)<textarea name="obs" rows="3" maxlength="500" placeholder="Ex.: é a nossa primeira vez em Paris"></textarea></label>
-        <p class="hint">Ao ver a indicação, suas respostas, seu nome e seu WhatsApp são enviados à equipe da Mel Rolan, apenas para falarmos com você sobre a sua viagem. Veja a <a href="${url('/privacidade/')}">política de privacidade</a>.</p>
+        <p class="hint">Ao ver a indicação, você envia as suas respostas, o seu nome e o seu WhatsApp à equipe da Mel Rolan, apenas para falarmos com você sobre a sua viagem. Veja a <a href="${url('/privacidade/')}">política de privacidade</a>.</p>
       </fieldset>
 
       <div class="quiz-nav">

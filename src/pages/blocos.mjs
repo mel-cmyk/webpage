@@ -13,7 +13,7 @@ export const provaRapida = (m) => `
 <section class="proof" aria-label="Números da Mel Rolan">
   <div class="wrap proof-grid">
     <p><strong>${m.nota_satisfacao} de 10</strong><span>na pesquisa de satisfação dos clientes (${m.pesquisas_satisfacao} respostas, ${m.periodo_pesquisas})</span></p>
-    <p><strong>+${m.familias_atendidas.replace('+', '')} clientes</strong><span>atendidas em roteiros, consultorias e tours</span></p>
+    <p><strong>${m.familias_atendidas} clientes</strong><span>atendidos em roteiros, consultorias e tours</span></p>
     <p><strong>${m.anos_na_franca} anos</strong><span>vivendo em Paris</span></p>
     <p><strong>5,0 no Tripadvisor</strong><span>nas avaliações de quem fez o tour (<a href="${TRIP_URL}" target="_blank" rel="noopener" data-cta="tripadvisor-home">ver avaliações</a>)</span></p>
   </div>
