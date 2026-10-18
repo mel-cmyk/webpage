@@ -273,12 +273,8 @@
       "duracao": "4h",
       "precos": [
         {
-          "grupo": "até 5 pessoas",
+          "grupo": "até 8 pessoas",
           "valor": 330
-        },
-        {
-          "grupo": "6 a 8 pessoas",
-          "valor": 410
         }
       ],
       "encontro": "Arredores da sua hospedagem",
