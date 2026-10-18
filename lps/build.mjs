@@ -7,6 +7,7 @@ import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cookieBanner, clarityAttr, dicasGoogle, asset } from '../src/layout.mjs';
+import { INTEG as integracoes, META_PIXEL } from '../src/integracoes.mjs';
 import { url, STAGING, SITE_URL } from '../src/helpers.mjs';
 import { vigente, itemGA } from '../src/oferta.mjs';
 
@@ -14,8 +15,6 @@ const aqui = path.dirname(fileURLToPath(import.meta.url));
 const raiz = path.resolve(aqui, '..');
 const ofertas = JSON.parse(fs.readFileSync(path.join(raiz, 'data/ofertas.json'), 'utf8'));
 const BASE = (process.env.SITE_BASE || '').replace(/\/$/, '');
-const META_PIXEL = '1769596457566966';
-const integracoes = JSON.parse(fs.readFileSync(new URL('../data/integracoes.json', import.meta.url), 'utf8'));
 
 export const LPS = [
   { pasta: 'criancas', guia: 'guia-paris-com-criancas', destino: 'paris-com-criancas' },

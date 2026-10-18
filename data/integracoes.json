@@ -1,5 +1,16 @@
 {
   "_sobre_este_arquivo": "Integrações do site. O client_id do Wix é público (só gera tokens anônimos de visitante) e pode ficar no código. Os campos ligam cada resposta do diagnóstico ao campo do formulário 'Diagnóstico do site' no Wix Forms.",
+  "_ferramentas_de_medicao": "IDs das ferramentas de medição e anúncios. São públicos (aparecem no código de qualquer site) e vêm só daqui: o build coloca cada ID no analytics.js, no HTML e nas páginas dos guias. Para trocar um ID, edite aqui e publique.",
+  "google": {
+    "analytics_id": "G-L71ZP46QX2",
+    "ads_id": "AW-17904451325"
+  },
+  "meta": {
+    "pixel_id": "1769596457566966"
+  },
+  "tiktok": {
+    "pixel_id": "DB4J9FBC77UFMHL9D7L0"
+  },
   "wix_forms": {
     "client_id": "402d9c44-89a4-4bcd-8445-b76dc7ddc91d",
     "form_id": "2d6de46e-dbfd-44ec-a95a-11dc556cbbc6",

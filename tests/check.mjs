@@ -118,6 +118,16 @@ if (!/id="cookie-modal"/.test(home)) erro('home: sem modal de cookies');
 // 6b. Privacidade: nenhuma página pede fonte ao Google antes do aceite (as fontes são próprias)
 for (const f of paginasHtml) if (/fonts\.(googleapis|gstatic)\.com/.test(ler(f))) erro(`${nome(f)}: usa Google Fonts (use as fontes de public/fonts)`);
 
+// 6c. Integrações: os IDs de data/integracoes.json chegam ao analytics.js e às páginas
+{
+  const js = ler(path.join(DIST, 'js', 'analytics.js'));
+  for (const [rotulo, id] of [['GA4', integ.google.analytics_id], ['Google Ads', integ.google.ads_id], ['TikTok', integ.tiktok.pixel_id]]) if (!js.includes(`'${id}'`)) erro(`analytics.js: ID de ${rotulo} (${id}) não aparece`);
+  if (/\{\{[A-Z_]+\}\}/.test(js)) erro('analytics.js: placeholder sem substituir');
+  for (const pg of ['index.html', path.join('guias', 'paris-essencial', 'index.html'), path.join('guias', 'paris-com-criancas', 'index.html')]) {
+    if (!ler(path.join(DIST, pg)).includes(`data-meta-pixel="${integ.meta.pixel_id}"`)) erro(`${pg}: pixel da Meta diferente de data/integracoes.json`);
+  }
+}
+
 // 7. Peso: nenhuma imagem acima de 600 KB (PDFs dos bônus ficam de fora)
 for (const f of arquivos(DIST)) {
   if (!/\.(webp|jpg|jpeg|png)$/i.test(f)) continue;
