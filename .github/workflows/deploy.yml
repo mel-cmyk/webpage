@@ -21,8 +21,9 @@ permissions:
   pages: write
   id-token: write
 
+# Pull requests ficam num grupo à parte: uma conferência de PR nunca cancela uma publicação (e vice-versa).
 concurrency:
-  group: pages
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.ref) || 'pages' }}
   cancel-in-progress: true
 
 jobs:
