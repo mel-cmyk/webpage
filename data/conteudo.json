@@ -348,5 +348,108 @@
         }
       ]
     }
-  ]
+  ],
+  "depoimentos": [
+    {
+      "id": "roberta",
+      "nome": "Roberta",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "contexto": "viagem mãe e filha",
+      "texto": "Mel tem uma sensibilidade impressionante! Desde a primeira conversa dá pra sentir o quanto ela é competente, organizada e ama o que faz. Que sorte a nossa encontrar a Mel nessa viagem mãe e filha, que será inesquecível para nós. Ela cuidou de tudo, nos colocou com as melhores pessoas e nos melhores lugares.",
+      "texto_curto": "Mel tem uma sensibilidade impressionante! Transborda amor na sua escuta e entrega mais do que podemos imaginar."
+    },
+    {
+      "id": "fernanda",
+      "nome": "Fernanda",
+      "cidade": "Natal",
+      "uf": "RN",
+      "contexto": "viagem em grupo",
+      "texto": "Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível."
+    },
+    {
+      "id": "renata",
+      "nome": "Renata",
+      "cidade": "Pereiras",
+      "uf": "SP",
+      "texto": "Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!"
+    }
+  ],
+  "lps": {
+    "criancas": {
+      "faq": [
+        {
+          "q": "É um roteiro?",
+          "a": "Não. É uma lista curada de atrações, parquinhos, restaurantes e dicas de metrô, organizada por idade, para você montar os dias da sua família do seu jeito. Se preferir um roteiro sob medida, a Mel também faz, e leitores do guia têm 10% de desconto."
+        },
+        {
+          "q": "Em que formato recebo?",
+          "a": "Em PDF, por e-mail, logo após a confirmação do pagamento, com o link para baixar. Se não encontrar o e-mail, olhe a caixa de spam ou escreva para {email}."
+        },
+        {
+          "q": "O que é o bônus de inverno?",
+          "a": "É um PDF de 19 páginas com o que fazer em Paris com crianças entre novembro e fevereiro."
+        },
+        {
+          "q": "Como recebo os bônus?",
+          "a": "Você recebe o link de download do Bônus de Inverno e do Checklist no e-mail de confirmação da compra, junto com o guia. Se o e-mail não chegar, olhe a caixa de spam ou escreva para {email}."
+        },
+        {
+          "q": "Serve para a idade dos meus filhos?",
+          "a": "Serve para famílias com crianças de 0 a 12 anos. O guia traz ideias para as faixas de 0 a 2, 3 a 5, 6 a 9 e 10 a 12 anos, e cada atração indica a idade recomendada. Para quem vai com bebê, trata também do metrô com carrinho."
+        },
+        {
+          "q": "Posso pagar no Pix?",
+          "a": "Sim. O pagamento é feito na loja da Mel Rolan, com cartão ou Pix, e você pode parcelar em até {parcelas}x sem juros no cartão."
+        },
+        {
+          "q": "O guia traz valores atualizados?",
+          "a": "Sim. O guia foi revisado para 2026, incluindo valores de transporte público e ingressos. Quando algum preço muda, a Mel atualiza o material."
+        }
+      ]
+    },
+    "essencial": {
+      "faq": [
+        {
+          "q": "Já tenho blogs e vídeos, por que comprar?",
+          "a": "Blogs e vídeos listam atrações soltas, mas não resolvem a sua rotina. Este roteiro decide a ordem por você: cada dia fica dentro de uma região, com almoço e jantar na rota, sem vaivém de metrô."
+        },
+        {
+          "q": "Funciona sem internet?",
+          "a": "Sim. Como o roteiro é entregue em formato PDF, você pode salvá-lo no celular ou tablet e consultar todas as páginas sem precisar de conexão. Apenas os links externos para compra de ingressos ou rotas de navegação exigem acesso à internet."
+        },
+        {
+          "q": "Como peço reembolso?",
+          "a": "Você tem 7 dias de garantia incondicional a partir da compra. Para pedir o reembolso, basta enviar uma mensagem para {email} ou pelo WhatsApp {whatsapp} informando os dados da compra. O valor pago é devolvido integralmente."
+        },
+        {
+          "q": "Como recebo o roteiro?",
+          "a": "Você recebe o PDF por e-mail logo após a confirmação do pagamento, com o link para baixar. Se não encontrar o e-mail, olhe a caixa de spam ou escreva para {email}."
+        },
+        {
+          "q": "O roteiro funciona para quem viaja sozinho, em casal ou em grupo?",
+          "a": "Sim. O roteiro foi planejado pela lógica de deslocamento entre atrações por região, não pelo perfil de quem viaja, e se adapta a qualquer grupo."
+        },
+        {
+          "q": "Qual a diferença entre o Guia Paris Essencial e o Guia Paris com Crianças?",
+          "a": "O Essencial é um roteiro de 4 dias mais 6 bate-voltas para quem quer aproveitar Paris e arredores com vivência real. O Guia Paris com Crianças é uma lista curada por faixa etária para quem viaja com filhos, para cada família montar a própria programação."
+        }
+      ]
+    }
+  },
+  "diagnostico": {
+    "indicacao": {
+      "tours": "Passeios privativos a pé, em português, no ritmo do seu grupo.",
+      "roteiro": "A viagem inteira desenhada dia a dia, com tudo pensado para quem vai viajar.",
+      "consultoria": "Uma conversa por vídeo com a Mel no ponto em que a sua viagem estiver: definir destinos e dias, tirar dúvidas ou validar o que já foi planejado.",
+      "guias": "A curadoria da Mel em PDF, com acesso imediato, para planejar com autonomia."
+    },
+    "perfis": {
+      "família com crianças": "Com crianças, cada dia é pensado no ritmo delas: pausas, parquinhos, restaurantes onde os pequenos comem bem e passeios que cabem na energia de cada idade. Nos tours, cada criança ganha o livro de atividades do Monsieur Pombo, criado pela Mel.",
+      "casal": "Para o casal, a viagem ganha respiro: bairros para caminhar sem pressa, mesas escolhidas com cuidado e tempo para aproveitar Paris a dois, sem transformar os dias numa maratona de pontos turísticos.",
+      "viagem solo": "Para quem viaja sozinho, a Mel sugere bairros tranquilos para se hospedar e programas que funcionam bem para uma pessoa só, com a liberdade de montar cada dia do seu jeito.",
+      "amigos ou grupo": "Para grupos, o desafio é agradar a todos. A Mel desenha uma programação que equilibra os interesses do grupo, com momentos juntos e espaço para cada um.",
+      "família com avós": "Com avós, pais e netos no mesmo grupo, o ritmo respeita o fôlego de cada um: deslocamentos curtos, pausas para descansar e programas que agradam a todas as idades. A Mel já recebeu grupos de três gerações no mesmo passeio."
+    }
+  }
 }

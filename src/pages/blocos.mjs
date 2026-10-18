@@ -19,6 +19,9 @@ export const provaRapida = (m) => `
   </div>
 </section>`;
 
+// Depoimentos (data/conteudo.json). Com um cartão extra no topo, a lista mostra só os dois primeiros.
+const depoimentoCard = (d) => `<figure><blockquote>“${d.texto}”</blockquote><figcaption><strong>${d.nome}</strong>, ${d.cidade} (${d.uf})${d.contexto ? ' · ' + d.contexto : ''}</figcaption></figure>`;
+
 export const depoimentos = (m, extra = '') => `
 <section class="section">
   <div class="wrap">
@@ -34,9 +37,7 @@ export const depoimentos = (m, extra = '') => `
       </div>
     </div>
     <div class="grid-3 quotes">${extra}
-      <figure><blockquote>“Mel tem uma sensibilidade impressionante! Desde a primeira conversa dá pra sentir o quanto ela é competente, organizada e ama o que faz. Que sorte a nossa encontrar a Mel nessa viagem mãe e filha, que será inesquecível para nós. Ela cuidou de tudo, nos colocou com as melhores pessoas e nos melhores lugares.”</blockquote><figcaption><strong>Roberta</strong>, São Paulo (SP) · viagem mãe e filha</figcaption></figure>
-      <figure><blockquote>“Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível.”</blockquote><figcaption><strong>Fernanda</strong>, Natal (RN) · viagem em grupo</figcaption></figure>
-      ${extra ? '' : `<figure><blockquote>“Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!”</blockquote><figcaption><strong>Renata</strong>, Pereiras (SP)</figcaption></figure>`}
+      ${CONTEUDO.depoimentos.slice(0, extra ? 2 : 3).map(depoimentoCard).join('\n      ')}
     </div>
   </div>
 </section>`;

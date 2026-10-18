@@ -20,6 +20,10 @@ CONTEUDO.quiz_perguntas.forEach((p, n) => {
   if (!p.opcoes.length) erros.push(`quiz_perguntas[${n}]: sem opções`);
   p.opcoes.forEach((o, k) => { texto(o.texto, `quiz_perguntas[${n}].opcoes[${k}].texto`); if (!Object.keys(o.pontos).length) erros.push(`quiz_perguntas[${n}].opcoes[${k}]: sem pontos`); });
 });
+CONTEUDO.depoimentos.forEach((d, i) => { texto(d.nome, `depoimentos[${i}].nome`); texto(d.texto, `depoimentos[${i}].texto`); texto(d.cidade, `depoimentos[${i}].cidade`); texto(d.uf, `depoimentos[${i}].uf`); });
+for (const [lp, v] of Object.entries(CONTEUDO.lps)) faq(v.faq.map((x) => ({ q: x.q, a: x.a })), `lps.${lp}.faq`);
+for (const [id, t] of Object.entries(CONTEUDO.diagnostico.indicacao)) texto(t, `diagnostico.indicacao.${id}`);
+for (const [id, t] of Object.entries(CONTEUDO.diagnostico.perfis)) texto(t, `diagnostico.perfis.${id}`);
 if (erros.length) throw new Error('data/conteudo.json inválido:\n- ' + erros.join('\n- '));
 
 export const faqHome = () => CONTEUDO.home.faq.map((x) => ('faq_tours' in x ? CONTEUDO.tours_faq[x.faq_tours] : x));

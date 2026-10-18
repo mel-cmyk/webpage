@@ -82,21 +82,10 @@
     return { principal, complemento };
   }
 
-  const textos = {
-    tours: 'Passeios privativos a pé, em português, no ritmo do seu grupo.',
-    roteiro: 'A viagem inteira desenhada dia a dia, com tudo pensado para quem vai viajar.',
-    consultoria: 'Uma conversa por vídeo com a Mel no ponto em que a sua viagem estiver: definir destinos e dias, tirar dúvidas ou validar o que já foi planejado.',
-    guias: 'A curadoria da Mel em PDF, com acesso imediato, para planejar com autonomia.',
-  };
+  // Textos da indicação e parágrafo por perfil: vêm de data/conteudo.json (via cfg).
+  const textos = cfg.indicacao;
 
-  // Parágrafo por perfil de quem viaja (textos aprovados por Diogo em 17/10/2026).
-  const perfis = {
-    'família com crianças': 'Com crianças, cada dia é pensado no ritmo delas: pausas, parquinhos, restaurantes onde os pequenos comem bem e passeios que cabem na energia de cada idade. Nos tours, cada criança ganha o livro de atividades do Monsieur Pombo, criado pela Mel.',
-    'casal': 'Para o casal, a viagem ganha respiro: bairros para caminhar sem pressa, mesas escolhidas com cuidado e tempo para aproveitar Paris a dois, sem transformar os dias numa maratona de pontos turísticos.',
-    'viagem solo': 'Para quem viaja sozinho, a Mel sugere bairros tranquilos para se hospedar e programas que funcionam bem para uma pessoa só, com a liberdade de montar cada dia do seu jeito.',
-    'amigos ou grupo': 'Para grupos, o desafio é agradar a todos. A Mel desenha uma programação que equilibra os interesses do grupo, com momentos juntos e espaço para cada um.',
-    'família com avós': 'Com avós, pais e netos no mesmo grupo, o ritmo respeita o fôlego de cada um: deslocamentos curtos, pausas para descansar e programas que agradam a todas as idades. A Mel já recebeu grupos de três gerações no mesmo passeio.',
-  };
+  const perfis = cfg.perfis;
 
   // Salva o lead no Wix Forms (vira submissão no painel e contato no CRM), com um token anônimo de visitante.
   // Não bloqueia a pessoa: se falhar, o resultado e o WhatsApp continuam funcionando.
