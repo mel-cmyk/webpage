@@ -3,6 +3,9 @@ name: Publicar site
 on:
   push:
     branches: [main]
+  # Nos pull requests roda só a conferência (sem publicar): o erro aparece antes do merge.
+  pull_request:
+    branches: [main]
   workflow_dispatch:
   # Reconstrói o site logo depois que a promoção dos guias vence (valido_ate em data/ofertas.json), para o HTML voltar ao preço normal.
   # Os horários são UTC. A promoção vai até 31/10/2026 23h59 (Brasília, UTC-3), ou seja, 02:59 UTC de 01/11/2026.
@@ -55,8 +58,31 @@ jobs:
         with:
           path: dist
 
+  # Abre o site num navegador de teste e confere cookies, medição, funis e checkout (tests/comportamento.mjs).
+  # Usa uma geração à parte, no modo de produção (domínio oficial), sem alterar o que vai para publicação.
+  # Se falhar, o deploy não acontece.
+  navegador:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: |
+          npm ci
+          npm ci --prefix lps
+          npx playwright-core install --with-deps chromium
+      - name: Gerar site (modo produção)
+        run: node build.mjs
+        env:
+          SITE_STAGING: '0'
+      - name: Testar no navegador
+        run: node tests/comportamento.mjs
+
   deploy:
-    needs: build
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: [build, navegador]
     runs-on: ubuntu-latest
     environment:
       name: github-pages

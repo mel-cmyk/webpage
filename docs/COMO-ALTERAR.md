@@ -47,6 +47,8 @@ lps/ (React) ──> lps/build.mjs ─> dist/guias/
 3. `npm run test:browser` confere cookies, medição, funis e checkout.
 4. Se mexeu em aparência ou estrutura: `npm run comparar` e `npm run visual` (guardar o antes com `npm run referencia` e `npm run visual:salvar`). Devem dizer "idêntico" quando a mudança não deveria alterar nada.
 
+O GitHub repete `npm test` e o teste de navegador sozinho em cada pull request e antes de cada publicação. Se algum falhar, o site não é publicado.
+
 ## Regras que valem sempre
 
 - Preço, número e contato: um lugar só (`data/ofertas.json`). Nunca escrever no texto da página.
