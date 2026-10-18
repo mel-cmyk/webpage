@@ -91,6 +91,63 @@ jobs:
       - name: Conferir o orçamento de peso
         run: node tests/orcamento.mjs
 
+  # Só em pull request: monta a main e esta branch lado a lado e compara HTML, estilo calculado e capturas de tela.
+  # É um aviso, não um bloqueio: numa mudança de conteúdo é normal haver diferença; numa refatoração, o esperado é "idêntico".
+  # O resultado aparece no resumo da execução, e as capturas que mudaram ficam num arquivo anexo.
+  comparacao:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: novo
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: |
+          for d in base novo; do
+            (cd $d && npm ci && npm ci --prefix lps)
+          done
+          (cd novo && npx playwright-core install --with-deps chromium)
+      - name: Guardar a referência (main)
+        working-directory: base
+        env:
+          SITE_STAGING: '0'
+        run: |
+          node build.mjs
+          npm run referencia
+          npm run visual:salvar
+      - name: Gerar esta branch e comparar
+        working-directory: novo
+        env:
+          SITE_STAGING: '0'
+        run: |
+          node build.mjs
+          cp -r ../base/.referencia ../base/.visual .
+          {
+            echo '## Comparação com a main'
+            echo
+            echo 'Aviso, não bloqueio: diferença é esperada numa mudança de conteúdo e não numa refatoração.'
+            echo
+          } >> "$GITHUB_STEP_SUMMARY"
+          for passo in comparar visual estilos; do
+            echo "### $passo" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            npm run "$passo" 2>&1 | tail -n 40 | grep -v '^>' >> "$GITHUB_STEP_SUMMARY" || true
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          done
+      - name: Anexar as capturas que mudaram
+        uses: actions/upload-artifact@v4
+        with:
+          name: capturas-que-mudaram
+          path: novo/.visual.novo
+          if-no-files-found: ignore
+
   deploy:
     if: ${{ github.event_name != 'pull_request' }}
     needs: [build, navegador]
