@@ -14,6 +14,13 @@ updates:
     groups:
       react:
         patterns: ['react', 'react-dom', '@types/react*']
+    ignore:
+      # lucide-react 1.x removeu os ícones de marca (Instagram): migrar só junto com a troca desse ícone.
+      - dependency-name: lucide-react
+        update-types: ['version-update:semver-major']
+      # Os tipos acompanham o Node do CI (22): sem salto de versão maior.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: /
     schedule:
