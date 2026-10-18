@@ -28,3 +28,4 @@
 .cta-final .btn { background: var(--gold); border-color: var(--gold); color: var(--navy); }
 .cta-final .btn:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
 .cta-final .btn-ghost { background: transparent; color: var(--white); border-color: var(--white); }
+.quotes .quote-title { font-family: var(--serif); font-weight: 600; margin: 0 0 8px; }

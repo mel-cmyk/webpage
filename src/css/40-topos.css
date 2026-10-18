@@ -26,3 +26,10 @@
   .hero-split-grid { grid-template-columns: 1.05fr 1fr; gap: 48px; }
   .hero-split-media img { aspect-ratio: 4 / 3; }
 }
+/* Celular: na home, os botões sobem para logo abaixo do título, para aparecerem na primeira tela. */
+@media (max-width: 899px) {
+  .hero-photo .hero-content { display: flex; flex-direction: column; padding-top: 24px; }
+  .hero-photo .hero-content .actions { order: 1; margin-top: 4px; }
+  .hero-photo .hero-content .lead { order: 2; margin-top: 20px; }
+  .hero-photo .hero-content .small { order: 3; }
+}

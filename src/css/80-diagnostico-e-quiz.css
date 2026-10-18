@@ -14,3 +14,8 @@
 .quiz-error { color: #a33; }
 .result { background: var(--white); border-radius: var(--radius); padding: 28px; border: 1px solid var(--line); box-shadow: var(--shadow); }
 .result h2 { margin-top: 0; }
+.result-extra { margin: 24px 0; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--white, #fff); }
+.result-extra h3 { margin: 4px 0 8px; }
+
+.quiz-cta { margin: 2.5rem auto 0; padding: 1.75rem; max-width: 640px; border: 1px solid #C19450; border-radius: 12px; background: #fbf7f1; }
+.quiz-cta .btn { margin-top: 0.5rem; }
