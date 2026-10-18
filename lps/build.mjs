@@ -25,9 +25,12 @@ export const LPS = [
 const FONTES_LP = [
   "@font-face{font-family:'Lora';font-style:normal;font-weight:400 700;font-display:swap;src:url('%/fonts/lora-latin.woff2') format('woff2')}",
   "@font-face{font-family:'Lora';font-style:italic;font-weight:400 700;font-display:swap;src:url('%/fonts/lora-italic-latin.woff2') format('woff2')}",
-  ...[400, 500, 600, 700].map((w) => `@font-face{font-family:'Poppins';font-style:normal;font-weight:${w};font-display:swap;src:url('%/fonts/poppins-${w}.woff2') format('woff2')}`),
+  ...[400, 500, 600, 700].map(
+    (w) => `@font-face{font-family:'Poppins';font-style:normal;font-weight:${w};font-display:swap;src:url('%/fonts/poppins-${w}.woff2') format('woff2')}`
+  ),
 ].join('\n');
-const fontesLp = () => `<link rel="preload" href="${url('/fonts/poppins-400.woff2')}" as="font" type="font/woff2" crossorigin>\n    <link rel="preload" href="${url('/fonts/lora-latin.woff2')}" as="font" type="font/woff2" crossorigin>\n    <style>${FONTES_LP.replaceAll('%/', url('/'))}</style>`;
+const fontesLp = () =>
+  `<link rel="preload" href="${url('/fonts/poppins-400.woff2')}" as="font" type="font/woff2" crossorigin>\n    <link rel="preload" href="${url('/fonts/lora-latin.woff2')}" as="font" type="font/woff2" crossorigin>\n    <style>${FONTES_LP.replaceAll('%/', url('/'))}</style>`;
 
 const vite = path.join(aqui, 'node_modules/.bin/vite');
 
@@ -53,7 +56,10 @@ for (const lp of LPS) {
 
   html = html.replace('<html lang="pt-BR">', `<html lang="pt-BR" data-promo="${v.ativa ? 1 : 0}">`);
   html = html.replace('<div id="root"></div>', () => `<div id="root">${render()}</div>`);
-  html = html.replace('<!--MR_HEAD-->', `${STAGING ? '<meta name="robots" content="noindex, nofollow">\n    ' : ''}<link rel="stylesheet" href="${asset('/css/consent.css')}">\n    ${dicasGoogle}\n    ${fontesLp()}\n    <script src="${asset('/js/analytics.js')}" defer></script>`);
+  html = html.replace(
+    '<!--MR_HEAD-->',
+    `${STAGING ? '<meta name="robots" content="noindex, nofollow">\n    ' : ''}<link rel="stylesheet" href="${asset('/css/consent.css')}">\n    ${dicasGoogle}\n    ${fontesLp()}\n    <script src="${asset('/js/analytics.js')}" defer></script>`
+  );
   html = html.replace('<!--MR_BANNER-->', () => cookieBanner());
   const pagina = [{ name: 'view_item', params: { currency: 'BRL', value: v.preco, items: [itemGA(g, agora)] } }];
   html = html.replace('<!--MR_ANALYTICS-->', () => `<script id="ga-page" type="application/json">${JSON.stringify(pagina)}</script>`);

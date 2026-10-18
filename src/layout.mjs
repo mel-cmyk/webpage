@@ -8,13 +8,28 @@ import { siteCss, consentCss, hashCss } from './css.mjs';
 // Endereço com versão (?v=) para CSS e JS: quando o arquivo muda, o navegador baixa a versão nova.
 const versoes = {};
 export const asset = (p) => {
-  if (!versoes[p]) versoes[p] = p === '/js/analytics.js' ? analyticsVersao() : p === '/css/site.css' ? hashCss(siteCss()) : p === '/css/consent.css' ? hashCss(consentCss()) : crypto.createHash('sha1').update(fs.readFileSync('public' + p)).digest('hex').slice(0, 8);
+  if (!versoes[p])
+    versoes[p] =
+      p === '/js/analytics.js'
+        ? analyticsVersao()
+        : p === '/css/site.css'
+          ? hashCss(siteCss())
+          : p === '/css/consent.css'
+            ? hashCss(consentCss())
+            : crypto
+                .createHash('sha1')
+                .update(fs.readFileSync('public' + p))
+                .digest('hex')
+                .slice(0, 8);
   return `${url(p)}?v=${versoes[p]}`;
 };
 
 // Pixel da Meta (dataset Mel Rolan, ID em data/integracoes.json): carregado só com consentimento de publicidade e no domínio oficial (analytics.js).
 // Microsoft Clarity: o ID vem de data/integracoes.json (clarity_id). Vazio ou inválido: o atributo não é escrito e nada carrega.
-export const clarityAttr = (data) => { const id = (data.integracoes && data.integracoes.clarity_id) || ''; return /^[a-z0-9]{8,12}$/i.test(id) ? ` data-clarity="${id}"` : ''; };
+export const clarityAttr = (data) => {
+  const id = (data.integracoes && data.integracoes.clarity_id) || '';
+  return /^[a-z0-9]{8,12}$/i.test(id) ? ` data-clarity="${id}"` : '';
+};
 // Páginas de anúncios (Consent Mode avançado) carregam o Google desde o início: conectar e baixar o gtag.js em paralelo ao resto da página.
 export const dicasGoogle = '<link rel="preconnect" href="https://www.googletagmanager.com">\n<link rel="preconnect" href="https://www.google-analytics.com">';
 
@@ -35,12 +50,7 @@ function header(current, data) {
   const cta = emTours
     ? `<a class="btn btn-small nav-cta" href="${wa(data, 'Olá! Vim pelo site da Mel Rolan e gostaria de consultar datas para um tour em Paris.')}" data-wa="cabecalho-tours">Consultar datas</a>`
     : `<a class="btn btn-small nav-cta" href="${url('/diagnostico/')}">Planejar minha viagem</a>`;
-  const links = nav
-    .map(
-      ([href, label]) =>
-        `<a href="${url(href)}"${current.startsWith(href) ? ' aria-current="page"' : ''}>${label}</a>`
-    )
-    .join('');
+  const links = nav.map(([href, label]) => `<a href="${url(href)}"${current.startsWith(href) ? ' aria-current="page"' : ''}>${label}</a>`).join('');
   return `
 <header class="site-header">
   <div class="wrap header-inner">
@@ -123,12 +133,23 @@ export const cookieBanner = () => `
 </div>
 <script>/* Mostra o aviso já na primeira pintura (sem esperar o analytics.js): ele é o maior elemento da tela no celular (LCP). Mesma regra de lerEscolha() em analytics.js. */try{var mrS=JSON.parse(localStorage.getItem('mr_consent')||'null');if(!(mrS&&typeof mrS.ads==='boolean'&&Date.now()-(mrS.timestamp||0)<15724800000)){document.getElementById('cookie-banner').hidden=false;document.body.classList.add('cookie-aberto');}}catch(e){}</script>`;
 
-export function layout({ data, path, title, description, body, jsonld = [], scripts = [], noFloat = false, og = 'og/home.jpg', servico = 'geral', analytics = [], noindex = false }) {
+export function layout({
+  data,
+  path,
+  title,
+  description,
+  body,
+  jsonld = [],
+  scripts = [],
+  noFloat = false,
+  og = 'og/home.jpg',
+  servico = 'geral',
+  analytics = [],
+  noindex = false,
+}) {
   const canonical = `${SITE_URL}${path}`;
   const ogImage = `${PUBLIC_URL}/img/${og}`;
-  const ld = jsonld
-    .map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`)
-    .join('\n');
+  const ld = jsonld.map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join('\n');
   const js = scripts.map((s) => `<script src="${asset(s)}" defer></script>`).join('\n');
   return `<!doctype html>
 <html lang="pt-BR">

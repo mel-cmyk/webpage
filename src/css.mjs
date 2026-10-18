@@ -4,7 +4,9 @@ import { createHash } from 'node:crypto';
 
 const DIR = new URL('./css/', import.meta.url);
 const ler = (n) => readFileSync(new URL(n, DIR), 'utf8').trimEnd();
-const partes = readdirSync(DIR).filter((f) => f.endsWith('.css')).sort();
+const partes = readdirSync(DIR)
+  .filter((f) => f.endsWith('.css'))
+  .sort();
 
 const SITE = partes.filter((f) => !['cookies.css', 'cookies-site.css'].includes(f));
 // Os cookies entram antes dos ajustes de celular e do rodapé não depender deles: ficam no fim, onde estavam.

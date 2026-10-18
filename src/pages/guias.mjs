@@ -1,7 +1,7 @@
 // Página dos guias digitais. Preços, números e contatos vêm de data/ofertas.json.
 import { url, esc, brl, img, SITE_URL } from '../helpers.mjs';
 import { vigente } from '../oferta.mjs';
-import { servico, guiaItem, attr, breadcrumbLd, ctaFinal } from './comum.mjs';
+import { guiaItem, attr, breadcrumbLd, ctaFinal } from './comum.mjs';
 
 // ---------------------------------------------------------------- GUIAS
 export function guias(data) {
@@ -16,8 +16,9 @@ export function guias(data) {
 <section class="section">
   <div class="wrap grid-2 cards">
     ${data.guias
-      .map(
-        (g) => { const v = vigente(g); return `<article class="card card-h">
+      .map((g) => {
+        const v = vigente(g);
+        return `<article class="card card-h">
       ${img(g.imagem, g.imagem_alt, { cls: 'cover', sizes: '(min-width: 600px) 200px, 100vw' })}
       <div class="card-body">
       <h2 class="h3">${esc(g.nome)}</h2>
@@ -29,8 +30,8 @@ export function guias(data) {
         <a class="btn btn-small btn-ghost" href="${url(g.landing)}">Conhecer o guia</a>
       </div>
       </div>
-    </article>`; }
-      )
+    </article>`;
+      })
       .join('')}
   </div>
   <ul class="wrap pagamento" aria-label="Pagamento e entrega">
@@ -45,8 +46,7 @@ ${ctaFinal(data, 'Prefere ajuda personalizada?', 'Se quiser alguém desenhando a
   return {
     path: '/guias-de-paris/',
     title: 'Guias de Paris em PDF | Mel Rolan Travel Designer',
-    description:
-      'Guias digitais de Paris em PDF: Paris com Crianças e Paris Essencial. Curadoria da Mel Rolan, com acesso imediato.',
+    description: 'Guias digitais de Paris em PDF: Paris com Crianças e Paris Essencial. Curadoria da Mel Rolan, com acesso imediato.',
     body,
     og: 'og/guias.jpg',
     servico: 'guias',
@@ -61,7 +61,10 @@ ${ctaFinal(data, 'Prefere ajuda personalizada?', 'Se quiser alguém desenhando a
         brand: { '@type': 'Brand', name: 'Mel Rolan Travel Designer' },
         offers: { '@type': 'Offer', price: vigente(g).preco, priceCurrency: 'BRL', availability: 'https://schema.org/InStock', url: g.link_compra },
       })),
-      breadcrumbLd([['Início', '/'], ['Guias de Paris', '/guias-de-paris/']]),
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Guias de Paris', '/guias-de-paris/'],
+      ]),
     ],
   };
 }

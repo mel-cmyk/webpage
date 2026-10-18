@@ -112,7 +112,10 @@ fs.writeFileSync(
 const m = data.marca;
 fs.writeFileSync(
   path.join(OUT, 'llms.txt'),
-  `# Mel Rolan Travel Designer\n\n> Tours privativos em português em Paris, roteiros sob medida, consultoria de viagem e guias digitais para brasileiros. Mel Rolan é brasileira, vive em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos e já atendeu mais de ${m.familias_atendidas.replace('+', '')} famílias em todos os serviços. Nota ${m.nota_satisfacao} de 10 em ${m.pesquisas_satisfacao} pesquisas de satisfação (${m.periodo_pesquisas}).\n\n## Páginas\n${[...all, ...lpsPaginas]
+  `# Mel Rolan Travel Designer\n\n> Tours privativos em português em Paris, roteiros sob medida, consultoria de viagem e guias digitais para brasileiros. Mel Rolan é brasileira, vive em Paris há mais de ${m.anos_na_franca.replace('+', '')} anos e já atendeu mais de ${m.familias_atendidas.replace('+', '')} famílias em todos os serviços. Nota ${m.nota_satisfacao} de 10 em ${m.pesquisas_satisfacao} pesquisas de satisfação (${m.periodo_pesquisas}).\n\n## Páginas\n${[
+    ...all,
+    ...lpsPaginas,
+  ]
     .filter((p) => p.path !== '/404/')
     .map((p) => `- [${p.title.split(' | ')[0]}](${SITE_URL}${p.path})`)
     .join('\n')}\n\n## Contato\n- WhatsApp: ${m.whatsapp_site}\n- E-mail: ${m.email}\n`

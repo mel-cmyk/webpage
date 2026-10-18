@@ -10,7 +10,9 @@
     const error = form.querySelector('.quiz-error');
     const progress = form.querySelector('.quiz-progress');
     const result = document.getElementById(o.resultId);
-    const track = (name, params) => { if (window.mrTrack) window.mrTrack(name, params || {}); };
+    const track = (name, params) => {
+      if (window.mrTrack) window.mrTrack(name, params || {});
+    };
     const fluxo = window.mrFluxo ? window.mrFluxo(o.fluxo, steps.length) : null;
     const nomeEtapa = (n) => o.nomeEtapa(steps[n], n);
     let i = 0;
@@ -35,15 +37,36 @@
 
     form.addEventListener('change', () => {
       if (o.aoMudar) o.aoMudar();
-      if (!started) { started = true; if (fluxo) fluxo.inicio(); else if (o.eventoInicio) track(o.eventoInicio); }
+      if (!started) {
+        started = true;
+        if (fluxo) fluxo.inicio();
+        else if (o.eventoInicio) track(o.eventoInicio);
+      }
     });
     next.addEventListener('click', () => {
-      if (!o.validar(steps[i], i, error)) { error.hidden = false; return; }
+      if (!o.validar(steps[i], i, error)) {
+        error.hidden = false;
+        return;
+      }
       if (fluxo) fluxo.etapa(i + 1, nomeEtapa(i), o.paramsEtapa ? o.paramsEtapa(i) : undefined);
-      if (i < steps.length - 1) { i += 1; show(i); } else { next.disabled = true; o.concluir(); }
+      if (i < steps.length - 1) {
+        i += 1;
+        show(i);
+      } else {
+        next.disabled = true;
+        o.concluir();
+      }
     });
-    back.addEventListener('click', () => { if (i > 0) { i -= 1; show(i); } });
-    form.addEventListener('submit', (e) => { e.preventDefault(); next.click(); });
+    back.addEventListener('click', () => {
+      if (i > 0) {
+        i -= 1;
+        show(i);
+      }
+    });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      next.click();
+    });
     show(0);
     return { form, result, fluxo, track, mostrarResultado };
   };

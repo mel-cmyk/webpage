@@ -127,8 +127,7 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte em dois minutos como é 
     '@type': 'TravelAgency',
     name: 'Mel Rolan Travel Designer',
     url: SITE_URL,
-    description:
-      'Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros em Paris.',
+    description: 'Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros em Paris.',
     email: m.email,
     telephone: m.whatsapp_site.replace(/\s/g, ''),
     areaServed: { '@type': 'City', name: 'Paris' },
@@ -145,10 +144,6 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte em dois minutos como é 
       'Tours privativos em português, roteiros sob medida, consultoria e guias digitais para brasileiros em Paris, com curadoria de uma especialista.',
     body,
     og: 'og/home.jpg',
-    jsonld: [
-      org,
-      { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Mel Rolan Travel Designer', url: SITE_URL, inLanguage: 'pt-BR' },
-      faqLd(faq),
-    ],
+    jsonld: [org, { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Mel Rolan Travel Designer', url: SITE_URL, inLanguage: 'pt-BR' }, faqLd(faq)],
   };
 }

@@ -7,7 +7,8 @@ import { seloTour, TRIP_URL, avaliacoesTours, imprensaCitacao, incluidoTours, bl
 export function toursHub(data) {
   const s = servico(data, 'tours');
   const body = `
-${heroSplit(`
+${heroSplit(
+  `
     <p class="eyebrow">Tours privativos em Paris</p>
     <h1>Paris além dos cartões-postais, a pé e em português.</h1>
     <p class="lead">Passeios privativos, leves e sem correria, com a Mel, travel designer especializada em viajantes brasileiros. Só o seu grupo, no seu ritmo, pelas ruas, praças e jardins que contam a história da cidade.</p>
@@ -17,7 +18,11 @@ ${heroSplit(`
       <a class="btn btn-ghost" href="${wa(data, 'Olá! Vim pelo site da Mel Rolan e gostaria de consultar datas para um tour em Paris.')}" data-wa="tours-hero">Consultar datas no WhatsApp</a>
     </div>
     <p class="small"><a href="${TRIP_URL}" target="_blank" rel="noopener" data-cta="tripadvisor-tours">5,0 no Tripadvisor</a> · ${data.marca.nota_satisfacao} de 10 na pesquisa de satisfação</p>
-    <p class="small">${RESPOSTA}</p>`, 'paginas/tours', 'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris', '#escolha-o-tour')}
+    <p class="small">${RESPOSTA}</p>`,
+  'paginas/tours',
+  'Mel Rolan olhando para trás numa rua de paralelepípedos de Paris',
+  '#escolha-o-tour'
+)}
 <section class="section" id="escolha-o-tour">
   <div class="wrap">
     <h2 class="center">Escolha o seu tour</h2>
@@ -93,7 +98,13 @@ ${ctaFinal(data, 'Quer ajuda para escolher o tour?', 'Conte quem viaja e quando,
     og: 'og/tours.jpg',
     servico: 'tours',
     analytics: [{ name: 'view_item_list', params: { item_list_name: 'tours', items: data.tours.map(tourItem) } }],
-    jsonld: [faqLd(faqTours), breadcrumbLd([['Início', '/'], ['Tours em Paris', '/tours-em-paris/']])],
+    jsonld: [
+      faqLd(faqTours),
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Tours em Paris', '/tours-em-paris/'],
+      ]),
+    ],
   };
 }
 
@@ -102,7 +113,8 @@ export function tourPage(data, t) {
   const msg = `Olá! Vim pelo site da Mel Rolan e gostaria de consultar datas para o tour ${t.nome}.`;
   const body = `
 <nav class="wrap crumbs small" aria-label="Você está em"><a href="${url('/')}">Início</a> › <a href="${url('/tours-em-paris/')}">Tours em Paris</a> › ${esc(t.nome)}</nav>
-${heroSplit(`
+${heroSplit(
+  `
     <p class="eyebrow">Tour privativo em Paris · ${esc(t.duracao)}</p>
     <h1>${esc(t.nome)}</h1>
     ${t.subtitulo ? `<p class="subtitulo">${esc(t.subtitulo)}</p>` : ''}
@@ -112,7 +124,10 @@ ${heroSplit(`
     <div class="actions">
       <a class="btn" href="${wa(data, msg)}" data-wa="tour-${t.id}" data-lead="${attr({ tour_id: t.id })}">Consultar datas no WhatsApp</a>
     </div>
-    <p class="small">${RESPOSTA}</p>`, t.imagem, t.imagem_alt)}
+    <p class="small">${RESPOSTA}</p>`,
+  t.imagem,
+  t.imagem_alt
+)}
 <section class="section">
   <div class="wrap split">
     <div>
@@ -160,7 +175,8 @@ ${avaliacoesTours(t.id)}
     <h2 class="center">Outros tours</h2>
     <div class="grid-3 cards">${outros
       .map(
-        (o) => `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body">${seloTour(o)}<p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3>${o.subtitulo ? `<p class="card-sub">${esc(o.subtitulo)}</p>` : ''}<p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}" data-item="${attr(tourItem(o))}">Ver o tour</a></div></article>`
+        (o) =>
+          `<article class="card card-photo">${img(o.imagem, o.imagem_alt, { sizes: CARD_SIZES })}<div class="card-body">${seloTour(o)}<p class="card-meta">${esc(o.duracao)}</p><h3>${esc(o.nome)}</h3>${o.subtitulo ? `<p class="card-sub">${esc(o.subtitulo)}</p>` : ''}<p class="price">A partir de ${eur(menorPreco(o))}</p><a class="btn btn-small btn-ghost" href="${url('/tours-em-paris/' + o.id + '/')}" data-item="${attr(tourItem(o))}">Ver o tour</a></div></article>`
       )
       .join('')}</div>
   </div>
@@ -183,6 +199,13 @@ ${avaliacoesTours(t.id)}
     og: `og/tour-${t.id}.jpg`,
     servico: 'tours',
     analytics: [{ name: 'view_item', params: { currency: 'EUR', value: menorPreco(t), items: [tourItem(t)] } }],
-    jsonld: [trip, breadcrumbLd([['Início', '/'], ['Tours em Paris', '/tours-em-paris/'], [t.nome, `/tours-em-paris/${t.id}/`]])],
+    jsonld: [
+      trip,
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Tours em Paris', '/tours-em-paris/'],
+        [t.nome, `/tours-em-paris/${t.id}/`],
+      ]),
+    ],
   };
 }

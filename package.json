@@ -14,10 +14,17 @@
     "estilos": "node tests/estilos.mjs",
     "texto": "node tests/texto.mjs",
     "test:acessibilidade": "node tests/acessibilidade.mjs",
-    "test:orcamento": "node tests/orcamento.mjs"
+    "test:orcamento": "node tests/orcamento.mjs",
+    "lint": "eslint . && eslint --no-ignore dist/js/analytics.js",
+    "formatar": "prettier --write .",
+    "formatar:conferir": "prettier --check ."
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "axe-core": "^4.14.0",
-    "playwright-core": "^1.64.1"
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0",
+    "playwright-core": "^1.64.1",
+    "prettier": "^3.9.10"
   }
 }

@@ -11,7 +11,10 @@ let cache = null;
 
 export function analyticsJs() {
   if (cache) return cache;
-  const partes = fs.readdirSync(PASTA).filter((f) => f.endsWith('.js')).sort();
+  const partes = fs
+    .readdirSync(PASTA)
+    .filter((f) => f.endsWith('.js'))
+    .sort();
   const cabecalho = fs.readFileSync(path.join(PASTA, 'cabecalho.txt'), 'utf8');
   const codigo = cabecalho + '(function () {\n' + partes.map((f) => fs.readFileSync(path.join(PASTA, f), 'utf8')).join('') + '})();\n';
   // IDs vêm de data/integracoes.json (src/integracoes.mjs); nas partes aparecem como {{GA_ID}}, {{ADS_ID}} e {{TIKTOK_ID}}.

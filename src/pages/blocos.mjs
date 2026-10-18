@@ -1,5 +1,5 @@
 // Blocos de conteúdo reaproveitados em mais de uma página (provas, avaliações, imprensa, selos e textos de tours). Preços, números e contatos vêm de data/ofertas.json.
-import { url, esc, img } from '../helpers.mjs';
+import { url, esc } from '../helpers.mjs';
 import { CONTEUDO } from '../conteudo.mjs';
 
 // Selos nos cards de tour. Sem comparação entre tours (Diogo, 18/10/2026): nada de "mais" ou "melhor", só elogio ao próprio tour.
@@ -20,7 +20,8 @@ export const provaRapida = (m) => `
 </section>`;
 
 // Depoimentos (data/conteudo.json). Com um cartão extra no topo, a lista mostra só os dois primeiros.
-const depoimentoCard = (d) => `<figure><blockquote>“${d.texto}”</blockquote><figcaption><strong>${d.nome}</strong>, ${d.cidade} (${d.uf})${d.contexto ? ' · ' + d.contexto : ''}</figcaption></figure>`;
+const depoimentoCard = (d) =>
+  `<figure><blockquote>“${d.texto}”</blockquote><figcaption><strong>${d.nome}</strong>, ${d.cidade} (${d.uf})${d.contexto ? ' · ' + d.contexto : ''}</figcaption></figure>`;
 
 export const depoimentos = (m, extra = '') => `
 <section class="section">
@@ -37,7 +38,10 @@ export const depoimentos = (m, extra = '') => `
       </div>
     </div>
     <div class="grid-3 quotes">${extra}
-      ${CONTEUDO.depoimentos.slice(0, extra ? 2 : 3).map(depoimentoCard).join('\n      ')}
+      ${CONTEUDO.depoimentos
+        .slice(0, extra ? 2 : 3)
+        .map(depoimentoCard)
+        .join('\n      ')}
     </div>
   </div>
 </section>`;
@@ -46,7 +50,8 @@ export const depoimentos = (m, extra = '') => `
 // Trechos fiéis ao texto original; [...] marca cortes e [colchetes] marcam edições (a ferramenta do roteiro não é nomeada).
 export const TRIP = CONTEUDO.tripadvisor.avaliacoes;
 
-export const tripCard = (d) => `<figure><p class="quote-title">${esc(d.titulo)}</p><blockquote>“${esc(d.texto)}”</blockquote><figcaption><strong>${esc(d.autor)}</strong>, ${esc(d.info)} · Tripadvisor, 5 de 5</figcaption></figure>`;
+export const tripCard = (d) =>
+  `<figure><p class="quote-title">${esc(d.titulo)}</p><blockquote>“${esc(d.texto)}”</blockquote><figcaption><strong>${esc(d.autor)}</strong>, ${esc(d.info)} · Tripadvisor, 5 de 5</figcaption></figure>`;
 
 // Avaliações de tours: as do próprio tour primeiro.
 export const avaliacoesTours = (tourId = '') => {
@@ -65,7 +70,8 @@ export const avaliacoesTours = (tourId = '') => {
 // Imprensa (data/imprensa.json): só o que a matéria diz. Citação entre aspas e sempre com veículo, data e link.
 export const dataBR = (iso) => iso.split('-').reverse().join('/');
 
-export const logoImg = (x) => `<img class="imprensa-logo" src="${url(x.logo.src)}" width="${x.logo.w}" height="${x.logo.h}" alt="${esc(x.veiculo)}" loading="lazy">`;
+export const logoImg = (x) =>
+  `<img class="imprensa-logo" src="${url(x.logo.src)}" width="${x.logo.w}" height="${x.logo.h}" alt="${esc(x.veiculo)}" loading="lazy">`;
 
 export const veiculoTxt = (x) => esc(x.veiculo) + (x.secao ? `, ${esc(x.secao)}` : '');
 
@@ -75,7 +81,13 @@ export const imprensaFaixa = (data) => `
     <p class="eyebrow center">Na imprensa</p>
     <h2 class="center">A Mel nos veículos brasileiros</h2>
     <div class="grid-3 imprensa-grid">
-      ${data.imprensa.slice(0, 3).map((x) => `<a class="imprensa-card" href="${esc(x.url)}" target="_blank" rel="noopener">${logoImg(x)}<span class="imprensa-veiculo">${x.secao ? esc(x.secao) : '&nbsp;'}</span><span class="imprensa-titulo">${esc(x.titulo)}</span><span class="imprensa-data">${dataBR(x.data)}</span></a>`).join('')}
+      ${data.imprensa
+        .slice(0, 3)
+        .map(
+          (x) =>
+            `<a class="imprensa-card" href="${esc(x.url)}" target="_blank" rel="noopener">${logoImg(x)}<span class="imprensa-veiculo">${x.secao ? esc(x.secao) : '&nbsp;'}</span><span class="imprensa-titulo">${esc(x.titulo)}</span><span class="imprensa-data">${dataBR(x.data)}</span></a>`
+        )
+        .join('')}
     </div>
     <p class="center small"><a href="${url('/na-midia/')}">Ver todas as matérias</a></p>
   </div>
@@ -107,9 +119,10 @@ export const blocoSozinha = () => `
 export const TOURS_CURTOS = ['3h', '3h30'];
 
 export const perfisTour = (t) => {
-  const ritmo = t && TOURS_CURTOS.includes(t.duracao)
-    ? 'Percurso de 4 a 5 km, com muitas paradas no caminho. Não exige preparo físico.'
-    : 'Ritmo leve, com muitas paradas no caminho. Não exige preparo físico.';
+  const ritmo =
+    t && TOURS_CURTOS.includes(t.duracao)
+      ? 'Percurso de 4 a 5 km, com muitas paradas no caminho. Não exige preparo físico.'
+      : 'Ritmo leve, com muitas paradas no caminho. Não exige preparo físico.';
   const montmartre = t && t.id === 'montmartre' ? ' Em Montmartre, o percurso foi pensado para ter pouquíssimas escadas, e as subidas são curtas e leves.' : '';
   return `
     <div class="grid-4 perfis">

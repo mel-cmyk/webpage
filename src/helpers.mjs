@@ -10,12 +10,7 @@ export const PUBLIC_URL = STAGING ? `https://mel-cmyk.github.io${BASE}` : SITE_U
 // Monta um link interno respeitando o endereço de teste (ex.: /webpage).
 export const url = (p = '/') => `${BASE}${p}`;
 
-export const esc = (s = '') =>
-  String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+export const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const num = (n) => Number(n).toLocaleString('pt-BR');
 export const eur = (n) => `€ ${num(n)}`;

@@ -8,7 +8,8 @@ export function roteiro(data) {
   const s = servico(data, 'roteiro');
   const msg = 'Olá! Vim pelo site da Mel Rolan e tenho interesse em um roteiro sob medida para a minha viagem à França.';
   const body = `
-${heroSplit(`
+${heroSplit(
+  `
     <p class="eyebrow">Roteiro sob medida</p>
     <h1>A sua viagem inteira, desenhada dia a dia para quem vai viajar.</h1>
     <p class="lead">Um roteiro personalizado que leva em conta os seus desejos, o orçamento e o ritmo de quem vai viajar, com experiências autênticas sugeridas pela Mel.</p>
@@ -16,7 +17,10 @@ ${heroSplit(`
     <div class="actions">
       <a class="btn" href="${url('/diagnostico/')}" data-cta="diagnostico-roteiro">Começar pelo diagnóstico</a>
       <a class="btn btn-ghost" href="${wa(data, msg)}" data-wa="roteiro">Falar no WhatsApp</a>
-    </div>`, 'paginas/roteiro', 'Mel Rolan num café de Paris, com um chocolate quente')}
+    </div>`,
+  'paginas/roteiro',
+  'Mel Rolan num café de Paris, com um chocolate quente'
+)}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Sua viagem em 3 etapas</h2>
@@ -104,7 +108,10 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', `Roteiros a partir de ${brl(s.p
     servico: 'roteiro',
     jsonld: [
       servicoLd(s, 'Roteiro de viagem personalizado para Paris e a França, planejado dia a dia por uma travel designer especialista em viajantes brasileiros.'),
-      breadcrumbLd([['Início', '/'], ['Roteiro sob medida', '/roteiro-sob-medida/']]),
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Roteiro sob medida', '/roteiro-sob-medida/'],
+      ]),
     ],
   };
 }
@@ -114,7 +121,8 @@ export function consultoria(data) {
   const s = servico(data, 'consultoria');
   const msg = 'Olá! Vim pelo site da Mel Rolan e tenho interesse na consultoria de viagem.';
   const body = `
-${heroSplit(`
+${heroSplit(
+  `
     <p class="eyebrow">Consultoria personalizada</p>
     <h1>Planeje a sua viagem à França com mais segurança.</h1>
     <p class="lead">Serve para qualquer momento da viagem: para quem ainda nem começou e quer definir destinos e dias em cada região, para quem tem dúvidas sobre a cidade e para quem já planejou tudo e quer validar cada escolha com uma especialista.</p>
@@ -122,7 +130,10 @@ ${heroSplit(`
     <div class="actions">
       <a class="btn" href="${wa(data, msg)}" data-wa="consultoria">Agendar pelo WhatsApp</a>
       <a class="btn btn-ghost" href="${url('/diagnostico/')}" data-cta="diagnostico-consultoria">Não sei se é para mim</a>
-    </div>`, 'paginas/consultoria', 'Mel Rolan sorrindo junto a um muro de pedra em Paris')}
+    </div>`,
+  'paginas/consultoria',
+  'Mel Rolan sorrindo junto a um muro de pedra em Paris'
+)}
 <section class="section">
   <div class="wrap">
     <h2 class="center">Consultoria em 2 etapas</h2>
@@ -159,7 +170,10 @@ ${ctaFinal(data, 'Vamos conversar sobre a sua viagem?', `Consultoria por ${brl(s
     servico: 'consultoria',
     jsonld: [
       servicoLd(s, 'Consultoria de viagem por vídeo para começar a planejar, tirar dúvidas ou validar uma viagem à França, com mapa digital exclusivo.'),
-      breadcrumbLd([['Início', '/'], ['Consultoria', '/consultoria/']]),
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Consultoria', '/consultoria/'],
+      ]),
     ],
   };
 }
