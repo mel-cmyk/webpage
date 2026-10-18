@@ -1,7 +1,6 @@
 /* Blocos */
 .split { display: grid; gap: 32px; grid-template-columns: 1fr; align-items: start; }
 @media (min-width: 900px) { .split { grid-template-columns: 1fr 1fr; } }
-.table-title { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; }
 table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; }
 .alt table { background: var(--cream); }
 th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 0.95rem; }
