@@ -40,13 +40,20 @@ Medição (`src/analytics/`, montado em `dist/js/analytics.js` por `src/analytic
 
 ## Estrutura
 
-- `data/ofertas.json`: fonte única de preços, tours e dados da marca
-- `data/imagens.json`: lista das fotos e dos tamanhos disponíveis
-- `src/pages/`: textos das páginas, um arquivo por tema (`home`, `tours`, `servicos`, `guias`, `institucional`, `funis`); `comum.mjs` e `blocos.mjs` guardam as peças reaproveitadas e `index.mjs` lista as páginas
-- `tests/check.mjs`: conferência do site gerado (`npm test`), roda antes do deploy
+Guia completo de "pedido → arquivo": **`docs/COMO-ALTERAR.md`**.
+
+- `data/ofertas.json`: preços, tours e dados da marca (fonte única)
+- `data/conteudo.json`: textos editáveis (selos, avaliações, FAQs, quiz, textos da home)
+- `data/imagens.json`, `data/imprensa.json`, `data/integracoes.json`, `data/redirects.json`, `data/bonus-criancas.json`
+- `src/pages/`: estrutura das páginas, um arquivo por tema; `comum.mjs` e `blocos.mjs` guardam as peças reaproveitadas e `index.mjs` lista as páginas
 - `src/layout.mjs`: cabeçalho, rodapé e estrutura comum
-- `public/`: estilos, scripts e imagens
-- `src/analytics/`: partes do `analytics.js` por assunto (consentimento, eventos, funis, Meta, TikTok, Clarity, links, aviso de cookies); o build junta tudo num arquivo só
+- `src/css/`: partes do CSS por assunto; `src/css.mjs` monta `site.css` e `consent.css` (LPs)
+- `src/analytics/`: partes do `analytics.js` por assunto; `src/analytics.mjs` junta tudo
+- `src/conteudo.mjs`, `src/integracoes.mjs`: leem e validam os JSONs
+- `public/`: scripts, fontes e imagens (o CSS é gerado no build)
+- `lps/`: páginas de venda dos guias (React), com o comum em `lps/shared/`
+- `tests/`: conferência do site (`check.mjs`), navegador (`comportamento.mjs`) e comparações (`referencia.mjs`, `visual.mjs`)
+- `docs/`: eventos de medição e DNS
 - `build.mjs`: gera o site em `dist/`
 
 ## Testes e prova de que nada quebrou
