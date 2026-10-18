@@ -3,11 +3,12 @@ import crypto from 'node:crypto';
 import { url, esc, wa, STAGING, SITE_URL, PUBLIC_URL } from './helpers.mjs';
 import { analyticsVersao } from './analytics.mjs';
 import { META_PIXEL } from './integracoes.mjs';
+import { siteCss, consentCss, hashCss } from './css.mjs';
 
 // Endereço com versão (?v=) para CSS e JS: quando o arquivo muda, o navegador baixa a versão nova.
 const versoes = {};
 export const asset = (p) => {
-  if (!versoes[p]) versoes[p] = p === '/js/analytics.js' ? analyticsVersao() : crypto.createHash('sha1').update(fs.readFileSync('public' + p)).digest('hex').slice(0, 8);
+  if (!versoes[p]) versoes[p] = p === '/js/analytics.js' ? analyticsVersao() : p === '/css/site.css' ? hashCss(siteCss()) : p === '/css/consent.css' ? hashCss(consentCss()) : crypto.createHash('sha1').update(fs.readFileSync('public' + p)).digest('hex').slice(0, 8);
   return `${url(p)}?v=${versoes[p]}`;
 };
 

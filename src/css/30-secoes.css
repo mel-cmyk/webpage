@@ -1,0 +1,10 @@
+/* Seções */
+.hero { padding: 64px 0 48px; }
+.hero-sm { padding: 44px 0 28px; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78rem; color: var(--gold-dark); font-weight: 600; margin-bottom: 0.8em; }
+.lead { font-size: 1.15rem; color: var(--muted); }
+.lead-sm { color: var(--muted); max-width: 640px; margin-left: auto; margin-right: auto; }
+.section { padding: 56px 0; }
+.alt { background: var(--white); }
+.crumbs { padding-top: 18px; }
+.crumbs a { color: var(--muted); }

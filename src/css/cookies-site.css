@@ -1,0 +1,4 @@
+/* Só no site: o aviso fica à esquerda (o botão do WhatsApp ocupa a direita) e o botão some enquanto ele está aberto. */
+.cookie-aberto .wa-float { display: none; }
+.cookie-banner { line-height: 1.65; }
+@media (min-width: 700px) { .cookie-banner { left: 24px; right: auto; } }

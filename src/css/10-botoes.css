@@ -1,0 +1,37 @@
+/* Botões */
+.btn {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--white);
+  border: 2px solid var(--navy);
+  border-radius: 999px;
+  padding: 0.8em 1.5em;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  text-align: center;
+}
+.btn:hover { background: var(--gold-dark); border-color: var(--gold-dark); color: var(--white); }
+.btn-ghost { background: transparent; color: var(--navy); }
+.btn-ghost:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.btn-small { padding: 0.55em 1.1em; font-size: 0.92rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 1.4em 0 0.8em; }
+.actions.center { justify-content: center; }
+/* Regra de design: botões lado a lado no mesmo grupo têm a mesma largura (a do maior texto).
+   No celular, ficam empilhados e ocupam a largura toda. */
+.actions:has(> .btn + .btn) { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 600px) {
+  .actions:has(> .btn + .btn) { width: fit-content; max-width: 100%; }
+  .actions:has(> .btn + .btn) > .btn { white-space: nowrap; }
+  .actions:not(.stack):has(> .btn + .btn) { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 1fr; }
+  .actions.center:has(> .btn + .btn) { margin-left: auto; margin-right: auto; }
+  /* Colunas estreitas (topo da home e topo das páginas internas): empilhados, com a mesma largura. */
+  .hero-photo .actions:has(> .btn + .btn) { grid-template-columns: 1fr; grid-auto-flow: row; }
+}
+@media (min-width: 600px) and (max-width: 1099px) {
+  .hero-split .actions:has(> .btn + .btn) { grid-template-columns: 1fr; grid-auto-flow: row; }
+}
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }

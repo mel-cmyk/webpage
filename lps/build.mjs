@@ -29,7 +29,6 @@ const FONTES_LP = [
 ].join('\n');
 const fontesLp = () => `<link rel="preload" href="${url('/fonts/poppins-400.woff2')}" as="font" type="font/woff2" crossorigin>\n    <link rel="preload" href="${url('/fonts/lora-latin.woff2')}" as="font" type="font/woff2" crossorigin>\n    <style>${FONTES_LP.replaceAll('%/', url('/'))}</style>`;
 
-const versao = (arq) => crypto.createHash('sha1').update(fs.readFileSync(path.join(raiz, 'public', arq))).digest('hex').slice(0, 8);
 const vite = path.join(aqui, 'node_modules/.bin/vite');
 
 for (const lp of LPS) {
@@ -54,7 +53,7 @@ for (const lp of LPS) {
 
   html = html.replace('<html lang="pt-BR">', `<html lang="pt-BR" data-promo="${v.ativa ? 1 : 0}">`);
   html = html.replace('<div id="root"></div>', () => `<div id="root">${render()}</div>`);
-  html = html.replace('<!--MR_HEAD-->', `${STAGING ? '<meta name="robots" content="noindex, nofollow">\n    ' : ''}<link rel="stylesheet" href="${url('/css/consent.css')}?v=${versao('css/consent.css')}">\n    ${dicasGoogle}\n    ${fontesLp()}\n    <script src="${asset('/js/analytics.js')}" defer></script>`);
+  html = html.replace('<!--MR_HEAD-->', `${STAGING ? '<meta name="robots" content="noindex, nofollow">\n    ' : ''}<link rel="stylesheet" href="${asset('/css/consent.css')}">\n    ${dicasGoogle}\n    ${fontesLp()}\n    <script src="${asset('/js/analytics.js')}" defer></script>`);
   html = html.replace('<!--MR_BANNER-->', () => cookieBanner());
   const pagina = [{ name: 'view_item', params: { currency: 'BRL', value: v.preco, items: [itemGA(g, agora)] } }];
   html = html.replace('<!--MR_ANALYTICS-->', () => `<script id="ga-page" type="application/json">${JSON.stringify(pagina)}</script>`);
