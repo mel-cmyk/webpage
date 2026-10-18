@@ -47,7 +47,7 @@ lps/ (React) ──> lps/build.mjs ─> dist/guias/
 
 1. `node build.mjs` (use `SKIP_LPS=1` para pular as LPs).
 2. `npm test` confere links, SEO, preços e ids, e revisa o texto (travessão, emoji, "+650", palavra repetida, pontuação, concordância conhecida e palavras novas). Se aparecer "palavra desconhecida" e a palavra estiver certa, acrescente em `tests/palavras.txt`.
-3. `npm run test:browser` confere cookies, medição, funis e checkout.
+3. `npm run test:browser` confere cookies, medição, funis e checkout. `npm run test:acessibilidade` roda o axe (contraste, rótulos, estrutura) em todas as páginas. `npm run test:orcamento` barra páginas que ficam pesadas demais no celular.
 4. Se mexeu em aparência ou estrutura: `npm run comparar` e `npm run visual` (guardar o antes com `npm run referencia` e `npm run visual:salvar`). Devem dizer "idêntico" quando a mudança não deveria alterar nada.
 
 O GitHub repete `npm test` e o teste de navegador sozinho em cada pull request e antes de cada publicação. Se algum falhar, o site não é publicado.

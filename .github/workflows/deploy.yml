@@ -81,6 +81,10 @@ jobs:
           SITE_STAGING: '0'
       - name: Testar no navegador
         run: node tests/comportamento.mjs
+      - name: Testar acessibilidade (axe)
+        run: node tests/acessibilidade.mjs
+      - name: Conferir o orçamento de peso
+        run: node tests/orcamento.mjs
 
   deploy:
     if: ${{ github.event_name != 'pull_request' }}
