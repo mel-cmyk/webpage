@@ -215,5 +215,22 @@ titulo('Funis: eventos e um único generate_lead por execução');
   await ctx.close();
 }
 
+// ---------------------------------------------------------------- 3. Páginas de venda dos guias (React)
+titulo('LPs dos guias: o React assume a página e o FAQ abre');
+for (const lp of ['/guias/paris-com-criancas/', '/guias/paris-essencial/']) {
+  const { ctx, p, erros } = await pagina(lp);
+  const lido = () => p.evaluate(() => [...document.querySelectorAll('button[aria-expanded]')].map((x) => x.getAttribute('aria-expanded')).join());
+  const antes = await lido();
+  const botao = await p.$('button[aria-expanded]');
+  if (botao) {
+    await botao.scrollIntoViewIfNeeded();
+    await botao.click({ force: true });
+    await p.waitForTimeout(200);
+  }
+  conferir(`${lp}: o FAQ abre (o JavaScript carregou e hidratou)`, !!botao && antes !== (await lido()));
+  conferir(`${lp}: sem erro de JavaScript`, erros.length === 0);
+  await ctx.close();
+}
+
 await browser.close();
 encerrar();

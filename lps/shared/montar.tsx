@@ -1,7 +1,7 @@
-// Montagem das LPs: o mesmo código para o navegador (hidrata o HTML pré-gerado) e para o build (gera esse HTML).
+// Montagem das LPs no navegador: hidrata o HTML pré-gerado (ou renderiza, se a página vier vazia).
+// A geração do HTML (react-dom/server) fica em renderizar.tsx, para não entrar no JavaScript que o visitante baixa.
 import React from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import { renderToString } from 'react-dom/server';
 
 export function montar(App: React.ComponentType): void {
   const rootElement = document.getElementById('root');
@@ -13,12 +13,4 @@ export function montar(App: React.ComponentType): void {
   );
   if (rootElement.hasChildNodes()) hydrateRoot(rootElement, app);
   else createRoot(rootElement).render(app);
-}
-
-export function renderizar(App: React.ComponentType): string {
-  return renderToString(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
 }

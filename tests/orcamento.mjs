@@ -6,8 +6,8 @@ const paginas = (await import('node:fs'))
   .readFileSync('dist/sitemap.xml', 'utf8')
   .match(/<loc>[^<]+<\/loc>/g)
   .map((x) => new URL(x.replace(/<\/?loc>/g, '')).pathname);
-// Páginas do site (HTML estático) e páginas de venda dos guias (React, bem mais pesadas: o JS delas é uma meta de redução, ver docs).
-const LIMITES = { site: { total: 700, js: 50, css: 45, html: 60 }, guia: { total: 1200, js: 560, css: 40, html: 100 } };
+// Páginas do site (HTML estático) e páginas de venda dos guias (React, bem mais pesadas: o React é o grosso do peso).
+const LIMITES = { site: { total: 700, js: 50, css: 45, html: 60 }, guia: { total: 950, js: 300, css: 40, html: 100 } };
 const imprimir = process.argv.includes('--tabela');
 
 const b = await iniciar();
