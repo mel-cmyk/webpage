@@ -60,6 +60,8 @@ Guia completo de "pedido → arquivo": **`docs/COMO-ALTERAR.md`**.
 
 - `npm test`: confere o site gerado (links, SEO, preços, peso) e revisa o texto (`tests/texto.mjs`: erros de escrita comuns e palavras novas, com a lista revisada em `tests/palavras.txt`). Roda sozinho antes de cada deploy.
 - `npm run test:browser`: abre o site num navegador de teste e confere cookies, medição, funis e checkout (precisa de `npm install` uma vez).
+- `npm run test:acessibilidade`: axe-core em todas as páginas, celular e desktop; reprova em problemas sérios (contraste, rótulos).
+- `npm run test:orcamento`: peso de cada página no celular (HTML, CSS, JS, fontes e imagens) contra um orçamento.
 - Antes de uma refatoração: `node build.mjs && npm run referencia && npm run visual:salvar`. Depois de mexer: `node build.mjs && npm run comparar && npm run visual`. Os dois devem dizer "idêntico". Para mexidas só de organização no CSS, `npm run estilos` compara o estilo calculado de todos os elementos (celular e desktop, com os resultados do quiz e do diagnóstico) contra a referência.
 
 ## Rodar localmente
