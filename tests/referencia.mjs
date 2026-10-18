@@ -25,16 +25,25 @@ if (modo === 'salvar') {
   fs.cpSync(DIST, REF, { recursive: true });
   console.log(`Referência salva em ${REF}/ (${listar(REF).length} arquivos).`);
 } else if (modo === 'comparar') {
-  if (!fs.existsSync(REF)) { console.error('Sem referência: rode "node tests/referencia.mjs salvar" antes de mexer no código.'); process.exit(2); }
+  if (!fs.existsSync(REF)) {
+    console.error('Sem referência: rode "node tests/referencia.mjs salvar" antes de mexer no código.');
+    process.exit(2);
+  }
   const a = new Map(listar(REF).map((r) => [chave(r), r]));
   const b = new Map(listar(DIST).map((r) => [chave(r), r]));
   const dif = [];
   for (const [k, r] of a) {
-    if (!b.has(k)) { dif.push(`removido: ${r}`); continue; }
+    if (!b.has(k)) {
+      dif.push(`removido: ${r}`);
+      continue;
+    }
     if (conteudo(REF, r) !== conteudo(DIST, b.get(k))) dif.push(`mudou: ${b.get(k)}`);
   }
   for (const [k, r] of b) if (!a.has(k)) dif.push(`novo: ${r}`);
-  if (dif.length) { console.log(`${dif.length} diferença(s) em relação à referência:\n${dif.map((d) => `- ${d}`).join('\n')}`); process.exit(1); }
+  if (dif.length) {
+    console.log(`${dif.length} diferença(s) em relação à referência:\n${dif.map((d) => `- ${d}`).join('\n')}`);
+    process.exit(1);
+  }
   console.log(`Idêntico à referência (${a.size} arquivos).`);
 } else {
   console.error('Uso: node tests/referencia.mjs salvar | comparar');

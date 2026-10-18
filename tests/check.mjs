@@ -22,7 +22,11 @@ function arquivos(dir, ext) {
 }
 const paginasHtml = arquivos(DIST, '.html');
 const ler = (f) => fs.readFileSync(f, 'utf8');
-const txt = (h) => h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+const txt = (h) =>
+  h
+    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ');
 const nome = (f) => path.relative(DIST, f).replace(/index\.html$/, '') || '/';
 const eur = (n) => `€ ${String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
 
@@ -51,7 +55,11 @@ for (const f of reais) {
   const t2 = txt(h);
   for (const lixo of ['undefined', 'NaN', '[object Object]', '{numeros', '${']) if (t2.includes(lixo)) erro(`${n}: texto com "${lixo}"`);
   for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
-    try { JSON.parse(m[1]); } catch { erro(`${n}: JSON-LD inválido`); }
+    try {
+      JSON.parse(m[1]);
+    } catch {
+      erro(`${n}: JSON-LD inválido`);
+    }
   }
 }
 
@@ -75,10 +83,14 @@ const menor = Math.min(...data.tours.map((t) => Math.min(...t.precos.map((p) => 
 const hub = txt(ler(path.join(DIST, 'tours-em-paris', 'index.html')));
 if (!hub.includes(`A partir de ${eur(menor)}`) && !hub.includes(`a partir de ${eur(menor)}`)) erro(`tours-em-paris: não mostra "a partir de ${eur(menor)}"`);
 const cardTours = data.servicos.find((s) => s.id === 'tours');
-if (cardTours.preco_a_partir_de !== menor) erro(`data/ofertas.json: servicos.tours.preco_a_partir_de (${cardTours.preco_a_partir_de}) difere do menor preço dos tours (${menor})`);
+if (cardTours.preco_a_partir_de !== menor)
+  erro(`data/ofertas.json: servicos.tours.preco_a_partir_de (${cardTours.preco_a_partir_de}) difere do menor preço dos tours (${menor})`);
 for (const t of data.tours) {
   const f = path.join(DIST, 'tours-em-paris', t.id, 'index.html');
-  if (!fs.existsSync(f)) { erro(`tour sem página: ${t.id}`); continue; }
+  if (!fs.existsSync(f)) {
+    erro(`tour sem página: ${t.id}`);
+    continue;
+  }
   const h = txt(ler(f));
   for (const p of t.precos) if (!h.includes(eur(p.valor))) erro(`${t.id}: preço ${eur(p.valor)} não aparece na página`);
   if (!h.includes(t.duracao)) erro(`${t.id}: duração ${t.duracao} não aparece na página`);
@@ -109,7 +121,11 @@ for (const f of reais) {
 }
 
 // 6. Medição: sintaxe do analytics.js, e o Clarity só aparece com ID válido
-try { execFileSync('node', ['--check', path.join(DIST, 'js', 'analytics.js')]); } catch { erro('analytics.js com erro de sintaxe'); }
+try {
+  execFileSync('node', ['--check', path.join(DIST, 'js', 'analytics.js')]);
+} catch {
+  erro('analytics.js com erro de sintaxe');
+}
 const home = ler(path.join(DIST, 'index.html'));
 const temClarity = /data-clarity="/.test(home);
 if (temClarity !== /^[a-z0-9]{8,12}$/i.test(integ.clarity_id || '')) erro('Clarity: atributo data-clarity não bate com clarity_id');
@@ -121,7 +137,12 @@ for (const f of paginasHtml) if (/fonts\.(googleapis|gstatic)\.com/.test(ler(f))
 // 6c. Integrações: os IDs de data/integracoes.json chegam ao analytics.js e às páginas
 {
   const js = ler(path.join(DIST, 'js', 'analytics.js'));
-  for (const [rotulo, id] of [['GA4', integ.google.analytics_id], ['Google Ads', integ.google.ads_id], ['TikTok', integ.tiktok.pixel_id]]) if (!js.includes(`'${id}'`)) erro(`analytics.js: ID de ${rotulo} (${id}) não aparece`);
+  for (const [rotulo, id] of [
+    ['GA4', integ.google.analytics_id],
+    ['Google Ads', integ.google.ads_id],
+    ['TikTok', integ.tiktok.pixel_id],
+  ])
+    if (!js.includes(`'${id}'`)) erro(`analytics.js: ID de ${rotulo} (${id}) não aparece`);
   if (/\{\{[A-Z_]+\}\}/.test(js)) erro('analytics.js: placeholder sem substituir');
   for (const pg of ['index.html', path.join('guias', 'paris-essencial', 'index.html'), path.join('guias', 'paris-com-criancas', 'index.html')]) {
     if (!ler(path.join(DIST, pg)).includes(`data-meta-pixel="${integ.meta.pixel_id}"`)) erro(`${pg}: pixel da Meta diferente de data/integracoes.json`);
@@ -140,8 +161,11 @@ for (const f of arquivos(DIST)) {
 const conteudo = JSON.parse(fs.readFileSync('data/conteudo.json', 'utf8'));
 const idsTours = new Set(data.tours.map((t) => t.id));
 for (const id of Object.keys(conteudo.selos_tours)) if (!idsTours.has(id)) erro(`conteudo.json: selo para tour inexistente "${id}"`);
-for (const [k, a] of Object.entries(conteudo.tripadvisor.avaliacoes)) for (const id of a.tours || []) if (!idsTours.has(id)) erro(`conteudo.json: avaliação ${k} cita tour inexistente "${id}"`);
-for (const [n, p] of conteudo.quiz_perguntas.entries()) for (const o of p.opcoes) for (const id of Object.keys(o.pontos)) if (!idsTours.has(id)) erro(`conteudo.json: quiz, pergunta ${n + 1} pontua tour inexistente "${id}"`);
+for (const [k, a] of Object.entries(conteudo.tripadvisor.avaliacoes))
+  for (const id of a.tours || []) if (!idsTours.has(id)) erro(`conteudo.json: avaliação ${k} cita tour inexistente "${id}"`);
+for (const [n, p] of conteudo.quiz_perguntas.entries())
+  for (const o of p.opcoes)
+    for (const id of Object.keys(o.pontos)) if (!idsTours.has(id)) erro(`conteudo.json: quiz, pergunta ${n + 1} pontua tour inexistente "${id}"`);
 
 for (const a of avisos) console.log(`aviso: ${a}`);
 if (erros.length) {

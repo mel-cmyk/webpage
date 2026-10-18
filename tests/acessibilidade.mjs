@@ -4,19 +4,28 @@ import fs from 'node:fs';
 import { iniciar, contexto, SITE } from './lib/navegador.mjs';
 
 const axeSrc = fs.readFileSync('node_modules/axe-core/axe.min.js', 'utf8');
-const paginas = fs.readFileSync('dist/sitemap.xml', 'utf8').match(/<loc>[^<]+<\/loc>/g).map((x) => new URL(x.replace(/<\/?loc>/g, '')).pathname);
+const paginas = fs
+  .readFileSync('dist/sitemap.xml', 'utf8')
+  .match(/<loc>[^<]+<\/loc>/g)
+  .map((x) => new URL(x.replace(/<\/?loc>/g, '')).pathname);
 const GRAVES = new Set(['serious', 'critical']);
 const lista = process.argv.includes('--tudo');
 
 const b = await iniciar();
 const achados = new Map();
-for (const [nome, l, a, cel] of [['cel', 390, 800, true], ['desk', 1280, 900, false]]) {
+for (const [, l, a, cel] of [
+  ['cel', 390, 800, true],
+  ['desk', 1280, 900, false],
+]) {
   const { ctx } = await contexto(b, { largura: l, altura: a, celular: cel });
   const p = await ctx.newPage();
   for (const estado of ['aviso', 'fechado']) {
     for (const caminho of paginas) {
-      await p.addInitScript((e) => { if (e === 'fechado') localStorage.setItem('mr_consent', JSON.stringify({ ads: false, analytics: false, timestamp: Date.now() })); }, estado);
-      await p.goto(SITE + caminho); await p.waitForTimeout(200);
+      await p.addInitScript((e) => {
+        if (e === 'fechado') localStorage.setItem('mr_consent', JSON.stringify({ ads: false, analytics: false, timestamp: Date.now() }));
+      }, estado);
+      await p.goto(SITE + caminho);
+      await p.waitForTimeout(200);
       await p.evaluate(axeSrc);
       const r = await p.evaluate(() => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] } }));
       for (const v of r.violations) {

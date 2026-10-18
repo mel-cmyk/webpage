@@ -8,9 +8,25 @@ const quizPerguntas = CONTEUDO.quiz_perguntas.map((p) => ({ q: p.pergunta, o: p.
 
 export function quizTour(data) {
   const tours = Object.fromEntries(
-    data.tours.map((t) => [t.id, { nome: t.nome, subtitulo: t.subtitulo || '', ideal: t.ideal_para || '', duracao: t.duracao, pagina: url('/tours-em-paris/' + t.id + '/'), preco: eur(menorPreco(t)) }])
+    data.tours.map((t) => [
+      t.id,
+      {
+        nome: t.nome,
+        subtitulo: t.subtitulo || '',
+        ideal: t.ideal_para || '',
+        duracao: t.duracao,
+        pagina: url('/tours-em-paris/' + t.id + '/'),
+        preco: eur(menorPreco(t)),
+      },
+    ])
   );
-  const cfg = { tours, perguntas: quizPerguntas, whatsapp: data.marca.whatsapp_site_link, personalizado: url('/tours-em-paris/tour-personalizado/'), todos: url('/tours-em-paris/') };
+  const cfg = {
+    tours,
+    perguntas: quizPerguntas,
+    whatsapp: data.marca.whatsapp_site_link,
+    personalizado: url('/tours-em-paris/tour-personalizado/'),
+    todos: url('/tours-em-paris/'),
+  };
   const body = `
 <section class="hero hero-sm">
   <div class="wrap narrow">
@@ -45,12 +61,19 @@ export function quizTour(data) {
   return {
     path: '/qual-tour-combina-com-voce/',
     title: 'Quiz: qual tour em Paris combina com você? | Mel Rolan',
-    description: 'Responda seis perguntas divertidas sobre o seu jeito de viajar e descubra qual tour privativo em Paris, em português, tem mais a ver com você.',
+    description:
+      'Responda seis perguntas divertidas sobre o seu jeito de viajar e descubra qual tour privativo em Paris, em português, tem mais a ver com você.',
     body,
     scripts: ['/js/wizard.js', '/js/quiz-tour.js'],
     noFloat: true,
     og: 'og/tours.jpg',
-    jsonld: [breadcrumbLd([['Início', '/'], ['Tours em Paris', '/tours-em-paris/'], ['Quiz do tour ideal', '/qual-tour-combina-com-voce/']])],
+    jsonld: [
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Tours em Paris', '/tours-em-paris/'],
+        ['Quiz do tour ideal', '/qual-tour-combina-com-voce/'],
+      ]),
+    ],
   };
 }
 

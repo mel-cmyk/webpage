@@ -13,7 +13,8 @@ const FORMATOS = {
 const ler = (caminho) => caminho.split('.').reduce((o, k) => (o ? o[k] : undefined), INTEG);
 for (const [caminho, [formato, exemplo]] of Object.entries(FORMATOS)) {
   const v = ler(caminho);
-  if (typeof v !== 'string' || !formato.test(v)) throw new Error(`data/integracoes.json: "${caminho}" ausente ou fora do formato (${exemplo}). Valor: ${JSON.stringify(v)}`);
+  if (typeof v !== 'string' || !formato.test(v))
+    throw new Error(`data/integracoes.json: "${caminho}" ausente ou fora do formato (${exemplo}). Valor: ${JSON.stringify(v)}`);
 }
 // Clarity é opcional: vazio desliga a ferramenta (ver clarityAttr em layout.mjs).
 if (INTEG.clarity_id && !/^[a-z0-9]{8,12}$/i.test(INTEG.clarity_id)) throw new Error('data/integracoes.json: "clarity_id" fora do formato');

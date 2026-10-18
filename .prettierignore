@@ -1,0 +1,16 @@
+# Só código (.mjs, .js, .ts, .tsx). O CSS fica em uma regra por linha de propósito, e os JSON de dados têm o próprio padrão (tests/texto.mjs).
+dist
+dist-server
+node_modules
+.referencia
+.visual
+.visual.novo
+**/*.css
+**/*.json
+**/*.md
+**/*.html
+**/*.yml
+**/*.webmanifest
+lps/**/dist
+lps/**/dist-server
+lps/**/node_modules

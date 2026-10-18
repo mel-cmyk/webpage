@@ -3,12 +3,12 @@ import { url, esc, money, wa, menorPreco, img, SITE_URL } from '../helpers.mjs';
 import { itemGA } from '../oferta.mjs';
 
 // Expectativa de resposta (Diogo, 17/10/2026).
-export const RESPOSTA = 'Respondemos em até 24 horas, no horário de Paris (4 a 5 horas à frente de Brasília, conforme a época do ano). Nosso atendimento é 100% humano.';
+export const RESPOSTA =
+  'Respondemos em até 24 horas, no horário de Paris (4 a 5 horas à frente de Brasília, conforme a época do ano). Nosso atendimento é 100% humano.';
 
 export const servico = (data, id) => data.servicos.find((s) => s.id === id);
 
-export const precoServico = (s) =>
-  s.preco != null ? money(s.moeda, s.preco) : `A partir de ${money(s.moeda, s.preco_a_partir_de)}`;
+export const precoServico = (s) => (s.preco != null ? money(s.moeda, s.preco) : `A partir de ${money(s.moeda, s.preco_a_partir_de)}`);
 
 export const CARD_SIZES = '(min-width: 1000px) 340px, (min-width: 700px) 50vw, 100vw';
 
@@ -44,20 +44,22 @@ export const servicoLd = (s, descricao) => ({
   name: s.nome,
   serviceType: s.nome,
   description: descricao,
-  areaServed: [{ '@type': 'Country', name: 'França' }, { '@type': 'City', name: 'Paris' }],
+  areaServed: [
+    { '@type': 'Country', name: 'França' },
+    { '@type': 'City', name: 'Paris' },
+  ],
   availableLanguage: 'pt-BR',
   provider: { '@type': 'TravelAgency', name: 'Mel Rolan Travel Designer', url: SITE_URL },
   offers: {
     '@type': 'Offer',
     priceCurrency: s.moeda,
-    ...(s.preco != null ? { price: s.preco } : { priceSpecification: { '@type': 'PriceSpecification', minPrice: s.preco_a_partir_de, priceCurrency: s.moeda } }),
+    ...(s.preco != null
+      ? { price: s.preco }
+      : { priceSpecification: { '@type': 'PriceSpecification', minPrice: s.preco_a_partir_de, priceCurrency: s.moeda } }),
   },
 });
 
-export const faqHtml = (items) =>
-  `<div class="faq">${items
-    .map((f) => `<details><summary>${esc(f.q)}</summary><p>${f.a}</p></details>`)
-    .join('')}</div>`;
+export const faqHtml = (items) => `<div class="faq">${items.map((f) => `<details><summary>${esc(f.q)}</summary><p>${f.a}</p></details>`).join('')}</div>`;
 
 export const faqLd = (items) => ({
   '@context': 'https://schema.org',

@@ -40,7 +40,10 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e r
     body,
     og: 'og/sobre.jpg',
     jsonld: [
-      breadcrumbLd([['Início', '/'], ['Sobre a Mel', '/sobre/']]),
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Sobre a Mel', '/sobre/'],
+      ]),
       {
         '@context': 'https://schema.org',
         '@type': 'Person',
@@ -68,14 +71,18 @@ export function naMidia(data) {
     <h1>A Mel Rolan na imprensa</h1>
     <p class="lead">Matérias em que a Mel fala sobre planejar viagens, Paris e viagens em família.</p>
     <div class="imprensa-lista">
-      ${data.imprensa.map((x) => `<article class="imprensa-item">
+      ${data.imprensa
+        .map(
+          (x) => `<article class="imprensa-item">
         ${logoImg(x)}
         <p class="imprensa-veiculo">${veiculoTxt(x)} · ${dataBR(x.data)}${x.autor ? ` · por ${esc(x.autor)}` : ''}</p>
         <h2><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.titulo)}</a></h2>
         <p>${esc(x.subtitulo)}</p>
         ${x.citacao ? `<blockquote>“${esc(x.citacao)}”</blockquote>` : ''}
         <p class="small"><a href="${esc(x.url)}" target="_blank" rel="noopener">Ler a matéria em ${esc(x.veiculo)}</a></p>
-      </article>`).join('')}
+      </article>`
+        )
+        .join('')}
     </div>
     <div class="assessoria">
       ${img('imprensa/milene-pinto', `${data.assessoria.nome}, ${data.assessoria.cargo.toLowerCase()}`, { cls: 'assessoria-foto', sizes: '96px' })}
@@ -93,10 +100,16 @@ ${ctaFinal(data, 'Vamos desenhar a sua viagem?', 'Conte como é a sua viagem e r
   return {
     path: '/na-midia/',
     title: 'Mel Rolan na mídia | Matérias e entrevistas',
-    description: 'Matérias da imprensa brasileira com a Mel Rolan, travel designer brasileira em Paris, sobre planejamento de viagens, calor em Paris e viagens em família.',
+    description:
+      'Matérias da imprensa brasileira com a Mel Rolan, travel designer brasileira em Paris, sobre planejamento de viagens, calor em Paris e viagens em família.',
     body,
     og: 'og/sobre.jpg',
-    jsonld: [breadcrumbLd([['Início', '/'], ['Na mídia', '/na-midia/']])],
+    jsonld: [
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Na mídia', '/na-midia/'],
+      ]),
+    ],
   };
 }
 
@@ -147,7 +160,7 @@ ${provaRapida(m)}
     <h2 class="center">Partenaires en France</h2>
     <div class="narrow">
       <p>Le Brésil est le troisième marché non européen de la France en nombre de visiteurs, après les États-Unis et le Canada. Ces voyageurs aiment Paris, mais ils cherchent à la découvrir dans leur langue et avec des repères qu'ils comprennent.</p>
-      <p>Installée en France depuis plus de ${({ 5: 'cinq', 6: 'six', 7: 'sept', 8: 'huit', 9: 'neuf', 10: 'dix' })[m.anos_na_franca.replace('+', '')] || m.anos_na_franca.replace('+', '')} ans, Mel Rolan accompagne des voyageurs brésiliens à Paris depuis ${m.ano_fundacao} : itinéraires sur mesure, conseil et visites privées en portugais.</p>
+      <p>Installée en France depuis plus de ${{ 5: 'cinq', 6: 'six', 7: 'sept', 8: 'huit', 9: 'neuf', 10: 'dix' }[m.anos_na_franca.replace('+', '')] || m.anos_na_franca.replace('+', '')} ans, Mel Rolan accompagne des voyageurs brésiliens à Paris depuis ${m.ano_fundacao} : itinéraires sur mesure, conseil et visites privées en portugais.</p>
     </div>
     <div class="grid-2">
       <article class="card"><div class="card-body"><h3>Ce que nous cherchons</h3><p>Des acteurs qui partagent notre exigence de qualité : prestataires d'expériences (ateliers, dégustations, activités pour les familles), hébergements et adresses adaptés aux familles et aux petits groupes, professionnels du tourisme qui reçoivent une clientèle brésilienne et souhaitent mieux l'accueillir.</p></div></article>
@@ -163,9 +176,15 @@ ${provaRapida(m)}
   return {
     path: '/parcerias/',
     title: 'Parcerias | Mel Rolan Travel Designer',
-    description: 'Parcerias com agências de viagem brasileiras e prestadores de experiências na França. Tours privativos em português, roteiros e consultoria em formato B2B.',
+    description:
+      'Parcerias com agências de viagem brasileiras e prestadores de experiências na França. Tours privativos em português, roteiros e consultoria em formato B2B.',
     body,
     og: 'og/sobre.jpg',
-    jsonld: [breadcrumbLd([['Início', '/'], ['Parcerias', '/parcerias/']])],
+    jsonld: [
+      breadcrumbLd([
+        ['Início', '/'],
+        ['Parcerias', '/parcerias/'],
+      ]),
+    ],
   };
 }

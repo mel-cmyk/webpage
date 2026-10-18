@@ -5,14 +5,33 @@ import path from 'node:path';
 import { chromium } from 'playwright-core';
 
 const DIST = path.resolve('dist');
-const TIPOS = { html: 'text/html', js: 'text/javascript', css: 'text/css', webp: 'image/webp', png: 'image/png', jpg: 'image/jpeg', woff2: 'font/woff2', ico: 'image/x-icon', svg: 'image/svg+xml', json: 'application/json', xml: 'text/xml', txt: 'text/plain', pdf: 'application/pdf', webmanifest: 'application/manifest+json' };
+const TIPOS = {
+  html: 'text/html',
+  js: 'text/javascript',
+  css: 'text/css',
+  webp: 'image/webp',
+  png: 'image/png',
+  jpg: 'image/jpeg',
+  woff2: 'font/woff2',
+  ico: 'image/x-icon',
+  svg: 'image/svg+xml',
+  json: 'application/json',
+  xml: 'text/xml',
+  txt: 'text/plain',
+  pdf: 'application/pdf',
+  webmanifest: 'application/manifest+json',
+};
 const SIMULADOS = /(^|\.)(googletagmanager\.com|clarity\.ms|tiktok\.com|facebook\.net)$/;
 
 function acharChrome() {
   if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
   const base = process.env.PLAYWRIGHT_BROWSERS_PATH || '/opt/pw-browsers';
   if (fs.existsSync(base)) {
-    for (const d of fs.readdirSync(base).filter((x) => /^chromium-\d+$/.test(x)).sort().reverse()) {
+    for (const d of fs
+      .readdirSync(base)
+      .filter((x) => /^chromium-\d+$/.test(x))
+      .sort()
+      .reverse()) {
       const p = path.join(base, d, 'chrome-linux', 'chrome');
       if (fs.existsSync(p)) return p;
     }
@@ -26,7 +45,12 @@ export async function iniciar() {
 
 // Contexto com o site no ar "no domínio oficial". `registro.externos` lista os hosts de terceiros pedidos.
 export async function contexto(browser, { largura = 390, altura = 800, celular = true } = {}) {
-  const ctx = await browser.newContext({ viewport: { width: largura, height: altura }, isMobile: celular, deviceScaleFactor: celular ? 2 : 1, reducedMotion: 'reduce' });
+  const ctx = await browser.newContext({
+    viewport: { width: largura, height: altura },
+    isMobile: celular,
+    deviceScaleFactor: celular ? 2 : 1,
+    reducedMotion: 'reduce',
+  });
   const registro = { externos: [], bloqueados: [] };
   await ctx.route('**/*', (r) => {
     const u = new URL(r.request().url());

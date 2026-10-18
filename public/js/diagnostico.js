@@ -3,15 +3,21 @@
   const cfg = JSON.parse((document.getElementById('diagnostico-config') || {}).textContent || 'null');
   const form = document.getElementById('diagnostico');
   if (!cfg || !form) return;
-  let w; let result; let fluxo; let track;
+  let w;
+  let result;
+  let fluxo;
+  let track;
   const val = (name) => {
     const els = form.querySelectorAll(`[name="${name}"]`);
-    if (els.length && els[0].type === 'checkbox') return [...els].filter((e) => e.checked).map((e) => e.value).join(', ');
-    return (form.elements[name] && form.elements[name].value || '').trim();
+    if (els.length && els[0].type === 'checkbox')
+      return [...els]
+        .filter((e) => e.checked)
+        .map((e) => e.value)
+        .join(', ');
+    return ((form.elements[name] && form.elements[name].value) || '').trim();
   };
   const lista = (name) => [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((e) => e.value);
-  const labelOf = (name) =>
-    [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((el) => el.parentElement.textContent.trim()).join('; ');
+  const labelOf = (name) => [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((el) => el.parentElement.textContent.trim()).join('; ');
 
   // WhatsApp em formato internacional (E.164). Sem código de país, assume Brasil (+55).
   function telefone() {
@@ -39,8 +45,16 @@
       return false;
     }
     if (step.querySelector('[name="whatsapp"]')) {
-      if (!val('nome')) { error.textContent = 'Informe o seu primeiro nome.'; form.elements.nome.focus(); return false; }
-      if (!telefoneValido()) { error.textContent = 'Informe um WhatsApp válido, com DDD (ex.: 11 91234-5678).'; form.elements.whatsapp.focus(); return false; }
+      if (!val('nome')) {
+        error.textContent = 'Informe o seu primeiro nome.';
+        form.elements.nome.focus();
+        return false;
+      }
+      if (!telefoneValido()) {
+        error.textContent = 'Informe um WhatsApp válido, com DDD (ex.: 11 91234-5678).';
+        form.elements.whatsapp.focus();
+        return false;
+      }
     }
     return true;
   }
@@ -141,9 +155,10 @@
            <div class="actions"><a class="btn" href="${waLink}" data-wa="diagnostico-${rec}" data-flow="diagnostico">Continuar no WhatsApp</a>
            <a class="btn btn-ghost" href="${s.pagina}">Conhecer ${s.nome.toLowerCase()}</a></div>`;
 
-    const extraTour = (recs.principal === 'tours' || recs.complemento === 'tours') && cfg.quizTour
-      ? `<p class="small">Quer descobrir qual tour tem mais a ver com você? <a href="${cfg.quizTour}" data-cta="diagnostico-quiz-tour">Faça o quiz do tour ideal</a>.</p>`
-      : '';
+    const extraTour =
+      (recs.principal === 'tours' || recs.complemento === 'tours') && cfg.quizTour
+        ? `<p class="small">Quer descobrir qual tour tem mais a ver com você? <a href="${cfg.quizTour}" data-cta="diagnostico-quiz-tour">Faça o quiz do tour ideal</a>.</p>`
+        : '';
     const blocoComplemento = c
       ? `<div class="result-extra"><p class="eyebrow">Para completar</p><h3>${c.nome}</h3><p>${textos[recs.complemento]}</p><p class="price">${c.preco}</p><a href="${c.pagina}">Conhecer ${c.nome.toLowerCase()}</a></div>`
       : '';
@@ -165,10 +180,15 @@
       prazo_viagem: val('quando'),
       perfil_viagem: val('quem'),
     };
-    result.querySelectorAll('a[data-wa]').forEach((a) => { a.dataset.lead = JSON.stringify(params); a.dataset.servico = rec; });
+    result.querySelectorAll('a[data-wa]').forEach((a) => {
+      a.dataset.lead = JSON.stringify(params);
+      a.dataset.servico = rec;
+    });
     w.mostrarResultado();
-    if (fluxo) { fluxo.resultId = rec; fluxo.conclusao(rec, Object.assign({ procura: val('procura') }, params)); }
-    else track('diagnostico_conclusao', Object.assign({ procura: val('procura') }, params));
+    if (fluxo) {
+      fluxo.resultId = rec;
+      fluxo.conclusao(rec, Object.assign({ procura: val('procura') }, params));
+    } else track('diagnostico_conclusao', Object.assign({ procura: val('procura') }, params));
 
     // Sem nome ou WhatsApp no GA: só as respostas de múltipla escolha vão para a medição.
     salvarLead({
@@ -186,7 +206,10 @@
         if (fluxo) fluxo.lead('formulario', 'diagnostico_form', rec, Object.assign({ servico: rec }, params));
         else track('generate_lead', Object.assign({ servico: rec }, params));
       })
-      .catch((e) => { console.warn('Lead do diagnóstico não foi salvo:', e.message); track('lead_erro', { metodo: 'diagnostico' }); });
+      .catch((e) => {
+        console.warn('Lead do diagnóstico não foi salvo:', e.message);
+        track('lead_erro', { metodo: 'diagnostico' });
+      });
   }
 
   // Só no fim: os ganchos acima usam funções declaradas neste arquivo.
