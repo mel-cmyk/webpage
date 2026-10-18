@@ -1,12 +1,13 @@
 // Blocos de conteúdo reaproveitados em mais de uma página (provas, avaliações, imprensa, selos e textos de tours). Preços, números e contatos vêm de data/ofertas.json.
 import { url, esc, img } from '../helpers.mjs';
+import { CONTEUDO } from '../conteudo.mjs';
 
 // Selos nos cards de tour. Sem comparação entre tours (Diogo, 18/10/2026): nada de "mais" ou "melhor", só elogio ao próprio tour.
-export const SELOS = { 'eixo-historico': 'Muito procurado', montmartre: 'Queridinho dos viajantes', 'paris-de-cinema': 'Novidade' };
+export const SELOS = CONTEUDO.selos_tours;
 
 export const seloTour = (t) => (SELOS[t.id] ? `<p class="selo-tour">${SELOS[t.id]}</p>` : '');
 
-export const TRIP_URL = 'https://www.tripadvisor.fr/Attraction_Review-g187147-d34501789-Reviews-Mel_Rolan_Tours_em_Paris_para_Brasileiros-Paris_Ile_de_France.html';
+export const TRIP_URL = CONTEUDO.tripadvisor.url;
 
 export const provaRapida = (m) => `
 <section class="proof" aria-label="Números da Mel Rolan">
@@ -42,12 +43,7 @@ export const depoimentos = (m, extra = '') => `
 
 // Avaliações do Tripadvisor (perfil "Mel Rolan — Tours em Paris"), publicadas com autorização dos clientes (Diogo, 17/10/2026).
 // Trechos fiéis ao texto original; [...] marca cortes e [colchetes] marcam edições (a ferramenta do roteiro não é nomeada).
-export const TRIP = {
-  marise: { tours: ['paris-de-cinema'], titulo: 'Uma das melhores tardes da minha vida!', texto: 'Fiz o roteiro Paris de Cinema com meu marido e foi uma experiência incrível. [...] A Mel faz toda a diferença. Existe uma sensibilidade enorme na construção do roteiro, na escolha de cada lugar, nas histórias que ela conta e até na música que acompanha alguns momentos.', autor: 'Marise Lemos', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
-  rafael: { tours: ['paris-de-cinema'], titulo: 'Paris com a Mel é ainda mais interessante e especial', texto: 'Já estive algumas vezes em Paris, mas esse tour me fez enxergar a cidade de outra forma. [...] Recomendo muito para todos e especialmente, para os brasileiros.', autor: 'Rafael D.', info: 'São Paulo (SP) · em casal · Paris de Cinema' },
-  lucas: { tours: ['quartier-latin-e-ile-de-la-cite', 'tour-personalizado'], titulo: 'O melhor tour de Paris', texto: 'Nada pareceu apressado ou decorado. Ela sempre estava disposta a parar, responder perguntas, se aprofundar em algo que despertava a minha curiosidade e adaptar a experiência ao longo do caminho. [...] Recomendo sem hesitar a quem quer descobrir Paris de um jeito mais pessoal, interessante e humano.', autor: 'Lucas A.', info: 'viajando sozinho · Quartier Latin · traduzido do inglês' },
-  rafaelRoteiro: { titulo: 'Paris com roteiro perfeito e organização impecável', texto: 'Recebemos um guia super completo da cidade, com um roteiro muito bem planejado, sugestões dos melhores restaurantes e toda a programação organizada dia a dia [numa plataforma digital]. [...] A organização foi impecável e deixou nossa viagem muito mais tranquila e especial.', autor: 'Rafael D.', info: 'São Paulo (SP) · em família · roteiro sob medida' },
-};
+export const TRIP = CONTEUDO.tripadvisor.avaliacoes;
 
 export const tripCard = (d) => `<figure><p class="quote-title">${esc(d.titulo)}</p><blockquote>“${esc(d.texto)}”</blockquote><figcaption><strong>${esc(d.autor)}</strong>, ${esc(d.info)} · Tripadvisor, 5 de 5</figcaption></figure>`;
 
@@ -94,15 +90,7 @@ export const imprensaCitacao = (data, id, citacao) => {
 </section>`;
 };
 
-export const incluidoTours = [
-  'Guia brasileira exclusiva para o seu grupo',
-  'Logística a pé pensada para o seu ritmo',
-  'Narrativa cultural em português',
-  'Paradas estratégicas para fotos',
-  'Indicações gastronômicas para o dia do tour',
-  'Alinhamento prévio pelo WhatsApp',
-  'Para os mini clientes: o livro de atividades impresso do Monsieur Pombo, criado pela Mel',
-];
+export const incluidoTours = CONTEUDO.tours_incluido;
 
 // Para quem é cada tour (informações da Mel, 17/10/2026): todos os tours servem a todos os perfis; o conteúdo é adaptado ao grupo.
 // Bloco para quem viaja sozinha (texto de Diogo, 17/10/2026).
@@ -132,21 +120,4 @@ export const perfisTour = (t) => {
     <p class="center small">Todos os passeios têm paradas para descansar, tomar um café e ir ao banheiro.</p>`;
 };
 
-export const faqTours = [
-  {
-    q: 'Os tours funcionam com carrinho de bebê ou com avós?',
-    a: 'Sim. Todos os tours funcionam para todas as idades, inclusive com carrinho de bebê, e já recebemos grupos de até três gerações no mesmo passeio. O ritmo é leve, com muitas paradas no caminho para descansar, tomar um café e ir ao banheiro.',
-  },
-  {
-    q: 'Como funciona a reserva de um tour?',
-    a: 'Você chama no WhatsApp, verificamos a disponibilidade para as datas da sua viagem e definimos o roteiro. Para garantir a data, pedimos um sinal, reembolsável em cancelamentos feitos com pelo menos 30 dias de antecedência. O restante é pago perto do passeio.',
-  },
-  {
-    q: 'O roteiro do tour pode ser alterado?',
-    a: 'Sim. Como o tour é privativo, se você preferir se concentrar em um bairro, adaptamos o trajeto.',
-  },
-  {
-    q: 'Os tours guiados são adequados para crianças?',
-    a: 'Sim. A linguagem do tour é adaptada à idade de cada criança, e cada uma ganha o livro de atividades impresso do Monsieur Pombo, criado pela Mel. No tour, fazemos pausas estratégicas em carrosséis e parques. Paris pode ser mágica para os pequenos quando o ritmo é pensado para eles.',
-  },
-];
+export const faqTours = CONTEUDO.tours_faq;

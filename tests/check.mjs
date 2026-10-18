@@ -136,6 +136,13 @@ for (const f of arquivos(DIST)) {
   else if (kb > 300) aviso(`imagem grande: ${path.relative(DIST, f)} (${Math.round(kb)} KB)`);
 }
 
+// 8. data/conteudo.json: selos, avaliações e pontos do quiz apontam para tours que existem
+const conteudo = JSON.parse(fs.readFileSync('data/conteudo.json', 'utf8'));
+const idsTours = new Set(data.tours.map((t) => t.id));
+for (const id of Object.keys(conteudo.selos_tours)) if (!idsTours.has(id)) erro(`conteudo.json: selo para tour inexistente "${id}"`);
+for (const [k, a] of Object.entries(conteudo.tripadvisor.avaliacoes)) for (const id of a.tours || []) if (!idsTours.has(id)) erro(`conteudo.json: avaliação ${k} cita tour inexistente "${id}"`);
+for (const [n, p] of conteudo.quiz_perguntas.entries()) for (const o of p.opcoes) for (const id of Object.keys(o.pontos)) if (!idsTours.has(id)) erro(`conteudo.json: quiz, pergunta ${n + 1} pontua tour inexistente "${id}"`);
+
 for (const a of avisos) console.log(`aviso: ${a}`);
 if (erros.length) {
   for (const e of erros) console.error(`ERRO: ${e}`);
