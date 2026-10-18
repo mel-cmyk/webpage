@@ -49,6 +49,12 @@ Medição (`src/analytics/`, montado em `dist/js/analytics.js` por `src/analytic
 - `src/analytics/`: partes do `analytics.js` por assunto (consentimento, eventos, funis, Meta, TikTok, Clarity, links, aviso de cookies); o build junta tudo num arquivo só
 - `build.mjs`: gera o site em `dist/`
 
+## Testes e prova de que nada quebrou
+
+- `npm test`: confere o site gerado (links, SEO, preços, peso). Roda sozinho antes de cada deploy.
+- `npm run test:browser`: abre o site num navegador de teste e confere cookies, medição, funis e checkout (precisa de `npm install` uma vez).
+- Antes de uma refatoração: `node build.mjs && npm run referencia && npm run visual:salvar`. Depois de mexer: `node build.mjs && npm run comparar && npm run visual`. Os dois devem dizer "idêntico".
+
 ## Rodar localmente
 
 ```
