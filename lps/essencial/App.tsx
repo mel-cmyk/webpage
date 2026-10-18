@@ -363,7 +363,7 @@ const WhyNotSoloSection = ({ onOpenSample }: WhyNotSoloSectionProps) => {
               Blogs listam o que visitar. Este roteiro decide a ordem por você: cada dia fica dentro de uma região, com almoço e jantar na rota, sem vaivém de metrô.
             </p>
             <p className="text-gray-600 font-sans leading-relaxed mb-8">
-              Cada dia foi planejado pela Mel a partir de vivência prática para conectar pontos de interesse por proximidade, vivendo a atmosfera parisiense sem o estresse de deslocamentos longos ou atrações espalhadas.
+              Cada dia foi planejado pela Mel a partir de vivência prática para conectar pontos de interesse por proximidade e viver a atmosfera parisiense sem o estresse de deslocamentos longos ou atrações espalhadas.
             </p>
             
             <ul className="space-y-4">
@@ -425,7 +425,7 @@ const TargetAudienceSection = () => (
           </div>
           <h3 className="text-xl font-serif italic text-[#22274F] mb-3">Viagens de 1 a 10 dias</h3>
           <p className="text-gray-700 font-sans text-sm leading-relaxed">
-            O roteiro atende quem fica de 1 a 10 dias: são 4 dias inteiros dedicados só a Paris e mais 6 sugestões de bate-volta para todos os gostos e interesses para complementar esses 4 dias, totalizando 10 dias de roteiro prontos para usar.
+            O roteiro atende quem fica de 1 a 10 dias: são 4 dias inteiros dedicados só a Paris e mais 6 sugestões de bate-volta para todos os gostos, que complementam esses 4 dias e somam 10 dias de roteiro prontos para usar.
           </p>
         </div>
       </div>
@@ -522,7 +522,7 @@ const TestimonialsSection = () => {
       location: "São Paulo, SP"
     },
     {
-      quote: "Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com Mel, tornou a experiência inesquecível.",
+      quote: "Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível.",
       author: "Fernanda",
       location: "Natal, RN"
     },

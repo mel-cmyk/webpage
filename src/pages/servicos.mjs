@@ -66,7 +66,7 @@ ${heroSplit(`
     <aside class="card destaque destaque-img">
       ${img('pombo/roteiro-pdf', 'Livro de atividades do Monsieur Pombo aberto num tablet e num celular', { sizes: '(min-width: 760px) 340px, 100vw' })}
       <div>
-        <p class="eyebrow">Para os mini clientes</p>
+        <p class="eyebrow">Para os pequenos viajantes</p>
         <h3>O livro de atividades do Monsieur Pombo</h3>
         <p>Criado pela Mel para as crianças que viajam com a família, o livro chega em PDF junto com o roteiro, com histórias, jogos e desafios para antes, durante e depois da viagem.</p>
       </div>
