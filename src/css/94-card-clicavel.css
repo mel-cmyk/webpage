@@ -1,6 +1,0 @@
-/* Card inteiro clicável: o botão do card cobre o card todo (foto, título e preço também levam à página). */
-.card-photo { position: relative; }
-.card-photo .card-body > .btn::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
-.card-photo:has(.card-body > .btn) { cursor: pointer; }
-.card-photo:has(.card-body > .btn:hover) { border-color: var(--gold-dark); }
-.hero-split-media a { display: block; }

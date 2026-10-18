@@ -10,7 +10,8 @@
     "referencia": "node tests/referencia.mjs salvar",
     "comparar": "node tests/referencia.mjs comparar",
     "visual:salvar": "node tests/visual.mjs salvar",
-    "visual": "node tests/visual.mjs comparar"
+    "visual": "node tests/visual.mjs comparar",
+    "estilos": "node tests/estilos.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.64.1"

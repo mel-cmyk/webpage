@@ -8,3 +8,17 @@
 .alt { background: var(--white); }
 .crumbs { padding-top: 18px; }
 .crumbs a { color: var(--muted); }
+/* Espaçamento entre seções: duas seções seguidas com o mesmo fundo não somam o respiro (evita vãos grandes no celular). */
+/* Só entre seções de fundo claro (não vale para a faixa escura do convite final). */
+.section:not(.alt):not(.cta-final) + .section:not(.alt):not(.cta-final),
+.section.alt + .section.alt { padding-top: 0; }
+/* O respiro vem da seção, não das margens do primeiro e do último bloco. */
+.section > .wrap > :first-child { margin-top: 0; }
+.section > .wrap > :last-child { margin-bottom: 0; }
+.hero-sm + .section { padding-top: 24px; }
+@media (max-width: 699px) {
+  .section { padding: 44px 0; }
+  .hero-sm { padding-bottom: 16px; }
+}
+.section > .wrap.cards { margin-top: 0; }
+.hero-sm > .wrap > :last-child, .hero-split-grid > div > :last-child { margin-bottom: 0; }

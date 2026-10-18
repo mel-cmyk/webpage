@@ -36,3 +36,15 @@
 .price { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 0.6em 0 1em; }
 .price span { display: block; font-family: var(--sans); font-size: 0.82rem; font-weight: 400; color: var(--muted); }
 .price s { color: var(--muted); font-weight: 400; font-size: 1rem; }
+/* Celular: cards de tour mais compactos (foto mais baixa e descrição em 2 linhas) para encurtar a lista. */
+@media (max-width: 699px) {
+  .cards .card-photo > img { aspect-ratio: 16 / 9; }
+  .cards .card-txt { -webkit-line-clamp: 2; }
+}
+.selo-tour { display: inline-block; align-self: flex-start; margin: 0 0 8px; padding: 3px 10px; border-radius: 999px; background: var(--navy); color: var(--white); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em; }
+/* Card inteiro clicável: o botão do card cobre o card todo (foto, título e preço também levam à página). */
+.card-photo { position: relative; }
+.card-photo .card-body > .btn::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.card-photo:has(.card-body > .btn) { cursor: pointer; }
+.card-photo:has(.card-body > .btn:hover) { border-color: var(--gold-dark); }
+.hero-split-media a { display: block; }
