@@ -9,7 +9,7 @@
     "lint": "tsc --noEmit -p criancas && tsc --noEmit -p essencial"
   },
   "dependencies": {
-    "lucide-react": "^0.563.0",
+    "lucide-react": "^1.57.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
