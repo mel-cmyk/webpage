@@ -51,6 +51,8 @@ lps/ (React) ──> lps/build.mjs ─> dist/guias/
 4. `npm run test:browser` confere cookies, medição, funis e checkout. `npm run test:acessibilidade` roda o axe (contraste, rótulos, estrutura) em todas as páginas. `npm run test:orcamento` barra páginas que ficam pesadas demais no celular.
 5. Se mexeu em aparência ou estrutura: `npm run comparar` e `npm run visual` (guardar o antes com `npm run referencia` e `npm run visual:salvar`). Devem dizer "idêntico" quando a mudança não deveria alterar nada.
 
+Em cada pull request o GitHub também compara esta branch com a main (HTML, estilo calculado e capturas) e mostra o resultado no resumo da execução, como aviso. Capturas que mudaram vêm num arquivo anexo.
+
 O GitHub repete `npm test` e o teste de navegador sozinho em cada pull request e antes de cada publicação. Se algum falhar, o site não é publicado.
 
 ## Regras que valem sempre
