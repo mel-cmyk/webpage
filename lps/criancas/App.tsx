@@ -17,6 +17,7 @@ import {
   Maximize2
 } from 'lucide-react';
 import { OfertaProvider, useOferta, formatBR, numeros } from '../shared/oferta';
+import { depoimentos, faqDaLp } from '../shared/conteudo';
 
 declare global {
   interface Window {
@@ -49,20 +50,7 @@ interface Testimonial {
   texto: string;
 }
 
-const TESTIMONIALS: Testimonial[] = [
-  {
-    nome: "Roberta",
-    texto: "Mel tem uma sensibilidade impressionante! Transborda amor na sua escuta e entrega mais do que podemos imaginar."
-  },
-  {
-    nome: "Fernanda",
-    texto: "Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível."
-  },
-  {
-    nome: "Renata",
-    texto: "Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!"
-  }
-];
+const TESTIMONIALS: Testimonial[] = depoimentos.map((d) => ({ nome: d.nome, texto: d.texto_curto || d.texto }));
 
 // Amostras do PDF para a seção "Veja páginas reais do guia"
 interface SampleImage {
@@ -1058,36 +1046,7 @@ const FAQSection: React.FC = () => {
   const oferta = useOferta();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faqs: FAQItem[] = [
-    {
-      question: "É um roteiro?",
-      answer: "Não. É uma lista curada de atrações, parquinhos, restaurantes e dicas de metrô, organizada por idade, para você montar os dias da sua família do seu jeito. Se preferir um roteiro sob medida, a Mel também faz, e leitores do guia têm 10% de desconto."
-    },
-    {
-      question: "Em que formato recebo?",
-      answer: "Em PDF, por e-mail, logo após a confirmação do pagamento, com o link para baixar. Se não encontrar o e-mail, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
-    },
-    {
-      question: "O que é o bônus de inverno?",
-      answer: "É um PDF de 19 páginas com o que fazer em Paris com crianças entre novembro e fevereiro."
-    },
-    {
-      question: "Como recebo os bônus?",
-      answer: "Você recebe o link de download do Bônus de Inverno e do Checklist no e-mail de confirmação da compra, junto com o guia. Se o e-mail não chegar, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
-    },
-    {
-      question: "Serve para a idade dos meus filhos?",
-      answer: "Serve para famílias com crianças de 0 a 12 anos. O guia traz ideias para as faixas de 0 a 2, 3 a 5, 6 a 9 e 10 a 12 anos, e cada atração indica a idade recomendada. Para quem vai com bebê, trata também do metrô com carrinho."
-    },
-    {
-      question: "Posso pagar no Pix?",
-      answer: `Sim. O pagamento é feito na loja da Mel Rolan, com cartão ou Pix, e você pode parcelar em até ${oferta.parcelas}x sem juros no cartão.`
-    },
-    {
-      question: "O guia traz valores atualizados?",
-      answer: "Sim. O guia foi revisado para 2026, incluindo valores de transporte público e ingressos. Quando algum preço muda, a Mel atualiza o material."
-    }
-  ];
+  const faqs: FAQItem[] = faqDaLp('criancas', { parcelas: oferta.parcelas }).map((i) => ({ question: i.q, answer: i.a }));
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);

@@ -14,6 +14,9 @@ Regra de ouro: **texto e número ficam em `data/`; aparência fica em `src/css/`
 | Avaliações do Tripadvisor | `data/conteudo.json` (`tripadvisor`) |
 | "O que inclui" e FAQ dos tours | `data/conteudo.json` (`tours_incluido`, `tours_faq`) |
 | Textos dos cards e FAQ da home | `data/conteudo.json` (`home`) |
+| Depoimentos de clientes (site e LPs) | `data/conteudo.json` (`depoimentos`) |
+| Perguntas frequentes das LPs dos guias | `data/conteudo.json` (`lps`); `{email}`, `{whatsapp}` e `{parcelas}` são preenchidos sozinhos |
+| Textos da indicação do diagnóstico e parágrafo por perfil | `data/conteudo.json` (`diagnostico`) |
 | Perguntas e pontuação do quiz do tour | `data/conteudo.json` (`quiz_perguntas`) |
 | Matérias de imprensa | `data/imprensa.json` |
 | Foto de um serviço, tour ou guia | `data/ofertas.json` (campo `imagem`) e `data/imagens.json` |
@@ -26,7 +29,7 @@ Regra de ouro: **texto e número ficam em `data/`; aparência fica em `src/css/`
 | Cor, tamanho, espaçamento | `src/css/` (um arquivo por assunto; `cookies.css` vale para o site e para as LPs) |
 | Lógica do quiz ou do diagnóstico | `public/js/quiz-tour.js`, `public/js/diagnostico.js` (o núcleo comum é `wizard.js`) |
 | Eventos de medição (GA4, Meta, TikTok, Clarity) | `src/analytics/` e `docs/eventos.md` |
-| Páginas de venda dos guias (LPs) | `lps/criancas/App.tsx`, `lps/essencial/App.tsx`; o que é comum fica em `lps/shared/` |
+| Estrutura das páginas de venda dos guias (LPs) | `lps/criancas/App.tsx`, `lps/essencial/App.tsx`; o que é comum fica em `lps/shared/` (os textos de depoimentos e FAQ vêm de `data/conteudo.json`) |
 
 ## Como o site é montado
 

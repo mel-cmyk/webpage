@@ -16,6 +16,7 @@ import {
   ZoomIn
 } from 'lucide-react';
 import { OfertaProvider, useOferta, numeros } from '../shared/oferta';
+import { depoimentos, faqDaLp } from '../shared/conteudo';
 
 declare global {
   interface Window {
@@ -515,23 +516,7 @@ const InclusionsSection = () => {
 // --- Depoimentos ---
 
 const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      quote: "Mel tem uma sensibilidade impressionante! Transborda amor na sua escuta e entrega mais do que podemos imaginar.",
-      author: "Roberta",
-      location: "São Paulo, SP"
-    },
-    {
-      quote: "Mel foi bastante atenta e cuidadosa, buscando atender as particularidades do nosso grupo. Conhecer a França de mãos dadas com a Mel tornou a experiência inesquecível.",
-      author: "Fernanda",
-      location: "Natal, RN"
-    },
-    {
-      quote: "Além de competente, ela é uma simpatia de pessoa, educada, honesta e super acessível. O trabalho da Mel foi primordial para o sucesso da nossa tão sonhada e planejada viagem!",
-      author: "Renata",
-      location: "Pereiras, SP"
-    }
-  ];
+  const testimonials = depoimentos.map((d) => ({ quote: d.texto_curto || d.texto, author: d.nome, location: `${d.cidade}, ${d.uf}` }));
 
   return (
     <section className="py-24 bg-[#22274F] text-white">
@@ -652,32 +637,7 @@ const PricingSection = () => {
 const FAQSection = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
-  const faqs = [
-    {
-      q: "Já tenho blogs e vídeos, por que comprar?",
-      a: "Blogs e vídeos listam atrações soltas, mas não resolvem a sua rotina. Este roteiro decide a ordem por você: cada dia fica dentro de uma região, com almoço e jantar na rota, sem vaivém de metrô."
-    },
-    {
-      q: "Funciona sem internet?",
-      a: "Sim. Como o roteiro é entregue em formato PDF, você pode salvá-lo no celular ou tablet e consultar todas as páginas sem precisar de conexão. Apenas os links externos para compra de ingressos ou rotas de navegação exigem acesso à internet."
-    },
-    {
-      q: "Como peço reembolso?",
-      a: "Você tem 7 dias de garantia incondicional a partir da compra. Para pedir o reembolso, basta enviar uma mensagem para contato@melrolan.com.br ou pelo WhatsApp +33 7 83 48 37 56 informando os dados da compra. O valor pago é devolvido integralmente."
-    },
-    {
-      q: "Como recebo o roteiro?",
-      a: "Você recebe o PDF por e-mail logo após a confirmação do pagamento, com o link para baixar. Se não encontrar o e-mail, olhe a caixa de spam ou escreva para contato@melrolan.com.br."
-    },
-    {
-      q: "O roteiro funciona para quem viaja sozinho, em casal ou em grupo?",
-      a: "Sim. O roteiro foi planejado pela lógica de deslocamento entre atrações por região, não pelo perfil de quem viaja, e se adapta a qualquer grupo."
-    },
-    {
-      q: "Qual a diferença entre o Guia Paris Essencial e o Guia Paris com Crianças?",
-      a: "O Essencial é um roteiro de 4 dias mais 6 bate-voltas para quem quer aproveitar Paris e arredores com vivência real. O Guia Paris com Crianças é uma lista curada por faixa etária para quem viaja com filhos, para cada família montar a própria programação."
-    }
-  ];
+  const faqs = faqDaLp('essencial');
 
   const toggle = (idx: number) => {
     setOpenIdx(openIdx === idx ? null : idx);

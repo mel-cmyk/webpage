@@ -62,6 +62,8 @@ export function diagnostico(data) {
     servicos: Object.fromEntries(data.servicos.map((s) => [s.id, { nome: s.nome, preco: precoServico(s), pagina: url(s.pagina + '/') }])),
     guia: { nome: data.guias[0].nome, link: url(data.guias[0].landing) },
     quizTour: url('/qual-tour-combina-com-voce/'),
+    indicacao: CONTEUDO.diagnostico.indicacao,
+    perfis: CONTEUDO.diagnostico.perfis,
     wix: data.integracoes && {
       clientId: data.integracoes.wix_forms.client_id,
       formId: data.integracoes.wix_forms.form_id,
