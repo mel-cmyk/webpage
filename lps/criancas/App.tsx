@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { OfertaProvider, useOferta, formatBR, numeros } from '../shared/oferta';
 import { depoimentos, faqDaLp } from '../shared/conteudo';
+import { LogoLink, NavegacaoSite } from '../shared/navegacao';
 
 declare global {
   interface Window {
@@ -140,19 +141,21 @@ const Header: React.FC = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#F7F4EA]/95 backdrop-blur-md border-b border-[#22274F]/10 py-3 transition-all">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center">
         <div className="flex items-center">
-          {!logoError ? (
-            <img
-              src={`${B}images/logo.webp`}
-              alt="Mel Rolan Travel Designer"
-              className="h-8 sm:h-9 md:h-11 w-auto"
-              onError={() => setLogoError(true)}
-              width="140"
-              height="60"
-              loading="eager"
-            />
-          ) : (
-            <span className="text-lg md:text-xl font-serif font-bold text-[#22274F] tracking-tight">Mel Rolan</span>
-          )}
+          <LogoLink origem="cabecalho">
+            {!logoError ? (
+              <img
+                src={`${B}images/logo.webp`}
+                alt="Mel Rolan Travel Designer"
+                className="h-8 sm:h-9 md:h-11 w-auto"
+                onError={() => setLogoError(true)}
+                width="140"
+                height="60"
+                loading="eager"
+              />
+            ) : (
+              <span className="text-lg md:text-xl font-serif font-bold text-[#22274F] tracking-tight">Mel Rolan</span>
+            )}
+          </LogoLink>
         </div>
 
         <ChicCTA id="header-cta" text="Quero o guia" slot="header" className="px-5 md:px-7 !min-h-[44px] text-xs md:text-sm" />
@@ -1068,20 +1071,22 @@ const Footer: React.FC = () => {
     <footer className="bg-[#22274F] text-[#F7F4EA] py-12 border-t border-white/10 pb-28 md:pb-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <div className="mb-6 flex justify-center">
-          {!footerLogoError ? (
-            <img
-              src={`${B}images/logo.webp`}
-              alt="Mel Rolan Travel Designer"
-              className="h-10 w-auto brightness-0 invert opacity-90"
-              onError={() => setFooterLogoError(true)}
-              width="140"
-              height="60"
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <span className="font-serif text-xl font-bold text-[#F7F4EA]">Mel Rolan</span>
-          )}
+          <LogoLink origem="rodape">
+            {!footerLogoError ? (
+              <img
+                src={`${B}images/logo.webp`}
+                alt="Mel Rolan Travel Designer"
+                className="h-10 w-auto brightness-0 invert opacity-90"
+                onError={() => setFooterLogoError(true)}
+                width="140"
+                height="60"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span className="font-serif text-xl font-bold text-[#F7F4EA]">Mel Rolan</span>
+            )}
+          </LogoLink>
         </div>
 
         <p className="font-serif font-bold text-base text-[#F7F4EA] mb-2">Mel Rolan Travel Designer</p>
@@ -1107,6 +1112,8 @@ const Footer: React.FC = () => {
             </button>
           }
         </div>
+
+        <NavegacaoSite className="text-[#F7F4EA]/80 mb-6" />
 
         <p className="text-xs font-sans text-[#F7F4EA]/80 max-w-xl mx-auto leading-relaxed mb-6">
           Este guia é um produto digital. Não é um serviço presencial nem de acompanhamento durante a viagem.

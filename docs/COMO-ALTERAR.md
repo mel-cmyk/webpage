@@ -55,6 +55,13 @@ Em cada pull request o GitHub também compara esta branch com a main (HTML, esti
 
 O GitHub repete `npm test` e o teste de navegador sozinho em cada pull request e antes de cada publicação. Se algum falhar, o site não é publicado.
 
+## Caminhos de volta (navegação)
+
+- Toda página tem o logo do cabeçalho levando à home (o teste de navegador confere em todas as páginas do sitemap).
+- As LPs dos guias não têm menu de propósito (foco na compra), mas têm o logo com link para a home e, no rodapé, uma faixa com as páginas principais do site (`lps/shared/navegacao.tsx`).
+- Cartões que parecem clicáveis precisam levar a algum lugar: os de tours e serviços já levam; os do hub de guias levam à página do guia. Ao criar um cartão novo, use o padrão `card-link` (link esticado no título) e deixe os botões acima dele.
+- Para achar cliques que não levam a lugar nenhum, o Microsoft Clarity mostra "dead clicks" e "rage clicks" por página.
+
 ## Regras que valem sempre
 
 - Preço, número e contato: um lugar só (`data/ofertas.json`). Nunca escrever no texto da página.

@@ -19,3 +19,4 @@
 .assessoria { display: flex; gap: 20px; align-items: center; }
 .assessoria-foto { width: 96px; height: 96px; flex: none; border-radius: 50%; object-fit: cover; }
 @media (max-width: 479px) { .assessoria { flex-direction: column; align-items: flex-start; } }
+.imprensa-logo-link { display: block; width: fit-content; }

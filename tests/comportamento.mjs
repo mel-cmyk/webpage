@@ -232,5 +232,56 @@ for (const lp of ['/guias/paris-com-criancas/', '/guias/paris-essencial/']) {
   await ctx.close();
 }
 
+// ---------------------------------------------------------------- 4. Caminhos de volta
+titulo('Navegação: toda página tem caminho para a home e os cartões levam a algum lugar');
+{
+  const paginas = fs
+    .readFileSync('dist/sitemap.xml', 'utf8')
+    .match(/<loc>[^<]+<\/loc>/g)
+    .map((x) => new URL(x.replace(/<\/?loc>/g, '')).pathname);
+  const { ctx, p } = await pagina('/');
+  const semLogo = [];
+  for (const caminho of paginas) {
+    await p.goto(SITE + caminho);
+    const href = await p.evaluate(() => {
+      const a = document.querySelector('header a[aria-label*="página inicial"]');
+      return a ? new URL(a.getAttribute('href'), location.href).pathname : null;
+    });
+    if (href !== '/') semLogo.push(`${caminho} (${href})`);
+  }
+  conferir('o logo do cabeçalho leva à home em todas as páginas', semLogo.length === 0);
+  if (semLogo.length) console.error('   sem logo para a home:', semLogo.join(', '));
+
+  // LP: o rodapé oferece saídas para o site
+  await p.goto(SITE + '/guias/paris-essencial/');
+  const saidas = await p.evaluate(() => [...document.querySelectorAll('nav[aria-label="Outras páginas do site"] a')].map((a) => new URL(a.href).pathname));
+  conferir(
+    'LP: o rodapé leva à home, aos guias, aos tours, ao roteiro e à consultoria',
+    ['/', '/guias-de-paris/', '/tours-em-paris/', '/roteiro-sob-medida/', '/consultoria/'].every((c) => saidas.includes(c))
+  );
+
+  // clicar na foto e no título do cartão leva à página; o logo da imprensa leva à matéria
+  const alvos = [
+    ['/guias-de-paris/', 'main .card-h img', '/guias/paris-com-criancas/'],
+    ['/guias-de-paris/', 'main .card-h h2', '/guias/paris-com-criancas/'],
+    ['/tours-em-paris/', 'main .card-photo img', '/tours-em-paris/eixo-historico/'],
+    ['/', 'main .card-photo h3', '/tours-em-paris/'],
+  ];
+  for (const [caminho, seletor, destino] of alvos) {
+    await p.goto(SITE + caminho);
+    const el = await p.$(seletor);
+    await el.scrollIntoViewIfNeeded();
+    const box = await el.boundingBox();
+    await Promise.all([
+      p.waitForURL((u) => u.pathname === destino, { timeout: 2000 }).catch(() => null),
+      p.mouse.click(box.x + box.width / 2, box.y + box.height / 2),
+    ]);
+    conferir(`${caminho}: clicar em ${seletor.replace('main ', '')} leva a ${destino}`, new URL(p.url()).pathname === destino);
+  }
+  await p.goto(SITE + '/na-midia/');
+  conferir('na mídia: o logo do veículo é link para a matéria', (await p.$$('main a.imprensa-logo-link[href^="https://"]')).length >= 3);
+  await ctx.close();
+}
+
 await browser.close();
 encerrar();

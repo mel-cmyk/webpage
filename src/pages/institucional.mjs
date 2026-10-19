@@ -74,7 +74,7 @@ export function naMidia(data) {
       ${data.imprensa
         .map(
           (x) => `<article class="imprensa-item">
-        ${logoImg(x)}
+        <a class="imprensa-logo-link" href="${esc(x.url)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">${logoImg(x)}</a>
         <p class="imprensa-veiculo">${veiculoTxt(x)} · ${dataBR(x.data)}${x.autor ? ` · por ${esc(x.autor)}` : ''}</p>
         <h2><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.titulo)}</a></h2>
         <p>${esc(x.subtitulo)}</p>

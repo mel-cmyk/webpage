@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { OfertaProvider, useOferta, numeros } from '../shared/oferta';
 import { depoimentos, faqDaLp } from '../shared/conteudo';
+import { LogoLink, NavegacaoSite } from '../shared/navegacao';
 
 declare global {
   interface Window {
@@ -119,22 +120,24 @@ const Header = () => {
     >
       <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
-          {!imgError ? (
-            <img
-              src={`${B}images/logo.webp`}
-              alt="Mel Rolan Logo"
-              className="h-10 md:h-12 w-auto"
-              onError={() => setImgError(true)}
-              width="150"
-              height="65"
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <div className="flex flex-col">
-              <span className="text-xl font-serif font-bold text-[#22274F] leading-none uppercase tracking-tighter">MEL ROLAN</span>
-            </div>
-          )}
+          <LogoLink origem="cabecalho">
+            {!imgError ? (
+              <img
+                src={`${B}images/logo.webp`}
+                alt="Mel Rolan Logo"
+                className="h-10 md:h-12 w-auto"
+                onError={() => setImgError(true)}
+                width="150"
+                height="65"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <div className="flex flex-col">
+                <span className="text-xl font-serif font-bold text-[#22274F] leading-none uppercase tracking-tighter">MEL ROLAN</span>
+              </div>
+            )}
+          </LogoLink>
         </div>
 
         <ChicCTA text={`Quero meu roteiro por R$ ${oferta.preco}`} slot="header" className="hidden md:flex px-8 py-3 !min-h-[44px]" />
@@ -719,21 +722,24 @@ const Footer = () => {
     <footer className="bg-[#181d3b] text-white py-12 border-t border-white/5 pb-32 md:pb-12">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <div className="mb-8 flex justify-center">
-          {!imgError ? (
-            <img
-              src={`${B}images/logo.webp`}
-              alt="Mel Rolan Logo"
-              className="h-10 md:h-12 w-auto brightness-0 invert opacity-80"
-              onError={() => setImgError(true)}
-              width="150"
-              height="65"
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <span className="font-serif text-2xl font-bold">MEL ROLAN</span>
-          )}
+          <LogoLink origem="rodape">
+            {!imgError ? (
+              <img
+                src={`${B}images/logo.webp`}
+                alt="Mel Rolan Logo"
+                className="h-10 md:h-12 w-auto brightness-0 invert opacity-80"
+                onError={() => setImgError(true)}
+                width="150"
+                height="65"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span className="font-serif text-2xl font-bold">MEL ROLAN</span>
+            )}
+          </LogoLink>
         </div>
+        <NavegacaoSite className="text-gray-300 mb-6" />
         <div className="flex flex-wrap justify-center items-center gap-6 text-[10px] uppercase tracking-widest text-gray-400 mb-8">
           <a href="https://loja.melrolan.com.br/pol%C3%ADtica" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
             Termos

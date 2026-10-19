@@ -21,7 +21,7 @@ export function guias(data) {
         return `<article class="card card-h">
       ${img(g.imagem, g.imagem_alt, { cls: 'cover', sizes: '(min-width: 600px) 200px, 100vw' })}
       <div class="card-body">
-      <h2 class="h3">${esc(g.nome)}</h2>
+      <h2 class="h3"><a class="card-link" href="${url(g.landing)}" data-cta="guia-card">${esc(g.nome)}</a></h2>
       ${g.paginas ? `<p>${g.paginas} páginas de curadoria real${g.bonus ? `, com bônus: ${esc(g.bonus)}` : ''}.</p>` : ''}
       ${g.descricao ? `<p>${esc(g.descricao)}</p>` : ''}
       <p class="price">${v.preco_de ? `<s>${brl(v.preco_de)}</s> ` : ''}${brl(v.preco)}${v.parcela ? `<span>ou ${v.parcelas}x de ${brl(v.parcela)} sem juros</span>` : '<span aria-hidden="true">&nbsp;</span>'}</p>
