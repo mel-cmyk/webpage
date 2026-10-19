@@ -48,3 +48,10 @@
 .card-photo:has(.card-body > .btn) { cursor: pointer; }
 .card-photo:has(.card-body > .btn:hover) { border-color: var(--gold-dark); }
 .hero-split-media a { display: block; }
+/* Cartão de guia inteiro clicável (foto, título e texto levam à página do guia); os botões ficam por cima. */
+.card-h { position: relative; }
+.card-link { color: inherit; text-decoration: none; }
+.card-link::after { content: ''; position: absolute; inset: 0; }
+.card-h:has(.card-link) { cursor: pointer; }
+.card-h:has(.card-link:hover) { border-color: var(--gold-dark); }
+.card-h .guia-actions { position: relative; z-index: 1; }
