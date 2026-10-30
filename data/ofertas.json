@@ -17,6 +17,20 @@
     "siret_franca": "10113179500011",
     "cnpj_brasil": "44.907.716/0001-42"
   },
+  "campanhas": [
+    {
+      "_sobre": "Faixa no topo de todas as páginas. Aparece sozinha entre inicio e fim (horário de Brasília), sem publicar de novo.",
+      "id": "black-friday-2026",
+      "inicio": "2026-11-16T00:00:00-03:00",
+      "fim": "2026-11-30T23:59:59-03:00",
+      "selo": "Black Friday",
+      "texto": "Roteiro sob medida em até 3x no cartão + 30% de desconto em qualquer tour. Até 30/11.",
+      "texto_curto": "Roteiro em até 3x + 30% nos tours. Até 30/11.",
+      "botao": "Quero aproveitar",
+      "whatsapp": "5511995032700",
+      "mensagem": "Olá, Mel! Vim pela Black Friday do site."
+    }
+  ],
   "servicos": [
     {
       "id": "tours",

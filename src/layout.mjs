@@ -44,6 +44,23 @@ const nav = [
   ['/sobre/', 'Sobre a Mel'],
 ];
 
+// Faixa de campanha (data/ofertas.json > campanhas): sai no HTML oculta e só aparece, no navegador, entre inicio e fim.
+function faixaCampanha(data) {
+  const agora = Date.now();
+  const c = (data.campanhas || []).find((x) => Date.parse(x.fim) > agora);
+  if (!c) return '';
+  const link = `https://wa.me/${c.whatsapp}?text=${encodeURIComponent(c.mensagem)}`;
+  return `
+<div class="faixa-campanha" id="faixa-${esc(c.id)}" role="region" aria-label="${esc(c.selo)}" data-inicio="${esc(c.inicio)}" data-fim="${esc(c.fim)}" hidden>
+  <div class="wrap">
+    <span class="faixa-selo">${esc(c.selo)}</span>
+    <span class="faixa-texto"><span class="faixa-longo">${esc(c.texto)}</span><span class="faixa-curto">${esc(c.texto_curto)}</span></span>
+    <a href="${link}" data-wa="faixa-${esc(c.id)}" target="_blank" rel="noopener">${esc(c.botao)}</a>
+  </div>
+</div>
+<script>(function(){var f=document.getElementById('faixa-${esc(c.id)}');var t=Date.now();if(f&&t>=Date.parse(f.dataset.inicio)&&t<=Date.parse(f.dataset.fim))f.hidden=false;})();</script>`;
+}
+
 function header(current, data) {
   // Botão do topo contextual: nas páginas de tour, o caminho mais usado é o WhatsApp (GA4, 30 dias até 17/10/2026).
   const emTours = current.startsWith('/tours-em-paris/');
@@ -181,7 +198,7 @@ ${ld}
 </head>
 <body data-servico="${esc(servico)}" data-meta-pixel="${META_PIXEL}"${clarityAttr(data)}${PAGINAS_ANUNCIOS.test(path) ? ' data-medicao="avancada"' : ''}>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-${header(path, data)}
+${faixaCampanha(data)}${header(path, data)}
 <main id="conteudo">
 ${body}
 </main>
