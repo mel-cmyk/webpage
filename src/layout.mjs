@@ -127,11 +127,10 @@ function footer(data) {
 // Aceitar tudo, Recusar tudo e Salvar escolhas têm o mesmo peso (regra da CNIL).
 export const cookieBanner = () => `
 <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookies" hidden>
-  <p>Usamos cookies para medir e anunciar.</p>
+  <p>Usamos cookies para melhorar o site e mostrar conteúdos do seu interesse. <button type="button" class="cookie-link" id="cookie-mais" data-consent="more">Personalizar</button></p>
   <div class="cookie-actions">
     <button type="button" class="btn btn-small" data-consent="all">Aceitar</button>
     <button type="button" class="btn btn-small" data-consent="none">Recusar</button>
-    <button type="button" class="btn btn-small btn-ghost" id="cookie-mais" data-consent="more">Personalizar</button>
   </div>
 </div>
 <div class="cookie-modal" id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-titulo" hidden>
