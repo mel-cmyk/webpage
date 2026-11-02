@@ -51,6 +51,17 @@ document.addEventListener('keydown', function (e) {
     primeiro.focus();
   }
 });
+// Contador de escolhas do aviso (Cloudflare Worker contador-cookies): só a primeira escolha de cada pessoa,
+// sem cookie e sem identificar ninguém. Soma por dia aceitou, recusou e personalizou.
+function contarEscolha(modo) {
+  try {
+    if (lerEscolha()) return;
+    var ev = modo === 'all' ? 'aceitou' : modo === 'none' ? 'recusou' : 'personalizou';
+    var u = 'https://contador-cookies.clean-life-app.workers.dev/c?e=' + ev;
+    if (navigator.sendBeacon) navigator.sendBeacon(u);
+    else fetch(u, { method: 'POST', mode: 'no-cors', keepalive: true });
+  } catch (err) {}
+}
 function escolher(modo) {
   var e =
     modo === 'all'
@@ -58,6 +69,7 @@ function escolher(modo) {
       : modo === 'none'
         ? { analytics: false, ads: false }
         : { analytics: !!(document.getElementById('consent-medicao') || {}).checked, ads: !!(document.getElementById('consent-anuncios') || {}).checked };
+  contarEscolha(modo);
   salvarEscolha(e);
   mostrarAviso(false);
   expandirOpcoes(false);
