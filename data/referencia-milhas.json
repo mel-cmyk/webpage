@@ -31,42 +31,38 @@
       "nota": "Programa da TAP; voos via Lisboa"
     }
   ],
-  "leiame": {
-    "titulo": "Leia-me: milhas em 5 minutos",
-    "introducao": "Se você nunca usou milhas, comece por aqui. Uma comparação ajuda a entender tudo: pense em milhas como moedas estrangeiras.",
-    "topicos": [
-      {
-        "titulo": "1. Pontos do cartão e milhas não são a mesma coisa",
-        "texto": "Os pontos do cartão de crédito (Itaú, por exemplo) são como dinheiro na sua conta corrente: ainda não têm destino. As milhas são a moeda de cada programa de fidelidade (Smiles, LATAM Pass, Azul Fidelidade, TAP Miles&Go) e só valem dentro dele, como o euro só vale na zona do euro."
-      },
-      {
-        "titulo": "2. Transferir é trocar de moeda",
-        "texto": "Para emitir uma passagem, você transfere os pontos do banco para um programa, normalmente na proporção de 1 ponto para 1 milha. Funciona como uma casa de câmbio, com uma diferença importante: a troca não tem volta. Milhas não voltam a ser pontos nem passam de um programa para outro."
-      },
-      {
-        "titulo": "3. Transferência bonificada é câmbio em promoção",
-        "texto": "Várias vezes por ano, os programas oferecem bônus nas transferências: 1.000 pontos podem virar 1.250, 1.500 ou mais milhas. Para ganhar o bônus, é preciso cadastrar o CPF na página da campanha antes de transferir. Esperar uma boa campanha é a forma mais simples de multiplicar o seu saldo."
-      },
-      {
-        "titulo": "4. O milheiro é a cotação",
-        "texto": "Milheiro é o valor de 1.000 milhas em reais. Como cada moeda tem a sua cotação, 1.000 milhas LATAM Pass não valem o mesmo que 1.000 milhas Smiles. A tabela desta página mostra a referência de cada programa."
-      },
-      {
-        "titulo": "5. Como saber se vale a pena",
-        "texto": "Pegue o preço da passagem em dinheiro, tire as taxas cobradas na emissão com milhas, divida pelas milhas pedidas e multiplique por 1.000. Se o resultado for maior que a referência do programa, as suas milhas estão rendendo bem e vale emitir. Se for menor, é melhor pagar em dinheiro e guardar os pontos. A calculadora faz essa conta por você."
-      },
-      {
-        "titulo": "6. Milhas não pagam tudo",
-        "texto": "Mesmo emitindo com milhas, você paga um valor em dinheiro, como as taxas de embarque. Ele aparece no final da emissão e entra na conta do item anterior."
-      },
-      {
-        "titulo": "7. Pontos e milhas vencem",
-        "texto": "Cada programa tem seu prazo de validade, e as milhas bônus das campanhas costumam vencer antes das demais. Por isso, o ideal é transferir só quando a viagem estiver decidida."
-      },
-      {
-        "titulo": "A regra de ouro",
-        "texto": "Primeiro encontre o voo disponível com milhas, nas datas que você quer. Depois transfira, de preferência com bônus, e emita no mesmo dia. Ninguém troca reais por euros antes de ter a viagem marcada."
-      }
-    ]
-  }
+  "perguntas": [
+    {
+      "pergunta": "Pontos do cartão e milhas são a mesma coisa?",
+      "resposta": "Não. Os pontos do cartão (Itaú, por exemplo) são como dinheiro na conta corrente: ainda não têm destino. As milhas são a moeda de cada programa (Smiles, LATAM Pass, Azul Fidelidade, TAP Miles&Go) e só valem dentro dele, como o euro só vale na zona do euro."
+    },
+    {
+      "pergunta": "Como os pontos viram milhas?",
+      "resposta": "Por transferência, normalmente na proporção de 1 ponto para 1 milha. Funciona como uma casa de câmbio, mas a troca não tem volta: milhas não voltam a ser pontos nem passam de um programa para outro."
+    },
+    {
+      "pergunta": "O que é transferência bonificada?",
+      "resposta": "É câmbio em promoção. Várias vezes por ano, os programas dão bônus: 1.000 pontos podem virar 1.250, 1.500 ou mais milhas. Para ganhar, cadastre o CPF na página da campanha antes de transferir."
+    },
+    {
+      "pergunta": "O que é o milheiro?",
+      "resposta": "É a cotação de 1.000 milhas em reais. Cada programa tem a sua: 1.000 milhas LATAM Pass não valem o mesmo que 1.000 milhas Smiles. A tabela desta página mostra a referência de cada um."
+    },
+    {
+      "pergunta": "Como a calculadora decide se vale a pena?",
+      "resposta": "Ela tira as taxas do preço em dinheiro, divide pelas milhas pedidas e multiplica por 1.000. Se o resultado for maior que a referência do programa, as suas milhas estão rendendo bem. Até 10% acima ou abaixo da referência, consideramos empate."
+    },
+    {
+      "pergunta": "Emitindo com milhas, não pago nada?",
+      "resposta": "Paga um valor em dinheiro, como as taxas de embarque. Ele aparece no final da emissão e entra na conta da calculadora."
+    },
+    {
+      "pergunta": "Pontos e milhas vencem?",
+      "resposta": "Sim. Cada programa tem seu prazo, e as milhas bônus das campanhas costumam vencer antes. Por isso, transfira só quando a viagem estiver decidida."
+    },
+    {
+      "pergunta": "Qual é a regra de ouro?",
+      "resposta": "Primeiro encontre o voo disponível com milhas nas datas que você quer. Depois transfira, de preferência com bônus, e emita no mesmo dia."
+    }
+  ]
 }
