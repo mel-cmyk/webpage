@@ -8,7 +8,8 @@ export const MILHAS = JSON.parse(fs.readFileSync(new URL('../data/referencia-mil
 const brl = (n) => `R$ ${n.toFixed(2).replace('.', ',')}`;
 
 export function paginaMilhas(data) {
-  const { pagina, programas, atualizado_em, fonte } = MILHAS;
+  const { pagina, programas, atualizado_em, fonte, leiame } = MILHAS;
+  const topicos = leiame.topicos.map((t) => `<h3>${esc(t.titulo)}</h3>\n      <p>${esc(t.texto)}</p>`).join('\n      ');
   const linhas = programas
     .map(
       (p) =>
@@ -24,6 +25,12 @@ export function paginaMilhas(data) {
 </section>
 <section class="section">
   <div class="wrap narrow">
+    <div class="card destaque" style="margin-top:0">
+      <h2>${esc(leiame.titulo)}</h2>
+      <p>${esc(leiame.introducao)}</p>
+      ${topicos}
+    </div>
+    <h2 class="center" style="margin-top:48px">Tabela de referência</h2>
     <table>
       <thead><tr><th scope="col">Programa</th><th scope="col">R$ por 1.000 milhas</th></tr></thead>
       <tbody>${linhas}</tbody>
