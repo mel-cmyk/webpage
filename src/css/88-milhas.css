@@ -20,3 +20,10 @@
 .milhas-numeros dt { font-size: 0.8rem; color: var(--muted); }
 .milhas-numeros dd { margin: 2px 0 0; font-weight: 600; font-size: 1.05rem; }
 .milhas-valor { white-space: nowrap; vertical-align: middle; }
+.milhas-dicas-grupo { max-width: 1000px; margin: 28px auto 0; }
+.milhas-dicas-grupo h3 { color: var(--gold-dark); font-size: 1.2rem; }
+.milhas-dicas { display: grid; gap: 14px; }
+@media (min-width: 700px) { .milhas-dicas { grid-template-columns: 1fr 1fr; } }
+.milhas-dicas .card { padding: 18px 20px; height: 100%; }
+.milhas-dicas h4 { font-family: var(--serif); font-size: 1.02rem; margin: 0 0 6px; color: var(--navy); }
+.milhas-dicas p { margin: 0; font-size: 0.95rem; color: var(--muted); }
