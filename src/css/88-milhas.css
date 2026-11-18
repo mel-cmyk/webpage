@@ -1,0 +1,22 @@
+/* Calculadora de milhas (/referencia-milhas/) */
+.milhas-topo { padding-top: 28px; }
+.milhas-topo h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 0.3em; }
+.milhas-calc { padding: 22px; margin-top: 18px; }
+.milhas-campos { display: grid; gap: 14px; }
+@media (min-width: 700px) { .milhas-campos { grid-template-columns: 1fr 1fr; } }
+.milhas-campos label { display: flex; flex-direction: column; gap: 6px; font-weight: 500; font-size: 0.95rem; }
+.milhas-campos input, .milhas-campos select { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); color: var(--text); min-height: 44px; }
+.milhas-campos input:focus, .milhas-campos select:focus { outline: 2px solid var(--navy); outline-offset: 1px; }
+.milhas-dica { margin: 10px 0 0; }
+.milhas-resultado { margin-top: 16px; }
+.milhas-veredito { margin: 0; padding: 14px 16px; border-radius: 10px; text-align: center; font-family: var(--serif); font-weight: 600; font-size: 1.15rem; background: var(--cream); color: var(--navy); }
+.milhas-veredito[data-estado='vazio'] { font-family: var(--sans); font-weight: 400; font-size: 0.95rem; color: var(--muted); }
+.milhas-veredito[data-estado='vale'] { background: var(--navy); color: var(--white); }
+.milhas-veredito[data-estado='empate'] { background: var(--gold); color: var(--navy); }
+.milhas-veredito[data-estado='nao'] { background: #e9e6dc; color: var(--navy); }
+.milhas-numeros { display: grid; gap: 10px; margin: 12px 0 0; }
+@media (min-width: 700px) { .milhas-numeros { grid-template-columns: repeat(3, 1fr); } }
+.milhas-numeros div { background: var(--cream); border-radius: 10px; padding: 10px 12px; text-align: center; }
+.milhas-numeros dt { font-size: 0.8rem; color: var(--muted); }
+.milhas-numeros dd { margin: 2px 0 0; font-weight: 600; font-size: 1.05rem; }
+.milhas-valor { white-space: nowrap; vertical-align: middle; }
