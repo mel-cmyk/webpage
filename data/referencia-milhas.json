@@ -64,5 +64,70 @@
       "pergunta": "Qual é a regra de ouro?",
       "resposta": "Primeiro encontre o voo disponível com milhas nas datas que você quer. Depois transfira, de preferência com bônus, e emita no mesmo dia."
     }
+  ],
+  "dicas": [
+    {
+      "grupo": "Na hora de transferir",
+      "itens": [
+        {
+          "titulo": "Transfira só em campanha de bônus",
+          "texto": "Smiles, Azul e LATAM Pass fazem campanhas de transferência bonificada várias vezes por ano. Esperar uma boa promoção pode render 50% ou mais de milhas sobre o mesmo saldo de pontos."
+        },
+        {
+          "titulo": "Cadastre o CPF antes",
+          "texto": "Na maioria das campanhas, o bônus só vale para quem se cadastra na página da promoção antes de fazer a transferência."
+        },
+        {
+          "titulo": "Confira se o seu cartão participa",
+          "texto": "Alguns cartões ficam de fora das campanhas, como os cartões de companhia aérea que já acumulam milhas direto. Leia o regulamento."
+        },
+        {
+          "titulo": "Transfira só o necessário",
+          "texto": "A troca não tem volta e as milhas bônus vencem antes. Deixe o restante no banco, onde os pontos continuam livres para qualquer programa."
+        }
+      ]
+    },
+    {
+      "grupo": "Na hora de emitir",
+      "itens": [
+        {
+          "titulo": "Ache o voo antes de transferir",
+          "texto": "Confirme que há assentos disponíveis com milhas nas suas datas. Depois transfira e emita no mesmo dia, porque a disponibilidade muda rápido."
+        },
+        {
+          "titulo": "Compare programas para o mesmo voo",
+          "texto": "O mesmo trecho pode custar quantidades bem diferentes em cada programa. Use a calculadora com cada opção e fique com a que mais rende."
+        },
+        {
+          "titulo": "Seja flexível nas datas",
+          "texto": "Buscar alguns dias antes e depois, e fugir da alta temporada, costuma reduzir bastante as milhas pedidas."
+        },
+        {
+          "titulo": "Compare sempre com o preço em dinheiro",
+          "texto": "Em passagens promocionais, pagar em reais pode ser melhor. Nesses casos, guarde as milhas para uma emissão que renda mais."
+        }
+      ]
+    },
+    {
+      "grupo": "Para acumular até a viagem",
+      "itens": [
+        {
+          "titulo": "Concentre os gastos em um cartão",
+          "texto": "Supermercado, contas fixas e assinaturas no mesmo cartão aceleram o acúmulo. Espalhar os gastos em vários cartões dilui os pontos."
+        },
+        {
+          "titulo": "Use compras bonificadas",
+          "texto": "Os portais dos programas oferecem várias milhas por real gasto em lojas parceiras. Vale para o que você já ia comprar, e o cartão continua pontuando."
+        },
+        {
+          "titulo": "Clube de milhas só com objetivo próximo",
+          "texto": "Assinar um clube pode compensar quando a viagem está definida e você usa as milhas logo. Mantê-lo sem uso não compensa."
+        },
+        {
+          "titulo": "Acompanhe os alertas",
+          "texto": "Sites especializados, como Passageiro de Primeira, Pontos pra Voar e Melhores Destinos, avisam quando há campanhas de bônus e boas emissões."
+        }
+      ]
+    }
   ]
 }

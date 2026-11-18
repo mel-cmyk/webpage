@@ -10,7 +10,15 @@ export const MILHAS = JSON.parse(fs.readFileSync(new URL('../data/referencia-mil
 const brl = (n) => `R$ ${n.toFixed(2).replace('.', ',')}`;
 
 export function paginaMilhas(data) {
-  const { pagina, programas, atualizado_em, fonte, perguntas } = MILHAS;
+  const { pagina, programas, atualizado_em, fonte, perguntas, dicas } = MILHAS;
+  const blocosDicas = dicas
+    .map(
+      (g) => `<div class="milhas-dicas-grupo">
+      <h3>${esc(g.grupo)}</h3>
+      <div class="milhas-dicas">${g.itens.map((d) => `<article class="card"><h4>${esc(d.titulo)}</h4><p>${esc(d.texto)}</p></article>`).join('')}</div>
+    </div>`
+    )
+    .join('\n    ');
   const opcoes = programas.map((p) => `<option value="${esc(p.nome)}">${esc(p.nome)}</option>`).join('');
   const refs = Object.fromEntries(programas.map((p) => [p.nome, p.valor]));
   const linhas = programas
@@ -52,6 +60,13 @@ export function paginaMilhas(data) {
       <tbody>${linhas}</tbody>
     </table>
     <p class="small" style="margin-top:12px">Valores atualizados em ${esc(atualizado_em)}. Fonte: ${esc(fonte.nome)} (<a href="${esc(fonte.url)}">${esc(fonte.url.replace(/^https?:\/\//, ''))}</a>).</p>
+  </div>
+</section>
+<section class="section alt">
+  <div class="wrap">
+    <h2 class="center">Boas práticas e dicas</h2>
+    <p class="center lead-sm">O que faz as suas milhas renderem mais, do acúmulo à emissão.</p>
+    ${blocosDicas}
   </div>
 </section>
 <section class="section">
