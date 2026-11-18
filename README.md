@@ -38,6 +38,10 @@ Para trocar uma foto, mande a nova imagem em alta resolução: ela é recortada,
 
 Medição (`src/analytics/`, montado em `dist/js/analytics.js` por `src/analytics.mjs`): nessas páginas (`data-medicao="avancada"`) o Google carrega desde o início com tudo negado por padrão (Consent Mode avançado, `url_passthrough` ativo). Eventos: `view_item` ao abrir e `begin_checkout` no clique de cada botão de compra. Os links para a loja levam `gclid`, `gbraid`, `wbraid`, `fbclid` e UTMs da visita. O pixel da Meta só carrega com o consentimento de publicidade.
 
+## Referência do milheiro (página não listada)
+
+`/referencia-milhas/` é enviada só a clientes da consultoria, junto com a calculadora de milhas (planilha em `public/ferramentas/`). Como a página de bônus, tem noindex, fica fora do sitemap e do menu e é bloqueada no robots.txt. Para atualizar a cotação, edite só `data/referencia-milhas.json` (valores, `atualizado_em` e fonte).
+
 ## Estrutura
 
 Guia completo de "pedido → arquivo": **`docs/COMO-ALTERAR.md`**.
