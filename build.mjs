@@ -8,6 +8,7 @@ import { SITE_URL, STAGING, url } from './src/helpers.mjs';
 import { vigente } from './src/oferta.mjs';
 import { paginaRedirecionamento } from './src/redirect.mjs';
 import { BONUS, paginaBonus } from './src/bonus.mjs';
+import { MILHAS, paginaMilhas } from './src/milhas.mjs';
 import { analyticsJs } from './src/analytics.mjs';
 import { INTEG } from './src/integracoes.mjs';
 import { siteCss, consentCss } from './src/css.mjs';
@@ -63,6 +64,16 @@ if (process.env.SKIP_LPS !== '1') {
   fs.writeFileSync(file, layout({ data, ...b }));
 }
 
+// Página não listada da referência do milheiro (data/referencia-milhas.json): fora de pages() de propósito, como a dos bônus.
+{
+  const planilha = path.join('public', MILHAS.pagina.planilha);
+  if (!fs.existsSync(planilha)) throw new Error(`A planilha da calculadora de milhas não está em ${planilha}.`);
+  const m = paginaMilhas(data);
+  const file = path.join(OUT, m.path, 'index.html');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, layout({ data, ...m }));
+}
+
 // 404
 fs.writeFileSync(
   path.join(OUT, '404.html'),
@@ -105,7 +116,7 @@ fs.writeFileSync(
 // robots.txt (o endereço de teste não é indexado)
 fs.writeFileSync(
   path.join(OUT, 'robots.txt'),
-  STAGING ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nDisallow: /bonus/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
+  STAGING ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nDisallow: /bonus/\nDisallow: /referencia-milhas/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
 );
 
 // llms.txt

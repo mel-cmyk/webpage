@@ -1,0 +1,34 @@
+{
+  "_sobre_este_arquivo": "Referência do milheiro para a página não listada /referencia-milhas/, enviada só a clientes da consultoria (mesma lógica da página de bônus: noindex, fora do sitemap e do menu). Para atualizar, troque os valores em 'programas', a 'atualizado_em' (DD/MM/AAAA) e, se mudar, a 'fonte'. A planilha baixada pela página fica em public/ferramentas/.",
+  "pagina": {
+    "caminho": "/referencia-milhas/",
+    "planilha": "/ferramentas/calculadora-de-milhas-mel-rolan.xlsx"
+  },
+  "atualizado_em": "03/06/2026",
+  "fonte": {
+    "nome": "Cartões e Viagens, cotação do milheiro",
+    "url": "https://cartoeseviagens.com.br/cotacao-milheiro"
+  },
+  "programas": [
+    {
+      "nome": "Smiles",
+      "valor": 16,
+      "nota": "Programa da GOL; emite também Air France e KLM"
+    },
+    {
+      "nome": "LATAM Pass",
+      "valor": 25.5,
+      "nota": "Programa da LATAM"
+    },
+    {
+      "nome": "Azul Fidelidade",
+      "valor": 16,
+      "nota": "Programa da Azul"
+    },
+    {
+      "nome": "TAP Miles&Go",
+      "valor": 53,
+      "nota": "Programa da TAP; voos via Lisboa"
+    }
+  ]
+}
