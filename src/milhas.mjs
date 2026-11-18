@@ -30,8 +30,9 @@ export function paginaMilhas(data) {
   const body = `
 <section class="section milhas-topo">
   <div class="wrap narrow">
+    <p class="center"><span class="milhas-exclusivo">Ferramenta exclusiva para clientes da consultoria Mel Rolan</span></p>
     <h1 class="center">Calculadora de milhas</h1>
-    <p class="center lead-sm">Descubra se vale emitir a sua passagem com milhas ou pagar em dinheiro. Ferramenta exclusiva para clientes da consultoria Mel Rolan.</p>
+    <p class="center lead-sm">Descubra se vale emitir a sua passagem com milhas ou pagar em dinheiro.</p>
     <form class="card milhas-calc" id="calculadora-milhas" data-refs='${esc(JSON.stringify(refs))}' novalidate>
       <div class="milhas-campos">
         <label>Programa de milhas<select name="programa">${opcoes}</select></label>
