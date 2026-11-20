@@ -42,6 +42,10 @@ Medição (`src/analytics/`, montado em `dist/js/analytics.js` por `src/analytic
 
 `/referencia-milhas/` é enviada só a clientes da consultoria, junto com a calculadora de milhas (planilha em `public/ferramentas/`). Como a página de bônus, tem noindex, fica fora do sitemap e do menu e é bloqueada no robots.txt. Para atualizar a cotação, edite só `data/referencia-milhas.json` (valores, `atualizado_em` e fonte).
 
+## Página do TikTok (link da bio, não listada)
+
+`/tiktok/` é a página de entrada de quem vem do TikTok. Textos e links em `data/tiktok.json`. O checklist "Primeira vez em Paris" (`public/checklist/primeira-vez-em-paris.pdf`) só é liberado depois de nome e WhatsApp, que viram lead no Wix Forms (mesmo formulário do diagnóstico, com origem "tiktok") e disparam `generate_lead`. Tem noindex, fica fora do sitemap e do menu e é bloqueada no robots.txt. Para trocar o checklist, substitua o PDF mantendo o nome.
+
 ## Estrutura
 
 Guia completo de "pedido → arquivo": **`docs/COMO-ALTERAR.md`**.

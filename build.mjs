@@ -9,6 +9,7 @@ import { vigente } from './src/oferta.mjs';
 import { paginaRedirecionamento } from './src/redirect.mjs';
 import { BONUS, paginaBonus } from './src/bonus.mjs';
 import { MILHAS, paginaMilhas } from './src/milhas.mjs';
+import { TIKTOK, paginaTiktok } from './src/tiktok.mjs';
 import { analyticsJs } from './src/analytics.mjs';
 import { INTEG } from './src/integracoes.mjs';
 import { siteCss, consentCss } from './src/css.mjs';
@@ -74,6 +75,16 @@ if (process.env.SKIP_LPS !== '1') {
   fs.writeFileSync(file, layout({ data, ...m }));
 }
 
+// Página de entrada do TikTok (data/tiktok.json): fora de pages() de propósito, como a dos bônus.
+{
+  const pdf = path.join('public', TIKTOK.checklist.arquivo);
+  if (!fs.existsSync(pdf)) throw new Error(`O checklist do TikTok não está em ${pdf}.`);
+  const t = paginaTiktok(data);
+  const file = path.join(OUT, t.path, 'index.html');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, layout({ data, ...t }));
+}
+
 // 404
 fs.writeFileSync(
   path.join(OUT, '404.html'),
@@ -116,7 +127,9 @@ fs.writeFileSync(
 // robots.txt (o endereço de teste não é indexado)
 fs.writeFileSync(
   path.join(OUT, 'robots.txt'),
-  STAGING ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nDisallow: /bonus/\nDisallow: /referencia-milhas/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
+  STAGING
+    ? 'User-agent: *\nDisallow: /\n'
+    : `User-agent: *\nAllow: /\nDisallow: /bonus/\nDisallow: /referencia-milhas/\nDisallow: /tiktok/\nDisallow: /checklist/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
 );
 
 // llms.txt
