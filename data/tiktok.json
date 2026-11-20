@@ -1,12 +1,12 @@
 {
-  "_sobre_este_arquivo": "Página de entrada para quem vem do TikTok (/tiktok/), link da bio. Não listada: noindex, fora do sitemap e do menu. O checklist só é liberado depois de nome e WhatsApp, que viram lead no Wix Forms (mesmo formulário do diagnóstico, com origem 'tiktok').",
+  "_sobre_este_arquivo": "Página de entrada para quem vem do TikTok (/tiktok/), link da bio. Não listada: noindex, fora do sitemap e do menu. O checklist só é liberado depois de nome e WhatsApp, que viram lead no Wix Forms (mesmo formulário do diagnóstico, com origem 'tiktok'). Números da marca (ano, clientes, nota) vêm de data/ofertas.json (marca): use {ano_fundacao}, {clientes} e {nota} no texto.",
   "pagina": {
     "path": "/tiktok/",
     "title": "Paris para brasileiros | Mel Rolan",
     "description": "Checklist gratuito para a primeira viagem a Paris, roteiro sob medida, consultoria e tours privativos com a Mel Rolan.",
     "eyebrow": "Você veio do TikTok",
-    "titulo": "Paris para brasileiros, por quem mora aqui.",
-    "texto": "Sou a Mel. Planejo viagens e guio famílias brasileiras pela França. Escolha por onde quer começar.",
+    "titulo": "A sua viagem a Paris, pensada por quem é especialista em viajantes brasileiros.",
+    "texto": "Sou a Mel. Desde {ano_fundacao}, já planejei a viagem de mais de {clientes} clientes brasileiros, com nota {nota} de 10 na pesquisa de satisfação. Escolha por onde quer começar.",
     "imagem": "sobre/retrato",
     "imagem_alt": "Mel Rolan diante da Sacré-Coeur, em Montmartre"
   },

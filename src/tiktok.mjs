@@ -8,6 +8,11 @@ export const TIKTOK = JSON.parse(fs.readFileSync(new URL('../data/tiktok.json', 
 
 export function paginaTiktok(data) {
   const { pagina, checklist, cartoes } = TIKTOK;
+  const m = data.marca;
+  const texto = pagina.texto
+    .replace('{ano_fundacao}', m.ano_fundacao)
+    .replace('{clientes}', m.familias_atendidas.replace('+', ''))
+    .replace('{nota}', m.nota_satisfacao);
   const utm = 'utm_source=tiktok&utm_medium=bio&utm_campaign=tiktok_lp';
   const comUtm = (link) => `${url(link)}${link.includes('?') ? '&' : '?'}${utm}`;
   const whatsapp = `${data.marca.whatsapp_site_link}?text=${encodeURIComponent(checklist.mensagem_whatsapp)}`;
@@ -37,7 +42,7 @@ export function paginaTiktok(data) {
       <div class="tiktok-hero-txt">
         <p class="eyebrow">${esc(pagina.eyebrow)}</p>
         <h1>${esc(pagina.titulo)}</h1>
-        <p class="lead-sm">${esc(pagina.texto)}</p>
+        <p class="lead-sm">${esc(texto)}</p>
       </div>
     </div>
 
