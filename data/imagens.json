@@ -348,5 +348,17 @@
    "w": 480,
    "h": 480
   }
+ ],
+ "tiktok/mel-sena": [
+  {
+   "src": "/img/tiktok/mel-sena-800.webp",
+   "w": 800,
+   "h": 533
+  },
+  {
+   "src": "/img/tiktok/mel-sena-1200.webp",
+   "w": 1200,
+   "h": 800
+  }
  ]
 }
