@@ -2,7 +2,7 @@
 .tiktok-topo { padding-top: 24px; }
 .tiktok-wrap { max-width: 600px; display: grid; gap: 16px; }
 .tiktok-hero { padding: 0; overflow: hidden; }
-.tiktok-foto { display: block; width: 100%; height: 340px; object-fit: cover; object-position: 50% 30%; }
+.tiktok-foto { display: block; width: 100%; aspect-ratio: 3 / 2; height: auto; object-fit: cover; object-position: 50% 30%; }
 .tiktok-hero-txt { padding: 22px 24px 24px; }
 .tiktok-hero-txt h1 { font-size: 1.85rem; }
 .tiktok-hero-txt .lead-sm { margin: 0; }
