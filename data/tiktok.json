@@ -1,0 +1,50 @@
+{
+  "_sobre_este_arquivo": "Página de entrada para quem vem do TikTok (/tiktok/), link da bio. Não listada: noindex, fora do sitemap e do menu. O checklist só é liberado depois de nome e WhatsApp, que viram lead no Wix Forms (mesmo formulário do diagnóstico, com origem 'tiktok'). Números da marca (ano, clientes, nota) vêm de data/ofertas.json (marca): use {ano_fundacao}, {clientes} e {nota} no texto.",
+  "pagina": {
+    "path": "/tiktok/",
+    "title": "Paris para brasileiros | Mel Rolan",
+    "description": "Checklist gratuito para a primeira viagem a Paris, roteiro sob medida, consultoria e tours privativos com a Mel Rolan.",
+    "eyebrow": "Você veio do TikTok",
+    "titulo": "A sua viagem a Paris, pensada por quem é especialista em viajantes brasileiros.",
+    "texto": "Sou a Mel. Desde {ano_fundacao}, já planejei a viagem de mais de {clientes} clientes brasileiros, com nota {nota} de 10 na pesquisa de satisfação. Escolha por onde quer começar.",
+    "imagem": "sobre/retrato",
+    "imagem_alt": "Mel Rolan diante da Sacré-Coeur, em Montmartre"
+  },
+  "checklist": {
+    "tag": "Gratuito",
+    "titulo": "Checklist: primeira vez em Paris",
+    "texto": "Ingressos, transporte, segurança e os detalhes que eu resolveria antes de embarcar. Uma página, para salvar no celular.",
+    "botao": "Quero o checklist",
+    "aviso": "Ao pedir o checklist, você envia o seu nome e o seu WhatsApp à equipe da Mel Rolan, apenas para falarmos com você sobre a sua viagem.",
+    "sucesso_titulo": "Pronto! O seu checklist está aqui.",
+    "sucesso_texto": "Boa viagem! Se quiser ajuda para montar o roteiro, a Mel responde pelo WhatsApp.",
+    "botao_download": "Baixar o checklist (PDF)",
+    "botao_whatsapp": "Falar com a Mel",
+    "arquivo": "/checklist/primeira-vez-em-paris.pdf",
+    "procura": "Checklist Primeira vez em Paris",
+    "mensagem_whatsapp": "Oi, Mel! Vim do TikTok, baixei o checklist e quero ajuda para planejar a minha viagem."
+  },
+  "cartoes": [
+    {
+      "tag": "Roteiro e consultoria",
+      "titulo": "Quero ajuda para planejar",
+      "texto": "Roteiro sob medida ou consultoria por vídeo para tirar todas as dúvidas da sua viagem.",
+      "botao": "Fazer o diagnóstico",
+      "link": "/diagnostico/"
+    },
+    {
+      "tag": "Tours privativos",
+      "titulo": "Conhecer Paris comigo",
+      "texto": "Tours a pé, em português, para famílias, casais e grupos de até 8 pessoas.",
+      "botao": "Ver os tours",
+      "link": "/tours-em-paris/"
+    },
+    {
+      "tag": "Guia digital",
+      "titulo": "Paris com Crianças",
+      "texto": "A minha curadoria de lugares pensados para os pequenos, com bônus de inverno 2026/2027.",
+      "botao": "Conhecer o guia",
+      "link": "/guias/paris-com-criancas/"
+    }
+  ]
+}

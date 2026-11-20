@@ -1,0 +1,17 @@
+/* Página de entrada do TikTok (/tiktok/): coluna única, pensada para o celular. */
+.tiktok-topo { padding-top: 24px; }
+.tiktok-wrap { max-width: 600px; display: grid; gap: 16px; }
+.tiktok-hero { padding: 0; overflow: hidden; }
+.tiktok-foto { display: block; width: 100%; height: 340px; object-fit: cover; object-position: 50% 30%; }
+.tiktok-hero-txt { padding: 22px 24px 24px; }
+.tiktok-hero-txt h1 { font-size: 1.85rem; }
+.tiktok-hero-txt .lead-sm { margin: 0; }
+.tiktok-tag { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; font-weight: 600; color: var(--gold-dark); margin: 0 0 4px; }
+.tiktok-card .h3 { margin-bottom: 0.4em; }
+.tiktok-card .btn { align-self: stretch; text-align: center; justify-content: center; }
+.tiktok-form { display: grid; gap: 12px; margin: 6px 0 0; }
+.tiktok-form .btn { width: 100%; }
+.tiktok-form .hint { margin: 0; }
+.tiktok-checklist { border-color: var(--gold); }
+.tiktok-sucesso .tiktok-botoes { display: grid; gap: 10px; margin-top: 8px; }
+.tiktok-sucesso .btn { width: 100%; }
